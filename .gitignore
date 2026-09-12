@@ -1,0 +1,26 @@
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# MATLAB temporary files
+*.asv
+*.m~
+slprj/
+
+# Build and temporary outputs
+build/
+*.log
+*.tmp
+
+# Local credentials
+.env
+.env.*
+!.env.example
