@@ -41,7 +41,7 @@
 - 两预设RGB平均绝对差必须>0.5；PNG文件SHA-256及执行脚本/模型SHA-256写入JSON。
 - GUI入口支持1/2切换、J点动和Q退出。报告必须收到两种切换键事件，才将gui_keyboard_verified设为true。
 
-### 用户Windows电脑验收：未完成
+### 用户Windows电脑验收：历史待办（最新进展见文末）
 
 本轮用户已要求先搁置本地会话连接问题，本会话也没有本机控制通道。因此此项继续标为未完成，不使用云端DIRECT、CI或渲染截图冒充桌面交互证据。
 
@@ -75,3 +75,14 @@
 [仓库内JSON记录](../../results/scene-demo/report.json)由该次CI stdout精确提取，字段值未改写；已核对脚本SHA-256匹配测试源码。PNG哈希已包含在JSON中。当前下载通道返回403，未将PNG另存入仓库，且未对PNG进行人工视觉复核；可见性验收依据CI渲染器分割掩码与非零退出码检查。图像仍可通过上述CI附件查看/下载。
 
 总评：云端视角自动切换和物体添加验证通过；GUI入口已实现，但GUI键盘操作及用户Windows本机安装仍未验证。
+
+
+## 用户电脑本机补充验收（2026-09-15）
+
+**环境安装及本机自动测试通过；GUI 显示连接阻塞，整体验收仍为部分通过。**
+
+实际在用户 Windows 11（10.0.26200.9457）、WSL 2.7.14.0、WSLg 1.0.73.2、Ubuntu 24.04.5 LTS 上执行，测试提交 98e2ffe9247ef696131501b379de5e7c7e047c1a。Python 3.11.9、PyBullet 3.2.7、CMake 3.31.6、GCC/G++ 13.3.0 及全部锁定版本通过；setup.sh 退出 0，CTest 1/1、模型校验、C/Python 接口与本机 DIRECT 场景通过。
+
+真实 GUI 已启动，但 Windows 端窗口不可见/激活失败，重选及重启会话未恢复。用户也反馈看不见。未完成 2/1/J/Q 操作，gui_keyboard_verified=false；无有效桌面截图/录屏，不能标记本机 GUI 通过。以 SIGINT 结束不可见进程并保留原始失败报告。
+
+[本机归档及阻塞详情](../../results/local-validation/README.md) · [环境报告](../../results/local-validation/environment-check.json) · [安装测试日志](../../results/local-validation/setup.log) · [GUI 原始失败报告](../../results/local-validation/gui/report.json)。既有云端证据保留，以上更新不修改历史 CI 结论。

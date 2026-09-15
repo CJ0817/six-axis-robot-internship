@@ -1,0 +1,22 @@
+{
+  "README.md": "b02b02d38f5245952a2d6d4f7c363b84e1977081748ca89dd5dd8a6280aeaf52",
+  "environment-check.json": "ee6c817a8d7a4c20a2e7412d7434abe03a34abecb4e0046e2fbecf88f33062c9",
+  "gui/00-front.png": "832b2f7c4dddd2318722eadff14b85d29e0c3387e551cf6dc97abe197ce80f1f",
+  "gui/report.json": "b8c402258b18921aa1541488a80fc514185f394fe9165dbe254a8ff7389e1c5e",
+  "gui-attempt-1/00-front.png": "832b2f7c4dddd2318722eadff14b85d29e0c3387e551cf6dc97abe197ce80f1f",
+  "gui-attempt-1/report.json": "c4e4d9d9bc32e83fc1cfc7d57dc24037bda763966b71b17e56feca95c19fece8",
+  "gui-attempt-1.log": "5debbd847144e7a2e7418dcaba08bf7a93d6c0e768be5b7cc0c1927910e2e395",
+  "gui-attempt-2/00-front.png": "832b2f7c4dddd2318722eadff14b85d29e0c3387e551cf6dc97abe197ce80f1f",
+  "gui-attempt-2/report.json": "9cf7bb24a21823daf259d29a4b4cda0391c6db38f9ebedd71ed8f3707eeccacc",
+  "gui.log": "b37bdf521abbd08a2fdfd485dc1e034e77dc5ff7a5d537a40bbf5387dae52e72",
+  "headless/00-front.png": "03621c9e0aa62273985e5efe00012e7a45cfe9d2bd2177b299660983ae017b32",
+  "headless/01-side.png": "98da20cf1808347ba45df9ab7a17cd9433e1b8c78fe872e97bc79cd985f7e9c8",
+  "headless/02-front.png": "3c63e01d38b6c534b227193bf7c0e308fb22e5a7d078a04c047c751be999868d",
+  "headless/report.json": "d36ae71b6aec77edc7cb9e5f8d5b3dadf70c8bda74c0d9eefce8fc05e888fde8",
+  "prior/environment-check.json": "ee6c817a8d7a4c20a2e7412d7434abe03a34abecb4e0046e2fbecf88f33062c9",
+  "prior/setup.log": "bae8f7375949f5a95954695081ec23b61458b168b4ce5a166f3e26dee4829fa3",
+  "setup.log": "34703fe2e1c60f26ae5027c9bb205cf501d1b1ef14b30a6fdb71f2849fbf44d4",
+  "tested-commit.txt": "6130cf02b9774ce71ab380d845eed922b3f1249c49e483d36cab800d55209f19",
+  "ubuntu-release.txt": "87458b3b1f1ca0e5c693ade771de7007c3783bdc692fa6b39eb6414bf2af2763",
+  "windows-wsl.txt": "a89e9aff9adbfa72fbea95cc7c2787031b90b514655cf7619d3c409476d6a8cb"
+}

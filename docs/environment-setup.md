@@ -85,3 +85,8 @@ python examples/scene_demo.py --gui --output results/local-gui-demo
 本机验收另需保存：本机运行setup.sh的environment-check.json、GUI模式的report.json与PNG、Windows上的PyBullet窗口截图或录屏（展示1/2切换及物体），以及机器/WSL版本和操作者确认。GUI事件记录只能证明某个GUI运行环境收到操作，不能自动证明它就是用户电脑。因此程序不自动把user_windows_validation设为通过。
 
 当前交付的图像和报告来自云端DIRECT实测；本机安装/GUI操作证据仍待补充。本机运行产生的results/local-gui-demo可在复核后归档，不能用CI或虚拟显示服务器测试代替。
+
+
+### 用户本机最新状态（2026-09-15）
+
+本机 WSL2 安装及 setup.sh 自动验收已通过；真实 GUI 显示连接仍阻塞，尚未完成键盘交互和 Windows 桌面取证。详情见 [本机归档](../results/local-validation/README.md)。上文云端交付状态为历史记录，本机 GUI 不因此视为通过。

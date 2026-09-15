@@ -1,0 +1,267 @@
+Requirement already satisfied: pip==24.3.1 in ./.venv/lib/python3.11/site-packages (24.3.1)
+
+[notice] A new release of pip is available: 24.3.1 -> 26.2.1
+[notice] To update, run: /opt/six-axis-robot-internship/.venv/bin/python -m pip install --upgrade pip
+Requirement already satisfied: pybullet==3.2.7 in ./.venv/lib/python3.11/site-packages (from -r requirements.lock (line 2)) (3.2.7)
+Requirement already satisfied: numpy==1.26.4 in ./.venv/lib/python3.11/site-packages (from -r requirements.lock (line 3)) (1.26.4)
+Requirement already satisfied: cmake==3.31.6 in ./.venv/lib/python3.11/site-packages (from -r requirements.lock (line 4)) (3.31.6)
+Requirement already satisfied: ninja==1.11.1.3 in ./.venv/lib/python3.11/site-packages (from -r requirements.lock (line 5)) (1.11.1.3)
+Requirement already satisfied: xacro==2.1.1 in ./.venv/lib/python3.11/site-packages (from -r requirements.lock (line 6)) (2.1.1)
+Requirement already satisfied: PyYAML==6.0.2 in ./.venv/lib/python3.11/site-packages (from -r requirements.lock (line 7)) (6.0.2)
+
+[notice] A new release of pip is available: 24.3.1 -> 26.2.1
+[notice] To update, run: /opt/six-axis-robot-internship/.venv/bin/python -m pip install --upgrade pip
+No broken requirements found.
+{
+  "status": "passed",
+  "checks": {
+    "versions": {
+      "python": "3.11.9",
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+      "machine": "x86_64",
+      "pip": "24.3.1",
+      "gcc": "13.3.0",
+      "gxx": "13.3.0",
+      "cmake": "3.31.6",
+      "ninja": "1.11.1.git.kitware.jobserver-1",
+      "packages": {
+        "pybullet": "3.2.7",
+        "numpy": "1.26.4",
+        "cmake": "3.31.6",
+        "ninja": "1.11.1.3",
+        "xacro": "2.1.1",
+        "PyYAML": "6.0.2"
+      }
+    }
+  }
+}
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /opt/six-axis-robot-internship/build
+ninja: no work to do.
+Internal ctest changing into directory: /opt/six-axis-robot-internship/build
+Test project /opt/six-axis-robot-internship/build
+    Start 1: cxx_abi_smoke
+1/1 Test #1: cxx_abi_smoke ....................   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.00 sec
+pybullet build time: Jan 29 2025 23:17:20
+{
+  "status": "passed",
+  "checks": {
+    "versions": {
+      "python": "3.11.9",
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+      "machine": "x86_64",
+      "pip": "24.3.1",
+      "gcc": "13.3.0",
+      "gxx": "13.3.0",
+      "cmake": "3.31.6",
+      "ninja": "1.11.1.git.kitware.jobserver-1",
+      "packages": {
+        "pybullet": "3.2.7",
+        "numpy": "1.26.4",
+        "cmake": "3.31.6",
+        "ninja": "1.11.1.3",
+        "xacro": "2.1.1",
+        "PyYAML": "6.0.2"
+      }
+    },
+    "model": {
+      "movable_joints": [
+        "shoulder_pan_joint",
+        "shoulder_lift_joint",
+        "elbow_joint",
+        "wrist_1_joint",
+        "wrist_2_joint",
+        "wrist_3_joint"
+      ],
+      "verified_assets": 8,
+      "upstream_commit": "39ad110d8f2e8f66856a201cca88aa7a7025e3eb"
+    },
+    "c_abi": {
+      "roundtrip": "passed",
+      "invalid_length_and_nan": "passed"
+    },
+    "pybullet": {
+      "connection": "DIRECT",
+      "movable_joints": 6,
+      "steps": 480,
+      "dt_s": 0.004166666666666667,
+      "max_internal_servo_error_rad": 1.5876189252139739e-13,
+      "rendered_robot_pixels": 370,
+      "api_version": 202010061,
+      "own_controller_tested": false
+    }
+  }
+}
+pybullet build time: Jan 29 2025 23:17:20
+{
+  "status": "passed",
+  "execution_mode": "DIRECT",
+  "host": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "3.11.9",
+  "utc": "2026-09-15T09:40:45.393774+00:00",
+  "pybullet": "3.2.7",
+  "numpy": "1.26.4",
+  "source_sha256": "00e3a139e1e7ece1b5dbe2a0954a0190d43b844d4cbad91dfbe93af65308c731",
+  "model_sha256": "5314d4a6212361fb3e8b45ab79bb5c8ab80f2c1dff93816764ba220f79a4f188",
+  "user_windows_validation": "not_established_by_this_run",
+  "gui_keyboard_verified": false,
+  "presets": {
+    "front": {
+      "distance": 1.8,
+      "yaw": 40,
+      "pitch": -25,
+      "target": [
+        0.1,
+        0,
+        0.5
+      ]
+    },
+    "side": {
+      "distance": 1.8,
+      "yaw": 130,
+      "pitch": -25,
+      "target": [
+        0.1,
+        0,
+        0.5
+      ]
+    }
+  },
+  "events": [
+    {
+      "action": "switch_view",
+      "preset": "front",
+      "trigger": "initial"
+    },
+    {
+      "action": "jog",
+      "target_j1_rad": 0.1,
+      "max_error_rad": 1.5876189252139739e-13
+    },
+    {
+      "action": "switch_view",
+      "preset": "side",
+      "trigger": "automatic"
+    },
+    {
+      "action": "switch_view",
+      "preset": "front",
+      "trigger": "automatic"
+    }
+  ],
+  "captures": [
+    {
+      "preset": "front",
+      "trigger": "initial",
+      "file": "00-front.png",
+      "sha256": "03621c9e0aa62273985e5efe00012e7a45cfe9d2bd2177b299660983ae017b32",
+      "robot_pixels": 6101,
+      "object_pixels": 2057,
+      "visible_pixel_threshold": 20,
+      "object": {
+        "body_id": 1,
+        "expected_position_m": [
+          0.45,
+          0.25,
+          0.12
+        ],
+        "actual_position_m": [
+          0.45,
+          0.25,
+          0.12
+        ],
+        "max_position_error_m": 0.0,
+        "position_tolerance_m": 1e-09,
+        "creation_passed": true
+      }
+    },
+    {
+      "preset": "side",
+      "trigger": "automatic",
+      "file": "01-side.png",
+      "sha256": "98da20cf1808347ba45df9ab7a17cd9433e1b8c78fe872e97bc79cd985f7e9c8",
+      "robot_pixels": 7054,
+      "object_pixels": 3237,
+      "visible_pixel_threshold": 20,
+      "object": {
+        "body_id": 1,
+        "expected_position_m": [
+          0.45,
+          0.25,
+          0.12
+        ],
+        "actual_position_m": [
+          0.45,
+          0.25,
+          0.12
+        ],
+        "max_position_error_m": 0.0,
+        "position_tolerance_m": 1e-09,
+        "creation_passed": true
+      }
+    },
+    {
+      "preset": "front",
+      "trigger": "automatic",
+      "file": "02-front.png",
+      "sha256": "3c63e01d38b6c534b227193bf7c0e308fb22e5a7d078a04c047c751be999868d",
+      "robot_pixels": 5914,
+      "object_pixels": 2057,
+      "visible_pixel_threshold": 20,
+      "object": {
+        "body_id": 1,
+        "expected_position_m": [
+          0.45,
+          0.25,
+          0.12
+        ],
+        "actual_position_m": [
+          0.45,
+          0.25,
+          0.12
+        ],
+        "max_position_error_m": 0.0,
+        "position_tolerance_m": 1e-09,
+        "creation_passed": true
+      }
+    }
+  ],
+  "object_before": {
+    "body_id": 1,
+    "expected_position_m": [
+      0.45,
+      0.25,
+      0.12
+    ],
+    "actual_position_m": [
+      0.45,
+      0.25,
+      0.12
+    ],
+    "max_position_error_m": 0.0,
+    "position_tolerance_m": 1e-09,
+    "creation_passed": true
+  },
+  "view_mean_abs_rgb_difference": 13.156967230902778,
+  "object_after": {
+    "body_id": 1,
+    "expected_position_m": [
+      0.45,
+      0.25,
+      0.12
+    ],
+    "actual_position_m": [
+      0.45,
+      0.25,
+      0.12
+    ],
+    "max_position_error_m": 0.0,
+    "position_tolerance_m": 1e-09,
+    "creation_passed": true
+  }
+}
