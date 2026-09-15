@@ -14,3 +14,8 @@ add_executable(cxx_smoke tests/toolchain/cxx_smoke.cpp)
 target_link_libraries(cxx_smoke PRIVATE robot_contract)
 enable_testing()
 add_test(NAME cxx_abi_smoke COMMAND cxx_smoke)
+
+find_package(Python3 3.8 REQUIRED COMPONENTS Interpreter)
+add_test(NAME python_abi_smoke
+  COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/examples/c_library_demo.py"
+          --library "$<TARGET_FILE:robot_contract>")

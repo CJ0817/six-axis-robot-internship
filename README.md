@@ -53,3 +53,7 @@ git push origin main
 阅读 [配置与运行步骤](docs/environment-setup.md)、[版本锁](environment.lock.json) 和 [验证记录](reports/week01/environment-validation.md)。
 
 视角切换与物体添加演示：`python examples/scene_demo.py --headless`；桌面交互使用`--gui`，键1/2切视角、J点动、Q退出。见[操作与验收说明](docs/environment-setup.md)。
+
+## 最小 C 动态库
+
+[编译与启动命令](docs/c-library-quickstart.md)；独立调用入口 `examples/c_library_demo.py`；[验证记录](reports/week01/c-library-validation.md)。

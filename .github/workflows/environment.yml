@@ -19,6 +19,8 @@ jobs:
         env:
           ROBOT_PYTHON: python
         run: bash scripts/setup.sh
+      - name: Standalone C library Python call
+        run: .venv/bin/python examples/c_library_demo.py --report results/c-library/ci-python-report.json
       - name: Save evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -27,5 +29,6 @@ jobs:
           path: |
             results/environment-check.json
             results/scene-demo/
+            results/c-library/ci-python-report.json
             build/CMakeCache.txt
           if-no-files-found: warn
