@@ -26,5 +26,6 @@ jobs:
           name: environment-evidence
           path: |
             results/environment-check.json
+            results/scene-demo/
             build/CMakeCache.txt
           if-no-files-found: warn

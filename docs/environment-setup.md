@@ -54,10 +54,34 @@ python scripts/prepare_ur5.py --source ../universal_robot
 
 验收门槛：版本一致；8个模型文件校验通过；PyBullet中仅有预期6个可动关节和tool0；480步、1/240s重力仿真状态有限；内置位置伺服完成J1=0.1rad点动且最大逐轴误差<0.02rad；TinyRenderer画面含机器人像素；C/C++编译、C/Python六双精度数往返及非法输入返回1001通过。
 
-此处点动使用PyBullet内置伺服，仅验证环境；不是已完成实习要求的自研PID/前馈控制。DIRECT和TinyRenderer检查不代表桌面GUI窗口交互已验证。图形界面视角切换等演示留待后续任务。
+此处点动使用PyBullet内置伺服，仅验证环境；不是已完成实习要求的自研PID/前馈控制。DIRECT和TinyRenderer检查不代表桌面GUI窗口交互已验证。视角切换入口现已提供，使用方法和证据边界见下节。
 
 ## 验证记录
 
 参见 [环境验证记录](../reports/week01/environment-validation.md)。CI见仓库Actions中的Environment verification，推送main后运行；证据上传到environment-evidence附件。当前Linux环境完整运行已通过，详情及局限见验证记录；CI状态单独以Actions页面为准。
 
 PyBullet适配补充：对base_link、base、flange、tool0四个无实体坐标链接显式写入零质量/零惯量，防止导入器自动赋予1kg虚假质量；实际机械连杆的上游惯量保持不变。
+
+## 视角切换与物体添加演示
+
+安装后在项目根目录运行：
+
+```bash
+source .venv/bin/activate
+python examples/scene_demo.py --headless --output results/scene-demo
+```
+
+此命令运行“正面→J1点动→侧面→正面”，逐次保存640×480 PNG以及report.json。设置两个不同yaw的预设，要求两视角RGB平均绝对差>0.5（0～255灰度量纲），避免只更改视角名称。物体为静态橙色立方体，中心[0.45,0.25,0.12]m、边长0.16m。检查body ID有效且存在于场景，创建前后及每次截图的位置最大绝对误差≤1e-9m，物体与机器人各自可见像素≥20。可见性依据渲染器的物体ID分割掩码，不凭肉眼或文件存在判断。
+
+在有桌面显示的本机Ubuntu/WSL2终端运行：
+
+```bash
+source .venv/bin/activate
+python examples/scene_demo.py --gui --output results/local-gui-demo
+```
+
+点击PyBullet窗口使其获得键盘焦点，按2切侧面、按1切正面，按J点动J1，按Q或Esc保存报告退出。必须实际按过1和2，GUI键盘验证才会通过；直接关闭窗口可能只能留下失败/不完整报告。每次切换会保存PNG，图像使用当前GUI相机参数通过TinyRenderer导出，**不是Windows桌面截图**。
+
+本机验收另需保存：本机运行setup.sh的environment-check.json、GUI模式的report.json与PNG、Windows上的PyBullet窗口截图或录屏（展示1/2切换及物体），以及机器/WSL版本和操作者确认。GUI事件记录只能证明某个GUI运行环境收到操作，不能自动证明它就是用户电脑。因此程序不自动把user_windows_validation设为通过。
+
+当前交付的图像和报告来自云端DIRECT实测；本机安装/GUI操作证据仍待补充。本机运行产生的results/local-gui-demo可在复核后归档，不能用CI或虚拟显示服务器测试代替。

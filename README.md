@@ -51,3 +51,5 @@ git push origin main
 ## 环境搭建
 
 阅读 [配置与运行步骤](docs/environment-setup.md)、[版本锁](environment.lock.json) 和 [验证记录](reports/week01/environment-validation.md)。
+
+视角切换与物体添加演示：`python examples/scene_demo.py --headless`；桌面交互使用`--gui`，键1/2切视角、J点动、Q退出。见[操作与验收说明](docs/environment-setup.md)。

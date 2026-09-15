@@ -15,3 +15,4 @@ cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc-1
 cmake --build build
 ctest --test-dir build --output-on-failure
 python scripts/verify_environment.py --report results/environment-check.json
+python examples/scene_demo.py --headless --output results/scene-demo
