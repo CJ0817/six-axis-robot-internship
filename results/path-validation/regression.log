@@ -1,0 +1,6 @@
+test_relative_python_from_other_directory (test_install_paths.InstallPaths.test_relative_python_from_other_directory) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.078s
+
+OK

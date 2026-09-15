@@ -18,6 +18,11 @@ def require(condition, message):
         raise RuntimeError(message)
 
 def command(*args):
+    # pip-installed CMake/Ninja belong to this interpreter, even without activate.
+    if args[0] in ('cmake', 'ninja'):
+        local_tool = Path(sys.executable).absolute().parent / args[0]
+        require(local_tool.is_file(), f'Missing {local_tool}; run scripts/setup.sh')
+        args = (str(local_tool), *args[1:])
     return subprocess.check_output(args, text=True).strip()
 
 def versions():
@@ -134,3 +139,4 @@ def main():
 
 if __name__ == '__main__':
     sys.exit(main())
+

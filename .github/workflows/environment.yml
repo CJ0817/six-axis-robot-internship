@@ -21,6 +21,8 @@ jobs:
         run: bash scripts/setup.sh
       - name: Standalone C library Python call
         run: .venv/bin/python examples/c_library_demo.py --report results/c-library/ci-python-report.json
+      - name: Installation path regression
+        run: .venv/bin/python -m unittest discover -s tests -p 'test_install_paths.py' -v
       - name: Unified smoke suite
         run: .venv/bin/python scripts/run_tests.py --suite smoke --output results/test-runs/smoke
       - name: Save evidence

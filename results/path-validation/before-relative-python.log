@@ -1,0 +1,1 @@
+path-fix-task/scripts/setup.sh: line 5: ./test-baseline-task/.venv/bin/python: No such file or directory
