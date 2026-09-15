@@ -4,7 +4,7 @@
 
 ## 项目状态
 
-已建立项目目录，尚未添加算法实现。具体机器人型号、开发语言和软件版本将在确认实习要求后补充。
+已建立模块目录与统一接口约定，尚未添加算法实现。具体机器人型号、开发语言和软件版本将在确认实习要求后补充。
 
 ## 目录说明
 
@@ -41,3 +41,9 @@ git push origin main
 ```
 
 每周总结建议记录：已完成任务、运行方法、实验结果、遇到的问题及下一步安排。
+
+## 工程约定
+
+开发前阅读 [模块边界、单位、关节顺序与错误处理](docs/engineering-contract.md)。
+机器可读常量见 [contract.json](src/common/contract.json)。
+核心代码按 `src/common/`、`src/kinematics/`、`src/planning/`、`src/control/`、`src/adapters/` 组织。

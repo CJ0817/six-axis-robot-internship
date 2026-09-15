@@ -1,0 +1,144 @@
+{
+  "contract_version": "1.0.0",
+  "dof": 6,
+  "joint_order": [
+    "J1",
+    "J2",
+    "J3",
+    "J4",
+    "J5",
+    "J6"
+  ],
+  "units": {
+    "length": "m",
+    "angle": "rad",
+    "time": "s",
+    "joint_velocity": "rad/s",
+    "joint_acceleration": "rad/s^2",
+    "force": "N",
+    "torque": "N*m"
+  },
+  "pose": "T_base_tool",
+  "transform_convention": "p_A = T_A_B * p_B; homogeneous column vectors",
+  "jacobian_row_order": [
+    "vx",
+    "vy",
+    "vz",
+    "wx",
+    "wy",
+    "wz"
+  ],
+  "result_fields": [
+    "code",
+    "message",
+    "data",
+    "details"
+  ],
+  "errors": [
+    {
+      "code": 0,
+      "name": "OK",
+      "description": "成功"
+    },
+    {
+      "code": 1001,
+      "name": "INVALID_ARGUMENT",
+      "description": "参数类型、形状、范围不合法或含 NaN/Inf"
+    },
+    {
+      "code": 1002,
+      "name": "UNIT_MISMATCH",
+      "description": "显式单位标记不符合约定"
+    },
+    {
+      "code": 1003,
+      "name": "JOINT_ORDER_MISMATCH",
+      "description": "关节名称或顺序不符合约定"
+    },
+    {
+      "code": 1004,
+      "name": "MODEL_NOT_CONFIGURED",
+      "description": "机器人模型或所需参数未配置"
+    },
+    {
+      "code": 1005,
+      "name": "JOINT_LIMIT_EXCEEDED",
+      "description": "关节位置超限"
+    },
+    {
+      "code": 1006,
+      "name": "INVALID_TIME",
+      "description": "时间非有限值、非递增或周期不为正"
+    },
+    {
+      "code": 1007,
+      "name": "FRAME_MISMATCH",
+      "description": "坐标系不匹配"
+    },
+    {
+      "code": 1008,
+      "name": "NOT_IMPLEMENTED",
+      "description": "接口尚未实现"
+    },
+    {
+      "code": 2001,
+      "name": "IK_UNREACHABLE",
+      "description": "已确认目标不可达"
+    },
+    {
+      "code": 2002,
+      "name": "IK_NO_CONVERGENCE",
+      "description": "逆解在迭代预算内未收敛"
+    },
+    {
+      "code": 2003,
+      "name": "KINEMATIC_SINGULARITY",
+      "description": "当前请求无法在奇异条件下求解"
+    },
+    {
+      "code": 3001,
+      "name": "PLANNING_FAILED",
+      "description": "约束下未找到轨迹"
+    },
+    {
+      "code": 3002,
+      "name": "TRAJECTORY_LIMIT_EXCEEDED",
+      "description": "轨迹速度或加速度超限"
+    },
+    {
+      "code": 3003,
+      "name": "COLLISION_DETECTED",
+      "description": "已配置碰撞检查器检测到碰撞"
+    },
+    {
+      "code": 4001,
+      "name": "INVALID_CONTROL_STATE",
+      "description": "控制器状态不允许执行"
+    },
+    {
+      "code": 4002,
+      "name": "FEEDBACK_TIMEOUT",
+      "description": "反馈超时"
+    },
+    {
+      "code": 4003,
+      "name": "TRACKING_ERROR_EXCEEDED",
+      "description": "跟踪误差超过配置阈值"
+    },
+    {
+      "code": 4004,
+      "name": "COMMAND_LIMIT_EXCEEDED",
+      "description": "控制输出超过配置限值"
+    },
+    {
+      "code": 5001,
+      "name": "IO_FAILURE",
+      "description": "设备或仿真通信失败"
+    },
+    {
+      "code": 9000,
+      "name": "INTERNAL_ERROR",
+      "description": "未预期的内部错误"
+    }
+  ]
+}
