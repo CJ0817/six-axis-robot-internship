@@ -12,6 +12,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 
 def main():
+    suite_start=time.monotonic()
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--suite', choices=['smoke','baseline','available','acceptance'], default='smoke')
     parser.add_argument('--output', type=Path, default=ROOT/'results/test-runs/latest')
@@ -33,7 +34,7 @@ def main():
         'rtb': [str(args.baseline_python.absolute()),str(ROOT/'tests/baseline/robotics_toolbox_smoke.py'),'--output',str(output/'rtb')],
     }
     reports={name:output/name/'report.json' for name in specs}
-    summary={'suite':args.suite,'utc':datetime.now(timezone.utc).isoformat(),'results':[],
+    summary={'statistics_version':1,'suite':args.suite,'utc':datetime.now(timezone.utc).isoformat(),'results':[],
              'metrics_sha256':hashlib.sha256((ROOT/'tests/metrics.json').read_bytes()).hexdigest()}
     try:
         summary['commit']=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
@@ -43,14 +44,23 @@ def main():
     env=os.environ.copy()
     env.update(OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',MPLBACKEND='Agg')
     for name in selected:
-        record={'test_id':name,'command':specs[name],'status':'failed'}
+        record={'test_id':name,'command':specs[name],'status':'failed',
+                'timeout_budget_s':120,'timed_out':False,'timeout_count':0,
+                'process_wall_s':None,'actual_wait_s':None,
+                'c_function_ms':None,'python_to_c_ms':None,
+                'function_timing_status':'not_measured'}
         start=time.monotonic()
         reports[name].parent.mkdir(parents=True,exist_ok=True)
         # Remove only the exact prior report, so a failed launch cannot reuse stale success.
         reports[name].unlink(missing_ok=True)
         try:
             with (output/(name+'.log')).open('w') as log:
-                proc=subprocess.run(specs[name],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=120)
+                process_start=time.monotonic()
+                try:
+                    proc=subprocess.run(specs[name],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=120)
+                finally:
+                    record['process_wall_s']=time.monotonic()-process_start
+                    record['actual_wait_s']=record['process_wall_s']
             record['exit_code']=proc.returncode
             if proc.returncode==0 and reports[name].is_file():
                 data=json.loads(reports[name].read_text())
@@ -59,7 +69,9 @@ def main():
                     record['report']=str(reports[name].relative_to(output))
             if record['status']!='passed':
                 record['reason']='nonzero exit, missing report or report not passed; inspect log'
-        except (OSError,subprocess.TimeoutExpired,ValueError) as exc:
+        except subprocess.TimeoutExpired as exc:
+            record.update(timed_out=True,timeout_count=1,reason=f'TimeoutExpired: {exc}')
+        except (OSError,ValueError) as exc:
             record['reason']=f'{type(exc).__name__}: {exc}'
         record['elapsed_s']=time.monotonic()-start
         summary['results'].append(record)
@@ -71,6 +83,8 @@ def main():
     code=1 if 'failed' in statuses else 2 if 'blocked' in statuses else 0
     summary['status']='failed' if code==1 else 'blocked' if code==2 else 'passed'
     summary['scope_note']='Available checks do not imply completion of unimplemented algorithm or user desktop acceptance.'
+    summary['process_timeout_count']=sum(r.get('timeout_count',0) for r in summary['results'])
+    summary['suite_elapsed_s']=time.monotonic()-suite_start
     (output/'summary.json').write_text(json.dumps(summary,indent=2)+'\n')
     print(json.dumps(summary,indent=2))
     return code

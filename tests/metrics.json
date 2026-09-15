@@ -260,5 +260,7 @@
     "availability是测试实现状态，不是历史验收结论；结果见各次summary.json。",
     "本机GUI证据沿用results/local-validation，不由本入口重审或改写。",
     "没有C算法实现时acceptance必须返回blocked/failed而非passed。"
-  ]
+  ],
+  "statistics_version": 1,
+  "statistics_rules": "docs/statistics-rules.md"
 }

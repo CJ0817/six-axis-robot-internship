@@ -7,6 +7,7 @@ def render():
     data=json.loads((ROOT/'tests/metrics.json').read_text())
     text=['# 测试指标表','', '由 `python3 scripts/render_metrics.py` 生成。请编辑 tests/metrics.json 后重新生成。', '',
           '“已接入”表示存在可运行检查，不表示本轮或全部算法验收已通过；具体结果见运行目录summary.json。未定门槛须在所列节点冻结。','',
+          '统一统计口径见 [统计规则 v1](statistics-rules.md)：有效样本误差汇总、全量分母成功率、三层耗时及超时记录。','',
           '| 编号 / 阶段 | 检查及入口 | 测试条件 | 阈值 / 单位 | 实现状态 |',
           '| --- | --- | --- | --- | --- |']
     for m in data['metrics']:

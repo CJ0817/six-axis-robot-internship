@@ -1,0 +1,80 @@
+{
+  "statistics_version": 1,
+  "suite": "available",
+  "utc": "2026-09-15T11:44:56.119805+00:00",
+  "results": [
+    {
+      "test_id": "c_abi",
+      "command": [
+        "/workspace/scratch/9be573269881/test-baseline-task/.venv/bin/python",
+        "/workspace/scratch/9be573269881/test-baseline-task/examples/c_library_demo.py",
+        "--library",
+        "/workspace/scratch/9be573269881/test-baseline-task/build/librobot_contract.so",
+        "--report",
+        "/workspace/scratch/9be573269881/test-baseline-task/results/test-runs/statistics-rules/c_abi/report.json"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.06407778800030428,
+      "actual_wait_s": 0.06407778800030428,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "c_abi/report.json",
+      "elapsed_s": 0.06455163999999058
+    },
+    {
+      "test_id": "scene",
+      "command": [
+        "/workspace/scratch/9be573269881/test-baseline-task/.venv/bin/python",
+        "/workspace/scratch/9be573269881/test-baseline-task/examples/scene_demo.py",
+        "--headless",
+        "--output",
+        "/workspace/scratch/9be573269881/test-baseline-task/results/test-runs/statistics-rules/scene"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.3148952289998306,
+      "actual_wait_s": 0.3148952289998306,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "scene/report.json",
+      "elapsed_s": 0.3153672599996753
+    },
+    {
+      "test_id": "rtb",
+      "command": [
+        "/workspace/scratch/9be573269881/test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/test-baseline-task/tests/baseline/robotics_toolbox_smoke.py",
+        "--output",
+        "/workspace/scratch/9be573269881/test-baseline-task/results/test-runs/statistics-rules/rtb"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.8670816349999768,
+      "actual_wait_s": 0.8670816349999768,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "rtb/report.json",
+      "elapsed_s": 0.8675420969998413
+    }
+  ],
+  "metrics_sha256": "47f55d6b0b4e00c78f39b37720c69d2aaf60c0496a382238643eb66e224d334a",
+  "commit": "e9a73a0d9f5d7ca5da90719f15db003af6edfe8c",
+  "working_tree_dirty": true,
+  "status": "passed",
+  "scope_note": "Available checks do not imply completion of unimplemented algorithm or user desktop acceptance.",
+  "process_timeout_count": 0,
+  "suite_elapsed_s": 1.2540577400000075
+}

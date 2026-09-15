@@ -46,3 +46,5 @@ python3 -m unittest discover -s tests -p 'test_runner.py' -v
 在将参考值用于项目 C/URDF 比较前，必须完成指标 BASE-02 对应的模型参数、零位、轴正方向、基座和工具坐标对齐；未完成前禁止直接比较或宣称算法通过。保存的初次运行证据见 `results/baseline-readiness/` 和[验证记录](../reports/week01/test-baseline-validation.md)。
 
 参考：[官方源码](https://github.com/petercorke/robotics-toolbox-python)、[1.1.1 发布页](https://pypi.org/project/roboticstoolbox-python/1.1.1/)。
+
+统计与报告字段统一遵循 [统计规则 v1](statistics-rules.md)，包括误差有效样本、失败计数、分组成功率、分位数及分层计时。
