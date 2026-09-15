@@ -57,3 +57,8 @@ git push origin main
 ## 最小 C 动态库
 
 [编译与启动命令](docs/c-library-quickstart.md)；独立调用入口 `examples/c_library_demo.py`；[验证记录](reports/week01/c-library-validation.md)。
+
+## 测试与参考基准
+
+[统一测试入口与安装命令](docs/testing.md) · [量化指标表](docs/test-metrics.md) · [基准准备验证记录](reports/week01/test-baseline-validation.md)。
+Robotics Toolbox 使用独立、版本及哈希锁定的环境；未实现的算法验收项明确标为待完成。

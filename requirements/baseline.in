@@ -1,0 +1,12 @@
+# Separate benchmark environment. Python 3.11.9 / Linux x86_64.
+roboticstoolbox-python==1.1.1
+numpy==1.26.4
+scipy==1.11.4
+spatialmath-python==1.1.10
+spatialgeometry==1.1.0
+swift-sim==1.1.0
+rtb-data==1.0.1
+matplotlib==3.8.4
+setuptools==69.5.1
+wheel==0.43.0
+pip==24.3.1

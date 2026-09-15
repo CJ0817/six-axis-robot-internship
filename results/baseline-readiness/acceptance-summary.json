@@ -1,0 +1,138 @@
+{
+  "suite": "acceptance",
+  "utc": "2026-09-15T11:24:45.202272+00:00",
+  "results": [
+    {
+      "test_id": "c_abi",
+      "command": [
+        "/workspace/scratch/9be573269881/test-baseline-task/.venv/bin/python",
+        "/workspace/scratch/9be573269881/test-baseline-task/examples/c_library_demo.py",
+        "--library",
+        "/workspace/scratch/9be573269881/test-baseline-task/build/librobot_contract.so",
+        "--report",
+        "/workspace/scratch/9be573269881/test-baseline-task/results/test-runs/acceptance/c_abi/report.json"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "report": "c_abi/report.json",
+      "elapsed_s": 0.06442841600005522
+    },
+    {
+      "test_id": "scene",
+      "command": [
+        "/workspace/scratch/9be573269881/test-baseline-task/.venv/bin/python",
+        "/workspace/scratch/9be573269881/test-baseline-task/examples/scene_demo.py",
+        "--headless",
+        "--output",
+        "/workspace/scratch/9be573269881/test-baseline-task/results/test-runs/acceptance/scene"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "report": "scene/report.json",
+      "elapsed_s": 0.26538096999979643
+    },
+    {
+      "test_id": "rtb",
+      "command": [
+        "/workspace/scratch/9be573269881/test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/test-baseline-task/tests/baseline/robotics_toolbox_smoke.py",
+        "--output",
+        "/workspace/scratch/9be573269881/test-baseline-task/results/test-runs/acceptance/rtb"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "report": "rtb/report.json",
+      "elapsed_s": 0.8168365070000618
+    },
+    {
+      "test_id": "BASE-02",
+      "status": "blocked",
+      "reason": "\u5f85\u5b9e\u73b0C FK\u53caURDF/RTB\u56fa\u5b9a\u53d8\u6362\u9002\u914d\uff1b\u5bf9\u9f50\u524d\u7981\u6b62\u76f4\u63a5\u6bd4\u8f83"
+    },
+    {
+      "test_id": "KIN-01",
+      "status": "blocked",
+      "reason": "C FK\u672a\u5b9e\u73b0"
+    },
+    {
+      "test_id": "KIN-02",
+      "status": "blocked",
+      "reason": "C FK\u548c\u7a7a\u95f4\u5206\u5c42\u6837\u672c\u96c6\u5f85\u5b9e\u73b0\uff1b\u672c\u9608\u503c\u6682\u5b9a\uff0c\u7b2c2\u5468\u5468\u56db\u51bb\u7ed3"
+    },
+    {
+      "test_id": "KIN-03",
+      "status": "blocked",
+      "reason": "C\u89e3\u6790IK\u53ca\u7b5b\u9009\u672a\u5b9e\u73b0\uff1b\u4e0d\u9884\u8bbe\u6240\u6709\u76ee\u6807\u90fd\u67098\u7ec4\u53ef\u884c\u89e3"
+    },
+    {
+      "test_id": "KIN-04",
+      "status": "blocked",
+      "reason": "C\u96c5\u53ef\u6bd4\u672a\u5b9e\u73b0"
+    },
+    {
+      "test_id": "KIN-05",
+      "status": "blocked",
+      "reason": "\u5b9e\u73b0\u548c\u56fa\u5b9a\u786c\u4ef6\u57fa\u7ebf\u5f85\u5c31\u7eea"
+    },
+    {
+      "test_id": "KIN-06",
+      "status": "blocked",
+      "reason": "C IK\u672a\u5b9e\u73b0"
+    },
+    {
+      "test_id": "PLAN-01",
+      "status": "blocked",
+      "reason": "C\u4e09\u6b21/\u4e94\u6b21/\u68af\u5f62\u89c4\u5212\u4e0e\u8fde\u7eed\u6781\u503c\u68c0\u67e5\u672a\u5b9e\u73b0"
+    },
+    {
+      "test_id": "PLAN-02",
+      "status": "blocked",
+      "reason": "\u89c4\u5212\u5668\u672a\u5b9e\u73b0\uff1b\u907f\u514d\u628a\u4e94\u6b21C2\u6761\u4ef6\u8bef\u7528\u4e8e\u5168\u90e8\u89c4\u5212\u5668"
+    },
+    {
+      "test_id": "PLAN-03",
+      "status": "blocked",
+      "reason": "\u76f4\u7ebf/\u5706\u5f27\u53caIK\u8054\u8c03\u672a\u5b9e\u73b0"
+    },
+    {
+      "test_id": "PLAN-04",
+      "status": "blocked",
+      "reason": "\u89c4\u5212\u5668\u672a\u5b9e\u73b0"
+    },
+    {
+      "test_id": "PLAN-05",
+      "status": "blocked",
+      "reason": "\u573a\u666f\u3001\u78b0\u649e\u68c0\u67e5\u548c\u65f6\u95f4\u4f18\u5316\u672a\u5b9e\u73b0"
+    },
+    {
+      "test_id": "CTRL-01",
+      "status": "blocked",
+      "reason": "\u81ea\u7814\u63a7\u5236\u5668\u672a\u5b9e\u73b0\uff1b\u8be5\u57fa\u7ebf\u4e0d\u80fd\u4ee3\u66ffPyBullet PID/\u524d\u9988\u9a8c\u6536"
+    },
+    {
+      "test_id": "CTRL-02",
+      "status": "blocked",
+      "reason": "PID\u3001\u524d\u9988\u53ca\u7269\u7406\u5b9e\u9a8c\u914d\u7f6e\u672a\u5b9e\u73b0"
+    },
+    {
+      "test_id": "CTRL-03",
+      "status": "blocked",
+      "reason": "\u81ea\u7814\u63a7\u5236\u72b6\u6001\u673a\u672a\u5b9e\u73b0"
+    },
+    {
+      "test_id": "CTRL-04",
+      "status": "blocked",
+      "reason": "\u63a7\u5236\u5668\u548c\u786c\u4ef6\u8c03\u5ea6\u6d4b\u91cf\u672a\u5b9e\u73b0"
+    },
+    {
+      "test_id": "DATA-01",
+      "status": "blocked",
+      "reason": "\u5b8c\u6574\u4e1a\u52a1\u63a5\u53e3\u6821\u9a8c\u672a\u5b9e\u73b0\uff1bABI\u63a2\u9488\u4e0d\u80fd\u4ee3\u66ff\u6b64\u9879"
+    }
+  ],
+  "metrics_sha256": "50bde2c939e4dc947010f165465be74e5dfd887b732a18dab3d3b644f30d06b9",
+  "commit": "e9a73a0d9f5d7ca5da90719f15db003af6edfe8c",
+  "working_tree_dirty": true,
+  "status": "blocked",
+  "scope_note": "Available checks do not imply completion of unimplemented algorithm or user desktop acceptance."
+}

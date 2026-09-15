@@ -1,0 +1,53 @@
+{
+  "suite": "available",
+  "utc": "2026-09-15T11:24:43.913161+00:00",
+  "results": [
+    {
+      "test_id": "c_abi",
+      "command": [
+        "/workspace/scratch/9be573269881/test-baseline-task/.venv/bin/python",
+        "/workspace/scratch/9be573269881/test-baseline-task/examples/c_library_demo.py",
+        "--library",
+        "/workspace/scratch/9be573269881/test-baseline-task/build/librobot_contract.so",
+        "--report",
+        "/workspace/scratch/9be573269881/test-baseline-task/results/test-runs/available/c_abi/report.json"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "report": "c_abi/report.json",
+      "elapsed_s": 0.06444545599993035
+    },
+    {
+      "test_id": "scene",
+      "command": [
+        "/workspace/scratch/9be573269881/test-baseline-task/.venv/bin/python",
+        "/workspace/scratch/9be573269881/test-baseline-task/examples/scene_demo.py",
+        "--headless",
+        "--output",
+        "/workspace/scratch/9be573269881/test-baseline-task/results/test-runs/available/scene"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "report": "scene/report.json",
+      "elapsed_s": 0.31539435400009097
+    },
+    {
+      "test_id": "rtb",
+      "command": [
+        "/workspace/scratch/9be573269881/test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/test-baseline-task/tests/baseline/robotics_toolbox_smoke.py",
+        "--output",
+        "/workspace/scratch/9be573269881/test-baseline-task/results/test-runs/available/rtb"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "report": "rtb/report.json",
+      "elapsed_s": 0.8672962369998913
+    }
+  ],
+  "metrics_sha256": "50bde2c939e4dc947010f165465be74e5dfd887b732a18dab3d3b644f30d06b9",
+  "commit": "e9a73a0d9f5d7ca5da90719f15db003af6edfe8c",
+  "working_tree_dirty": true,
+  "status": "passed",
+  "scope_note": "Available checks do not imply completion of unimplemented algorithm or user desktop acceptance."
+}
