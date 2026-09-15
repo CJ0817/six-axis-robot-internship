@@ -1,0 +1,167 @@
+{
+  "status": "passed",
+  "execution_mode": "GUI",
+  "host": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "3.11.9",
+  "utc": "2026-09-15T09:55:45.970938+00:00",
+  "pybullet": "3.2.7",
+  "numpy": "1.26.4",
+  "source_sha256": "00e3a139e1e7ece1b5dbe2a0954a0190d43b844d4cbad91dfbe93af65308c731",
+  "model_sha256": "5314d4a6212361fb3e8b45ab79bb5c8ab80f2c1dff93816764ba220f79a4f188",
+  "user_windows_validation": "not_established_by_this_run",
+  "gui_keyboard_verified": true,
+  "presets": {
+    "front": {
+      "distance": 1.8,
+      "yaw": 40,
+      "pitch": -25,
+      "target": [
+        0.1,
+        0,
+        0.5
+      ]
+    },
+    "side": {
+      "distance": 1.8,
+      "yaw": 130,
+      "pitch": -25,
+      "target": [
+        0.1,
+        0,
+        0.5
+      ]
+    }
+  },
+  "events": [
+    {
+      "action": "switch_view",
+      "preset": "front",
+      "trigger": "initial"
+    },
+    {
+      "action": "switch_view",
+      "preset": "side",
+      "trigger": "keyboard"
+    },
+    {
+      "action": "switch_view",
+      "preset": "front",
+      "trigger": "keyboard"
+    },
+    {
+      "action": "jog",
+      "target_j1_rad": 0.1,
+      "max_error_rad": 1.5876189252139739e-13
+    }
+  ],
+  "captures": [
+    {
+      "preset": "front",
+      "trigger": "initial",
+      "file": "00-front.png",
+      "sha256": "832b2f7c4dddd2318722eadff14b85d29e0c3387e551cf6dc97abe197ce80f1f",
+      "robot_pixels": 325,
+      "object_pixels": 109,
+      "visible_pixel_threshold": 20,
+      "object": {
+        "body_id": 1,
+        "expected_position_m": [
+          0.45,
+          0.25,
+          0.12
+        ],
+        "actual_position_m": [
+          0.45,
+          0.25,
+          0.12
+        ],
+        "max_position_error_m": 0.0,
+        "position_tolerance_m": 1e-09,
+        "creation_passed": true
+      }
+    },
+    {
+      "preset": "side",
+      "trigger": "keyboard",
+      "file": "01-side.png",
+      "sha256": "3a6c82bc406ea8fa043a110814d6ae73eab82ecab2c9489e07e2f1a2ba716eec",
+      "robot_pixels": 2049,
+      "object_pixels": 684,
+      "visible_pixel_threshold": 20,
+      "object": {
+        "body_id": 1,
+        "expected_position_m": [
+          0.45,
+          0.25,
+          0.12
+        ],
+        "actual_position_m": [
+          0.45,
+          0.25,
+          0.12
+        ],
+        "max_position_error_m": 0.0,
+        "position_tolerance_m": 1e-09,
+        "creation_passed": true
+      }
+    },
+    {
+      "preset": "front",
+      "trigger": "keyboard",
+      "file": "02-front.png",
+      "sha256": "2d66a84b517e9f2d4f2566251e99e2b6b9a57004c4ff3d8c9edbb55973af3031",
+      "robot_pixels": 2332,
+      "object_pixels": 1077,
+      "visible_pixel_threshold": 20,
+      "object": {
+        "body_id": 1,
+        "expected_position_m": [
+          0.45,
+          0.25,
+          0.12
+        ],
+        "actual_position_m": [
+          0.45,
+          0.25,
+          0.12
+        ],
+        "max_position_error_m": 0.0,
+        "position_tolerance_m": 1e-09,
+        "creation_passed": true
+      }
+    }
+  ],
+  "object_before": {
+    "body_id": 1,
+    "expected_position_m": [
+      0.45,
+      0.25,
+      0.12
+    ],
+    "actual_position_m": [
+      0.45,
+      0.25,
+      0.12
+    ],
+    "max_position_error_m": 0.0,
+    "position_tolerance_m": 1e-09,
+    "creation_passed": true
+  },
+  "view_mean_abs_rgb_difference": 4.339656032986111,
+  "object_after": {
+    "body_id": 1,
+    "expected_position_m": [
+      0.45,
+      0.25,
+      0.12
+    ],
+    "actual_position_m": [
+      0.45,
+      0.25,
+      0.12
+    ],
+    "max_position_error_m": 0.0,
+    "position_tolerance_m": 1e-09,
+    "creation_passed": true
+  }
+}

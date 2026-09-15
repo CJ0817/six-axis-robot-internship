@@ -90,3 +90,8 @@ python examples/scene_demo.py --gui --output results/local-gui-demo
 ### 用户本机最新状态（2026-09-15）
 
 本机 WSL2 安装及 setup.sh 自动验收已通过；真实 GUI 显示连接仍阻塞，尚未完成键盘交互和 Windows 桌面取证。详情见 [本机归档](../results/local-validation/README.md)。上文云端交付状态为历史记录，本机 GUI 不因此视为通过。
+
+
+### 本机 GUI 恢复（2026-09-15）
+
+完整关闭 WSL 虚拟机后重新启动，已恢复 PyBullet 桌面窗口，并实际通过 2/1/J/Q 操作。环境和 GUI 本机验收现已通过；[恢复记录和截图](../results/local-validation/gui-recovery/RECOVERY.md)。此前共享内存 I/O 错误的阻塞记录保留为历史。若同类故障再次发生，先保存 WSL 中的工作，再在 Windows 终端执行 `wsl --shutdown`，然后重开 Ubuntu 与演示程序。
