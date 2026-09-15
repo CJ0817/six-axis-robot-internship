@@ -13,3 +13,5 @@ ROBOT_PYTHON=./test-baseline-task/.venv/bin/python bash path-fix-task/scripts/se
 上述路径是本次工作目录中的实际路径，复现方式见 docs/install-path-troubleshooting.md。基准安装只复验共用路径预检查，本次未重新编译 Robotics Toolbox 全部依赖。
 
 证据位于 results/path-validation：setup.log 为完整安装日志，regression.log 为路径回归，environment-report.json 和 scene-report.json 为实际检查结果，front.png、side.png 是本次 PyBullet DIRECT 两视角画面。它们不代表用户 Windows 桌面 GUI 操作截图；既有本地证据未改动。
+
+问题闭环、使用限制及后续算法待办见[第1周问题表](issue-register.md)。本轮无未解决安装／路径问题。
