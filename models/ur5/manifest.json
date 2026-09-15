@@ -1,0 +1,20 @@
+{
+  "upstream_commit": "39ad110d8f2e8f66856a201cca88aa7a7025e3eb",
+  "source": "ur_description/urdf/ur5.xacro",
+  "sha256": {
+    "meshes/base.stl": "1b9d4941ffba8e771ca119ab1c34d2ce7e393273955e14c6f6b56b75875923af",
+    "meshes/forearm.stl": "8e79aa80a532494ba5320c30b40363ff63d228e3d59e2904703dca341dcba2ac",
+    "meshes/shoulder.stl": "1d62e23a8c3ff9e6334fb157c805e6202037bcfca65bc6a36c5c9ae866751b3b",
+    "meshes/upperarm.stl": "55c11ac0ad1e144f230849b2033532e8b140b2e818ea497296d08dfb88757440",
+    "meshes/wrist1.stl": "0a1fd12150140efdee91650dcb4c2d0443065551a9207a2d2dbde58ff1fb4eb7",
+    "meshes/wrist2.stl": "c1d9f7843366068cb331f3f5c43fa716d3eceeb8c80216eccbbc878905dab123",
+    "meshes/wrist3.stl": "cf7220397b56f1d3047be9465eea1181d471b40fc82728052e31c97588585b4b",
+    "ur5.urdf": "5314d4a6212361fb3e8b45ab79bb5c8ab80f2c1dff93816764ba220f79a4f188"
+  },
+  "adaptations": [
+    "resolve package mesh paths to local relative paths",
+    "use unchanged collision STL and collision origins for simplified visual geometry",
+    "declare four coordinate-only fixed links massless to prevent PyBullet default 1 kg inertia"
+  ],
+  "kinematics_inertia_limits": "unchanged from upstream generic UR5 configuration"
+}

@@ -1,0 +1,30 @@
+name: Environment verification
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  environment:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.9'
+      - name: Install pinned dependencies, build C/C++ and verify UR5
+        env:
+          ROBOT_PYTHON: python
+        run: bash scripts/setup.sh
+      - name: Save evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: environment-evidence
+          path: |
+            results/environment-check.json
+            build/CMakeCache.txt
+          if-no-files-found: warn

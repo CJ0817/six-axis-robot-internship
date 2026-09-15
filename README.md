@@ -4,7 +4,7 @@
 
 ## 项目状态
 
-已建立模块目录与统一接口约定，尚未添加算法实现。具体机器人型号、开发语言和软件版本将在确认实习要求后补充。
+已建立模块目录、接口约定、固定版本环境与UR5仿真模型。核心算法按任务书采用C，Python负责PyBullet仿真与测试；已加入C/Python调用验证，运动学/规划/自研控制算法尚未实现。当前Linux环境的构建、模型加载、点动及C/Python调用均已验证通过，详细证据见验证记录。
 
 ## 目录说明
 
@@ -47,3 +47,7 @@ git push origin main
 开发前阅读 [模块边界、单位、关节顺序与错误处理](docs/engineering-contract.md)。
 机器可读常量见 [contract.json](src/common/contract.json)。
 核心代码按 `src/common/`、`src/kinematics/`、`src/planning/`、`src/control/`、`src/adapters/` 组织。
+
+## 环境搭建
+
+阅读 [配置与运行步骤](docs/environment-setup.md)、[版本锁](environment.lock.json) 和 [验证记录](reports/week01/environment-validation.md)。
