@@ -1,0 +1,6 @@
+test_changed_target_is_rejected_without_overwrite (test_ik_preparation.FrozenIKTargets.test_changed_target_is_rejected_without_overwrite) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.843s
+
+OK

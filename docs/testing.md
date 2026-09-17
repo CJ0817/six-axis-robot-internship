@@ -54,3 +54,5 @@ python3 -m unittest discover -s tests -p 'test_runner.py' -v
 C正运动学功能验收：先编译，再运行 `scripts/run_tests.py --suite fk`；使用基准解释器对照C/URDF/显式RTB，并执行独立C矩阵及已知位形测试。也随available/acceptance运行。见[正运动学说明](forward-kinematics.md)。
 
 已知角度FK专项对比：`--suite fk_known`，也随available/acceptance运行；原内置RTB与显式项目模型分别统计，见[对比报告](../reports/week01/fk-rtb-known-poses.md)。
+
+逆解目标准备：`--suite ik_prepare` 校验冻结的100普通+20宽初值+20近奇异目标和3个锚点，也随available/acceptance运行。它不执行IK、不关闭KIN-03，见[阶段接口整理](ik-interface-preparation.md)。

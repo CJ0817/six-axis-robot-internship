@@ -96,7 +96,7 @@
       "unit": "m; rad; %",
       "stage": "第2周",
       "availability": "pending",
-      "pending_reason": "C解析IK及筛选未实现；不预设所有目标都有8组可行解",
+      "pending_reason": "C解析IK及筛选未实现；测试输入已冻结于tests/ik/targets.json，准备通过不等于求解通过",
       "basis": "engineering-contract.md §9"
     },
     {

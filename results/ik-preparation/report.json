@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "scope": "IK_target_preparation_only",
+  "ik_execution_status": "not_run",
+  "utc": "2026-09-17T17:50:53.983282+00:00",
+  "group_counts": {
+    "normal": 100,
+    "wide_initial": 20,
+    "near_singular": 20
+  },
+  "anchor_count": 3,
+  "c_rtb_max_matrix_error": 3.3306690738754696e-16,
+  "fixture_sha256": "be4a50a143d2acf1fbb03f10ce2f964a68d0a8e2515523cb0f306d0a8f4e19bf",
+  "model_sha256": "a33abb6bd1b206eade01f19e3581f56bb7e53c1e9a058111a779c3b39666316e",
+  "script_sha256": "3cd4cae229080056ac82a7ee88526137868e25ad0c8c9dd27f1bb748d89d71c7",
+  "library_sha256": "5383f183c7fd4f859bed85ebb85500018552af718b6383f93eb61250e1a7b952",
+  "rtb_version": "1.1.1",
+  "numpy_version": "1.26.4",
+  "python": "3.11.9",
+  "solver_success_rate": null
+}

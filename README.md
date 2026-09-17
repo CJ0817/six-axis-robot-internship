@@ -70,3 +70,7 @@ Robotics Toolbox 使用独立、版本及哈希锁定的环境；未实现的算
 ## C 正运动学
 
 [推导、接口与运行命令](docs/forward-kinematics.md) · [验证报告](reports/week01/c-forward-validation.md)。
+
+## 逆解准备
+
+[推导与接口交接、冻结目标规则](docs/ik-interface-preparation.md) · [目标文件](tests/ik/targets.json)。已准备测试输入，逆解算法尚未实现。

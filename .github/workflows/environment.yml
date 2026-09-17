@@ -66,6 +66,10 @@ jobs:
           .venv-baseline/bin/python scripts/run_tests.py --suite fk --output results/test-runs/fk
       - name: Known-pose FK comparison and discrepancy localization
         run: .venv-baseline/bin/python scripts/run_tests.py --suite fk_known --output results/test-runs/fk-known
+      - name: Validate frozen IK targets without running IK
+        run: .venv-baseline/bin/python scripts/run_tests.py --suite ik_prepare --output results/test-runs/ik-prepare
+      - name: Verify frozen targets reject accidental changes
+        run: .venv-baseline/bin/python -m unittest discover -s tests -p 'test_ik_preparation.py' -v
       - name: Save reference readiness evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -76,4 +80,5 @@ jobs:
             results/test-runs/model/
             results/test-runs/fk/
             results/test-runs/fk-known/
+            results/test-runs/ik-prepare/
           if-no-files-found: warn

@@ -1,0 +1,170 @@
+{
+  "statistics_version": 1,
+  "suite": "available",
+  "utc": "2026-09-17T17:50:55.915948+00:00",
+  "results": [
+    {
+      "test_id": "c_abi",
+      "command": [
+        "/workspace/scratch/9be573269881/ik-prep-task/../test-baseline-task/.venv/bin/python",
+        "/workspace/scratch/9be573269881/ik-prep-task/examples/c_library_demo.py",
+        "--library",
+        "/workspace/scratch/9be573269881/ik-prep-task/build/librobot_contract.so",
+        "--report",
+        "/workspace/scratch/9be573269881/ik-prep-task/results/day-close/c_abi/report.json"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.06393139400000791,
+      "actual_wait_s": 0.06393139400000791,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "c_abi/report.json",
+      "elapsed_s": 0.06426677900003597
+    },
+    {
+      "test_id": "scene",
+      "command": [
+        "/workspace/scratch/9be573269881/ik-prep-task/../test-baseline-task/.venv/bin/python",
+        "/workspace/scratch/9be573269881/ik-prep-task/examples/scene_demo.py",
+        "--headless",
+        "--output",
+        "/workspace/scratch/9be573269881/ik-prep-task/results/day-close/scene"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.41515474400000585,
+      "actual_wait_s": 0.41515474400000585,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "scene/report.json",
+      "elapsed_s": 0.41552600300002496
+    },
+    {
+      "test_id": "rtb",
+      "command": [
+        "/workspace/scratch/9be573269881/ik-prep-task/../test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/ik-prep-task/tests/baseline/robotics_toolbox_smoke.py",
+        "--output",
+        "/workspace/scratch/9be573269881/ik-prep-task/results/day-close/rtb"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.9165459690000262,
+      "actual_wait_s": 0.9165459690000262,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "rtb/report.json",
+      "elapsed_s": 0.9170513160000269
+    },
+    {
+      "test_id": "model_alignment",
+      "command": [
+        "/workspace/scratch/9be573269881/ik-prep-task/../test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/ik-prep-task/scripts/verify_model_alignment.py",
+        "--output",
+        "/workspace/scratch/9be573269881/ik-prep-task/results/day-close/model_alignment"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.7666055990000018,
+      "actual_wait_s": 0.7666055990000018,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "model_alignment/report.json",
+      "elapsed_s": 0.7669791710000027
+    },
+    {
+      "test_id": "fk",
+      "command": [
+        "/workspace/scratch/9be573269881/ik-prep-task/../test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/ik-prep-task/scripts/verify_model_alignment.py",
+        "--library",
+        "/workspace/scratch/9be573269881/ik-prep-task/build/librobot_contract.so",
+        "--output",
+        "/workspace/scratch/9be573269881/ik-prep-task/results/day-close/fk"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.8663955950000286,
+      "actual_wait_s": 0.8663955950000286,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "fk/report.json",
+      "elapsed_s": 0.8667930930000125
+    },
+    {
+      "test_id": "fk_known",
+      "command": [
+        "/workspace/scratch/9be573269881/ik-prep-task/../test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/ik-prep-task/scripts/compare_fk_rtb.py",
+        "--library",
+        "/workspace/scratch/9be573269881/ik-prep-task/build/librobot_contract.so",
+        "--output",
+        "/workspace/scratch/9be573269881/ik-prep-task/results/day-close/fk_known"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.8666850490000115,
+      "actual_wait_s": 0.8666850490000115,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "fk_known/report.json",
+      "elapsed_s": 0.8671531710000409
+    },
+    {
+      "test_id": "ik_prepare",
+      "command": [
+        "/workspace/scratch/9be573269881/ik-prep-task/../test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/ik-prep-task/scripts/prepare_ik_targets.py",
+        "--library",
+        "/workspace/scratch/9be573269881/ik-prep-task/build/librobot_contract.so",
+        "--output",
+        "/workspace/scratch/9be573269881/ik-prep-task/results/day-close/ik_prepare"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.8666038469999648,
+      "actual_wait_s": 0.8666038469999648,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "ik_prepare/report.json",
+      "elapsed_s": 0.8672178439999811
+    }
+  ],
+  "metrics_sha256": "02fd5b04a99e6953d1f87fb281c1ec8d7ea147fc9be54710329f61bf02c38458",
+  "commit": "31b142ff012fe3ec14aa536af6506e557d6faee0",
+  "working_tree_dirty": true,
+  "status": "passed",
+  "scope_note": "Available checks do not imply completion of unimplemented algorithm or user desktop acceptance.",
+  "process_timeout_count": 0,
+  "suite_elapsed_s": 4.780327735000014
+}
