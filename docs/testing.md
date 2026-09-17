@@ -52,3 +52,5 @@ python3 -m unittest discover -s tests -p 'test_runner.py' -v
 2026-09-17 更新：BASE-02 名义模型对齐入口已接入 `--suite model`，也随 available/acceptance 运行；详见[UR5核对说明](ur5-model-conventions.md)。此入口不替代 C 算法验收。
 
 C正运动学功能验收：先编译，再运行 `scripts/run_tests.py --suite fk`；使用基准解释器对照C/URDF/显式RTB，并执行独立C矩阵及已知位形测试。也随available/acceptance运行。见[正运动学说明](forward-kinematics.md)。
+
+已知角度FK专项对比：`--suite fk_known`，也随available/acceptance运行；原内置RTB与显式项目模型分别统计，见[对比报告](../reports/week01/fk-rtb-known-poses.md)。

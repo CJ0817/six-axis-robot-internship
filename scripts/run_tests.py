@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     suite_start=time.monotonic()
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--suite', choices=['smoke','baseline','model','fk','available','acceptance'], default='smoke')
+    parser.add_argument('--suite', choices=['smoke','baseline','model','fk','fk_known','available','acceptance'], default='smoke')
     parser.add_argument('--output', type=Path, default=ROOT/'results/test-runs/latest')
     parser.add_argument('--smoke-python', type=Path, default=ROOT/'.venv/bin/python')
     parser.add_argument('--baseline-python', type=Path, default=ROOT/'.venv-baseline/bin/python')
@@ -27,8 +27,9 @@ def main():
     ids=[item['id'] for item in definitions]
     if len(set(ids))!=len(ids):
         raise ValueError('Duplicate metric ID')
-    selected=['c_abi','scene'] if args.suite=='smoke' else ['rtb'] if args.suite=='baseline' else ['model_alignment'] if args.suite=='model' else ['fk'] if args.suite=='fk' else ['c_abi','scene','rtb','model_alignment','fk']
+    selected=['c_abi','scene'] if args.suite=='smoke' else ['rtb'] if args.suite=='baseline' else ['model_alignment'] if args.suite=='model' else ['fk'] if args.suite=='fk' else ['fk_known'] if args.suite=='fk_known' else ['c_abi','scene','rtb','model_alignment','fk','fk_known']
     specs={
+        'fk_known': [str(args.baseline_python.absolute()),str(ROOT/'scripts/compare_fk_rtb.py'),'--library',str(args.library.resolve()),'--output',str(output/'fk_known')],
         'fk': [str(args.baseline_python.absolute()),str(ROOT/'scripts/verify_model_alignment.py'),'--library',str(args.library.resolve()),'--output',str(output/'fk')],
         'model_alignment': [str(args.baseline_python.absolute()),str(ROOT/'scripts/verify_model_alignment.py'),'--output',str(output/'model_alignment')],
         'c_abi': [str(args.smoke_python.absolute()),str(ROOT/'examples/c_library_demo.py'),'--library',str(args.library.resolve()),'--report',str(output/'c_abi/report.json')],

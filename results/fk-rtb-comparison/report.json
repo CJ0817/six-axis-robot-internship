@@ -1,0 +1,114 @@
+{
+  "status": "passed",
+  "scope": "named_pose_FK_accuracy_and_difference_localization",
+  "utc": "2026-09-17T09:24:02.642127+00:00",
+  "python": "3.11.9",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "statistics_version": 1,
+  "timing_status": "not_measured",
+  "thresholds": {
+    "position_m": 1e-09,
+    "orientation_rad": 1e-09,
+    "matrix_element": 1e-09
+  },
+  "parameter_differences": [
+    {
+      "joint": 1,
+      "field": "d",
+      "project": 0.089159,
+      "builtin": 0.089459
+    }
+  ],
+  "base_tool_match": true,
+  "expected_builtin_minus_project_translation_m": [
+    0.0,
+    0.0,
+    0.0002999999999999947
+  ],
+  "comparison": {
+    "c_vs_project": {
+      "expected_count": 10,
+      "success_count": 10,
+      "failure_count": 0,
+      "success_rate": 1.0,
+      "position_error_m": {
+        "valid_count": 10,
+        "invalid_count": 0,
+        "mean": 1.3877787807814458e-18,
+        "rmse": 4.388541835720876e-18,
+        "p95": 7.632783294297936e-18,
+        "max": 1.3877787807814457e-17
+      },
+      "orientation_error_rad": {
+        "valid_count": 10,
+        "invalid_count": 0,
+        "mean": 6.989466179647076e-18,
+        "rmse": 1.5890337427190618e-17,
+        "p95": 3.558918898877499e-17,
+        "max": 4.136591180363166e-17
+      },
+      "matrix_max_error": 1.1102230246251565e-16
+    },
+    "builtin_vs_c": {
+      "expected_count": 10,
+      "success_count": 0,
+      "failure_count": 10,
+      "success_rate": 0.0,
+      "position_error_m": {
+        "valid_count": 10,
+        "invalid_count": 0,
+        "mean": 0.0002999999999999961,
+        "rmse": 0.0002999999999999961,
+        "p95": 0.00030000000000002247,
+        "max": 0.00030000000000002247
+      },
+      "orientation_error_rad": {
+        "valid_count": 10,
+        "invalid_count": 0,
+        "mean": 6.989466179647076e-18,
+        "rmse": 1.5890337427190618e-17,
+        "p95": 3.558918898877499e-17,
+        "max": 4.136591180363166e-17
+      },
+      "matrix_max_error": 0.00030000000000002247
+    },
+    "d1_only_corrected_vs_c": {
+      "expected_count": 10,
+      "success_count": 10,
+      "failure_count": 0,
+      "success_rate": 1.0,
+      "position_error_m": {
+        "valid_count": 10,
+        "invalid_count": 0,
+        "mean": 1.3877787807814458e-18,
+        "rmse": 4.388541835720876e-18,
+        "p95": 7.632783294297936e-18,
+        "max": 1.3877787807814457e-17
+      },
+      "orientation_error_rad": {
+        "valid_count": 10,
+        "invalid_count": 0,
+        "mean": 6.989466179647076e-18,
+        "rmse": 1.5890337427190618e-17,
+        "p95": 3.558918898877499e-17,
+        "max": 4.136591180363166e-17
+      },
+      "matrix_max_error": 1.1102230246251565e-16
+    }
+  },
+  "source_hashes": {
+    "models/ur5/kinematics.json": "a33abb6bd1b206eade01f19e3581f56bb7e53c1e9a058111a779c3b39666316e",
+    "tests/kinematics/fk_known_cases.json": "aa527c022332f95707ed2b479ccaaf35119ebeabc758b05287fd40b788940944",
+    "scripts/compare_fk_rtb.py": "b99da36afc625af17aa4000ab2c5ce7df097a7a04d5d5cbd2967eb84efb4f6f7",
+    "src/kinematics/forward.c": "e683f3029ec5291ea8a3c1630f1ce514b9f0af9fa425520752fb8b0f888d0825",
+    "include/robot_kinematics.h": "f58723eea4ac870af6aa6942ad3be50549747d1b8d3f4d04345a9a2ea78a60e7",
+    "src/adapters/c_kinematics.py": "28bb2748bdc8ec3cfa29c485ee925ff89616348d2eb0268c4a1a2a6e6fe2c768"
+  },
+  "library_sha256": "375217067a866a081869b748b5ccb68a3b81cb15d5af325268c8dd4cd8d2c878",
+  "rtb_version": "1.1.1",
+  "numpy_version": "1.26.4",
+  "rtb_builtin_source_sha256": "ef21c0086a95b69b5f3c41b7b06bc0603f861c301bb5ad605f3b89f48a077823",
+  "quantile_method": "linear h=(n-1)*p",
+  "samples_file": "samples.json",
+  "diagnosis": "First difference at DH link 1: built-in d1 larger by 0.0003 m; base-frame +Z translation persists through all six links. Correcting only d1 in an in-memory copy removes the mismatch. Original builtin mismatch is recorded as failed, not ignored."
+}

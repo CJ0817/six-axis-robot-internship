@@ -64,6 +64,8 @@ jobs:
           gcc-13 -std=c11 -O2 -Wall -Wextra -Werror -pedantic -fPIC -shared -Iinclude src/common/abi_probe.c src/kinematics/forward.c -lm -o build/librobot_contract.so
           gcc-13 -std=c11 -O2 -Wall -Wextra -Werror -pedantic -Iinclude tests/kinematics/test_fk.c src/kinematics/forward.c -lm -o build/fk_unit
           .venv-baseline/bin/python scripts/run_tests.py --suite fk --output results/test-runs/fk
+      - name: Known-pose FK comparison and discrepancy localization
+        run: .venv-baseline/bin/python scripts/run_tests.py --suite fk_known --output results/test-runs/fk-known
       - name: Save reference readiness evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -73,4 +75,5 @@ jobs:
             results/test-runs/baseline/
             results/test-runs/model/
             results/test-runs/fk/
+            results/test-runs/fk-known/
           if-no-files-found: warn
