@@ -50,3 +50,5 @@ python3 -m unittest discover -s tests -p 'test_runner.py' -v
 统计与报告字段统一遵循 [统计规则 v1](statistics-rules.md)，包括误差有效样本、失败计数、分组成功率、分位数及分层计时。
 
 2026-09-17 更新：BASE-02 名义模型对齐入口已接入 `--suite model`，也随 available/acceptance 运行；详见[UR5核对说明](ur5-model-conventions.md)。此入口不替代 C 算法验收。
+
+C正运动学功能验收：先编译，再运行 `scripts/run_tests.py --suite fk`；使用基准解释器对照C/URDF/显式RTB，并执行独立C矩阵及已知位形测试。也随available/acceptance运行。见[正运动学说明](forward-kinematics.md)。

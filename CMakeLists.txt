@@ -6,7 +6,7 @@ set(CMAKE_C_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-add_library(robot_contract SHARED src/common/abi_probe.c)
+add_library(robot_contract SHARED src/common/abi_probe.c src/kinematics/forward.c)
 target_include_directories(robot_contract PUBLIC include)
 target_compile_options(robot_contract PRIVATE -Wall -Wextra -Werror -pedantic)
 target_link_libraries(robot_contract PRIVATE m)
@@ -19,3 +19,8 @@ find_package(Python3 3.8 REQUIRED COMPONENTS Interpreter)
 add_test(NAME python_abi_smoke
   COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/examples/c_library_demo.py"
           --library "$<TARGET_FILE:robot_contract>")
+
+add_executable(fk_unit tests/kinematics/test_fk.c)
+target_link_libraries(fk_unit PRIVATE robot_contract)
+target_compile_options(fk_unit PRIVATE -Wall -Wextra -Werror -pedantic)
+add_test(NAME fk_matrix_and_contract COMMAND fk_unit)

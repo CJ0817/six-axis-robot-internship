@@ -8,6 +8,7 @@ import math
 import os
 from pathlib import Path
 import platform
+import subprocess
 import sys
 import xml.etree.ElementTree as ET
 
@@ -23,6 +24,7 @@ def require(ok, message):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path,default=ROOT/'results/model-audit')
+    parser.add_argument('--library',type=Path,help='Also verify C FK against the independent XML chain and RTB')
     args=parser.parse_args(); args.output.mkdir(parents=True,exist_ok=True)
     report={'status':'failed','scope':'nominal_model_alignment_only_not_C_algorithm_or_hardware',
             'utc':datetime.now(timezone.utc).isoformat(),'python':platform.python_version(),
@@ -93,6 +95,19 @@ def main():
         reference.base=SE3(np.asarray(model['T_base_dh0'],float))
         reference.tool=SE3(np.asarray(model['T_dh6_flange'],float)@model['T_flange_tool'])
         builtin=rtb.models.DH.UR5()
+        c_forward=None
+        if args.library:
+            sys.path.insert(0,str(ROOT/'src'))
+            from adapters.c_kinematics import Forward
+            c_forward=Forward(args.library)
+            unit=Path(args.library).resolve().parent/'fk_unit'
+            unit_run=subprocess.run([str(unit)],capture_output=True,text=True,timeout=30)
+            report['c_unit']={'exit_code':unit_run.returncode,'stdout':unit_run.stdout,'stderr':unit_run.stderr}
+            require(unit_run.returncode==0,'C matrix/known-pose contract tests failed')
+            report['c_sources_sha256']={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in ['include/robot_kinematics.h','src/kinematics/forward.c','src/adapters/c_kinematics.py','tests/kinematics/test_fk.c']}
+            report['c_library_sha256']=hashlib.sha256(args.library.read_bytes()).hexdigest()
+            report['scope']='C_FK_and_nominal_model_alignment_not_IK_or_hardware'
+        c_records=[]
         named=[('zero',[0]*6),('demo_home',[0,-math.pi/2,0,-math.pi/2,0,0]),('asymmetric',[.2,-.6,.8,-.5,.4,-.2])]
         for i in range(6):
             for sign in [-1,1]:
@@ -114,6 +129,19 @@ def main():
             world_error=float(np.max(np.abs(np.asarray(model['T_world_base'])@actual-poses['tool0'])))
             builtin_error=float(np.linalg.norm(builtin.fkine(q).A[:3,3]-target[:3,3]))
             passed=p_error<=1e-9 and max(matrix_error,rt_error,flange_error,base_error,world_error)<=1e-9
+            if c_forward:
+                result=c_forward(model,q)
+                require(result['code']==0 and result['data'] is not None,'C FK failed: '+name)
+                c_pose=np.asarray(result['data']);transform_valid(c_pose)
+                c_pos=float(np.linalg.norm(c_pose[:3,3]-target[:3,3]))
+                c_rot=float(np.max(np.abs(c_pose[:3,:3]-target[:3,:3])))
+                c_relative=target[:3,:3].T@c_pose[:3,:3]
+                c_sine=.5*np.linalg.norm([c_relative[2,1]-c_relative[1,2],c_relative[0,2]-c_relative[2,0],c_relative[1,0]-c_relative[0,1]])
+                c_angle=float(np.arctan2(c_sine,np.clip((np.trace(c_relative)-1)/2,-1,1)))
+                c_ref=float(np.max(np.abs(c_pose-reference.fkine(q).A)))
+                c_ok=c_pos<=1e-9 and c_rot<=1e-9 and c_ref<=1e-9
+                passed=passed and c_ok
+                c_records.append({'sample_id':name,'success':c_ok,'position_error_m':c_pos,'orientation_error_rad':c_angle,'rotation_matrix_max_error':c_rot,'rtb_max_element_error':c_ref})
             records.append({'sample_id':name,'q_rad':q,'success':passed,'position_error_m':p_error,'orientation_error_rad':angle,'rotation_matrix_max_error':matrix_error,'rtb_explicit_max_error':rt_error,'flange_max_error':flange_error,'world_max_error':world_error,'builtin_position_error_m':builtin_error})
             if name in ('zero','demo_home','asymmetric'):examples[name]={'q_rad':q,'T_base_tool_dh':actual.tolist(),'T_base_tool_urdf':target.tolist()}
         def stats(values):
@@ -128,6 +156,10 @@ def main():
                       rtb_version=version('roboticstoolbox-python'),numpy_version=np.__version__,
                       rtb_builtin_source_sha256=hashlib.sha256(Path(inspect.getfile(type(builtin))).read_bytes()).hexdigest(),
                       quantile_method='linear h=(n-1)*p',samples_file='samples.json')
+        if c_forward:
+            report['c_fk']={'expected_count':len(named),'success_count':sum(v['success'] for v in c_records),'failure_count':sum(not v['success'] for v in c_records),'position_error_m':stats([v['position_error_m'] for v in c_records]),'orientation_error_rad':stats([v['orientation_error_rad'] for v in c_records]),'rotation_matrix_max_error':max(v['rotation_matrix_max_error'] for v in c_records),'rtb_max_element_error':max(v['rtb_max_element_error'] for v in c_records)}
+            report['c_fk']['success_rate']=report['c_fk']['success_count']/len(named)
+            (args.output/'c-samples.json').write_text(json.dumps(c_records,indent=2,allow_nan=False)+'\n')
         report['success_rate']=report['success_count']/report['expected_count']
         (args.output/'samples.json').write_text(json.dumps(records,indent=2,allow_nan=False)+'\n')
         require(report['failure_count']==0,'Model alignment failed')

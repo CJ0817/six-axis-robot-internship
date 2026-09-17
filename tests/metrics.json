@@ -66,25 +66,25 @@
     {
       "id": "KIN-01",
       "name": "FK独立已知位形",
-      "test_id": null,
+      "test_id": "fk",
       "conditions": "≥3个位形，非单位工具、偏置和负关节方向；独立参考",
       "threshold": "位置≤1e-9；旋转矩阵最大元素差≤1e-9",
       "unit": "m; dimensionless",
       "stage": "第2周",
-      "availability": "pending",
-      "pending_reason": "C FK未实现",
+      "availability": "implemented",
+      "pending_reason": "",
       "basis": "engineering-contract.md §9"
     },
     {
       "id": "KIN-02",
       "name": "C FK与Robotics Toolbox比较",
-      "test_id": null,
-      "conditions": "≥100组覆盖工作空间区域的固定用例；仅在BASE-02通过后运行",
+      "test_id": "fk",
+      "conditions": "C FK 对 URDF XML 及显式项目参数RTB：3固定+12轴扰动+100个限位内随机位形；1e-9模型对齐门槛额外检查",
       "threshold": "位置≤1e-5；姿态旋转角≤1e-4；100%有限有效输出",
       "unit": "m; rad",
       "stage": "第2周",
-      "availability": "pending",
-      "pending_reason": "C FK和空间分层样本集待实现；本阈值暂定，第2周周四冻结",
+      "availability": "implemented",
+      "pending_reason": "",
       "basis": "任务书第2阶段及本步骤拟定阈值"
     },
     {

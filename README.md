@@ -4,7 +4,7 @@
 
 ## 项目状态
 
-已建立模块目录、接口约定、固定版本环境与UR5仿真模型。核心算法按任务书采用C，Python负责PyBullet仿真与测试；已加入C/Python调用验证，运动学/规划/自研控制算法尚未实现。当前Linux环境的构建、模型加载、点动及C/Python调用均已验证通过，详细证据见验证记录。
+已建立模块目录、接口约定、固定版本环境与UR5仿真模型。核心算法按任务书采用C，Python负责PyBullet仿真与测试；已加入C/Python调用验证，已实现C正运动学；雅可比、IK、规划及自研控制仍待实现。当前Linux环境的构建、模型加载、点动及C/Python调用均已验证通过，详细证据见验证记录。
 
 ## 目录说明
 
@@ -66,3 +66,7 @@ Robotics Toolbox 使用独立、版本及哈希锁定的环境；未实现的算
 ## UR5 模型核对
 
 [型号、标准 DH、零偏及坐标变换](docs/ur5-model-conventions.md) · [机器可读配置](models/ur5/kinematics.json) · [验证结果](reports/week01/ur5-model-audit.md)。
+
+## C 正运动学
+
+[推导、接口与运行命令](docs/forward-kinematics.md) · [验证报告](reports/week01/c-forward-validation.md)。

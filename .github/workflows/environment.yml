@@ -21,6 +21,8 @@ jobs:
         run: bash scripts/setup.sh
       - name: Standalone C library Python call
         run: .venv/bin/python examples/c_library_demo.py --report results/c-library/ci-python-report.json
+      - name: C FK Python boundary contract
+        run: .venv/bin/python -m unittest discover -s tests -p 'test_c_forward.py' -v
       - name: Installation path regression
         run: .venv/bin/python -m unittest discover -s tests -p 'test_install_paths.py' -v
       - name: Unified smoke suite
@@ -56,6 +58,12 @@ jobs:
         run: .venv-baseline/bin/python -m unittest discover -s tests -p 'test_model_alignment.py' -v
       - name: Verify nominal UR5 model alignment
         run: .venv-baseline/bin/python scripts/run_tests.py --suite model --output results/test-runs/model
+      - name: Build C FK and run cross-implementation checks
+        run: |
+          mkdir -p build
+          gcc-13 -std=c11 -O2 -Wall -Wextra -Werror -pedantic -fPIC -shared -Iinclude src/common/abi_probe.c src/kinematics/forward.c -lm -o build/librobot_contract.so
+          gcc-13 -std=c11 -O2 -Wall -Wextra -Werror -pedantic -Iinclude tests/kinematics/test_fk.c src/kinematics/forward.c -lm -o build/fk_unit
+          .venv-baseline/bin/python scripts/run_tests.py --suite fk --output results/test-runs/fk
       - name: Save reference readiness evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -64,4 +72,5 @@ jobs:
           path: |
             results/test-runs/baseline/
             results/test-runs/model/
+            results/test-runs/fk/
           if-no-files-found: warn
