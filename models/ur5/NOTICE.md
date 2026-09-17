@@ -9,3 +9,5 @@
 它是未按具体设备标定的通用仿真模型，不能作为实机校准数据；导入模型不代表已实现自碰撞规划或验证全部碰撞场景。逻辑 J1…J6 显式映射见 environment.lock.json；末端取 tool0。后续 DH FK 与 URDF 比较前须处理 base/base_link/tool0 等固定变换。
 
 PyBullet适配补充：对base_link、base、flange、tool0四个无实体坐标链接显式写入零质量/零惯量，防止导入器自动赋予1kg虚假质量；实际机械连杆的上游惯量保持不变。
+
+2026-09-17：名义 DH、零偏、基座/法兰/tool0 对齐已核对，见 [核对说明](../../docs/ur5-model-conventions.md) 和 kinematics.json。RTB 内置 UR5 的 d1 差异已记录，参考比较必须使用显式项目参数。source-config 内的 YAML 为上述固定提交原样快照，适用同一上游 LICENSE。

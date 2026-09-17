@@ -1,0 +1,6 @@
+test_wrong_d1_fails_against_urdf (test_model_alignment.ModelAlignmentRegression.test_wrong_d1_fails_against_urdf) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.865s
+
+OK

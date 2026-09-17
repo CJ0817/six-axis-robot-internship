@@ -62,3 +62,7 @@ git push origin main
 
 [统一测试入口与安装命令](docs/testing.md) · [量化指标表](docs/test-metrics.md) · [基准准备验证记录](reports/week01/test-baseline-validation.md)。
 Robotics Toolbox 使用独立、版本及哈希锁定的环境；未实现的算法验收项明确标为待完成。
+
+## UR5 模型核对
+
+[型号、标准 DH、零偏及坐标变换](docs/ur5-model-conventions.md) · [机器可读配置](models/ur5/kinematics.json) · [验证结果](reports/week01/ur5-model-audit.md)。

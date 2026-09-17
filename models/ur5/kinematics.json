@@ -1,0 +1,273 @@
+{
+  "schema_version": 1,
+  "profile_type": "kinematic_audit_not_complete_runtime_model",
+  "model_id": "ur5_cb_generic",
+  "revision": "2026-09-17",
+  "usage": "simulation_only",
+  "dof": 6,
+  "representation": "standard_dh",
+  "length_unit": "m",
+  "angle_unit": "rad",
+  "joint_names": [
+    "J1",
+    "J2",
+    "J3",
+    "J4",
+    "J5",
+    "J6"
+  ],
+  "urdf_joint_names": [
+    "shoulder_pan_joint",
+    "shoulder_lift_joint",
+    "elbow_joint",
+    "wrist_1_joint",
+    "wrist_2_joint",
+    "wrist_3_joint"
+  ],
+  "joint_types": [
+    "revolute",
+    "revolute",
+    "revolute",
+    "revolute",
+    "revolute",
+    "revolute"
+  ],
+  "base_frame": "base",
+  "tool_frame": "tool0",
+  "a_m": [
+    0,
+    -0.425,
+    -0.39225,
+    0,
+    0,
+    0
+  ],
+  "d_m": [
+    0.089159,
+    0,
+    0,
+    0.10915,
+    0.09465,
+    0.0823
+  ],
+  "alpha_rad": [
+    1.5707963267948966,
+    0,
+    0,
+    1.5707963267948966,
+    -1.5707963267948966,
+    0
+  ],
+  "theta_offset_rad": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "joint_sign": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "T_base_dh0": [
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ]
+  ],
+  "T_dh6_flange": [
+    [
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ]
+  ],
+  "T_flange_tool": [
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ]
+  ],
+  "T_base_link_base": [
+    [
+      -1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ]
+  ],
+  "T_world_base_link": [
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ]
+  ],
+  "T_world_base": [
+    [
+      -1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ]
+  ],
+  "pose_validation_tol": 1e-09,
+  "q_min_rad": [
+    -6.283185307179586,
+    -6.283185307179586,
+    -3.141592653589793,
+    -6.283185307179586,
+    -6.283185307179586,
+    -6.283185307179586
+  ],
+  "q_max_rad": [
+    6.283185307179586,
+    6.283185307179586,
+    3.141592653589793,
+    6.283185307179586,
+    6.283185307179586,
+    6.283185307179586
+  ],
+  "qd_max_rad_s": [
+    3.141592653589793,
+    3.141592653589793,
+    3.141592653589793,
+    3.141592653589793,
+    3.141592653589793,
+    3.141592653589793
+  ],
+  "qdd_max_rad_s2": null,
+  "acceleration_limit_status": "not provided by upstream; must freeze explicit simulation limits before planning/control",
+  "encoder_calibration": "not available; nominal zeros only",
+  "sources": {
+    "upstream_repository": "https://github.com/ros-industrial/universal_robot.git",
+    "upstream_commit": "39ad110d8f2e8f66856a201cca88aa7a7025e3eb",
+    "urdf_path": "models/ur5/ur5.urdf",
+    "manufacturer_dh_url": "https://www.universal-robots.com/articles/ur/application-installation/dh-parameters-for-calculations-of-kinematics-and-dynamics/",
+    "manufacturer_checked_utc": "2026-09-17",
+    "files_sha256": {
+      "models/ur5/ur5.urdf": "5314d4a6212361fb3e8b45ab79bb5c8ab80f2c1dff93816764ba220f79a4f188",
+      "models/ur5/source-config/default_kinematics.yaml": "5682ff6543f819dbdfca67577c783e5673f7dc74406defb3ce919d4950015d73",
+      "models/ur5/source-config/joint_limits.yaml": "76d43c7a908a10a364af60bc69017686914cf0d7afdd6952f0d9c73a6db55c7d"
+    }
+  }
+}

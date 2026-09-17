@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     suite_start=time.monotonic()
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--suite', choices=['smoke','baseline','available','acceptance'], default='smoke')
+    parser.add_argument('--suite', choices=['smoke','baseline','model','available','acceptance'], default='smoke')
     parser.add_argument('--output', type=Path, default=ROOT/'results/test-runs/latest')
     parser.add_argument('--smoke-python', type=Path, default=ROOT/'.venv/bin/python')
     parser.add_argument('--baseline-python', type=Path, default=ROOT/'.venv-baseline/bin/python')
@@ -27,8 +27,9 @@ def main():
     ids=[item['id'] for item in definitions]
     if len(set(ids))!=len(ids):
         raise ValueError('Duplicate metric ID')
-    selected=['c_abi','scene'] if args.suite=='smoke' else ['rtb'] if args.suite=='baseline' else ['c_abi','scene','rtb']
+    selected=['c_abi','scene'] if args.suite=='smoke' else ['rtb'] if args.suite=='baseline' else ['model_alignment'] if args.suite=='model' else ['c_abi','scene','rtb','model_alignment']
     specs={
+        'model_alignment': [str(args.baseline_python.absolute()),str(ROOT/'scripts/verify_model_alignment.py'),'--output',str(output/'model_alignment')],
         'c_abi': [str(args.smoke_python.absolute()),str(ROOT/'examples/c_library_demo.py'),'--library',str(args.library.resolve()),'--report',str(output/'c_abi/report.json')],
         'scene': [str(args.smoke_python.absolute()),str(ROOT/'examples/scene_demo.py'),'--headless','--output',str(output/'scene')],
         'rtb': [str(args.baseline_python.absolute()),str(ROOT/'tests/baseline/robotics_toolbox_smoke.py'),'--output',str(output/'rtb')],

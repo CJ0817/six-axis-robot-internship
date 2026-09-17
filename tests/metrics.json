@@ -54,14 +54,14 @@
     {
       "id": "BASE-02",
       "name": "基准模型与工程坐标对齐",
-      "test_id": null,
-      "conditions": "逐项核对DH、零位、关节方向、base/base_link/tool0固定变换；至少3个位形",
+      "test_id": "model_alignment",
+      "conditions": "UR5 CB 名义模型：3个固定+12个逐轴正负扰动+100个限位内随机位形；URDF XML/DH/显式RTB参数对照；法兰与世界映射",
       "threshold": "对齐后同一q位置差≤1e-9、旋转矩阵最大元素差≤1e-9",
       "unit": "m; dimensionless",
       "stage": "第2周",
-      "availability": "pending",
-      "pending_reason": "待实现C FK及URDF/RTB固定变换适配；对齐前禁止直接比较",
-      "basis": "engineering-contract.md §9"
+      "availability": "implemented",
+      "pending_reason": "",
+      "basis": "docs/ur5-model-conventions.md；仅模型核对，C FK仍由KIN指标验收"
     },
     {
       "id": "KIN-01",

@@ -16,7 +16,7 @@ def render():
         text.append('| '+' | '.join(c.replace('|','\\|') for c in cells)+' |')
     text+=['','测量条件：seed=20260915、float64、BLAS单线程；记录提交、源码/模型/依赖锁哈希、版本、硬件、完整输入配置。统计包含失败与超时，不能只统计成功样本。','',
            'FK姿态误差采用相对旋转角；IK位置与姿态分别判定。关节轨迹必须检查连续段极值；路径采样误差检查不等于证明连续路径无碰撞。','',
-           'Robotics Toolbox内置DH UR5与项目URDF可能存在base/tool固定坐标差异；BASE-02未通过前，参考输出只作依赖和数据准备。','',
+           'UR5模型核对见 ur5-model-conventions.md；RTB内置UR5存在d1差异，旧样本仅作依赖准备。BASE-02使用显式项目DH参数，不替代C算法验收。','',
            '来源：任务书第1～4阶段、docs/engineering-contract.md第9节及既有环境/ABI演示阈值。待定项和补充项在JSON中标明basis。','']
     return '\n'.join(text)
 if __name__=='__main__':

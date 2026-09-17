@@ -43,8 +43,10 @@ python3 -m unittest discover -s tests -p 'test_runner.py' -v
 
 参考实现采用 `rtb.models.DH.UR5()`，固定随机种子 20260915、100 组弧度关节向量，输出 FK 4×4、基坐标系雅可比 6×6 和 DH/base/tool 元数据。另做一组已知目标位姿的 IK 回代。耗时仅记录，不用于宣称 C 性能达标。该样本集用于依赖准备，不代表任务空间覆盖或关节限位验收。
 
-在将参考值用于项目 C/URDF 比较前，必须完成指标 BASE-02 对应的模型参数、零位、轴正方向、基座和工具坐标对齐；未完成前禁止直接比较或宣称算法通过。保存的初次运行证据见 `results/baseline-readiness/` 和[验证记录](../reports/week01/test-baseline-validation.md)。
+2026-09-17 已完成 BASE-02 名义模型对齐；因内置 UR5 存在 d1 差异，项目比较须使用显式项目参数参考模型，不能直接使用旧内置 UR5 样本。保存的初次运行证据见 `results/baseline-readiness/` 和[验证记录](../reports/week01/test-baseline-validation.md)。
 
 参考：[官方源码](https://github.com/petercorke/robotics-toolbox-python)、[1.1.1 发布页](https://pypi.org/project/roboticstoolbox-python/1.1.1/)。
 
 统计与报告字段统一遵循 [统计规则 v1](statistics-rules.md)，包括误差有效样本、失败计数、分组成功率、分位数及分层计时。
+
+2026-09-17 更新：BASE-02 名义模型对齐入口已接入 `--suite model`，也随 available/acceptance 运行；详见[UR5核对说明](ur5-model-conventions.md)。此入口不替代 C 算法验收。

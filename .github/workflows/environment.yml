@@ -52,10 +52,16 @@ jobs:
         env:
           ROBOT_PYTHON: python
         run: bash scripts/setup_baseline.sh
+      - name: Verify model mismatch detection
+        run: .venv-baseline/bin/python -m unittest discover -s tests -p 'test_model_alignment.py' -v
+      - name: Verify nominal UR5 model alignment
+        run: .venv-baseline/bin/python scripts/run_tests.py --suite model --output results/test-runs/model
       - name: Save reference readiness evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: robotics-toolbox-baseline
-          path: results/test-runs/baseline/
+          path: |
+            results/test-runs/baseline/
+            results/test-runs/model/
           if-no-files-found: warn
