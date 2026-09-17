@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "source_path": "ur_description/config/ur5/default_kinematics.yaml",
+      "upstream_commit": "39ad110d8f2e8f66856a201cca88aa7a7025e3eb",
+      "sha256": "5682ff6543f819dbdfca67577c783e5673f7dc74406defb3ce919d4950015d73",
+      "matches_snapshot": true
+    },
+    {
+      "source_path": "ur_description/config/ur5/joint_limits.yaml",
+      "upstream_commit": "39ad110d8f2e8f66856a201cca88aa7a7025e3eb",
+      "sha256": "76d43c7a908a10a364af60bc69017686914cf0d7afdd6952f0d9c73a6db55c7d",
+      "matches_snapshot": true
+    }
+  ]
+}

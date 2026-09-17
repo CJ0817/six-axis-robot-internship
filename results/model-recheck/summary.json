@@ -1,0 +1,35 @@
+{
+  "statistics_version": 1,
+  "suite": "model",
+  "utc": "2026-09-17T08:54:20.906432+00:00",
+  "results": [
+    {
+      "test_id": "model_alignment",
+      "command": [
+        "/workspace/scratch/9be573269881/ur5-model-recheck/../test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/ur5-model-recheck/scripts/verify_model_alignment.py",
+        "--output",
+        "/workspace/scratch/9be573269881/ur5-model-recheck/results/model-recheck/model_alignment"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.9662541319999036,
+      "actual_wait_s": 0.9662541319999036,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "model_alignment/report.json",
+      "elapsed_s": 0.9669867089999116
+    }
+  ],
+  "metrics_sha256": "744b584c5d722657e8b14c434fb3f0e37f0e2a0b78ff94f73f4554c476f70087",
+  "commit": "617bceddb10368c903f30f04adab9438ede73781",
+  "working_tree_dirty": false,
+  "status": "passed",
+  "scope_note": "Available checks do not imply completion of unimplemented algorithm or user desktop acceptance.",
+  "process_timeout_count": 0,
+  "suite_elapsed_s": 0.9735431999999946
+}
