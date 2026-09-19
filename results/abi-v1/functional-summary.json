@@ -1,0 +1,193 @@
+{
+  "statistics_version": 1,
+  "suite": "available",
+  "utc": "2026-09-19T05:49:42.875114+00:00",
+  "results": [
+    {
+      "test_id": "c_abi",
+      "command": [
+        "/workspace/scratch/9be573269881/abi-freeze-task/../test-baseline-task/.venv/bin/python",
+        "/workspace/scratch/9be573269881/abi-freeze-task/examples/c_library_demo.py",
+        "--library",
+        "/workspace/scratch/9be573269881/abi-freeze-task/build/librobot_contract.so",
+        "--report",
+        "/workspace/scratch/9be573269881/abi-freeze-task/results/abi-functional/c_abi/report.json"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.06405044400003135,
+      "actual_wait_s": 0.06405044400003135,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "c_abi/report.json",
+      "elapsed_s": 0.06436644699988392
+    },
+    {
+      "test_id": "scene",
+      "command": [
+        "/workspace/scratch/9be573269881/abi-freeze-task/../test-baseline-task/.venv/bin/python",
+        "/workspace/scratch/9be573269881/abi-freeze-task/examples/scene_demo.py",
+        "--headless",
+        "--output",
+        "/workspace/scratch/9be573269881/abi-freeze-task/results/abi-functional/scene"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.41487178400006997,
+      "actual_wait_s": 0.41487178400006997,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "scene/report.json",
+      "elapsed_s": 0.415243996000072
+    },
+    {
+      "test_id": "rtb",
+      "command": [
+        "/workspace/scratch/9be573269881/abi-freeze-task/../test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/abi-freeze-task/tests/baseline/robotics_toolbox_smoke.py",
+        "--output",
+        "/workspace/scratch/9be573269881/abi-freeze-task/results/abi-functional/rtb"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 1.1695621549999942,
+      "actual_wait_s": 1.1695621549999942,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "rtb/report.json",
+      "elapsed_s": 1.1701852099999996
+    },
+    {
+      "test_id": "model_alignment",
+      "command": [
+        "/workspace/scratch/9be573269881/abi-freeze-task/../test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/abi-freeze-task/scripts/verify_model_alignment.py",
+        "--output",
+        "/workspace/scratch/9be573269881/abi-freeze-task/results/abi-functional/model_alignment"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 1.170092491999867,
+      "actual_wait_s": 1.170092491999867,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "model_alignment/report.json",
+      "elapsed_s": 1.1706237200000942
+    },
+    {
+      "test_id": "fk",
+      "command": [
+        "/workspace/scratch/9be573269881/abi-freeze-task/../test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/abi-freeze-task/scripts/verify_model_alignment.py",
+        "--library",
+        "/workspace/scratch/9be573269881/abi-freeze-task/build/librobot_contract.so",
+        "--output",
+        "/workspace/scratch/9be573269881/abi-freeze-task/results/abi-functional/fk"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.9671668280000176,
+      "actual_wait_s": 0.9671668280000176,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "fk/report.json",
+      "elapsed_s": 0.9676707219998661
+    },
+    {
+      "test_id": "fk_known",
+      "command": [
+        "/workspace/scratch/9be573269881/abi-freeze-task/../test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/abi-freeze-task/scripts/compare_fk_rtb.py",
+        "--library",
+        "/workspace/scratch/9be573269881/abi-freeze-task/build/librobot_contract.so",
+        "--output",
+        "/workspace/scratch/9be573269881/abi-freeze-task/results/abi-functional/fk_known"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.8675254380000297,
+      "actual_wait_s": 0.8675254380000297,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "fk_known/report.json",
+      "elapsed_s": 0.86803219300009
+    },
+    {
+      "test_id": "ik_prepare",
+      "command": [
+        "/workspace/scratch/9be573269881/abi-freeze-task/../test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/abi-freeze-task/scripts/prepare_ik_targets.py",
+        "--library",
+        "/workspace/scratch/9be573269881/abi-freeze-task/build/librobot_contract.so",
+        "--output",
+        "/workspace/scratch/9be573269881/abi-freeze-task/results/abi-functional/ik_prepare"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.9172718389997954,
+      "actual_wait_s": 0.9172718389997954,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "ik_prepare/report.json",
+      "elapsed_s": 0.9186488420000387
+    },
+    {
+      "test_id": "fk_robustness",
+      "command": [
+        "/workspace/scratch/9be573269881/abi-freeze-task/../test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/abi-freeze-task/scripts/verify_fk_robustness.py",
+        "--library",
+        "/workspace/scratch/9be573269881/abi-freeze-task/build/librobot_contract.so",
+        "--output",
+        "/workspace/scratch/9be573269881/abi-freeze-task/results/abi-functional/fk_robustness"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 1.268393468999875,
+      "actual_wait_s": 1.268393468999875,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "fk_robustness/report.json",
+      "elapsed_s": 1.2688165679999202
+    }
+  ],
+  "metrics_sha256": "2c30a86d8e7db19ef171e6ae7c0d7a0cbaabb387133fb036d4a1d99032b09e8a",
+  "commit": "f6e54dbc11d501004c38c73d26555ba8277b7264",
+  "working_tree_dirty": true,
+  "status": "passed",
+  "scope_note": "Available checks do not imply completion of unimplemented algorithm or user desktop acceptance.",
+  "process_timeout_count": 0,
+  "suite_elapsed_s": 6.853144960000009
+}

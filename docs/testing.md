@@ -14,7 +14,7 @@ ROBOT_PYTHON=python3.11 bash scripts/setup_baseline.sh
 .venv/bin/python scripts/run_tests.py --suite smoke --output results/test-runs/smoke
 # Robotics Toolbox 依赖、UR5 FK/Jacobian/IK 可运行性
 .venv-baseline/bin/python scripts/run_tests.py --suite baseline --output results/test-runs/baseline
-# 所有已实现检查
+# 已实现的功能检查（耗时专项单独运行）
 .venv/bin/python scripts/run_tests.py --suite available --output results/test-runs/available
 # 完整验收入口：尚未实现的指标会明确 blocked
 .venv/bin/python scripts/run_tests.py --suite acceptance --output results/test-runs/acceptance
@@ -56,3 +56,5 @@ C正运动学功能验收：先编译，再运行 `scripts/run_tests.py --suite 
 已知角度FK专项对比：`--suite fk_known`，也随available/acceptance运行；原内置RTB与显式项目模型分别统计，见[对比报告](../reports/week01/fk-rtb-known-poses.md)。
 
 逆解目标准备：`--suite ik_prepare` 校验冻结的100普通+20宽初值+20近奇异目标和3个锚点，也随available/acceptance运行。它不执行IK、不关闭KIN-03，见[阶段接口整理](ik-interface-preparation.md)。
+
+ABI冻结规范见[ABI v1](abi-v1.md)。`--suite fk_robustness`运行15组边界和10组进程隔离异常；`--suite fk_performance`运行115组各100次的C/FFI分层计时。available为功能集合，不包含共享主机耗时；acceptance包含耗时检查。共享CI的性能步骤为continue-on-error证据任务，报告仍如实failed并上传，CI整体绿色不能说明性能达标。

@@ -63,3 +63,15 @@ class Forward:
             return {'code':1004,'message':'Missing model field','data':None,'details':{'field':str(exc)}}
         except (ContractError,OverflowError,TypeError) as exc:
             return {'code':getattr(exc,'code',1001),'message':str(exc),'data':None,'details':{'module':'kinematics'}}
+
+class IKOptionsV1(C.Structure):
+    _fields_=[('method',C.c_uint32),('branch_policy',C.c_uint32)]+[
+        (name,C.c_double) for name in ('position_tol_m','orientation_tol_rad','joint_margin_rad','timeout_s')]+[
+        ('max_iterations',C.c_uint32),('line_search_max_steps',C.c_uint32)]+[
+        (name,C.c_double) for name in ('characteristic_length_m','damping','max_step_rad')]
+
+class IKResultV1(C.Structure):
+    _fields_=[('q_rad',D6),('candidates_rad',D6*8),('branch_ids',C.c_uint32*8),
+              ('solution_count',C.c_uint32),('selected_index',C.c_uint32),
+              ('position_error_m',C.c_double),('orientation_error_rad',C.c_double),
+              ('elapsed_s',C.c_double),('iterations',C.c_uint32),('reserved',C.c_uint32)]

@@ -1,0 +1,303 @@
+{
+  "status": "passed",
+  "boundary": [
+    {
+      "case": "J1_min",
+      "q_rad": [
+        -6.283185307179586,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    },
+    {
+      "case": "J1_max",
+      "q_rad": [
+        6.283185307179586,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    },
+    {
+      "case": "J2_min",
+      "q_rad": [
+        0.0,
+        -6.283185307179586,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    },
+    {
+      "case": "J2_max",
+      "q_rad": [
+        0.0,
+        6.283185307179586,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    },
+    {
+      "case": "J3_min",
+      "q_rad": [
+        0.0,
+        0.0,
+        -3.141592653589793,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    },
+    {
+      "case": "J3_max",
+      "q_rad": [
+        0.0,
+        0.0,
+        3.141592653589793,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    },
+    {
+      "case": "J4_min",
+      "q_rad": [
+        0.0,
+        0.0,
+        0.0,
+        -6.283185307179586,
+        0.0,
+        0.0
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    },
+    {
+      "case": "J4_max",
+      "q_rad": [
+        0.0,
+        0.0,
+        0.0,
+        6.283185307179586,
+        0.0,
+        0.0
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    },
+    {
+      "case": "J5_min",
+      "q_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -6.283185307179586,
+        0.0
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    },
+    {
+      "case": "J5_max",
+      "q_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        6.283185307179586,
+        0.0
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    },
+    {
+      "case": "J6_min",
+      "q_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -6.283185307179586
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    },
+    {
+      "case": "J6_max",
+      "q_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        6.283185307179586
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    },
+    {
+      "case": "all_min",
+      "q_rad": [
+        -6.283185307179586,
+        -6.283185307179586,
+        -3.141592653589793,
+        -6.283185307179586,
+        -6.283185307179586,
+        -6.283185307179586
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    },
+    {
+      "case": "all_max",
+      "q_rad": [
+        6.283185307179586,
+        6.283185307179586,
+        3.141592653589793,
+        6.283185307179586,
+        6.283185307179586,
+        6.283185307179586
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    },
+    {
+      "case": "zero_singular",
+      "q_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "code": 0,
+      "max_matrix_error": 0.0,
+      "status": "passed"
+    }
+  ],
+  "exceptions": [
+    {
+      "case": "null_model",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "output_unchanged": true,
+      "status": "passed",
+      "actual_wait_s": 0.04412471499995263
+    },
+    {
+      "case": "null_q",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_unchanged": true,
+      "status": "passed",
+      "actual_wait_s": 0.04112527500001306
+    },
+    {
+      "case": "null_output",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_unchanged": null,
+      "status": "passed",
+      "actual_wait_s": 0.05009030999985953
+    },
+    {
+      "case": "length_zero",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_unchanged": true,
+      "status": "passed",
+      "actual_wait_s": 0.0643433959999129
+    },
+    {
+      "case": "length_five",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_unchanged": true,
+      "status": "passed",
+      "actual_wait_s": 0.06609751899986804
+    },
+    {
+      "case": "length_seven",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_unchanged": true,
+      "status": "passed",
+      "actual_wait_s": 0.04636070199990172
+    },
+    {
+      "case": "nan",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_unchanged": true,
+      "status": "passed",
+      "actual_wait_s": 0.04656252800009497
+    },
+    {
+      "case": "infinity",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_unchanged": true,
+      "status": "passed",
+      "actual_wait_s": 0.039908408999963285
+    },
+    {
+      "case": "below_min",
+      "expected_code": 1005,
+      "actual_code": 1005,
+      "output_unchanged": true,
+      "status": "passed",
+      "actual_wait_s": 0.0547509909999917
+    },
+    {
+      "case": "above_max",
+      "expected_code": 1005,
+      "actual_code": 1005,
+      "output_unchanged": true,
+      "status": "passed",
+      "actual_wait_s": 0.04206165199980205
+    }
+  ],
+  "utc": "2026-09-19T05:49:41.444473+00:00",
+  "library_sha256": "f6d52ac9882fed85c769828fc79d85cf45cbb24536ada61e629aaf1df4c48764",
+  "model_sha256": "a33abb6bd1b206eade01f19e3581f56bb7e53c1e9a058111a779c3b39666316e",
+  "script_sha256": "bf8d023dae93b20716dfb4d16c60a0cd192954fc230797647b079b0e165579d2",
+  "boundary_passed": 15,
+  "exception_passed": 10
+}

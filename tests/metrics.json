@@ -120,7 +120,7 @@
       "unit": "ms",
       "stage": "第2周",
       "availability": "pending",
-      "pending_reason": "实现和固定硬件基线待就绪",
+      "pending_reason": "FK分层实测见FK-PERF；J尚未实现；FFI单次超限见PERF-01，不将其隐去",
       "basis": "engineering-contract.md §9"
     },
     {
@@ -254,6 +254,30 @@
       "availability": "pending",
       "pending_reason": "完整业务接口校验未实现；ABI探针不能代替此项",
       "basis": "engineering-contract.md §9"
+    },
+    {
+      "id": "FK-PERF",
+      "name": "FK原生C与Python→C耗时",
+      "test_id": "fk_performance",
+      "conditions": "固定既有115组q；各层1000预热、每组100次共11500次；Release；单进程；逐次记录原始值",
+      "threshold": "C及FFI各自p95≤1 ms；单次≤1 ms，超限计数必须为0才整项通过；记录均值/p95/最大值",
+      "unit": "ms",
+      "stage": "第1周补充",
+      "availability": "implemented",
+      "pending_reason": "",
+      "basis": "docs/abi-v1-validation.md；共享CI为证据任务，超限报告failed不放宽"
+    },
+    {
+      "id": "FK-ROBUST",
+      "name": "FK边界与异常专项",
+      "test_id": "fk_robustness",
+      "conditions": "15边界：逐轴上下限12+全下限/全上限/零位；10独立子进程异常",
+      "threshold": "15/15边界成功且矩阵差≤1e-9；10/10正确错误码，无崩溃/超时；可用输出不变",
+      "unit": "count; dimensionless",
+      "stage": "第1周补充",
+      "availability": "implemented",
+      "pending_reason": "",
+      "basis": "scripts/verify_fk_robustness.py"
     }
   ],
   "notes": [

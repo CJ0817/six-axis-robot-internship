@@ -1,0 +1,91 @@
+{
+  "version": "1.0.0",
+  "version_value": 65536,
+  "platform": "Linux x86_64 SysV LP64 little-endian",
+  "structures": {
+    "robot_fk_model": {
+      "size": 704,
+      "alignment": 8,
+      "offsets": {
+        "a_m": 0,
+        "alpha_rad": 48,
+        "d_m": 96,
+        "theta_offset_rad": 144,
+        "joint_sign": 192,
+        "T_base_dh0": 216,
+        "T_dh6_flange": 344,
+        "T_flange_tool": 472,
+        "q_min_rad": 600,
+        "q_max_rad": 648,
+        "pose_validation_tol": 696
+      }
+    },
+    "robot_ik_options_v1": {
+      "size": 72,
+      "alignment": 8,
+      "offsets": {
+        "method": 0,
+        "branch_policy": 4,
+        "position_tol_m": 8,
+        "orientation_tol_rad": 16,
+        "joint_margin_rad": 24,
+        "timeout_s": 32,
+        "max_iterations": 40,
+        "line_search_max_steps": 44,
+        "characteristic_length_m": 48,
+        "damping": 56,
+        "max_step_rad": 64
+      }
+    },
+    "robot_ik_result_v1": {
+      "size": 504,
+      "alignment": 8,
+      "offsets": {
+        "q_rad": 0,
+        "candidates_rad": 48,
+        "branch_ids": 432,
+        "solution_count": 464,
+        "selected_index": 468,
+        "position_error_m": 472,
+        "orientation_error_rad": 480,
+        "elapsed_s": 488,
+        "iterations": 496,
+        "reserved": 500
+      }
+    }
+  },
+  "errors": {
+    "OK": 0,
+    "INVALID_ARGUMENT": 1001,
+    "UNIT_MISMATCH": 1002,
+    "JOINT_ORDER_MISMATCH": 1003,
+    "MODEL_NOT_CONFIGURED": 1004,
+    "JOINT_LIMIT_EXCEEDED": 1005,
+    "INVALID_TIME": 1006,
+    "FRAME_MISMATCH": 1007,
+    "NOT_IMPLEMENTED": 1008,
+    "IK_UNREACHABLE": 2001,
+    "IK_NO_CONVERGENCE": 2002,
+    "KINEMATIC_SINGULARITY": 2003,
+    "PLANNING_FAILED": 3001,
+    "TRAJECTORY_LIMIT_EXCEEDED": 3002,
+    "COLLISION_DETECTED": 3003,
+    "INVALID_CONTROL_STATE": 4001,
+    "FEEDBACK_TIMEOUT": 4002,
+    "TRACKING_ERROR_EXCEEDED": 4003,
+    "COMMAND_LIMIT_EXCEEDED": 4004,
+    "IO_FAILURE": 5001,
+    "INTERNAL_ERROR": 9000
+  },
+  "exported_symbols": [
+    "robot_copy_joints",
+    "robot_mat4_identity",
+    "robot_mat4_multiply",
+    "robot_mat4_transpose",
+    "robot_transform_inverse",
+    "robot_dh_transform",
+    "robot_forward",
+    "robot_abi_version",
+    "robot_inverse_v1"
+  ]
+}

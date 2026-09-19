@@ -1,0 +1,45 @@
+{
+  "status": "failed",
+  "utc": "2026-09-19T05:46:41.614171+00:00",
+  "python": "3.11.9",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "cpu_count": 9,
+  "warmups_per_layer": 1000,
+  "samples": 115,
+  "repetitions_per_sample": 100,
+  "thresholds_ms": {
+    "single_call": 1.0,
+    "p95": 1.0
+  },
+  "percentile": "linear h=(n-1)*p",
+  "performance_scope": "observed development host, not hard real-time guarantee",
+  "samples_sha256": "64d393d06ed00e469a8ec600bb6a167b0844ddf55709ae3ef403474f3d13808d",
+  "library_sha256": "f6d52ac9882fed85c769828fc79d85cf45cbb24536ada61e629aaf1df4c48764",
+  "model_sha256": "a33abb6bd1b206eade01f19e3581f56bb7e53c1e9a058111a779c3b39666316e",
+  "script_sha256": "182318e76bbb4ec02d00f89b82044ac92e6517a51b1bd5e661c65e5493f7013a",
+  "native_driver_sha256": "f16f47f1754becddabf270b796e8f8ac63add41a71b5f874a86029438d61780a",
+  "cpu_model": "INTEL(R) XEON(R) PLATINUM 8573C",
+  "compiler": "gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "build_requirement": "Release/O2 or O3, no sanitizer, GCC13; native calls include public input validation",
+  "native_process_actual_wait_s": 0.009052973000052589,
+  "native_process_timeout_count": 0,
+  "c_function": {
+    "completed_count": 11500,
+    "mean_ms": 0.00046024069565217394,
+    "rmse_ms": 0.0005891049454007689,
+    "p95_ms": 0.000486,
+    "max_ms": 0.025369,
+    "over_1ms_count": 0,
+    "timeout_count": 0
+  },
+  "python_to_c": {
+    "completed_count": 11500,
+    "mean_ms": 0.0016484082608695652,
+    "rmse_ms": 0.020168673574296397,
+    "p95_ms": 0.001386,
+    "max_ms": 2.046632,
+    "over_1ms_count": 1,
+    "timeout_count": 0
+  },
+  "total_process_work_s": 0.06866457599994646
+}
