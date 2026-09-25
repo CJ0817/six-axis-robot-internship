@@ -54,3 +54,26 @@ python3 scripts/run_tests.py --suite ik --smoke-python "$(command -v python3)" -
 ```
 
 新增指标IK-FILTER，已接入available、acceptance、CTest及CI。原生过滤专项进程有10 s超时，统一入口另有120 s进程预算；两层分别记录实际等待时间。正式误差与成功率继续按原统计规则，失败不能填作零误差。
+
+## 逐解误差记录补充（2026-09-25）
+
+此前报告只有候选数量和分组误差统计，不满足逐解留证要求。现在 `scripts/verify_c_ik.py` 在测试层对每个保留候选分别调用C `robot_forward`，计算并保存两项误差；没有复制ABI中仅属于所选解的误差字段，也没有改变冻结ABI。
+
+同一回归报告 `results/filter-ik-regression/ik/report.json` 已更新为schema_version=2。每个samples条目新增 `solution_count`、`candidates`、`candidate_record_count_matches`；每条候选记录包含：
+
+| 字段 | 含义 |
+|---|---|
+| target_id | 原冻结目标编号；专项使用special:前缀 |
+| branch_policy | all或nearest_seed，区分两次调用 |
+| candidate_index | 当前返回数组索引，0起 |
+| q_rad | 对应该索引的6维实际返回关节角 |
+| position_error_m | 该候选独立C FK的平移误差 |
+| orientation_error_rad | 该候选独立C FK的姿态角误差 |
+| passed | 有限性、限位、FK返回码及两个误差阈值均通过 |
+| fk_code / within_limits | C FK返回码及限位校验结果 |
+
+all记录放在samples[i].candidates；nearest记录放在samples[i].nearest_seed.candidates；专项成功调用记录放在special[i].candidates。失败调用不读取旧输出，solution_count=null、candidates=[]；无有效FK结果时误差记null，不能填成零。
+
+验证器断言每次成功调用的记录数等于solution_count，索引来自返回数组逐项枚举，并逐条验证通过状态。原有count字段为兼容旧报告读取者保留，与solution_count相同。当前140目标：all共994条、nearest共140条；52专项中的成功调用另44条，总计1178条逐解记录，全部通过。分组统计仍保留，不能代替这些逐解明细。
+
+复现仍使用 `--suite ik`。记录计数校验位于CMake/CI已执行的验证器内；报告文件写出后也已复查每条索引、数量及误差阈值。原有历史报告不回填虚构数据，以此更新报告为当前证据。

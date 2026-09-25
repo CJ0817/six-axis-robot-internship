@@ -38,17 +38,25 @@ def main():
         return code,out,wall
     def target(q,m=model):
         T=D16();assert fk.fn(C.byref(m),D6(*q),6,T)==0;return list(T)
-    def validate(T,seed,out,m=model,o=None):
+    def validate(T,seed,out,m=model,o=None,records=None,target_id=None):
+        records=[] if records is None else records
         o=options() if o is None else o;n=out.solution_count;assert 1<=n<=8 and out.selected_index<n
         cs=[list(out.candidates_rad[k]) for k in range(n)];assert cs==sorted(cs)
         assert list(out.q_rad)==cs[out.selected_index]
         dist=[math.dist(c,seed) for c in cs];assert out.selected_index==min(range(n),key=lambda i:(dist[i],cs[i]))
         pe=[];re=[]
         for k,q in enumerate(cs):
-            assert all(math.isfinite(v) and m.q_min_rad[i]+o.joint_margin_rad<=v<=m.q_max_rad[i]-o.joint_margin_rad for i,v in enumerate(q))
+            limits_ok=all(math.isfinite(v) and m.q_min_rad[i]+o.joint_margin_rad<=v<=m.q_max_rad[i]-o.joint_margin_rad for i,v in enumerate(q))
+            back=D16();fk_code=fk.fn(C.byref(m),D6(*q),6,back)
+            p,r=pose_error(list(back),T) if fk_code==0 else (None,None)
+            valid=limits_ok and fk_code==0 and all(v is not None and math.isfinite(v) for v in (p,r)) and p<=o.position_tol_m and r<=o.orientation_tol_rad
+            records.append(dict(target_id=target_id,branch_policy="all" if o.branch_policy==1 else "nearest_seed",candidate_index=k,q_rad=[v if math.isfinite(v) else None for v in q],position_error_m=p if p is not None and math.isfinite(p) else None,orientation_error_rad=r if r is not None and math.isfinite(r) else None,passed=valid,fk_code=fk_code,within_limits=limits_ok))
+            pe.append(p);re.append(r)
+        assert len(records)==n,'Candidate error record count differs from solution_count'
+        assert all(item['passed'] for item in records),'Candidate FK/limits/residual check failed'
+        for k,q in enumerate(cs):
             assert out.branch_ids[k]==k
             for prev in cs[:k]:assert max(abs(a-b) for a,b in zip(prev,q))>1e-9
-            p,r=pose_error(target(q,m),T);assert p<=o.position_tol_m and r<=o.orientation_tol_rad;pe.append(p);re.append(r)
         for k in range(n,8):assert list(out.candidates_rad[k])==[0]*6 and out.branch_ids[k]==2**32-1
         assert out.iterations==0 and out.reserved==0 and 0<=out.elapsed_s<o.timeout_s
         assert abs(out.position_error_m-pe[out.selected_index])<1e-12 and abs(out.orientation_error_rad-re[out.selected_index])<1e-12
@@ -57,22 +65,23 @@ def main():
     for name,cases in fixture['groups'].items():
         pe=[];re=[];elapsed=[];walls=[];passed=0
         for case in cases:
-            T=sum(case['target_T_base_tool'],[]);seed=case['q_seed_rad'];code,out,wall=call(T,seed);ok=False;error=None
+            T=sum(case['target_T_base_tool'],[]);seed=case['q_seed_rad'];code,out,wall=call(T,seed);ok=False;error=None;records=[];nearest_records=[];nearest_count=None
             try:
-                assert code==0,f'code {code}';p,r=validate(T,seed,out)
+                assert code==0,f'code {code}';p,r=validate(T,seed,out,records=records,target_id=case['sample_id'])
                 nc,no,_=call(T,seed,o=options(0));assert nc==0
-                validate(T,seed,no,o=options(0));assert list(no.q_rad)==list(out.q_rad) and no.solution_count==1
+                nearest_count=no.solution_count
+                validate(T,seed,no,o=options(0),records=nearest_records,target_id=case['sample_id']);assert list(no.q_rad)==list(out.q_rad) and no.solution_count==1
                 pe.append(p);re.append(r);elapsed.append(out.elapsed_s);ok=True
             except AssertionError as exc:error=str(exc)
-            passed+=ok;walls.append(wall);rows.append(dict(id=case['sample_id'],group=name,code=code,passed=ok,error=error,count=out.solution_count if code==0 else None,c_elapsed_s=out.elapsed_s if code==0 else None,python_to_c_s=wall))
+            passed+=ok;walls.append(wall);rows.append(dict(id=case['sample_id'],group=name,code=code,passed=ok,error=error,count=out.solution_count if code==0 else None,solution_count=out.solution_count if code==0 else None,candidates=records,candidate_record_count_matches=(len(records)==out.solution_count) if code==0 else None,nearest_seed=dict(solution_count=nearest_count,candidates=nearest_records),c_elapsed_s=out.elapsed_s if code==0 else None,python_to_c_s=wall))
         groups[name]=dict(expected=len(cases),passed=passed,failed=len(cases)-passed,success_rate=passed/len(cases),position_m=stats(pe),orientation_rad=stats(re),c_interface_s=stats(elapsed),python_to_c_s=stats(walls))
     special=[]
     def check(name,T,seed,expected=0,**kwargs):
-        code,out,_=call(T,seed,**kwargs);ok=code==expected;detail=None
+        code,out,_=call(T,seed,**kwargs);ok=code==expected;detail=None;records=[]
         if code==0:
-            try:validate(T,seed,out,m=kwargs.get('m',model),o=kwargs.get('o'))
+            try:validate(T,seed,out,m=kwargs.get('m',model),o=kwargs.get('o'),records=records,target_id='special:'+name)
             except AssertionError as exc:ok=False;detail=str(exc)
-        special.append(dict(name=name,expected=expected,actual=code,passed=ok,detail=detail));return out
+        special.append(dict(name=name,expected=expected,actual=code,passed=ok,detail=detail,solution_count=out.solution_count if code==0 else None,candidates=records,candidate_record_count_matches=(len(records)==out.solution_count) if code==0 else None));return out
     q=[.2,-.6,.8,-.5,.4,-.2];T=target(q)
     for null in ['model','target','seed','options','out']:
         check('null_'+null,None if null=='target' else T,None if null=='seed' else q,1004 if null=='model' else 1001,**({'m':None} if null=='model' else {'null':null}))
@@ -118,7 +127,8 @@ def main():
     transformed.T_base_dh0=D16(0,-1,0,.3,1,0,0,-.2,0,0,1,.1,0,0,0,1)
     transformed.T_flange_tool[3]=.12;transformed.T_dh6_flange[7]=-.08
     check('fixed_frames_sign_offset',target(q,transformed),q,m=transformed)
-    report=dict(status='passed' if all(g['failed']==0 for g in groups.values()) and all(s['passed'] for s in special) else 'failed',scope='C_analytic_regular_branches_and_explicit_singular_policy',groups=groups,special=special,samples=rows,python=platform.python_version(),platform=platform.platform(),library_sha256=hashlib.sha256(args.library.read_bytes()).hexdigest(),source_sha256=hashlib.sha256((ROOT/'src/kinematics/inverse.c').read_bytes()).hexdigest(),fixture_sha256=hashlib.sha256((ROOT/'tests/ik/targets.json').read_bytes()).hexdigest(),script_work_wall_s=time.monotonic()-start,timeout_policy='C cooperative budget .2s; external runner hard timeout 120s',quantile='linear h=(n-1)*p')
+    report=dict(schema_version=2,candidate_error_source='Independent test-layer C robot_forward per retained candidate; not copied from selected-solution ABI fields',status='passed' if all(g['failed']==0 for g in groups.values()) and all(s['passed'] for s in special) else 'failed',scope='C_analytic_regular_branches_and_explicit_singular_policy',groups=groups,special=special,samples=rows,python=platform.python_version(),platform=platform.platform(),library_sha256=hashlib.sha256(args.library.read_bytes()).hexdigest(),source_sha256=hashlib.sha256((ROOT/'src/kinematics/inverse.c').read_bytes()).hexdigest(),fixture_sha256=hashlib.sha256((ROOT/'tests/ik/targets.json').read_bytes()).hexdigest(),script_work_wall_s=time.monotonic()-start,timeout_policy='C cooperative budget .2s; external runner hard timeout 120s',quantile='linear h=(n-1)*p')
+    report['candidate_record_totals']=dict(all=sum(len(row['candidates']) for row in rows),nearest_seed=sum(len(row['nearest_seed']['candidates']) for row in rows),special=sum(len(row['candidates']) for row in special))
     args.output.mkdir(parents=True,exist_ok=True);(args.output/'report.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(dict(status=report['status'],groups=groups,special_count=len(special),special_failures=[s for s in special if not s['passed']]),indent=2))
     return 0 if report['status']=='passed' else 1
