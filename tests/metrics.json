@@ -290,6 +290,18 @@
       "availability": "implemented",
       "pending_reason": "",
       "basis": "docs/ik-candidate-filtering.md"
+    },
+    {
+      "id": "IK-SELECT",
+      "name": "综合选解与基础连续性/奇异保护",
+      "test_id": "ik_selection",
+      "conditions": "100案例：连续轨迹、跨π、近奇异、保护区、失败状态、真实候选权重切换；5补充检查",
+      "threshold": "100/100按预期状态；5/5补充检查；成功步满足FK 1e-5m/1e-4rad和逐轴限步；失败不更新状态",
+      "unit": "count; m; rad",
+      "stage": "第2周",
+      "availability": "implemented",
+      "pending_reason": "",
+      "basis": "docs/ik-stateful-selection.md；上层策略，不修改C nearest_seed语义"
     }
   ],
   "notes": [

@@ -87,3 +87,7 @@ Robotics Toolbox 使用独立、版本及哈希锁定的环境；未实现的算
 ## 候选解回代与过滤
 
 [筛选顺序、错误状态与验证](docs/ik-candidate-filtering.md)：逐候选C FK回代，剔除越限、重复和误差不合格解；部分候选失败时保留其余有效解。统一入口`--suite ik_filter`。
+
+## 连续状态综合选解
+
+[评分、限步与奇异区处理](docs/ik-stateful-selection.md) · `examples/ik_selection_demo.py` · 统一测试`--suite ik_selection`。Python策略层使用C候选及C FK，冻结ABI保持不变。

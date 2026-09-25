@@ -76,6 +76,8 @@ jobs:
           gcc-13 -std=c11 -O2 -Wall -Wextra -Werror -pedantic -fPIC -shared -Iinclude src/common/abi_probe.c src/common/abi_v1.c src/kinematics/forward.c src/kinematics/inverse.c -lm -o build/librobot_contract.so
           gcc-13 -std=c11 -O2 -Wall -Wextra -Werror -pedantic -Iinclude tests/kinematics/test_fk.c src/kinematics/forward.c -lm -o build/fk_unit
           .venv-baseline/bin/python scripts/run_tests.py --suite fk --output results/test-runs/fk
+      - name: Stateful IK selection and continuity
+        run: .venv-baseline/bin/python scripts/run_tests.py --suite ik_selection --output results/test-runs/ik-selection
       - name: Known-pose FK comparison and discrepancy localization
         run: .venv-baseline/bin/python scripts/run_tests.py --suite fk_known --output results/test-runs/fk-known
       - name: Validate frozen IK targets without running IK
@@ -94,6 +96,7 @@ jobs:
             results/test-runs/model/
             results/test-runs/fk/
             results/test-runs/fk-known/
+            results/test-runs/ik-selection/
             results/test-runs/ik-prepare/
             results/test-runs/fk-robustness/
           if-no-files-found: warn
