@@ -91,3 +91,7 @@ Robotics Toolbox 使用独立、版本及哈希锁定的环境；未实现的算
 ## 连续状态综合选解
 
 [评分、限步与奇异区处理](docs/ik-stateful-selection.md) · `examples/ik_selection_demo.py` · 统一测试`--suite ik_selection`。Python策略层使用C候选及C FK，冻结ABI保持不变。
+
+## 逆解目标分组与收尾
+
+[典型可达、不可达、近限位验证及推导索引](docs/ik-target-validation.md) · [阻塞处理与本轮收尾](reports/week02/ik-target-closeout.md)。统一入口`--suite ik_targets`；锁定环境40项目标、232条逐解双参考回代通过。

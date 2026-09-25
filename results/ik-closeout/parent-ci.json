@@ -1,0 +1,153 @@
+{
+  "checked_parent": "d128d51b7eba40d4599a835132c9f516acc81fa8",
+  "run_id": 36115381004,
+  "jobs": [
+    {
+      "id": 108008137980,
+      "name": "environment",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install pinned dependencies, build C/C++ and verify UR5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Standalone C library Python call",
+          "conclusion": "success"
+        },
+        {
+          "name": "Frozen ABI layout and symbols",
+          "conclusion": "success"
+        },
+        {
+          "name": "C analytic IK candidates and boundaries",
+          "conclusion": "success"
+        },
+        {
+          "name": "Candidate filtering and mixed valid/invalid results",
+          "conclusion": "success"
+        },
+        {
+          "name": "FK performance evidence on shared runner",
+          "conclusion": "success"
+        },
+        {
+          "name": "C FK Python boundary contract",
+          "conclusion": "success"
+        },
+        {
+          "name": "Installation path regression",
+          "conclusion": "success"
+        },
+        {
+          "name": "Unified smoke suite",
+          "conclusion": "success"
+        },
+        {
+          "name": "Save evidence",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 108008138206,
+      "name": "robotics-toolbox-baseline",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify test runner failure propagation",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install locked reference dependencies and run baseline",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify model mismatch detection",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify nominal UR5 model alignment",
+          "conclusion": "success"
+        },
+        {
+          "name": "Build C FK and run cross-implementation checks",
+          "conclusion": "success"
+        },
+        {
+          "name": "Stateful IK selection and continuity",
+          "conclusion": "success"
+        },
+        {
+          "name": "Known-pose FK comparison and discrepancy localization",
+          "conclusion": "success"
+        },
+        {
+          "name": "Validate frozen IK targets without running IK",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify frozen targets reject accidental changes",
+          "conclusion": "success"
+        },
+        {
+          "name": "FK boundaries and isolated exceptions",
+          "conclusion": "success"
+        },
+        {
+          "name": "Save reference readiness evidence",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "note": "Parent commit CI evidence; not the CI result of this new closeout commit."
+}

@@ -1,0 +1,171 @@
+{
+  "python": "3.11.9",
+  "numpy": "1.26.4",
+  "roboticstoolbox": "1.1.1",
+  "runtime_recovery": {
+    "previous_failure": "venv executable not found; exit127",
+    "actions": [
+      "uv python install 3.11.9",
+      "Python3.11.9 -m venv --without-pip existing baseline venv",
+      "Python3.11.9 -m venv --without-pip existing main venv"
+    ],
+    "dependencies_lock_changed": false
+  },
+  "ik": {
+    "status": "passed",
+    "groups": {
+      "normal": {
+        "expected": 100,
+        "passed": 100,
+        "failed": 0,
+        "success_rate": 1.0,
+        "position_m": {
+          "valid_count": 100,
+          "mean": 3.7269387151749725e-16,
+          "rmse": 3.970996597592183e-16,
+          "p95": 6.032351645751135e-16,
+          "maximum": 7.369614944603283e-16
+        },
+        "orientation_rad": {
+          "valid_count": 100,
+          "mean": 8.940333642327174e-16,
+          "rmse": 9.461242787268474e-16,
+          "p95": 1.3979216820028186e-15,
+          "maximum": 2.02794442253026e-15
+        },
+        "c_interface_s": {
+          "valid_count": 100,
+          "mean": 3.4158430025854614e-05,
+          "rmse": 0.00015175416383126963,
+          "p95": 2.1273750189720885e-05,
+          "maximum": 0.0015022820007288828
+        },
+        "python_to_c_s": {
+          "valid_count": 100,
+          "mean": 3.622845992140355e-05,
+          "rmse": 0.00015493656369338962,
+          "p95": 2.341620065635652e-05,
+          "maximum": 0.0015318030000344152
+        }
+      },
+      "wide_initial": {
+        "expected": 20,
+        "passed": 20,
+        "failed": 0,
+        "success_rate": 1.0,
+        "position_m": {
+          "valid_count": 20,
+          "mean": 3.8222174720110347e-16,
+          "rmse": 4.0361763063377797e-16,
+          "p95": 6.074732356477779e-16,
+          "maximum": 6.923611508150807e-16
+        },
+        "orientation_rad": {
+          "valid_count": 20,
+          "mean": 8.481217430836687e-16,
+          "rmse": 9.064589740773744e-16,
+          "p95": 1.314604500076786e-15,
+          "maximum": 1.544258594079659e-15
+        },
+        "c_interface_s": {
+          "valid_count": 20,
+          "mean": 2.5815200024226216e-05,
+          "rmse": 3.291568234104141e-05,
+          "p95": 8.091280087683118e-05,
+          "maximum": 9.284100087825209e-05
+        },
+        "python_to_c_s": {
+          "valid_count": 20,
+          "mean": 2.763485008472344e-05,
+          "rmse": 3.46282390324883e-05,
+          "p95": 8.403870015172289e-05,
+          "maximum": 9.602200043445919e-05
+        }
+      },
+      "near_singular": {
+        "expected": 20,
+        "passed": 20,
+        "failed": 0,
+        "success_rate": 1.0,
+        "position_m": {
+          "valid_count": 20,
+          "mean": 4.1493487530044633e-16,
+          "rmse": 4.415744605317135e-16,
+          "p95": 6.824443318487967e-16,
+          "maximum": 7.74487495818625e-16
+        },
+        "orientation_rad": {
+          "valid_count": 20,
+          "mean": 8.462131929217815e-16,
+          "rmse": 8.727651691870078e-16,
+          "p95": 1.1752669684353273e-15,
+          "maximum": 1.2699724084788805e-15
+        },
+        "c_interface_s": {
+          "valid_count": 20,
+          "mean": 1.8367850134382025e-05,
+          "rmse": 1.8504454590051255e-05,
+          "p95": 1.989499914998305e-05,
+          "maximum": 2.0332001440692693e-05
+        },
+        "python_to_c_s": {
+          "valid_count": 20,
+          "mean": 1.9995249931525905e-05,
+          "rmse": 2.012257134635404e-05,
+          "p95": 2.1827599084645044e-05,
+          "maximum": 2.22569997276878e-05
+        }
+      }
+    },
+    "special_count": 52,
+    "special_passed": 52,
+    "candidate_record_totals": {
+      "all": 994,
+      "nearest_seed": 140,
+      "special": 44
+    }
+  },
+  "selection": {
+    "status": "passed",
+    "expected": 100,
+    "passed": 100,
+    "checks": [
+      {
+        "name": "weights_change_branch",
+        "passed": true,
+        "selected_indices": [
+          2,
+          7,
+          4,
+          2
+        ]
+      },
+      {
+        "name": "near_region_reduces_step_cap",
+        "passed": true
+      },
+      {
+        "name": "sigma_difference_step_regular",
+        "sigma_h": 0.13541766417217901,
+        "sigma_half_h": 0.13541766414773018,
+        "passed": true
+      },
+      {
+        "name": "sigma_difference_step_near_wrist",
+        "sigma_h": 3.987774489971679e-05,
+        "sigma_half_h": 3.9877715476051145e-05,
+        "passed": true
+      },
+      {
+        "name": "sigma_difference_step_joint_endpoint",
+        "sigma_h": 0.1354176828315012,
+        "sigma_half_h": 0.13541767358886297,
+        "passed": true
+      }
+    ]
+  },
+  "ctest": "5/5 passed in fresh Release build",
+  "abi": "layout/symbol/error/failure atomicity regression passed",
+  "library_sha256": "9790b622d75d844a20ffdfd66951ddb07011feef9ed4af38261b3cc86360eea9",
+  "note": "Compact rerun summary; full per-candidate evidence for new 40 targets is in results/ik-targets-verified/ik_targets/report.json; previous fixed regression records remain under their earlier commits."
+}

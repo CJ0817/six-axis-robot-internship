@@ -302,6 +302,18 @@
       "availability": "implemented",
       "pending_reason": "",
       "basis": "docs/ik-stateful-selection.md；上层策略，不修改C nearest_seed语义"
+    },
+    {
+      "id": "IK-TARGETS",
+      "name": "典型可达/不可达/近限位目标",
+      "test_id": "ik_targets",
+      "conditions": "6可达+9有证明的不可达+24近限位(6轴×两端×1e-3/1e-6rad)+1软件限位排除；显式RTB参考",
+      "threshold": "40/40预期状态；逐候选C/RTB回代≤1e-5m、1e-4rad；失败不写输出",
+      "unit": "count; m; rad",
+      "stage": "第2周",
+      "availability": "implemented",
+      "pending_reason": "",
+      "basis": "docs/ik-target-validation.md"
     }
   ],
   "notes": [

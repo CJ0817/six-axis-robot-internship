@@ -1,0 +1,36 @@
+{
+  "statistics_version": 1,
+  "suite": "ik_targets",
+  "utc": "2026-09-25T09:13:23.589969+00:00",
+  "results": [
+    {
+      "test_id": "ik_targets",
+      "command": [
+        "/workspace/scratch/9be573269881/test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/ik-closeout-task/scripts/verify_ik_target_groups.py",
+        "--library",
+        "/workspace/scratch/9be573269881/ik-closeout-task/build/librobot_contract.so",
+        "--output",
+        "/workspace/scratch/9be573269881/ik-closeout-task/results/ik-targets-verified/ik_targets"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.9694193089999317,
+      "actual_wait_s": 0.9694193089999317,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "ik_targets/report.json",
+      "elapsed_s": 0.9721227000009094
+    }
+  ],
+  "metrics_sha256": "0db62d6762a5816dd2054e2c1a3f89d6ef7d179d79c8f5b94419eafe4c3a93e4",
+  "commit": null,
+  "status": "passed",
+  "scope_note": "Available checks do not imply completion of unimplemented algorithm or user desktop acceptance.",
+  "process_timeout_count": 0,
+  "suite_elapsed_s": 0.9773295479990338
+}
