@@ -25,6 +25,8 @@ jobs:
         run: .venv/bin/python -m unittest discover -s tests -p 'test_abi_v1.py' -v
       - name: C analytic IK candidates and boundaries
         run: .venv/bin/python scripts/run_tests.py --suite ik --output results/test-runs/ik
+      - name: Candidate filtering and mixed valid/invalid results
+        run: .venv/bin/python scripts/run_tests.py --suite ik_filter --output results/test-runs/ik-filter
       - name: FK performance evidence on shared runner
         continue-on-error: true
         run: .venv/bin/python scripts/run_tests.py --suite fk_performance --output results/test-runs/fk-performance
@@ -46,6 +48,7 @@ jobs:
             build/CMakeCache.txt
             results/test-runs/smoke/
             results/test-runs/ik/
+            results/test-runs/ik-filter/
             results/test-runs/fk-performance/
           if-no-files-found: warn
 

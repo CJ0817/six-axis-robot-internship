@@ -1,0 +1,36 @@
+{
+  "statistics_version": 1,
+  "suite": "ik_filter",
+  "utc": "2026-09-25T08:17:29.677672+00:00",
+  "results": [
+    {
+      "test_id": "ik_filter",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/9be573269881/ik-filter-task/scripts/verify_ik_filter.py",
+        "--executable",
+        "/workspace/scratch/9be573269881/ik-filter-task/build/ik_filter_unit",
+        "--output",
+        "/workspace/scratch/9be573269881/ik-filter-task/results/filter-verified/ik_filter"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.1649392720000833,
+      "actual_wait_s": 0.1649392720000833,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "ik_filter/report.json",
+      "elapsed_s": 0.16537706300005084
+    }
+  ],
+  "metrics_sha256": "4f94d62acd144443c6f48b7ce5f92a3c231a4289af4ba9d03beae1c4551e6a37",
+  "commit": null,
+  "status": "passed",
+  "scope_note": "Available checks do not imply completion of unimplemented algorithm or user desktop acceptance.",
+  "process_timeout_count": 0,
+  "suite_elapsed_s": 0.1721777419998034
+}

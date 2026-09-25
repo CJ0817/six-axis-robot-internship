@@ -83,3 +83,7 @@ Robotics Toolbox 使用独立、版本及哈希锁定的环境；未实现的算
 
 [实现、运行命令与边界策略](docs/c-analytic-ik.md) · [140目标及专项证据](results/c-ik-verified/ik/report.json)。标准C数学库实现，无第三方C算法依赖，保持ABI 1.0.0。
 
+
+## 候选解回代与过滤
+
+[筛选顺序、错误状态与验证](docs/ik-candidate-filtering.md)：逐候选C FK回代，剔除越限、重复和误差不合格解；部分候选失败时保留其余有效解。统一入口`--suite ik_filter`。

@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "timeout_budget_s": 10,
+  "timeout_count": 0,
+  "executable": "/workspace/scratch/9be573269881/ik-filter-task/build/ik_filter_unit",
+  "exit_code": 0,
+  "stdout": "position_residual_rejected: passed\norientation_only_residual_rejected: passed\nvalid_survives_bad_predecessors: passed\nexact_duplicate: passed\ntwo_pi_duplicate_after_lift: passed\nduplicate_inside_1e_9: passed\ndistinct_outside_1e_9: passed\nnan_candidate: passed\ninfinite_candidate: passed\nno_legal_two_pi_lift: passed\nmargin_excludes_endpoint: passed\nmixed_stream_has_two_valid_representatives: passed\npublic_all_baseline: passed\npublic_partial_residual_filter: passed\nevery_retained_candidate_passes: passed\nretained=7 / initial=8; orientation_tol=6.1421238246335785e-16 rad\nall_residual_rejected_2002_output_unchanged: passed\nchecks=16 failed=0\n",
+  "stderr": "",
+  "expected": 16,
+  "failed": 0,
+  "passed": 16,
+  "actual_wait_s": 0.0025824300000749645,
+  "source_sha256": {
+    "src/kinematics/inverse.c": "269f4aad3062d5daa499044ee739b6d6cf419f0ea3de3e6d44c3e9f8f5a43d2a",
+    "tests/kinematics/test_ik_filter.c": "2e3f9109a23d548bfac38f5f013841ddef7ae6013e9c4d4faa873e88316a1481"
+  }
+}

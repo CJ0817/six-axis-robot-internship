@@ -33,3 +33,11 @@ add_test(NAME c_analytic_ik
   COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_c_ik.py"
           --library "$<TARGET_FILE:robot_contract>" --output "${CMAKE_CURRENT_BINARY_DIR}/ik-check")
 set_tests_properties(c_analytic_ik PROPERTIES TIMEOUT 120)
+
+# White-box test of the same private candidate filter; no new shared ABI symbol.
+add_executable(ik_filter_unit tests/kinematics/test_ik_filter.c src/kinematics/forward.c)
+target_include_directories(ik_filter_unit PRIVATE include)
+target_compile_options(ik_filter_unit PRIVATE -Wall -Wextra -Werror -pedantic)
+target_link_libraries(ik_filter_unit PRIVATE m)
+add_test(NAME ik_candidate_filter COMMAND ik_filter_unit)
+set_tests_properties(ik_candidate_filter PROPERTIES TIMEOUT 10)

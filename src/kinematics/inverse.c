@@ -49,6 +49,31 @@ static int lifted(const robot_fk_model *m,const double *t,const double *seed,dou
     }
     return 1;
 }
+/* Private filtering stages; no additional ABI fields or exported symbols. */
+enum candidate_status { CANDIDATE_ACCEPTED, CANDIDATE_LIMIT, CANDIDATE_DUPLICATE,
+                        CANDIDATE_RESIDUAL, CANDIDATE_NONFINITE, CANDIDATE_INTERNAL };
+static enum candidate_status filter_candidate(const robot_fk_model *m,const double *t,
+        const double *seed,const double *target,const robot_ik_options_v1 *o,
+        robot_ik_result_v1 *result) {
+    double q[6],back[16],pe,re;
+    if(!finite_values(t,6)) return CANDIDATE_NONFINITE;
+    if(!lifted(m,t,seed,o->joint_margin_rad,q)) return CANDIDATE_LIMIT;
+    if(!finite_values(q,6)) return CANDIDATE_NONFINITE;
+    if(robot_forward(m,q,6,back)) return CANDIDATE_RESIDUAL;
+    residual(back,target,&pe,&re);
+    if(!isfinite(pe) || !isfinite(re) || pe>o->position_tol_m || re>o->orientation_tol_rad)
+        return CANDIDATE_RESIDUAL;
+    /* Deduplicate only after FK validation: an invalid predecessor cannot
+     * suppress a valid candidate. All representatives were lifted to seed. */
+    for(uint32_t k=0;k<result->solution_count;k++) {
+        double max=0;
+        for(int j=0;j<6;j++) max=fmax(max,fabs(q[j]-result->candidates_rad[k][j]));
+        if(max<=1e-9) return CANDIDATE_DUPLICATE;
+    }
+    if(result->solution_count==8) return CANDIDATE_INTERNAL;
+    memcpy(result->candidates_rad[result->solution_count++],q,sizeof(q));
+    return CANDIDATE_ACCEPTED;
+}
 static int supported(const robot_fk_model *m) {
     const double a[6]={0,-.425,-.39225,0,0,0};
     const double d[6]={.089159,0,0,.10915,.09465,.0823};
@@ -102,7 +127,7 @@ int robot_inverse_v1(const robot_fk_model *m,const double *target,size_t pose_co
     double beta=asin(fmin(1.,d4/rho)),az=atan2(Y,X),shoulder[2]={az+beta,az+PI-beta};
     robot_ik_result_v1 result={0};
     for(int i=0;i<8;i++) result.branch_ids[i]=UINT32_MAX;
-    int geometric=0,singular=0,numerical=0;
+    int geometric=0,singular=0,rejected_residual=0;
     for(int s=0;s<2;s++) {
         double t1=shoulder[s],h0=sin(t1),h1=-cos(t1);
         double u=h0*T[0]+h1*T[4],v=h0*T[1]+h1*T[5],c=h0*T[2]+h1*T[6],mag=hypot(u,v);
@@ -121,25 +146,15 @@ int robot_inverse_v1(const robot_fk_model *m,const double *target,size_t pose_co
             }
             double x=U[3],y=U[7],a2=m->a_m[1],a3=m->a_m[2];
             double c3=(x*x+y*y-a2*a2-a3*a3)/(2*a2*a3);
-            if(!isfinite(c3)) { numerical=1; continue; }
+            if(!isfinite(c3)) return 2002; /* enumeration itself could not finish */
             if(fabs(c3)>1+1e-12) continue;
             geometric=1;
             for(int e=-1;e<=1;e+=2) {
                 double t3=e*acos(clip(c3)),t2=atan2(y,x)-atan2(a3*sin(t3),a2+a3*cos(t3));
-                double t[6]={t1,t2,t3,atan2(U[4],U[0])-t2-t3,t5,t6},q[6],back[16],pe,re;
-                if(!lifted(m,t,seed,o->joint_margin_rad,q)) continue;
-                if(robot_forward(m,q,6,back)) { numerical=1; continue; }
-                residual(back,target,&pe,&re);
-                if(!isfinite(pe) || !isfinite(re) || pe>o->position_tol_m || re>o->orientation_tol_rad) { numerical=1; continue; }
-                int duplicate=0;
-                for(uint32_t k=0;k<result.solution_count;k++) {
-                    double max=0;for(int j=0;j<6;j++) max=fmax(max,fabs(q[j]-result.candidates_rad[k][j]));
-                    if(max<=1e-9) duplicate=1;
-                }
-                if(!duplicate) {
-                    if(result.solution_count==8) return 9000;
-                    memcpy(result.candidates_rad[result.solution_count++],q,sizeof(q));
-                }
+                double t[6]={t1,t2,t3,atan2(U[4],U[0])-t2-t3,t5,t6};
+                enum candidate_status status=filter_candidate(m,t,seed,target,o,&result);
+                if(status==CANDIDATE_INTERNAL) return 9000;
+                if(status==CANDIDATE_RESIDUAL || status==CANDIDATE_NONFINITE) rejected_residual=1;
             }
         }
     }
@@ -152,8 +167,10 @@ int robot_inverse_v1(const robot_fk_model *m,const double *target,size_t pose_co
         memset(&result,0,sizeof(result));
         for(int i=0;i<8;i++) result.branch_ids[i]=UINT32_MAX;
         result.solution_count=1;memcpy(result.candidates_rad[0],seed,6*sizeof(double));
-    } else if(numerical) return 2002; /* Never report a partial enumeration as all. */
-    if(!result.solution_count) return geometric?1005:2001;
+    }
+    /* All means all validated representatives, not rejected algebraic roots.
+     * Completed enumeration may have both passing and failing candidates. */
+    if(!result.solution_count) return rejected_residual?2002:(geometric?1005:2001);
     for(uint32_t i=1;i<result.solution_count;i++) for(uint32_t j=i;j>0 && lex_less(result.candidates_rad[j],result.candidates_rad[j-1]);j--) {
         double tmp[6];memcpy(tmp,result.candidates_rad[j],sizeof(tmp));
         memcpy(result.candidates_rad[j],result.candidates_rad[j-1],sizeof(tmp));memcpy(result.candidates_rad[j-1],tmp,sizeof(tmp));
@@ -169,6 +186,8 @@ int robot_inverse_v1(const robot_fk_model *m,const double *target,size_t pose_co
     for(uint32_t i=0;i<result.solution_count;i++) result.branch_ids[i]=i;
     double back[16]; if(robot_forward(m,result.q_rad,6,back)) return 9000;
     residual(back,target,&result.position_error_m,&result.orientation_error_rad);
+    if(!isfinite(result.position_error_m) || !isfinite(result.orientation_error_rad) ||
+       result.position_error_m>o->position_tol_m || result.orientation_error_rad>o->orientation_tol_rad) return 2002;
     BUDGET();result.elapsed_s=now()-start;
     if(!isfinite(result.elapsed_s) || result.elapsed_s<0) return 9000;
     if(result.elapsed_s>=o->timeout_s) return 2002;
