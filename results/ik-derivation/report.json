@@ -1,0 +1,1238 @@
+{
+  "scope": "formula_validation_only_not_C_IK_acceptance",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "model_sha256": "a33abb6bd1b206eade01f19e3581f56bb7e53c1e9a058111a779c3b39666316e",
+  "fixture_sha256": "be4a50a143d2acf1fbb03f10ce2f964a68d0a8e2515523cb0f306d0a8f4e19bf",
+  "groups": {
+    "normal": {
+      "expected": 100,
+      "passed": 100,
+      "failed": 0,
+      "success_rate": 1.0,
+      "position": {
+        "valid_count": 100,
+        "mean": 3.8103117866393225e-16,
+        "rmse": 4.094920221350554e-16,
+        "p95": 6.799461695908838e-16,
+        "maximum": 7.947987303456224e-16
+      },
+      "orientation": {
+        "valid_count": 100,
+        "mean": 9.026718630591637e-16,
+        "rmse": 9.457778692485113e-16,
+        "p95": 1.390420361747252e-15,
+        "maximum": 1.8112554699101336e-15
+      }
+    },
+    "wide_initial": {
+      "expected": 20,
+      "passed": 20,
+      "failed": 0,
+      "success_rate": 1.0,
+      "position": {
+        "valid_count": 20,
+        "mean": 3.7867975815520156e-16,
+        "rmse": 4.0387104602213807e-16,
+        "p95": 6.365289065640174e-16,
+        "maximum": 7.716848701410009e-16
+      },
+      "orientation": {
+        "valid_count": 20,
+        "mean": 8.320896493045145e-16,
+        "rmse": 8.655827389032119e-16,
+        "p95": 1.2410513588058623e-15,
+        "maximum": 1.2626071896158399e-15
+      }
+    },
+    "near_singular": {
+      "expected": 20,
+      "passed": 20,
+      "failed": 0,
+      "success_rate": 1.0,
+      "position": {
+        "valid_count": 20,
+        "mean": 3.6908180206619266e-16,
+        "rmse": 3.8584670021816234e-16,
+        "p95": 5.682266934172329e-16,
+        "maximum": 6.271409248451573e-16
+      },
+      "orientation": {
+        "valid_count": 20,
+        "mean": 9.253875886661939e-16,
+        "rmse": 9.564495295632169e-16,
+        "p95": 1.2519918813292294e-15,
+        "maximum": 1.3461796110203687e-15
+      }
+    }
+  },
+  "special_cases": [
+    {
+      "kind": "singular_fixed_phi_witness",
+      "theta5": 0.0,
+      "phi": -1.0,
+      "passed": true
+    },
+    {
+      "kind": "singular_fixed_phi_witness",
+      "theta5": 0.0,
+      "phi": 0.0,
+      "passed": true
+    },
+    {
+      "kind": "singular_fixed_phi_witness",
+      "theta5": 0.0,
+      "phi": 1.0,
+      "passed": true
+    },
+    {
+      "kind": "singular_fixed_phi_witness",
+      "theta5": 3.141592653589793,
+      "phi": -1.0,
+      "passed": true
+    },
+    {
+      "kind": "singular_fixed_phi_witness",
+      "theta5": 3.141592653589793,
+      "phi": 0.0,
+      "passed": true
+    },
+    {
+      "kind": "singular_fixed_phi_witness",
+      "theta5": 3.141592653589793,
+      "phi": 1.0,
+      "passed": true
+    },
+    {
+      "kind": "shoulder_unreachable",
+      "passed": true
+    },
+    {
+      "kind": "two_pi_fk_equivalence",
+      "passed": true
+    }
+  ],
+  "samples": [
+    {
+      "id": "normal_000",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 5.797195660796456e-16,
+      "orientation_max_rad": 8.788189109277703e-16
+    },
+    {
+      "id": "normal_001",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 7.947987303456224e-16,
+      "orientation_max_rad": 8.389452469758798e-16
+    },
+    {
+      "id": "normal_002",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.428263042070008e-16,
+      "orientation_max_rad": 6.476499181789749e-16
+    },
+    {
+      "id": "normal_003",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.451306065445149e-16,
+      "orientation_max_rad": 9.752873500016235e-16
+    },
+    {
+      "id": "normal_004",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.604833187825968e-16,
+      "orientation_max_rad": 1.249687645572937e-15
+    },
+    {
+      "id": "normal_005",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.7894008272968645e-16,
+      "orientation_max_rad": 7.01962571901806e-16
+    },
+    {
+      "id": "normal_006",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 3.510833468576701e-16,
+      "orientation_max_rad": 8.115699959240534e-16
+    },
+    {
+      "id": "normal_007",
+      "group": "normal",
+      "candidate_count": 6,
+      "passed": true,
+      "position_max_m": 4.611102534756203e-16,
+      "orientation_max_rad": 8.081741928724909e-16
+    },
+    {
+      "id": "normal_008",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 1.7772239894833365e-16,
+      "orientation_max_rad": 8.51986031793518e-16
+    },
+    {
+      "id": "normal_009",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.7894008272968645e-16,
+      "orientation_max_rad": 9.304044429168265e-16
+    },
+    {
+      "id": "normal_010",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.449557262054371e-16,
+      "orientation_max_rad": 5.490627819005315e-16
+    },
+    {
+      "id": "normal_011",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 5.382005793715205e-16,
+      "orientation_max_rad": 1.088768305322209e-15
+    },
+    {
+      "id": "normal_012",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.050792900924367e-16,
+      "orientation_max_rad": 1.4782239322076066e-15
+    },
+    {
+      "id": "normal_013",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.6506759942727966e-16,
+      "orientation_max_rad": 9.516453775829044e-16
+    },
+    {
+      "id": "normal_014",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.992586547019258e-16,
+      "orientation_max_rad": 1.0173047137711165e-15
+    },
+    {
+      "id": "normal_015",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.791355229691893e-16,
+      "orientation_max_rad": 4.484182308820073e-16
+    },
+    {
+      "id": "normal_016",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.5172027167143304e-16,
+      "orientation_max_rad": 1.1413144535706458e-15
+    },
+    {
+      "id": "normal_017",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.8783389312519236e-16,
+      "orientation_max_rad": 1.4166813932971518e-15
+    },
+    {
+      "id": "normal_018",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.6910028968576024e-16,
+      "orientation_max_rad": 6.588672884814805e-16
+    },
+    {
+      "id": "normal_019",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.597533769998862e-16,
+      "orientation_max_rad": 7.338885969541006e-16
+    },
+    {
+      "id": "normal_020",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.0555558231420789e-16,
+      "orientation_max_rad": 7.192874398251983e-16
+    },
+    {
+      "id": "normal_021",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.2887833992611187e-16,
+      "orientation_max_rad": 9.0868336383692e-16
+    },
+    {
+      "id": "normal_022",
+      "group": "normal",
+      "candidate_count": 2,
+      "passed": true,
+      "position_max_m": 3.030954607830199e-16,
+      "orientation_max_rad": 4.532151008911126e-16
+    },
+    {
+      "id": "normal_023",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.065703529144609e-16,
+      "orientation_max_rad": 8.293694985103333e-16
+    },
+    {
+      "id": "normal_024",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 1.5446833478624345e-16,
+      "orientation_max_rad": 1.3600580415049222e-15
+    },
+    {
+      "id": "normal_025",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 7.130536482749599e-16,
+      "orientation_max_rad": 8.540679636129027e-16
+    },
+    {
+      "id": "normal_026",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.5626980138831173e-16,
+      "orientation_max_rad": 9.935527108703601e-16
+    },
+    {
+      "id": "normal_027",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.3422138886441676e-16,
+      "orientation_max_rad": 1.1809758757384472e-15
+    },
+    {
+      "id": "normal_028",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 2.3055512673781017e-16,
+      "orientation_max_rad": 7.285263952761555e-16
+    },
+    {
+      "id": "normal_029",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 1.4946834900704541e-16,
+      "orientation_max_rad": 6.810609688958278e-16
+    },
+    {
+      "id": "normal_030",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 4.335559509131367e-16,
+      "orientation_max_rad": 5.344343545513804e-16
+    },
+    {
+      "id": "normal_031",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 6.782036707127746e-16,
+      "orientation_max_rad": 1.0423450110421024e-15
+    },
+    {
+      "id": "normal_032",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 4.1910000110727263e-16,
+      "orientation_max_rad": 8.656753372865411e-16
+    },
+    {
+      "id": "normal_033",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.3952863877751612e-16,
+      "orientation_max_rad": 7.788060378633668e-16
+    },
+    {
+      "id": "normal_034",
+      "group": "normal",
+      "candidate_count": 6,
+      "passed": true,
+      "position_max_m": 2.242025235105681e-16,
+      "orientation_max_rad": 6.971940555169605e-16
+    },
+    {
+      "id": "normal_035",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.925231146709438e-16,
+      "orientation_max_rad": 1.0393839728796155e-15
+    },
+    {
+      "id": "normal_036",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.946122230452747e-16,
+      "orientation_max_rad": 1.0114784229261408e-15
+    },
+    {
+      "id": "normal_037",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.0253964504621835e-16,
+      "orientation_max_rad": 1.1705400018623496e-15
+    },
+    {
+      "id": "normal_038",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.4219371797089426e-16,
+      "orientation_max_rad": 1.0239809888182092e-15
+    },
+    {
+      "id": "normal_039",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.400058012914542e-16,
+      "orientation_max_rad": 1.2812603145867607e-15
+    },
+    {
+      "id": "normal_040",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 2.830524433501838e-16,
+      "orientation_max_rad": 1.0521559958360479e-15
+    },
+    {
+      "id": "normal_041",
+      "group": "normal",
+      "candidate_count": 2,
+      "passed": true,
+      "position_max_m": 4.002966042486721e-16,
+      "orientation_max_rad": 8.313511074504788e-16
+    },
+    {
+      "id": "normal_042",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.0490308144984482e-16,
+      "orientation_max_rad": 1.6062486954480125e-15
+    },
+    {
+      "id": "normal_043",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.1677797545656835e-16,
+      "orientation_max_rad": 7.828134158814461e-16
+    },
+    {
+      "id": "normal_044",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.254873622441467e-16,
+      "orientation_max_rad": 6.74476975177033e-16
+    },
+    {
+      "id": "normal_045",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 1.942890293094024e-16,
+      "orientation_max_rad": 9.015611610121393e-16
+    },
+    {
+      "id": "normal_046",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 1.716587549445839e-16,
+      "orientation_max_rad": 9.512317621669665e-16
+    },
+    {
+      "id": "normal_047",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.603703785810335e-16,
+      "orientation_max_rad": 8.141819811120574e-16
+    },
+    {
+      "id": "normal_048",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 5.552849575635886e-16,
+      "orientation_max_rad": 6.508199843031799e-16
+    },
+    {
+      "id": "normal_049",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.7341307954279784e-16,
+      "orientation_max_rad": 1.2098843727856904e-15
+    },
+    {
+      "id": "normal_050",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.2887833992611187e-16,
+      "orientation_max_rad": 1.3599893533354863e-15
+    },
+    {
+      "id": "normal_051",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.6188843062238402e-16,
+      "orientation_max_rad": 9.9545259948782e-16
+    },
+    {
+      "id": "normal_052",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.3592239273284576e-16,
+      "orientation_max_rad": 9.650638075490962e-16
+    },
+    {
+      "id": "normal_053",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 3.2487068343022356e-16,
+      "orientation_max_rad": 3.2169593601938615e-16
+    },
+    {
+      "id": "normal_054",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 3.6215442729969596e-16,
+      "orientation_max_rad": 5.721750089243443e-16
+    },
+    {
+      "id": "normal_055",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.449557262054371e-16,
+      "orientation_max_rad": 8.853166355065588e-16
+    },
+    {
+      "id": "normal_056",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.3199839306544087e-16,
+      "orientation_max_rad": 6.427636845953926e-16
+    },
+    {
+      "id": "normal_057",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.0125770192081414e-16,
+      "orientation_max_rad": 1.3328149449239049e-15
+    },
+    {
+      "id": "normal_058",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.4021815010030383e-16,
+      "orientation_max_rad": 5.410668517124012e-16
+    },
+    {
+      "id": "normal_059",
+      "group": "normal",
+      "candidate_count": 6,
+      "passed": true,
+      "position_max_m": 5.495323605393213e-16,
+      "orientation_max_rad": 5.959082090156774e-16
+    },
+    {
+      "id": "normal_060",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.74152176864806e-16,
+      "orientation_max_rad": 1.139588573749844e-15
+    },
+    {
+      "id": "normal_061",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.063081476116683e-16,
+      "orientation_max_rad": 8.000027311927621e-16
+    },
+    {
+      "id": "normal_062",
+      "group": "normal",
+      "candidate_count": 2,
+      "passed": true,
+      "position_max_m": 3.7853558335037716e-16,
+      "orientation_max_rad": 6.280859222379883e-16
+    },
+    {
+      "id": "normal_063",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 5.23139221524659e-16,
+      "orientation_max_rad": 9.032456480855703e-16
+    },
+    {
+      "id": "normal_064",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.041272810440265e-16,
+      "orientation_max_rad": 4.757435986939638e-16
+    },
+    {
+      "id": "normal_065",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 5.558049685633556e-16,
+      "orientation_max_rad": 9.807481556725348e-16
+    },
+    {
+      "id": "normal_066",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.4219371797089426e-16,
+      "orientation_max_rad": 5.428686061137005e-16
+    },
+    {
+      "id": "normal_067",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 1.576213700060856e-16,
+      "orientation_max_rad": 1.0120396148878743e-15
+    },
+    {
+      "id": "normal_068",
+      "group": "normal",
+      "candidate_count": 6,
+      "passed": true,
+      "position_max_m": 2.9893669801409083e-16,
+      "orientation_max_rad": 1.6499116356472786e-15
+    },
+    {
+      "id": "normal_069",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 5.064917260848195e-16,
+      "orientation_max_rad": 8.687340817400178e-16
+    },
+    {
+      "id": "normal_070",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 7.142680465120772e-16,
+      "orientation_max_rad": 4.0263561216904526e-16
+    },
+    {
+      "id": "normal_071",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 5.125396027766235e-16,
+      "orientation_max_rad": 8.591388989754736e-16
+    },
+    {
+      "id": "normal_072",
+      "group": "normal",
+      "candidate_count": 2,
+      "passed": true,
+      "position_max_m": 7.550332863779066e-16,
+      "orientation_max_rad": 1.181874561537503e-15
+    },
+    {
+      "id": "normal_073",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.6766507790745728e-16,
+      "orientation_max_rad": 5.940604997720211e-16
+    },
+    {
+      "id": "normal_074",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.4219371797089426e-16,
+      "orientation_max_rad": 5.734688022607724e-16
+    },
+    {
+      "id": "normal_075",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 6.77599954797753e-16,
+      "orientation_max_rad": 8.544197837640469e-16
+    },
+    {
+      "id": "normal_076",
+      "group": "normal",
+      "candidate_count": 2,
+      "passed": true,
+      "position_max_m": 2.7336071744532853e-16,
+      "orientation_max_rad": 1.1937466134662045e-15
+    },
+    {
+      "id": "normal_077",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 5.578801654593729e-16,
+      "orientation_max_rad": 9.391279860988887e-16
+    },
+    {
+      "id": "normal_078",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.6766507790745728e-16,
+      "orientation_max_rad": 1.0311882114269954e-15
+    },
+    {
+      "id": "normal_079",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.995802653854976e-16,
+      "orientation_max_rad": 1.8112554699101336e-15
+    },
+    {
+      "id": "normal_080",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 3.554447978966673e-16,
+      "orientation_max_rad": 1.1168054313917285e-15
+    },
+    {
+      "id": "normal_081",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 6.187688364358555e-16,
+      "orientation_max_rad": 9.69370171919559e-16
+    },
+    {
+      "id": "normal_082",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.9393503847022753e-16,
+      "orientation_max_rad": 8.509897696468346e-16
+    },
+    {
+      "id": "normal_083",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 5.087681048627601e-16,
+      "orientation_max_rad": 4.918768676248094e-16
+    },
+    {
+      "id": "normal_084",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 4.47545209131181e-16,
+      "orientation_max_rad": 9.525708020389172e-16
+    },
+    {
+      "id": "normal_085",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.573883909863296e-16,
+      "orientation_max_rad": 1.0853180981098899e-15
+    },
+    {
+      "id": "normal_086",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.66121187763494e-16,
+      "orientation_max_rad": 1.3890382021919941e-15
+    },
+    {
+      "id": "normal_087",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 5.750915750555716e-16,
+      "orientation_max_rad": 9.909859077397432e-16
+    },
+    {
+      "id": "normal_088",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.3551386880256624e-16,
+      "orientation_max_rad": 8.608318073489398e-16
+    },
+    {
+      "id": "normal_089",
+      "group": "normal",
+      "candidate_count": 6,
+      "passed": true,
+      "position_max_m": 5.28085841456928e-16,
+      "orientation_max_rad": 8.29534643594669e-16
+    },
+    {
+      "id": "normal_090",
+      "group": "normal",
+      "candidate_count": 6,
+      "passed": true,
+      "position_max_m": 5.502328482176191e-16,
+      "orientation_max_rad": 5.5721396920231e-16
+    },
+    {
+      "id": "normal_091",
+      "group": "normal",
+      "candidate_count": 6,
+      "passed": true,
+      "position_max_m": 4.611102534756203e-16,
+      "orientation_max_rad": 4.991906516086132e-16
+    },
+    {
+      "id": "normal_092",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 5.768888059150692e-16,
+      "orientation_max_rad": 6.105451736072243e-16
+    },
+    {
+      "id": "normal_093",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.1910000110727263e-16,
+      "orientation_max_rad": 1.1463300552945333e-15
+    },
+    {
+      "id": "normal_094",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 7.301351988545593e-16,
+      "orientation_max_rad": 7.165025302949618e-16
+    },
+    {
+      "id": "normal_095",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 5.164700352369266e-16,
+      "orientation_max_rad": 9.474165327888246e-16
+    },
+    {
+      "id": "normal_096",
+      "group": "normal",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 1.4946834900704541e-16,
+      "orientation_max_rad": 7.495615071768534e-16
+    },
+    {
+      "id": "normal_097",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.0396099332657776e-16,
+      "orientation_max_rad": 9.270626471218876e-16
+    },
+    {
+      "id": "normal_098",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.3537189618722464e-16,
+      "orientation_max_rad": 8.915425432147956e-16
+    },
+    {
+      "id": "normal_099",
+      "group": "normal",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.7194799110210365e-16,
+      "orientation_max_rad": 1.2230842670222871e-15
+    },
+    {
+      "id": "wide_000",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 6.294154347968077e-16,
+      "orientation_max_rad": 1.2626071896158399e-15
+    },
+    {
+      "id": "wide_001",
+      "group": "wide_initial",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 2.3551386880256624e-16,
+      "orientation_max_rad": 1.0086221826039082e-15
+    },
+    {
+      "id": "wide_002",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.4219371797089426e-16,
+      "orientation_max_rad": 5.838542900594623e-16
+    },
+    {
+      "id": "wide_003",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.498001805406602e-16,
+      "orientation_max_rad": 8.066869211004734e-16
+    },
+    {
+      "id": "wide_004",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.3494191426837246e-16,
+      "orientation_max_rad": 1.2399168413948108e-15
+    },
+    {
+      "id": "wide_005",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.7336071744532853e-16,
+      "orientation_max_rad": 5.664276557481511e-16
+    },
+    {
+      "id": "wide_006",
+      "group": "wide_initial",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 3.510833468576701e-16,
+      "orientation_max_rad": 4.56627812051905e-16
+    },
+    {
+      "id": "wide_007",
+      "group": "wide_initial",
+      "candidate_count": 6,
+      "passed": true,
+      "position_max_m": 4.47545209131181e-16,
+      "orientation_max_rad": 4.1552271119635914e-16
+    },
+    {
+      "id": "wide_008",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.0770370905276122e-16,
+      "orientation_max_rad": 6.647685115697153e-16
+    },
+    {
+      "id": "wide_009",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.7894008272968645e-16,
+      "orientation_max_rad": 9.498868463669539e-16
+    },
+    {
+      "id": "wide_010",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.815760786470701e-16,
+      "orientation_max_rad": 7.967341866159747e-16
+    },
+    {
+      "id": "wide_011",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 7.716848701410009e-16,
+      "orientation_max_rad": 1.2145571766810258e-15
+    },
+    {
+      "id": "wide_012",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 5.495323605393213e-16,
+      "orientation_max_rad": 8.547540171646874e-16
+    },
+    {
+      "id": "wide_013",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.0125770192081414e-16,
+      "orientation_max_rad": 8.5315593321491e-16
+    },
+    {
+      "id": "wide_014",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.7238012298709097e-16,
+      "orientation_max_rad": 1.0538227665957784e-15
+    },
+    {
+      "id": "wide_015",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.791355229691893e-16,
+      "orientation_max_rad": 7.223162471588517e-16
+    },
+    {
+      "id": "wide_016",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.2814087040042835e-16,
+      "orientation_max_rad": 8.95493889966642e-16
+    },
+    {
+      "id": "wide_017",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.390840864445248e-16,
+      "orientation_max_rad": 9.176506437197733e-16
+    },
+    {
+      "id": "wide_018",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.399349888776296e-16,
+      "orientation_max_rad": 7.29660961855895e-16
+    },
+    {
+      "id": "wide_019",
+      "group": "wide_initial",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.603703785810335e-16,
+      "orientation_max_rad": 6.487262014091735e-16
+    },
+    {
+      "id": "near_singular_000",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.9356078853142527e-16,
+      "orientation_max_rad": 9.873208223316607e-16
+    },
+    {
+      "id": "near_singular_001",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 6.271409248451573e-16,
+      "orientation_max_rad": 8.730593511890106e-16
+    },
+    {
+      "id": "near_singular_002",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.1677797545656835e-16,
+      "orientation_max_rad": 4.562670111191383e-16
+    },
+    {
+      "id": "near_singular_003",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.362269083488676e-16,
+      "orientation_max_rad": 1.1586671383079366e-15
+    },
+    {
+      "id": "near_singular_004",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.079219866531555e-16,
+      "orientation_max_rad": 9.570895958576589e-16
+    },
+    {
+      "id": "near_singular_005",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.4394924734781536e-16,
+      "orientation_max_rad": 7.774149507737375e-16
+    },
+    {
+      "id": "near_singular_006",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.8202997483103253e-16,
+      "orientation_max_rad": 1.2470346323981167e-15
+    },
+    {
+      "id": "near_singular_007",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.344434768182728e-16,
+      "orientation_max_rad": 1.0732491562821841e-15
+    },
+    {
+      "id": "near_singular_008",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.830524433501838e-16,
+      "orientation_max_rad": 1.0455429413385947e-15
+    },
+    {
+      "id": "near_singular_009",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.633125101432526e-16,
+      "orientation_max_rad": 6.408924678827548e-16
+    },
+    {
+      "id": "near_singular_010",
+      "group": "near_singular",
+      "candidate_count": 6,
+      "passed": true,
+      "position_max_m": 4.1004107616799284e-16,
+      "orientation_max_rad": 1.1705639907801005e-15
+    },
+    {
+      "id": "near_singular_011",
+      "group": "near_singular",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 4.839349969133127e-16,
+      "orientation_max_rad": 1.3461796110203687e-15
+    },
+    {
+      "id": "near_singular_012",
+      "group": "near_singular",
+      "candidate_count": 4,
+      "passed": true,
+      "position_max_m": 3.554447978966673e-16,
+      "orientation_max_rad": 5.963601430835644e-16
+    },
+    {
+      "id": "near_singular_013",
+      "group": "near_singular",
+      "candidate_count": 6,
+      "passed": true,
+      "position_max_m": 5.651259443947105e-16,
+      "orientation_max_rad": 9.295276866380535e-16
+    },
+    {
+      "id": "near_singular_014",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 4.3177542613803813e-16,
+      "orientation_max_rad": 1.2151641619738113e-15
+    },
+    {
+      "id": "near_singular_015",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 2.2393770035178943e-16,
+      "orientation_max_rad": 6.962504040274424e-16
+    },
+    {
+      "id": "near_singular_016",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.6848074723016415e-16,
+      "orientation_max_rad": 6.608048591738254e-16
+    },
+    {
+      "id": "near_singular_017",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.7853558335037716e-16,
+      "orientation_max_rad": 6.835854486136451e-16
+    },
+    {
+      "id": "near_singular_018",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 3.851554932315348e-16,
+      "orientation_max_rad": 8.87016058805734e-16
+    },
+    {
+      "id": "near_singular_019",
+      "group": "near_singular",
+      "candidate_count": 8,
+      "passed": true,
+      "position_max_m": 1.9078803932353506e-16,
+      "orientation_max_rad": 1.1057613417265331e-15
+    }
+  ],
+  "passed": true
+}
