@@ -1,0 +1,234 @@
+Start testing: Sep 25 00:40 PDT
+----------------------------------------------------------
+1/4 Testing: cxx_abi_smoke
+1/4 Test: cxx_abi_smoke
+Command: "/workspace/scratch/9be573269881/ik-c-task/build-cmake/cxx_smoke"
+Directory: /workspace/scratch/9be573269881/ik-c-task/build-cmake
+"cxx_abi_smoke" start time: Sep 25 00:40 PDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"cxx_abi_smoke" end time: Sep 25 00:40 PDT
+"cxx_abi_smoke" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/4 Testing: python_abi_smoke
+2/4 Test: python_abi_smoke
+Command: "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3" "/workspace/scratch/9be573269881/ik-c-task/examples/c_library_demo.py" "--library" "/workspace/scratch/9be573269881/ik-c-task/build-cmake/librobot_contract.so"
+Directory: /workspace/scratch/9be573269881/ik-c-task/build-cmake
+"python_abi_smoke" start time: Sep 25 00:40 PDT
+Output:
+----------------------------------------------------------
+{
+  "status": "passed",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "utc": "2026-09-25T07:40:49.523995+00:00",
+  "library_name": "librobot_contract.so",
+  "sizeof_double": 8,
+  "sizeof_size_t": 8,
+  "library_sha256": "88ec2f17cb92089890c27cd416284b946fb6036700a0450dd5aec384942137cb",
+  "source_sha256": {
+    "src/common/abi_probe.c": "30eb6a347f21d3aef1dba1e58b7c9576a6f64fb1c5d2cd2004f7237c8133f8d2",
+    "include/robot_contract.h": "aa4b9838c21f79a30ef575f0031e8ae9e7ff833fe2fcb6ae513b72748b5be653",
+    "examples/c_library_demo.py": "bec9ab12b5d5397bf9b2943c7402e1297e055b30a941725e541212cd5f24f6b8"
+  },
+  "checks": [
+    {
+      "case": "six_joint_roundtrip",
+      "code": 0,
+      "input_rad": [
+        0.1,
+        -0.2,
+        0.3,
+        -0.4,
+        0.5,
+        -0.6
+      ],
+      "output_rad": [
+        0.1,
+        -0.2,
+        0.3,
+        -0.4,
+        0.5,
+        -0.6
+      ]
+    },
+    {
+      "case": "wrong_length",
+      "code": 1001,
+      "output_unchanged": true
+    },
+    {
+      "case": "nan",
+      "code": 1001,
+      "output_unchanged": true
+    },
+    {
+      "case": "infinity",
+      "code": 1001,
+      "output_unchanged": true
+    },
+    {
+      "case": "null_input",
+      "code": 1001,
+      "output_unchanged": true
+    },
+    {
+      "case": "null_output",
+      "code": 1001
+    }
+  ]
+}
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"python_abi_smoke" end time: Sep 25 00:40 PDT
+"python_abi_smoke" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/4 Testing: fk_matrix_and_contract
+3/4 Test: fk_matrix_and_contract
+Command: "/workspace/scratch/9be573269881/ik-c-task/build-cmake/fk_unit"
+Directory: /workspace/scratch/9be573269881/ik-c-task/build-cmake
+"fk_matrix_and_contract" start time: Sep 25 00:40 PDT
+Output:
+----------------------------------------------------------
+matrix operations, aliasing, validation, limits and 3 independent FK poses: passed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"fk_matrix_and_contract" end time: Sep 25 00:40 PDT
+"fk_matrix_and_contract" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/4 Testing: c_analytic_ik
+4/4 Test: c_analytic_ik
+Command: "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3" "/workspace/scratch/9be573269881/ik-c-task/scripts/verify_c_ik.py" "--library" "/workspace/scratch/9be573269881/ik-c-task/build-cmake/librobot_contract.so" "--output" "/workspace/scratch/9be573269881/ik-c-task/build-cmake/ik-check"
+Directory: /workspace/scratch/9be573269881/ik-c-task/build-cmake
+"c_analytic_ik" start time: Sep 25 00:40 PDT
+Output:
+----------------------------------------------------------
+{
+  "status": "passed",
+  "groups": {
+    "normal": {
+      "expected": 100,
+      "passed": 100,
+      "failed": 0,
+      "success_rate": 1.0,
+      "position_m": {
+        "valid_count": 100,
+        "mean": 3.726938715174973e-16,
+        "rmse": 3.970996597592183e-16,
+        "p95": 6.032351645751135e-16,
+        "maximum": 7.369614944603283e-16
+      },
+      "orientation_rad": {
+        "valid_count": 100,
+        "mean": 8.95461503102701e-16,
+        "rmse": 9.472868054090084e-16,
+        "p95": 1.4049486707730876e-15,
+        "maximum": 2.041947306849177e-15
+      },
+      "c_interface_s": {
+        "valid_count": 100,
+        "mean": 1.2810199987143278e-05,
+        "rmse": 1.3394907467440885e-05,
+        "p95": 1.4468200288320076e-05,
+        "maximum": 4.289399930712534e-05
+      },
+      "python_to_c_s": {
+        "valid_count": 100,
+        "mean": 1.4310030028354959e-05,
+        "rmse": 1.4914735618349319e-05,
+        "p95": 1.5964149997671485e-05,
+        "maximum": 4.7821999942243565e-05
+      }
+    },
+    "wide_initial": {
+      "expected": 20,
+      "passed": 20,
+      "failed": 0,
+      "success_rate": 1.0,
+      "position_m": {
+        "valid_count": 20,
+        "mean": 3.8222174720110347e-16,
+        "rmse": 4.0361763063377797e-16,
+        "p95": 6.074732356477779e-16,
+        "maximum": 6.923611508150807e-16
+      },
+      "orientation_rad": {
+        "valid_count": 20,
+        "mean": 8.472920027880559e-16,
+        "rmse": 9.05128281232312e-16,
+        "p95": 1.3251698082054255e-15,
+        "maximum": 1.5360023770575225e-15
+      },
+      "c_interface_s": {
+        "valid_count": 20,
+        "mean": 1.3175750063965097e-05,
+        "rmse": 1.326602797062651e-05,
+        "p95": 1.4290900435298682e-05,
+        "maximum": 1.459299983253004e-05
+      },
+      "python_to_c_s": {
+        "valid_count": 20,
+        "mean": 1.4664649916085181e-05,
+        "rmse": 1.4743982967717015e-05,
+        "p95": 1.5769250285302406e-05,
+        "maximum": 1.6115999642352108e-05
+      }
+    },
+    "near_singular": {
+      "expected": 20,
+      "passed": 20,
+      "failed": 0,
+      "success_rate": 1.0,
+      "position_m": {
+        "valid_count": 20,
+        "mean": 4.1493487530044633e-16,
+        "rmse": 4.415744605317135e-16,
+        "p95": 6.824443318487967e-16,
+        "maximum": 7.74487495818625e-16
+      },
+      "orientation_rad": {
+        "valid_count": 20,
+        "mean": 8.456651898723273e-16,
+        "rmse": 8.722341140306883e-16,
+        "p95": 1.1752669684353273e-15,
+        "maximum": 1.2699724084788805e-15
+      },
+      "c_interface_s": {
+        "valid_count": 20,
+        "mean": 2.646110010573466e-05,
+        "rmse": 5.147574628369243e-05,
+        "p95": 0.00010700295051719883,
+        "maximum": 0.00019903799966414226
+      },
+      "python_to_c_s": {
+        "valid_count": 20,
+        "mean": 2.8009449897581364e-05,
+        "rmse": 5.256954374640977e-05,
+        "p95": 0.00010909084980994529,
+        "maximum": 0.0002019219991780119
+      }
+    }
+  },
+  "special_count": 52,
+  "special_failures": []
+}
+<end of output>
+Test time =   0.08 sec
+----------------------------------------------------------
+Test Passed.
+"c_analytic_ik" end time: Sep 25 00:40 PDT
+"c_analytic_ik" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 25 00:40 PDT

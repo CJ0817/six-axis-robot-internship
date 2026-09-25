@@ -23,6 +23,8 @@ jobs:
         run: .venv/bin/python examples/c_library_demo.py --report results/c-library/ci-python-report.json
       - name: Frozen ABI layout and symbols
         run: .venv/bin/python -m unittest discover -s tests -p 'test_abi_v1.py' -v
+      - name: C analytic IK candidates and boundaries
+        run: .venv/bin/python scripts/run_tests.py --suite ik --output results/test-runs/ik
       - name: FK performance evidence on shared runner
         continue-on-error: true
         run: .venv/bin/python scripts/run_tests.py --suite fk_performance --output results/test-runs/fk-performance
@@ -43,6 +45,7 @@ jobs:
             results/c-library/ci-python-report.json
             build/CMakeCache.txt
             results/test-runs/smoke/
+            results/test-runs/ik/
             results/test-runs/fk-performance/
           if-no-files-found: warn
 
@@ -67,7 +70,7 @@ jobs:
       - name: Build C FK and run cross-implementation checks
         run: |
           mkdir -p build
-          gcc-13 -std=c11 -O2 -Wall -Wextra -Werror -pedantic -fPIC -shared -Iinclude src/common/abi_probe.c src/common/abi_v1.c src/kinematics/forward.c -lm -o build/librobot_contract.so
+          gcc-13 -std=c11 -O2 -Wall -Wextra -Werror -pedantic -fPIC -shared -Iinclude src/common/abi_probe.c src/common/abi_v1.c src/kinematics/forward.c src/kinematics/inverse.c -lm -o build/librobot_contract.so
           gcc-13 -std=c11 -O2 -Wall -Wextra -Werror -pedantic -Iinclude tests/kinematics/test_fk.c src/kinematics/forward.c -lm -o build/fk_unit
           .venv-baseline/bin/python scripts/run_tests.py --suite fk --output results/test-runs/fk
       - name: Known-pose FK comparison and discrepancy localization

@@ -8,7 +8,8 @@ extern "C" {
 #endif
 /* ABI v1, float64, row-major 4x4, column vectors, m/rad, J1..J6.
  * Caller owns valid buffers (16 doubles for matrices, 6 for joints).
- * All outputs remain untouched on error; input/output aliasing is supported.
+ * All outputs remain untouched on error; matrix/FK aliasing is supported.
+ * IK result must not overlap its inputs.
  * Codes are the existing contract.json codes, not a new numbering scheme. */
 typedef struct {
     double a_m[6], alpha_rad[6], d_m[6], theta_offset_rad[6];
@@ -49,9 +50,9 @@ typedef struct {
     uint32_t iterations, reserved;
 } robot_ik_result_v1;
 uint32_t robot_abi_version(void);
-/* Reserved executable stub: returns NOT_IMPLEMENTED=1008, never changes output.
+/* Analytic UR5 CB implementation; failures never change output.
  * Exact target and seed lengths: 16 and 6. Caller owns result (504 bytes).
- * Future implementation must preserve this ABI and all existing symbols. */
+ * DLS remains unsupported (1008); unresolved singular requests return 2003. */
 int robot_inverse_v1(const robot_fk_model *model,
                      const double *T_base_tool, size_t pose_count,
                      const double *q_seed_rad, size_t seed_count,

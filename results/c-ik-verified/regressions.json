@@ -1,0 +1,21 @@
+{
+  "compiler": "GCC/G++ 13.3.0",
+  "release_flags": "-std=c11 -O2 -Wall -Wextra -Werror -pedantic -fPIC -shared; -lm",
+  "abi_layout_symbols_error_codes": "passed",
+  "python_fk_boundary": "passed",
+  "c_fk_matrix_alias_validation_limits_three_poses": "passed",
+  "cpp_abi_smoke": "passed",
+  "runner_failure_propagation": "2/2 passed",
+  "ubsan": {
+    "status": "passed",
+    "flags": "-O1 -g -fsanitize=undefined -fno-sanitize-recover=all",
+    "library_sha256": "4911c125a3f4a9074d023ab329dcf5f7e0986669a9f1176781ef446c318c8ac7",
+    "special_count": 52,
+    "group_counts": {
+      "normal": 100,
+      "wide_initial": 20,
+      "near_singular": 20
+    }
+  },
+  "cmake_release_ctest": "4/4 passed; CMake 3.31.6; separate Release build, timing baseline remains -O2 build"
+}

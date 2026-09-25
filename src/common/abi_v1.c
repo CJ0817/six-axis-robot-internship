@@ -41,10 +41,3 @@ _Static_assert(offsetof(robot_ik_result_v1,elapsed_s)==488, "robot_ik_result_v1.
 _Static_assert(offsetof(robot_ik_result_v1,iterations)==496, "robot_ik_result_v1.iterations offset changed");
 _Static_assert(offsetof(robot_ik_result_v1,reserved)==500, "robot_ik_result_v1.reserved offset changed");
 uint32_t robot_abi_version(void) { return ROBOT_ABI_VERSION_V1; }
-int robot_inverse_v1(const robot_fk_model *model, const double *target, size_t pose_count,
-                     const double *seed, size_t seed_count, const robot_ik_options_v1 *options,
-                     robot_ik_result_v1 *result) {
-    (void)model; (void)target; (void)pose_count; (void)seed;
-    (void)seed_count; (void)options; (void)result;
-    return ROBOT_NOT_IMPLEMENTED;
-}

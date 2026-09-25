@@ -39,3 +39,7 @@ FK姿态误差采用相对旋转角；IK位置与姿态分别判定。关节轨�
 UR5模型核对见 ur5-model-conventions.md；RTB内置UR5存在d1差异，旧样本仅作依赖准备。BASE-02使用显式项目DH参数，不替代C算法验收。
 
 来源：任务书第1～4阶段、docs/engineering-contract.md第9节及既有环境/ABI演示阈值。待定项和补充项在JSON中标明basis。
+
+## 2026-09-25：C解析逆解
+
+KIN-03通过固定normal100、wide_initial20、near_singular20目标，统一入口`--suite ik`。另52边界/异常专项通过；精确奇异通用连续族选解仍待完成，当前返回策略见[c-analytic-ik.md](c-analytic-ik.md)。旧准备报告不作为当前求解状态；FK性能未关闭项保持原状。

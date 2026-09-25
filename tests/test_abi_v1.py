@@ -9,7 +9,7 @@ sys.path.insert(0,str(ROOT/'src'))
 from adapters.c_kinematics import FKModel,IKOptionsV1,IKResultV1
 
 class FrozenABI(unittest.TestCase):
-    def test_layout_symbols_codes_and_stub(self):
+    def test_layout_symbols_codes_and_failure_atomicity(self):
         abi=json.loads((ROOT/'src/common/abi-v1.json').read_text())
         for name,struct in [('robot_fk_model',FKModel),('robot_ik_options_v1',IKOptionsV1),('robot_ik_result_v1',IKResultV1)]:
             frozen=abi['structures'][name]
@@ -26,6 +26,6 @@ class FrozenABI(unittest.TestCase):
         fn=lib.robot_inverse_v1;fn.restype=C.c_int
         fn.argtypes=[C.POINTER(FKModel),C.POINTER(C.c_double),C.c_size_t,C.POINTER(C.c_double),C.c_size_t,C.POINTER(IKOptionsV1),C.POINTER(IKResultV1)]
         out=IKResultV1();C.memset(C.byref(out),0x5A,C.sizeof(out));before=bytes(out)
-        self.assertEqual(fn(None,None,16,None,6,None,C.byref(out)),1008)
+        self.assertEqual(fn(None,None,16,None,6,None,C.byref(out)),1001)
         self.assertEqual(bytes(out),before)
 if __name__=='__main__':unittest.main()

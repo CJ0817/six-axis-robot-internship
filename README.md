@@ -73,8 +73,13 @@ Robotics Toolbox 使用独立、版本及哈希锁定的环境；未实现的算
 
 ## 逆解准备
 
-[推导与接口交接、冻结目标规则](docs/ik-interface-preparation.md) · [目标文件](tests/ik/targets.json)。已准备测试输入，逆解算法尚未实现。
+[推导与接口交接、冻结目标规则](docs/ik-interface-preparation.md) · [目标文件](tests/ik/targets.json)。已准备测试输入，C解析逆解已实现，精确奇异族全局选解仍待完成。
 
 ## ABI冻结与FK专项验证
 
-[ABI 1.0.0](docs/abi-v1.md) · [性能与鲁棒性实测](docs/abi-v1-validation.md)。保留现有FK ABI，IK符号当前返回1008；性能超限与待办以实测报告为准。
+[ABI 1.0.0](docs/abi-v1.md) · [性能与鲁棒性实测](docs/abi-v1-validation.md)。保留现有FK ABI，IK符号已实现UR5普通解析分支；性能超限与待办以实测报告为准。
+
+## C解析逆解
+
+[实现、运行命令与边界策略](docs/c-analytic-ik.md) · [140目标及专项证据](results/c-ik-verified/ik/report.json)。标准C数学库实现，无第三方C算法依赖，保持ABI 1.0.0。
+

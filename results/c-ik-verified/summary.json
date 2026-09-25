@@ -1,0 +1,36 @@
+{
+  "statistics_version": 1,
+  "suite": "ik",
+  "utc": "2026-09-25T07:37:44.414462+00:00",
+  "results": [
+    {
+      "test_id": "ik",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/9be573269881/ik-c-task/scripts/verify_c_ik.py",
+        "--library",
+        "/workspace/scratch/9be573269881/ik-c-task/build/librobot_contract.so",
+        "--output",
+        "/workspace/scratch/9be573269881/ik-c-task/results/c-ik-verified/ik"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.1141726710002331,
+      "actual_wait_s": 0.1141726710002331,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "ik/report.json",
+      "elapsed_s": 0.11496232100034831
+    }
+  ],
+  "metrics_sha256": "28f472fa65fc3ee244e5874edf8737cafdc24e49813d6cbe90c64419a792f767",
+  "commit": null,
+  "status": "passed",
+  "scope_note": "Available checks do not imply completion of unimplemented algorithm or user desktop acceptance.",
+  "process_timeout_count": 0,
+  "suite_elapsed_s": 0.12253425800008699
+}

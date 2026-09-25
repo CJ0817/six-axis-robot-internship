@@ -90,14 +90,14 @@
     {
       "id": "KIN-03",
       "name": "IK回代与解筛选",
-      "test_id": null,
+      "test_id": "ik",
       "conditions": "100组局部初值±0.05rad；另20宽初值、20近奇异单列；限位内目标",
       "threshold": "局部100%成功；位置≤1e-5、角度≤1e-4；宽初值/奇异不得伪成功",
       "unit": "m; rad; %",
       "stage": "第2周",
-      "availability": "pending",
-      "pending_reason": "C解析IK及筛选未实现；测试输入已冻结于tests/ik/targets.json，准备通过不等于求解通过",
-      "basis": "engineering-contract.md §9"
+      "availability": "implemented",
+      "pending_reason": "",
+      "basis": "docs/c-analytic-ik.md; exact singular continuum search excluded, explicitly returns 2003"
     },
     {
       "id": "KIN-04",
