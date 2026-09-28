@@ -95,3 +95,7 @@ Robotics Toolbox 使用独立、版本及哈希锁定的环境；未实现的算
 ## 逆解目标分组与收尾
 
 [典型可达、不可达、近限位验证及推导索引](docs/ik-target-validation.md) · [阻塞处理与本轮收尾](reports/week02/ik-target-closeout.md)。统一入口`--suite ik_targets`；锁定环境40项目标、232条逐解双参考回代通过。
+
+## 固定种子120组工作空间输入
+
+[采样规则与复现](docs/workspace120-dataset.md) · [120主样本](tests/ik/workspace120.json) · [边界/异常清单](tests/ik/workspace120-special.json)。seed=20260928，24区各5组；新增输入集不替换现有IK测试集。

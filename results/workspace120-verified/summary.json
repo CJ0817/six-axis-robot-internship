@@ -1,0 +1,34 @@
+{
+  "statistics_version": 1,
+  "suite": "workspace120",
+  "utc": "2026-09-28T14:05:26.853123+00:00",
+  "results": [
+    {
+      "test_id": "workspace120",
+      "command": [
+        "/workspace/scratch/9be573269881/test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/workspace120-task/scripts/prepare_workspace120.py",
+        "--output",
+        "/workspace/scratch/9be573269881/workspace120-task/results/workspace120-verified/workspace120"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.715572251000026,
+      "actual_wait_s": 0.715572251000026,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "workspace120/report.json",
+      "elapsed_s": 0.7160209040000041
+    }
+  ],
+  "metrics_sha256": "f096a4459e2fe1ddeda76aa5ba07355710a5ca980c5a0ae0e8b2389ff10c0bba",
+  "commit": null,
+  "status": "passed",
+  "scope_note": "Available checks do not imply completion of unimplemented algorithm or user desktop acceptance.",
+  "process_timeout_count": 0,
+  "suite_elapsed_s": 0.7198508500000003
+}

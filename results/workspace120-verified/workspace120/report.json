@@ -1,0 +1,736 @@
+{
+  "status": "passed",
+  "seed": 20260928,
+  "main_count": 120,
+  "boundary_count": 16,
+  "exception_count": 11,
+  "checks": [
+    {
+      "target_id": "workspace_000",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_001",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_002",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_003",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_004",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_005",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_006",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_007",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_008",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_009",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_010",
+      "rtb_matrix_max_abs_error": 8.326672684688674e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_011",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_012",
+      "rtb_matrix_max_abs_error": 2.220446049250313e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_013",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_014",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_015",
+      "rtb_matrix_max_abs_error": 1.6653345369377348e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_016",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_017",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_018",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_019",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_020",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_021",
+      "rtb_matrix_max_abs_error": 1.3877787807814457e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_022",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_023",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_024",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_025",
+      "rtb_matrix_max_abs_error": 2.220446049250313e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_026",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_027",
+      "rtb_matrix_max_abs_error": 0.0,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_028",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_029",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_030",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_031",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_032",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_033",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_034",
+      "rtb_matrix_max_abs_error": 2.220446049250313e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_035",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_036",
+      "rtb_matrix_max_abs_error": 1.249000902703301e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_037",
+      "rtb_matrix_max_abs_error": 4.163336342344337e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_038",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_039",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_040",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_041",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_042",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_043",
+      "rtb_matrix_max_abs_error": 1.6653345369377348e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_044",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_045",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_046",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_047",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_048",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_049",
+      "rtb_matrix_max_abs_error": 1.3877787807814457e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_050",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_051",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_052",
+      "rtb_matrix_max_abs_error": 2.220446049250313e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_053",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_054",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_055",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_056",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_057",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_058",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_059",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_060",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_061",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_062",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_063",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_064",
+      "rtb_matrix_max_abs_error": 1.6653345369377348e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_065",
+      "rtb_matrix_max_abs_error": 2.220446049250313e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_066",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_067",
+      "rtb_matrix_max_abs_error": 2.220446049250313e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_068",
+      "rtb_matrix_max_abs_error": 1.6653345369377348e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_069",
+      "rtb_matrix_max_abs_error": 1.6653345369377348e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_070",
+      "rtb_matrix_max_abs_error": 2.7755575615628914e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_071",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_072",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_073",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_074",
+      "rtb_matrix_max_abs_error": 1.3877787807814457e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_075",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_076",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_077",
+      "rtb_matrix_max_abs_error": 2.220446049250313e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_078",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_079",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_080",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_081",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_082",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_083",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_084",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_085",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_086",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_087",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_088",
+      "rtb_matrix_max_abs_error": 2.220446049250313e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_089",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_090",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_091",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_092",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_093",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_094",
+      "rtb_matrix_max_abs_error": 2.7755575615628914e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_095",
+      "rtb_matrix_max_abs_error": 6.938893903907228e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_096",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_097",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_098",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_099",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_100",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_101",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_102",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_103",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_104",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_105",
+      "rtb_matrix_max_abs_error": 2.220446049250313e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_106",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_107",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_108",
+      "rtb_matrix_max_abs_error": 2.220446049250313e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_109",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_110",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_111",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_112",
+      "rtb_matrix_max_abs_error": 2.7755575615628914e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_113",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_114",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_115",
+      "rtb_matrix_max_abs_error": 2.220446049250313e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_116",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_117",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_118",
+      "rtb_matrix_max_abs_error": 2.7755575615628914e-17,
+      "passed": true
+    },
+    {
+      "target_id": "workspace_119",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_J1_lower",
+      "rtb_matrix_max_abs_error": 1.3877787807814457e-17,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_J1_upper",
+      "rtb_matrix_max_abs_error": 1.3877787807814457e-17,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_J2_lower",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_J2_upper",
+      "rtb_matrix_max_abs_error": 2.220446049250313e-16,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_J3_lower",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_J3_upper",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_J4_lower",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_J4_upper",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_J5_lower",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_J5_upper",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_J6_lower",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_J6_upper",
+      "rtb_matrix_max_abs_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_zero",
+      "rtb_matrix_max_abs_error": 0.0,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_wrist_pi",
+      "rtb_matrix_max_abs_error": 6.938893903907228e-17,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_elbow_straight",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    },
+    {
+      "target_id": "boundary_elbow_fold",
+      "rtb_matrix_max_abs_error": 1.1102230246251565e-16,
+      "passed": true
+    }
+  ],
+  "ik_execution_status": "not_run",
+  "solver_success_rate": null,
+  "generator_sha256": "8c2d8d029df89212ab99dbd8b4e050c4d48829252f503ced810c25b4d1c826f4",
+  "position_min_base_m": [
+    -0.789275313833653,
+    -0.6092355621870709,
+    -0.746996700234852
+  ],
+  "position_max_base_m": [
+    0.8069789094614649,
+    0.762773918893542,
+    0.9797548311308973
+  ],
+  "coverage": {
+    "---/near": 5,
+    "---/middle": 5,
+    "---/outer": 5,
+    "--+/near": 5,
+    "--+/middle": 5,
+    "--+/outer": 5,
+    "-+-/near": 5,
+    "-+-/middle": 5,
+    "-+-/outer": 5,
+    "-++/near": 5,
+    "-++/middle": 5,
+    "-++/outer": 5,
+    "+--/near": 5,
+    "+--/middle": 5,
+    "+--/outer": 5,
+    "+-+/near": 5,
+    "+-+/middle": 5,
+    "+-+/outer": 5,
+    "++-/near": 5,
+    "++-/middle": 5,
+    "++-/outer": 5,
+    "+++/near": 5,
+    "+++/middle": 5,
+    "+++/outer": 5
+  },
+  "attempt_count": 250,
+  "numpy": "1.26.4",
+  "roboticstoolbox": "1.1.1",
+  "python": "3.11.9 (main, Aug 14 2024, 05:07:28) [Clang 18.1.8 ]",
+  "fixture_sha256": {
+    "workspace120.json": "7c15a94ae17b63d41ba1e5235a009a6490fa3dfaf11d0632fba43734bcea1244",
+    "workspace120-special.json": "aafd9abe9268abf4aadca1e457563cbedaee062946c70e4f5dc74ef2bf190e9f"
+  }
+}
