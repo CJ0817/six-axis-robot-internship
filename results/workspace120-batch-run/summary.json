@@ -1,0 +1,36 @@
+{
+  "statistics_version": 1,
+  "suite": "workspace120_batch",
+  "utc": "2026-09-28T15:54:24.680925+00:00",
+  "results": [
+    {
+      "test_id": "workspace120_batch",
+      "command": [
+        "/workspace/scratch/9be573269881/test-baseline-task/.venv-baseline/bin/python",
+        "/workspace/scratch/9be573269881/workspace120-batch/scripts/compare_workspace120.py",
+        "--library",
+        "/workspace/scratch/9be573269881/workspace120-batch/build/librobot_contract.so",
+        "--output",
+        "/workspace/scratch/9be573269881/workspace120-batch/results/workspace120-batch-run/workspace120_batch"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 3.1684408439998606,
+      "actual_wait_s": 3.1684408439998606,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "workspace120_batch/report.json",
+      "elapsed_s": 3.2312883209999654
+    }
+  ],
+  "metrics_sha256": "089f04f6601c51bdb5497605769689b472a41145fe82c614c2ac09d2bd979964",
+  "commit": null,
+  "status": "passed",
+  "scope_note": "Available checks do not imply completion of unimplemented algorithm or user desktop acceptance.",
+  "process_timeout_count": 0,
+  "suite_elapsed_s": 3.271383630000173
+}

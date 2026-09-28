@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     suite_start=time.monotonic()
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--suite', choices=['smoke','baseline','model','fk','fk_known','ik_prepare','ik','ik_filter','ik_selection','ik_targets','workspace120','fk_robustness','fk_performance','available','acceptance'], default='smoke')
+    parser.add_argument('--suite', choices=['smoke','baseline','model','fk','fk_known','ik_prepare','ik','ik_filter','ik_selection','ik_targets','workspace120','workspace120_batch','fk_robustness','fk_performance','available','acceptance'], default='smoke')
     parser.add_argument('--output', type=Path, default=ROOT/'results/test-runs/latest')
     parser.add_argument('--smoke-python', type=Path, default=ROOT/'.venv/bin/python')
     parser.add_argument('--baseline-python', type=Path, default=ROOT/'.venv-baseline/bin/python')
@@ -27,10 +27,11 @@ def main():
     ids=[item['id'] for item in definitions]
     if len(set(ids))!=len(ids):
         raise ValueError('Duplicate metric ID')
-    selected=['c_abi','scene'] if args.suite=='smoke' else ['rtb'] if args.suite=='baseline' else ['model_alignment'] if args.suite=='model' else ['fk'] if args.suite=='fk' else ['fk_known'] if args.suite=='fk_known' else ['ik_prepare'] if args.suite=='ik_prepare' else ['workspace120'] if args.suite=='workspace120' else ['ik_targets'] if args.suite=='ik_targets' else ['ik_selection'] if args.suite=='ik_selection' else ['ik_filter'] if args.suite=='ik_filter' else ['ik'] if args.suite=='ik' else ['fk_robustness'] if args.suite=='fk_robustness' else ['fk_performance'] if args.suite=='fk_performance' else ['c_abi','scene','rtb','model_alignment','fk','fk_known','ik_prepare','ik','ik_filter','ik_selection','ik_targets','workspace120','fk_robustness']
+    selected=['c_abi','scene'] if args.suite=='smoke' else ['rtb'] if args.suite=='baseline' else ['model_alignment'] if args.suite=='model' else ['fk'] if args.suite=='fk' else ['fk_known'] if args.suite=='fk_known' else ['ik_prepare'] if args.suite=='ik_prepare' else ['workspace120_batch'] if args.suite=='workspace120_batch' else ['workspace120'] if args.suite=='workspace120' else ['ik_targets'] if args.suite=='ik_targets' else ['ik_selection'] if args.suite=='ik_selection' else ['ik_filter'] if args.suite=='ik_filter' else ['ik'] if args.suite=='ik' else ['fk_robustness'] if args.suite=='fk_robustness' else ['fk_performance'] if args.suite=='fk_performance' else ['c_abi','scene','rtb','model_alignment','fk','fk_known','ik_prepare','ik','ik_filter','ik_selection','ik_targets','workspace120','workspace120_batch','fk_robustness']
     if args.suite=='acceptance':
         selected.append('fk_performance')
     specs={
+        'workspace120_batch': [str(args.baseline_python.absolute()),str(ROOT/'scripts/compare_workspace120.py'),'--library',str(args.library.resolve()),'--output',str(output/'workspace120_batch')],
         'workspace120': [str(args.baseline_python.absolute()),str(ROOT/'scripts/prepare_workspace120.py'),'--output',str(output/'workspace120')],
         'ik_targets': [str(args.baseline_python.absolute()),str(ROOT/'scripts/verify_ik_target_groups.py'),'--library',str(args.library.resolve()),'--output',str(output/'ik_targets')],
         'ik_selection': [str(args.baseline_python.absolute()),str(ROOT/'scripts/verify_ik_selection.py'),'--library',str(args.library.resolve()),'--output',str(output/'ik_selection')],

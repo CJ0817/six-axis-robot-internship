@@ -99,3 +99,7 @@ Robotics Toolbox 使用独立、版本及哈希锁定的环境；未实现的算
 ## 固定种子120组工作空间输入
 
 [采样规则与复现](docs/workspace120-dataset.md) · [120主样本](tests/ik/workspace120.json) · [边界/异常清单](tests/ik/workspace120-special.json)。seed=20260928，24区各5组；新增输入集不替换现有IK测试集。
+
+## 冻结120组批量验收
+
+[120目标C/Robotics Toolbox逐项对照、边界与异常结果](docs/workspace120-batch-validation.md) · [完整报告](results/workspace120-batch-run/workspace120_batch/report.json)。120组主目标已实际执行IK，890候选双回代通过；边界和异常各自统计。
