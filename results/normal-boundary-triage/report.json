@@ -1,0 +1,89 @@
+{
+  "status": "no_reproduced_failure",
+  "base_commit": "2321182e96dd8167e246782096d996207ff610b6",
+  "date_utc": "2026-09-28T16:08:42+00:00",
+  "source_build": {
+    "compiler": "GCC C11 -O2 -Wall -Wextra -Werror -pedantic -fPIC -shared",
+    "fresh_library_sha256": "9790b622d75d844a20ffdfd66951ddb07011feef9ed4af38261b3cc86360eea9",
+    "identical_to_existing_library": true,
+    "cmake": "unavailable in this cloud environment; direct GCC build passed, GitHub Actions CMake passed on base commit"
+  },
+  "rerun": {
+    "normal120": {
+      "total": 120,
+      "passed": 120,
+      "failed_ids": []
+    },
+    "boundary16": {
+      "total": 16,
+      "passed": 16,
+      "failed_ids": []
+    },
+    "exceptions11": {
+      "total": 11,
+      "passed": 11,
+      "failed_ids": []
+    },
+    "boundary_singular_2003_expected": 4,
+    "ik_100_20_20": {
+      "normal": {
+        "passed": 100,
+        "total": 100
+      },
+      "wide_initial": {
+        "passed": 20,
+        "total": 20
+      },
+      "near_singular": {
+        "passed": 20,
+        "total": 20
+      }
+    },
+    "ik_special": {
+      "passed": 52,
+      "total": 52
+    },
+    "reachability_and_limits40": {
+      "limit_excluded": {
+        "passed": 1,
+        "total": 1
+      },
+      "near_limits": {
+        "passed": 24,
+        "total": 24
+      },
+      "reachable": {
+        "passed": 6,
+        "total": 6
+      },
+      "unreachable": {
+        "passed": 9,
+        "total": 9
+      }
+    },
+    "candidate_filter": {
+      "passed": 16,
+      "total": 16
+    },
+    "fk_unit": "passed"
+  },
+  "additional_diagnostics": {
+    "seed_normal": 20260929,
+    "random_normal_code0": 5000,
+    "random_normal_total": 5000,
+    "seed_near_limits": 31,
+    "near_limit_fk_code0": 6000,
+    "near_limit_ik_code0": 5600,
+    "near_limit_wrist_singular_2003": 400,
+    "near_limit_total": 6000,
+    "unexpected_failure_count": 0
+  },
+  "conclusion": "No regular-sample or boundary defect reproduced; do not change the frozen ABI or analytic algorithm without a failing target and expected behavior. Wrist singular all-branch returns 2003 by documented design.",
+  "reproduce": [
+    "gcc -std=c11 -O2 -Wall -Wextra -Werror -pedantic -fPIC -shared -Iinclude src/common/abi_probe.c src/common/abi_v1.c src/kinematics/forward.c src/kinematics/inverse.c -lm -o build/librobot_contract.so",
+    "python scripts/compare_workspace120.py --library build/librobot_contract.so --output results/workspace120-batch-rerun",
+    "python scripts/verify_c_ik.py --library build/librobot_contract.so --output results/ik-rerun",
+    "python scripts/verify_ik_target_groups.py --library build/librobot_contract.so --output results/target-groups-rerun"
+  ],
+  "scope_limit": "Cloud Linux run; Windows desktop and physical robot not validated."
+}
