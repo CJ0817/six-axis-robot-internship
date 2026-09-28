@@ -83,7 +83,7 @@ jobs:
       - name: Frozen workspace-stratified 120 targets
         run: |
           .venv-baseline/bin/python scripts/run_tests.py --suite workspace120 --output results/test-runs/workspace120
-          .venv-baseline/bin/python -m unittest discover -s tests -p test_workspace120.py -v
+          .venv-baseline/bin/python -m unittest discover -s tests -p 'test_workspace120*.py' -v
       - name: Known-pose FK comparison and discrepancy localization
         run: .venv-baseline/bin/python scripts/run_tests.py --suite fk_known --output results/test-runs/fk-known
       - name: Validate frozen IK targets without running IK

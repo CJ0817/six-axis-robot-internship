@@ -47,3 +47,17 @@
 本轮环境Python3.11.9、NumPy1.26.4、Robotics Toolbox1.1.1；缓存解释器恢复后复用同版本依赖，不改锁文件。已接入统一测试入口、available/acceptance及CI基准作业。报告明确 `ik_execution_status=not_run`、`solver_success_rate=null`，输入准备通过不能代替120组IK求解验收。
 
 “可达”指模型关节限位内的FK几何可达，不包含地面、自碰撞、障碍物、速度或加速度约束；不得据此直接向实机执行样本。
+
+## 主组统一预期规则补充（2026-09-28）
+
+主文件新增 `expected_rules`，适用于全部120条，不改原样本。规则区分“应满足的条件”和“实际执行结果”：
+
+- `geometric_reachable=true`：标称UR5几何与关节限位内有见证解，不承诺碰撞/动力学可行。
+- `fk.expected_code=0`：输出有限4×4，和保存目标比较，位置误差≤1e-5 m、姿态角误差≤1e-4 rad。独立参考数据校验另要求RTB矩阵最大元素差≤1e-12。
+- `ik.regular_target`：合法输入、受支持模型与普通非奇异目标预期返回0，至少1个有限限位内有效解；每个保留解FK回代≤1e-5 m、1e-4 rad，不要求恢复同一见证q。
+- `ik.singular_exception`：解析腕分解hypot(u,v)≤1e-12时，未完成的连续族请求允许返回2003；nearest_seed可以返回已验证的匹配seed代表。仅“靠近奇异”不能自动豁免。2003须单列为奇异例外，不能算code-0成功，也不能悄悄移出原120分母。
+- `ik.execution_plan_required`：真正运行前固定初值规则、branch_policy、joint_margin、误差与超时预算。改变模型或收缩限位可能排除原见证，必须另行说明，不能静默改变本数据集预期。
+
+`ik.execution_status=not_run`、`solver_success_rate=null`继续保留。异常、超时、未收敛不能因为目标几何可达就当作成功；默认条件下2001与见证解矛盾，应调查。
+
+本次只插入规则元数据，原文件所有已有字段相同、samples段逐字节一致，独立边界/异常文件不变。审计见`results/workspace120-rules/report.json`；规则缺失/阈值弱化负向检查通过。生成器同步保存并比较规则，CI同时运行规则测试。原数值校验报告是ba5c332时的历史证据，其旧文件哈希不回填；本次新主文件哈希由元数据审计报告记录，未再次执行FK或IK。

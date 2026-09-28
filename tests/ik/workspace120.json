@@ -1,6 +1,70 @@
 {
   "schema_version": 1,
   "purpose": "reachable_input_fixture_not_IK_results",
+  "expected_rules": {
+    "scope": "nominal UR5 geometry and joint limits; not collision, dynamics or physical-robot safety",
+    "geometric_reachable": true,
+    "fk": {
+      "expected_code": 0,
+      "output_shape": [
+        4,
+        4
+      ],
+      "finite_output_required": true,
+      "comparison_target": "sample.target_T_base_tool",
+      "position_error_m_max": 1e-05,
+      "orientation_error_rad_max": 0.0001
+    },
+    "reference_data_validation": {
+      "method": "explicit project-parameter Robotics Toolbox FK",
+      "matrix_max_abs_error_max": 1e-12
+    },
+    "ik": {
+      "execution_status": "not_run",
+      "solver_success_rate": null,
+      "applies_when": "valid finite model/target/options and a seed inside the configured joint limits; analytic_ur5 with the frozen ABI semantics",
+      "seed_policy": "test harness must declare seed and branch_policy before execution; q_rad is a reachability witness, not a hidden solver answer",
+      "regular_target": {
+        "expected_code": 0,
+        "minimum_valid_solution_count": 1,
+        "joint_limits_required": true,
+        "finite_output_required": true,
+        "every_retained_candidate_fk_position_error_m_max": 1e-05,
+        "every_retained_candidate_fk_orientation_error_rad_max": 0.0001,
+        "must_recover_witness_q": false
+      },
+      "singular_exception": {
+        "condition": "analytic wrist decomposition detects hypot(u,v)<=1e-12 on a shoulder branch; q5 near zero alone does not automatically exempt the sample",
+        "all_policy": "2003 for an unresolved continuous solution family; never claim finite candidates exhaust that family",
+        "nearest_seed_policy": "0 is allowed for a verified matching-seed representative; otherwise unresolved singular selection returns 2003",
+        "allowed_exception_code": 2003,
+        "classification": "record as singular exception, not code-0 solver success; keep the original 120 denominator and additionally report the subgroup",
+        "geometric_reachable_remains": true
+      },
+      "other_failures": {
+        "codes": [
+          1001,
+          1004,
+          1005,
+          1008,
+          2001,
+          2002,
+          9000
+        ],
+        "classification": "must be investigated and counted as failures, not excused by geometric reachability; 2001 contradicts the nominal-model witness",
+        "timeout_or_nonconvergence_is_success": false
+      },
+      "execution_plan_required": [
+        "q_seed_rad or deterministic seed-generation rule",
+        "branch_policy",
+        "joint_margin_rad",
+        "position_tol_m",
+        "orientation_tol_rad",
+        "timeout_s"
+      ],
+      "constraint_change": "a nonzero joint margin or modified model can exclude a witness; document separately rather than silently changing this fixture expectation"
+    }
+  },
   "random_seed": 20260928,
   "rng": "Python random.Random MT19937; uniform finite joint interval",
   "model_sha256": "a33abb6bd1b206eade01f19e3581f56bb7e53c1e9a058111a779c3b39666316e",

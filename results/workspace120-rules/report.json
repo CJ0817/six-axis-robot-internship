@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "scope": "metadata-only expected-rule addition; no resampling and no FK/IK execution",
+  "all_previous_fields_unchanged": true,
+  "samples_byte_identical": true,
+  "sample_count": 120,
+  "random_seed": 20260928,
+  "model_sha256": "a33abb6bd1b206eade01f19e3581f56bb7e53c1e9a058111a779c3b39666316e",
+  "special_fixture_unchanged": true,
+  "previous_main_sha256": "7c15a94ae17b63d41ba1e5235a009a6490fa3dfaf11d0632fba43734bcea1244",
+  "current_main_sha256": "d1d3874f97febab6006cc97d90f7293f74b9d9890996146eeb8434ff52c64ac2",
+  "ik_execution_status": "not_run",
+  "solver_success_rate": null,
+  "unit_tests": "2/2 passed",
+  "reference_pose_validation": "existing numerical evidence at ba5c332; identical sample bytes retain that evidence, not a new RTB run"
+}

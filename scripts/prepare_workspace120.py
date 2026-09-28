@@ -9,6 +9,55 @@ import random
 import sys
 ROOT=Path(__file__).resolve().parents[1]
 SEED=20260928
+EXPECTED_RULES = {'scope': 'nominal UR5 geometry and joint limits; not collision, dynamics or physical-robot safety',
+ 'geometric_reachable': True,
+ 'fk': {'expected_code': 0,
+        'output_shape': [4, 4],
+        'finite_output_required': True,
+        'comparison_target': 'sample.target_T_base_tool',
+        'position_error_m_max': 1e-05,
+        'orientation_error_rad_max': 0.0001},
+ 'reference_data_validation': {'method': 'explicit project-parameter Robotics Toolbox FK',
+                               'matrix_max_abs_error_max': 1e-12},
+ 'ik': {'execution_status': 'not_run',
+        'solver_success_rate': None,
+        'applies_when': 'valid finite model/target/options and a seed inside the configured joint limits; '
+                        'analytic_ur5 with the frozen ABI semantics',
+        'seed_policy': 'test harness must declare seed and branch_policy before execution; q_rad is a '
+                       'reachability witness, not a hidden solver answer',
+        'regular_target': {'expected_code': 0,
+                           'minimum_valid_solution_count': 1,
+                           'joint_limits_required': True,
+                           'finite_output_required': True,
+                           'every_retained_candidate_fk_position_error_m_max': 1e-05,
+                           'every_retained_candidate_fk_orientation_error_rad_max': 0.0001,
+                           'must_recover_witness_q': False},
+        'singular_exception': {'condition': 'analytic wrist decomposition detects hypot(u,v)<=1e-12 on a '
+                                            'shoulder branch; q5 near zero alone does not automatically '
+                                            'exempt the sample',
+                               'all_policy': '2003 for an unresolved continuous solution family; never claim '
+                                             'finite candidates exhaust that family',
+                               'nearest_seed_policy': '0 is allowed for a verified matching-seed '
+                                                      'representative; otherwise unresolved singular '
+                                                      'selection returns 2003',
+                               'allowed_exception_code': 2003,
+                               'classification': 'record as singular exception, not code-0 solver success; '
+                                                 'keep the original 120 denominator and additionally report '
+                                                 'the subgroup',
+                               'geometric_reachable_remains': True},
+        'other_failures': {'codes': [1001, 1004, 1005, 1008, 2001, 2002, 9000],
+                           'classification': 'must be investigated and counted as failures, not excused by '
+                                             'geometric reachability; 2001 contradicts the nominal-model '
+                                             'witness',
+                           'timeout_or_nonconvergence_is_success': False},
+        'execution_plan_required': ['q_seed_rad or deterministic seed-generation rule',
+                                    'branch_policy',
+                                    'joint_margin_rad',
+                                    'position_tol_m',
+                                    'orientation_tol_rad',
+                                    'timeout_s'],
+        'constraint_change': 'a nonzero joint margin or modified model can exclude a witness; document '
+                             'separately rather than silently changing this fixture expectation'}}
 I=[[1.,0,0,0],[0,1.,0,0],[0,0,1.,0],[0,0,0,1.]]
 
 def multiply(a,b):
@@ -39,7 +88,7 @@ def generate(m):
         if counts[cell]==5:continue
         counts[cell]+=1
         rows.append(dict(target_id='workspace_%03d'%len(rows),region=cell,radius_from_shoulder_m=r,q_rad=q,target_T_base_tool=T))
-    normal=dict(schema_version=1,purpose='reachable_input_fixture_not_IK_results',random_seed=SEED,rng='Python random.Random MT19937; uniform finite joint interval',model_sha256=hashlib.sha256((ROOT/'models/ur5/kinematics.json').read_bytes()).hexdigest(),base_frame='base',tool_frame='tool0',length_unit='m',angle_unit='rad',joint_order=m['joint_names'],generation=dict(method='independent standard-DH FK; accept first five FK samples in each spatial cell; no IK success filtering',joint_margin_rad=.05,attempt_count=attempts,workspace_origin_base_m=[0,0,m['d_m'][0]],shell_bounds_m=[0,.35,.65,None],octant_boundary='zero belongs to positive side',quota_per_cell=5),coverage=counts,sample_count=120,samples=rows)
+    normal=dict(schema_version=1,purpose='reachable_input_fixture_not_IK_results',expected_rules=copy.deepcopy(EXPECTED_RULES),random_seed=SEED,rng='Python random.Random MT19937; uniform finite joint interval',model_sha256=hashlib.sha256((ROOT/'models/ur5/kinematics.json').read_bytes()).hexdigest(),base_frame='base',tool_frame='tool0',length_unit='m',angle_unit='rad',joint_order=m['joint_names'],generation=dict(method='independent standard-DH FK; accept first five FK samples in each spatial cell; no IK success filtering',joint_margin_rad=.05,attempt_count=attempts,workspace_origin_base_m=[0,0,m['d_m'][0]],shell_bounds_m=[0,.35,.65,None],octant_boundary='zero belongs to positive side',quota_per_cell=5),coverage=counts,sample_count=120,samples=rows)
     base=[.2,-.6,.8,-.5,.4,-.2];bounds=[]
     for i in range(6):
         for side,key in [('lower','q_min_rad'),('upper','q_max_rad')]:
