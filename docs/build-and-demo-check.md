@@ -34,13 +34,10 @@ ffprobe -v error -show_entries format=duration -show_entries stream=width,height
 
 使用系统 `ffmpeg`（含 libx264）；复现需要锁定的 PyBullet/NumPy。视频为三张**本次运行中生成的关键帧**各持续 2.5 秒，用于展示程序执行结果，不作为连续物理运动、桌面键盘操作或硬件实时性证据。本轮结果：`report.status=passed`，两视角 RGB 平均差 13.15697，物体位置最大误差 0 m，视频 640×480、24 fps、7.5 秒。
 
-## 给“本地执行者”的 Windows 桌面录制任务
+## 用户 Windows GUI 录屏（阶段标签之后归档）
 
-请在用户电脑已配置的 WSL2/Ubuntu 与可见的 PyBullet 窗口上完成 **真实 GUI 录屏**，不要使用本页 DIRECT 视频充当本机证据。
+用户电脑上的 WSL2/Ubuntu 已运行 `python examples/scene_demo.py --gui --output results/local-demo/gui`，并由 Windows FFmpeg gdigrab 连续采集 **94.3 秒、1920×1200、H.264** 桌面录像。实际按键顺序为 **2、1、J、2、1、Q**；[GUI 报告](../results/local-demo/gui/report.json)记录 `status=passed`、`gui_keyboard_verified=true`，程序退出码为 0。环境检查通过，物体位置误差为 0 m。录像及截图属于真实 Windows GUI 证据，与上节 7.5 秒 DIRECT 关键帧视频分开保存。
 
-1. 在项目根目录激活环境，先运行 `python scripts/verify_environment.py --report results/local-demo/environment-check.json`，保存执行状态；随后运行 `python examples/scene_demo.py --gui --output results/local-demo/gui`。
-2. 使用 Windows 截图工具的屏幕录制，开始录制后展示 PyBullet 窗口；点击窗口取得焦点，依次按 **2、1、J、2、1、Q**，使侧面/正面切换和 J1 点动过程确实在录屏中出现。
-3. 检查 `results/local-demo/gui/report.json` 的 `status=passed`、`gui_keyboard_verified=true`，保存 GUI PNG 和 Windows 桌面录屏（建议 `results/local-demo/desktop-recording.mp4`）；记录 Windows 与 WSL 版本、录制时间、操作者、视频 SHA-256。
-4. 将这些文件提供给本项目执行者复核归档；若窗口无法启动或脚本失败，保留原始错误日志和失败报告，不填写“通过”。
+[本机证据索引](../results/local-demo/README.md)列出机器和 WSL 信息、键盘事件、截图、录制会话、失败启动日志及复核结论；[SHA-256 清单](../results/local-demo/SHA256SUMS.json)中 `desktop-recording.mp4` 的摘要为 `8621b51796b404eef58f58f76080d1b836b15e0b6490a135f9df51680d00d163`。首次启动遇到 WSLg COPY MODE，完整重启 WSL 后恢复，原始失败证据仍保留。原 GUI 程序中 `user_windows_validation` 字段维持其程序级原值；机器记录与桌面录像共同证明此次用户电脑上的交互运行。
 
-本地录屏是单独的证据节点；只有收到并核对本机文件后才能在周报中写明用户电脑 GUI 已验证。
+阶段标签 [`v0.2.0-kinematics`](https://github.com/CJ0817/six-axis-robot-internship/tree/v0.2.0-kinematics) 指向较早的运动学阶段提交；Windows 录像在后续提交中归档，应以 `main` 的 [本机证据目录](../results/local-demo/) 查阅。未进行真实机器人硬件或自研控制器验证。
