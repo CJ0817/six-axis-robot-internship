@@ -4,7 +4,7 @@
 
 ## 项目状态
 
-已建立模块目录、接口约定、固定版本环境与UR5仿真模型。核心算法按任务书采用C，Python负责PyBullet仿真与测试；已加入C/Python调用验证，已实现C正运动学；雅可比、IK、规划及自研控制仍待实现。当前Linux环境的构建、模型加载、点动及C/Python调用均已验证通过，详细证据见验证记录。
+已建立模块目录、冻结ABI、锁定环境与UR5仿真模型。核心算法按任务书采用C，Python负责PyBullet仿真与测试；C正运动学及UR5标称几何的普通解析逆解已实现并通过回代测试。精确腕奇异连续族全局搜索、雅可比、规划及自研控制仍待完成。当前Linux环境的构建、模型加载、点动及C/Python调用均已验证通过，详细证据见验证记录。
 
 ## 目录说明
 
@@ -103,3 +103,7 @@ Robotics Toolbox 使用独立、版本及哈希锁定的环境；未实现的算
 ## 冻结120组批量验收
 
 [120目标C/Robotics Toolbox逐项对照、边界与异常结果](docs/workspace120-batch-validation.md) · [完整报告](results/workspace120-batch-run/workspace120_batch/report.json)。120组主目标已实际执行IK，890候选双回代通过；边界和异常各自统计。
+
+## 运动学阶段汇总与短演示
+
+[误差、成功率、耗时与推导](docs/ik-summary-and-derivation.md) · [140组逐例来源](results/closeout-ik/ik/report.json) · [编译/运行复核与演示说明](docs/build-and-demo-check.md) · [阶段周报](reports/week02/kinematics-weekly-summary.md)。短视频是本轮云端PyBullet DIRECT渲染的三个关键帧，不是用户Windows桌面录屏。
