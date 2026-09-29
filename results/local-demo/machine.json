@@ -1,0 +1,11 @@
+{
+  "recorded_at": "2026-09-29T13:01:14.2129523+08:00",
+  "computer_name": "LAPTOP-DDFTVF56",
+  "windows_caption": "Microsoft Windows 11 家庭版 中文版",
+  "windows_version": "10.0.26200",
+  "windows_build": "26200",
+  "wsl_versions": "WSL 版本: 2.7.14.0\r\n内核版本: 6.18.33.2-2\r\nWSLg 版本: 1.0.73.2\r\nMSRDC 版本: 1.2.7214\r\nDirect3D 版本: 1.611.1-81528511\r\nDXCore 版本: 10.0.26100.1-240331-1435.ge-release\r\nWindows: 10.0.26200.9550\r\n",
+  "recorder": "Windows FFmpeg gdigrab 7.1, 1920x1200 desktop capture",
+  "operator": "Codex: automated recording and Windows Computer Use key input; no manual recording actions required",
+  "evidence_completed_at": "2026-09-29T13:15:59.512770+08:00"
+}

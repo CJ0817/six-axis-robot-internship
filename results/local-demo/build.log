@@ -1,0 +1,16 @@
+-- Found Python3: /opt/six-axis-robot-internship/.venv/bin/python3.11 (found suitable version "3.11.9", minimum required is "3.8") found components: Interpreter
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /opt/six-axis-robot-internship/build
+[1/12] Building C object CMakeFiles/robot_contract.dir/src/common/abi_v1.c.o
+[2/12] Building C object CMakeFiles/fk_benchmark.dir/tests/kinematics/fk_benchmark.c.o
+[3/12] Building C object CMakeFiles/fk_unit.dir/tests/kinematics/test_fk.c.o
+[4/12] Building C object CMakeFiles/ik_filter_unit.dir/src/kinematics/forward.c.o
+[5/12] Building C object CMakeFiles/robot_contract.dir/src/kinematics/forward.c.o
+[6/12] Building C object CMakeFiles/robot_contract.dir/src/kinematics/inverse.c.o
+[7/12] Building C object CMakeFiles/ik_filter_unit.dir/tests/kinematics/test_ik_filter.c.o
+[8/12] Linking C shared library librobot_contract.so
+[9/12] Linking C executable ik_filter_unit
+[10/12] Linking C executable fk_benchmark
+[11/12] Linking C executable fk_unit
+[12/12] Linking CXX executable cxx_smoke

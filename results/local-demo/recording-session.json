@@ -1,0 +1,40 @@
+{
+  "start_unix": 1790658713.7543836,
+  "recorder": "Windows FFmpeg gdigrab desktop capture",
+  "command": [
+    "C:\\Users\\ken_j\\Documents\\Codex\\2026-09-15\\https-github-com-cj0817-six-axis\\work\\media-tools\\imageio_ffmpeg\\binaries\\ffmpeg-win-x86_64-v7.1.exe",
+    "-y",
+    "-f",
+    "gdigrab",
+    "-framerate",
+    "20",
+    "-draw_mouse",
+    "1",
+    "-i",
+    "desktop",
+    "-t",
+    "180",
+    "-vf",
+    "scale=1920:-2",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "veryfast",
+    "-crf",
+    "20",
+    "-pix_fmt",
+    "yuv420p",
+    "-movflags",
+    "+faststart",
+    "outputs\\local-demo\\desktop-recording.mp4"
+  ],
+  "audio": false,
+  "end_unix": 1790658841.6897395,
+  "exit_code": 0,
+  "privacy_edit": {
+    "leading_seconds_removed": 23.7,
+    "gui_visible_until_source_seconds": 117.39999999999999,
+    "after_gui_exit": "black privacy cover with explicit label",
+    "continuous_gui_sequence": true
+  }
+}
