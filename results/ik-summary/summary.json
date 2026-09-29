@@ -2,7 +2,7 @@
   "status": "passed",
   "source_sha256": {
     "results/workspace120-batch-run/workspace120_batch/report.json": "79c45f7a5e74a52812ea189d65a347f03b9e00610a2177fae835247177210a9d",
-    "results/closeout-ik/ik/report.json": "743a8bafcd5c48e7731480bce52da3d2473d358263c579d0b1fdfd84c931f4d0"
+    "results/closeout-ik/ik/report.json": "1aa001564c9f6055847787f8ce333f14c593c2d67a443339067cd3dd76fbc31e"
   },
   "library_sha256": "9790b622d75d844a20ffdfd66951ddb07011feef9ed4af38261b3cc86360eea9",
   "quantile": "linear interpolation h=(n-1)*p",
@@ -91,26 +91,26 @@
       "orientation_error_rad": {
         "valid_count": 100,
         "invalid_count": 0,
-        "mean": 8.940333642327172e-16,
-        "rmse": 9.461242787268474e-16,
-        "p95": 1.3979216820028186e-15,
-        "maximum": 2.02794442253026e-15
+        "mean": 8.95461503102701e-16,
+        "rmse": 9.472868054090084e-16,
+        "p95": 1.4049486707730876e-15,
+        "maximum": 2.041947306849177e-15
       },
       "c_function_ms": {
         "valid_count": 100,
         "invalid_count": 0,
-        "mean": 0.034158430025854614,
-        "rmse": 0.15175416383126966,
-        "p95": 0.021273750189720886,
-        "maximum": 1.5022820007288828
+        "mean": 0.07661079999763842,
+        "rmse": 0.26274639174034387,
+        "p95": 0.11070549999203647,
+        "maximum": 2.097530000014558
       },
       "python_to_c_ms": {
         "valid_count": 100,
         "invalid_count": 0,
-        "mean": 0.036228459921403555,
-        "rmse": 0.15493656369338962,
-        "p95": 0.023416200656356523,
-        "maximum": 1.5318030000344152
+        "mean": 0.0813106300029176,
+        "rmse": 0.26488359054341654,
+        "p95": 0.11563690003413282,
+        "maximum": 2.1054779999758466
       }
     },
     "wide_initial": {
@@ -130,26 +130,26 @@
       "orientation_error_rad": {
         "valid_count": 20,
         "invalid_count": 0,
-        "mean": 8.481217430836684e-16,
-        "rmse": 9.064589740773744e-16,
-        "p95": 1.314604500076786e-15,
-        "maximum": 1.544258594079659e-15
+        "mean": 8.472920027880559e-16,
+        "rmse": 9.05128281232312e-16,
+        "p95": 1.3251698082054255e-15,
+        "maximum": 1.5360023770575225e-15
       },
       "c_function_ms": {
         "valid_count": 20,
         "invalid_count": 0,
-        "mean": 0.025815200024226215,
-        "rmse": 0.032915682341041405,
-        "p95": 0.08091280087683118,
-        "maximum": 0.09284100087825209
+        "mean": 0.03965755000479021,
+        "rmse": 0.045352815784705534,
+        "p95": 0.09934875003239085,
+        "maximum": 0.10413200004677492
       },
       "python_to_c_ms": {
         "valid_count": 20,
         "invalid_count": 0,
-        "mean": 0.02763485008472344,
-        "rmse": 0.0346282390324883,
-        "p95": 0.08403870015172289,
-        "maximum": 0.09602200043445919
+        "mean": 0.044136750003076486,
+        "rmse": 0.050183613225528716,
+        "p95": 0.11066900004834679,
+        "maximum": 0.11171400001330767
       }
     },
     "near_singular": {
@@ -169,26 +169,26 @@
       "orientation_error_rad": {
         "valid_count": 20,
         "invalid_count": 0,
-        "mean": 8.462131929217814e-16,
-        "rmse": 8.727651691870078e-16,
+        "mean": 8.456651898723273e-16,
+        "rmse": 8.722341140306883e-16,
         "p95": 1.1752669684353273e-15,
         "maximum": 1.2699724084788805e-15
       },
       "c_function_ms": {
         "valid_count": 20,
         "invalid_count": 0,
-        "mean": 0.018367850134382024,
-        "rmse": 0.018504454590051254,
-        "p95": 0.01989499914998305,
-        "maximum": 0.020332001440692693
+        "mean": 0.031895849997454206,
+        "rmse": 0.03283879752973113,
+        "p95": 0.04460290001304658,
+        "maximum": 0.05904099998588208
       },
       "python_to_c_ms": {
         "valid_count": 20,
         "invalid_count": 0,
-        "mean": 0.019995249931525905,
-        "rmse": 0.020122571346354038,
-        "p95": 0.021827599084645044,
-        "maximum": 0.0222569997276878
+        "mean": 0.04780694999624302,
+        "rmse": 0.06875453005923031,
+        "p95": 0.08277520000774542,
+        "maximum": 0.25740800003859476
       }
     }
   },
@@ -209,28 +209,28 @@
     "orientation_error_rad": {
       "valid_count": 140,
       "invalid_count": 0,
-      "mean": 8.806431081670052e-16,
-      "rmse": 9.303718662228883e-16,
-      "p95": 1.3922023942718904e-15,
-      "maximum": 2.02794442253026e-15
+      "mean": 8.814663868819841e-16,
+      "rmse": 9.309604114396735e-16,
+      "p95": 1.387113753679596e-15,
+      "maximum": 2.041947306849177e-15
     },
     "c_function_ms": {
       "valid_count": 140,
       "invalid_count": 0,
-      "mean": 0.030710742898268757,
-      "rmse": 0.1290473269686584,
-      "p95": 0.021273750189720882,
-      "maximum": 1.5022820007288828
+      "mean": 0.06494391428434808,
+      "rmse": 0.22306744540149773,
+      "p95": 0.09934875003239077,
+      "maximum": 2.097530000014558
     },
     "python_to_c_ms": {
       "valid_count": 140,
       "invalid_count": 0,
-      "mean": 0.03268177137475244,
-      "rmse": 0.1318173664375174,
-      "p95": 0.02341620065635652,
-      "maximum": 1.5318030000344152
+      "mean": 0.0712138357162725,
+      "rmse": 0.22616749897109972,
+      "p95": 0.11188025001445107,
+      "maximum": 2.1054779999758466
     },
-    "script_work_wall_s": 0.06953805500052113
+    "script_work_wall_s": 0.14703072999998312
   },
   "interpretation": "Workspace120 uses 890 candidates; IK140 uses one maximum per target. They are separate test populations. Failure without output is excluded from error statistics, but remains in success denominator. The 4 singular boundary requests return expected 2003, not IK success.",
   "timing_scope": "C CLOCK_MONOTONIC inside successful functions; Python perf_counter_ns around ctypes; IK140 script work wall includes suite work, not subprocess startup. One all-policy call per target, no warm-up, no hard timeout; descriptive timing only."
