@@ -6,25 +6,32 @@
 
 /* Standard-DH UR5 CB, immutable ABI v1. No allocation or global state. */
 static const double PI=3.14159265358979323846;
+/* 读取单调墙钟供预算/耗时使用。参数：无；返回秒数，读取失败返回-1。 */
 static double now(void) {
     struct timespec t;
     if (clock_gettime(CLOCK_MONOTONIC,&t)) return -1;
     return (double)t.tv_sec+1e-9*(double)t.tv_nsec;
 }
+/* 检查已确认非空数组的有限性。参数：p数组、n元素数；返回1有限，否则0。 */
 static int finite_values(const double *p,size_t n) {
     for(size_t i=0;i<n;i++) if(!isfinite(p[i])) return 0;
     return 1;
 }
+/* 把余弦数值裁剪至[-1,1]以处理舍入。参数：x标量；返回裁剪值，调用前仍需做几何域判断。 */
 static double clip(double x) { return fmax(-1.,fmin(1.,x)); }
+/* 比较两组六关节角的字典序。参数：a[6]、b[6]；返回1表示a在前，相等返回0。 */
 static int lex_less(const double *a,const double *b) {
     for(int i=0;i<6;i++) { if(a[i]<b[i]) return 1; if(a[i]>b[i]) return 0; }
     return 0;
 }
+/* 计算未折返的六维关节欧氏行程。参数：a[6]、b[6](rad)；返回距离(rad)，不按2π折返。 */
 static double distance(const double *a,const double *b) {
     double d=0;
     for(int i=0;i<6;i++) d=hypot(d,a[i]-b[i]);
     return d;
 }
+/* 计算FK位姿与目标之间的双误差。参数：a/b为4×4矩阵；p/r为输出指针。
+ * 返回：无；写位置距离(m)和相对旋转角(rad)，以atan2避免微小角消减。 */
 static void residual(const double *a,const double *b,double *p,double *r) {
     *p=hypot(hypot(a[3]-b[3],a[7]-b[7]),a[11]-b[11]);
     double R[9]={0};
@@ -33,6 +40,9 @@ static void residual(const double *a,const double *b,double *p,double *r) {
     double s=.5*hypot(hypot(R[7]-R[5],R[2]-R[6]),R[3]-R[1]);
     *r=atan2(s,clip(.5*(R[0]+R[4]+R[8]-1)));
 }
+/* 将DH候选映射到限位内、最接近seed的2π等价关节表示。
+ * 参数：m模型、t[6]为DH角、seed[6]参考角、margin限位余量(rad)、q[6]输出。
+ * 返回1映射成功，0无合法表示；q可能只填部分轴，调用方只能在成功时使用。 */
 static int lifted(const robot_fk_model *m,const double *t,const double *seed,double margin,double *q) {
     for(int i=0;i<6;i++) {
         double base=remainder((t[i]-m->theta_offset_rad[i])/m->joint_sign[i],2*PI);
@@ -52,6 +62,9 @@ static int lifted(const robot_fk_model *m,const double *t,const double *seed,dou
 /* Private filtering stages; no additional ABI fields or exported symbols. */
 enum candidate_status { CANDIDATE_ACCEPTED, CANDIDATE_LIMIT, CANDIDATE_DUPLICATE,
                         CANDIDATE_RESIDUAL, CANDIDATE_NONFINITE, CANDIDATE_INTERNAL };
+/* 筛选一个解析候选：合法等价角→FK回代→误差→去重。
+ * 参数：m模型、t[6]DH角、seed[6]参考、target[16]目标、o选项及result暂存候选表。
+ * 返回私有candidate_status枚举；仅ACCEPTED时向result追加有效候选，不是公开ABI。 */
 static enum candidate_status filter_candidate(const robot_fk_model *m,const double *t,
         const double *seed,const double *target,const robot_ik_options_v1 *o,
         robot_ik_result_v1 *result) {
@@ -74,6 +87,8 @@ static enum candidate_status filter_candidate(const robot_fk_model *m,const doub
     memcpy(result->candidates_rad[result->solution_count++],q,sizeof(q));
     return CANDIDATE_ACCEPTED;
 }
+/* 检查解析式适用的UR5 CB标称几何和float64支持范围。
+ * 参数：m为已通过通用校验的模型；返回1支持，0不支持，不猜测其他机器人几何。 */
 static int supported(const robot_fk_model *m) {
     const double a[6]={0,-.425,-.39225,0,0,0};
     const double d[6]={.089159,0,0,.10915,.09465,.0823};
@@ -85,6 +100,14 @@ static int supported(const robot_fk_model *m) {
     }
     return 1;
 }
+/* 求UR5 CB解析逆解，枚举、限位映射、逐候选FK回代并选解。
+ * 参数：model为已审定模型；T_base_tool为目标16个double，pose_count=16；
+ * q_seed_rad为参考关节角(rad)，seed_count=6；options为显式IK选项；
+ * result为调用方分配的504字节结果，禁止与输入重叠。
+ * 返回：0时result含有效候选、所选解和回代误差；非0时result逐字节不变。
+ * 1001参数，1004模型缺失，1005限位，1008不支持/DLS未实现；
+ * 2001证明不可达，2002预算/数值未收敛，2003不能完成奇异请求，9000内部错误。
+ * 实现中的m/q/out或m/target/seed/o/out对应头文件同序参数；具体布局见robot_kinematics.h。 */
 int robot_inverse_v1(const robot_fk_model *m,const double *target,size_t pose_count,
                      const double *seed,size_t seed_count,const robot_ik_options_v1 *o,
                      robot_ik_result_v1 *out) {

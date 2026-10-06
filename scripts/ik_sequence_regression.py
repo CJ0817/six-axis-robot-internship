@@ -5,6 +5,12 @@ from adapters.ik_selection import pack_model, pose_error
 
 
 def verify_sequences(selector, profile):
+    """运行连续目标及失败重规划的离线回归。
+
+    参数：selector为StatefulIKSelector；profile为显式UR5工程模型字典。
+    返回：(sequence_report, checks)，含全部55节点、停止/重规划事件和4项检查。
+    使用实际已接受的关节状态串联节点；不执行设备停止或碰撞规划。
+    """
     model = pack_model(profile)
     base = [.3, -1, .9, -.7, .035, .2]
     state = dict(q_rad=base.copy(), step_index=0)
@@ -12,6 +18,12 @@ def verify_sequences(selector, profile):
     events = []
 
     def attempt(sequence, phase, goal, expected=0):
+        """执行一个节点，只有成功才接纳next_state。
+
+        参数：sequence/phase为报告标签；goal为生成测试目标的关节角(rad)；
+        expected为预期错误码。返回bool表示求解是否成功，同时记录独立回代、
+        sigma、步长、限位、步号推进及实际关节变化；失败保留原状态。
+        """
         nonlocal state
         before = copy.deepcopy(state)
         target = selector._fk(model, goal)

@@ -40,4 +40,6 @@ _Static_assert(offsetof(robot_ik_result_v1,orientation_error_rad)==480, "robot_i
 _Static_assert(offsetof(robot_ik_result_v1,elapsed_s)==488, "robot_ik_result_v1.elapsed_s offset changed");
 _Static_assert(offsetof(robot_ik_result_v1,iterations)==496, "robot_ik_result_v1.iterations offset changed");
 _Static_assert(offsetof(robot_ik_result_v1,reserved)==500, "robot_ik_result_v1.reserved offset changed");
+/* 查询冻结C接口版本。
+ * 参数：无。返回：0x00010000（ABI 1.0.0），不分配内存。 */
 uint32_t robot_abi_version(void) { return ROBOT_ABI_VERSION_V1; }

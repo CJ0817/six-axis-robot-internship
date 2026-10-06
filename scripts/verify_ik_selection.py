@@ -15,6 +15,12 @@ sys.path.insert(0,str(ROOT/'src'))
 from adapters.ik_selection import StatefulIKSelector,SelectionConfig,pack_model
 
 def main():
+    """统一选解验证入口，包含单节点和连续多节点回归。
+
+    入参来自命令行：--library指定C库，--output指定证据输出目录。
+    返回：0为全部预期行为通过，1为失败；写完整report.json和可审查summary.json。
+    报告保留失败节点，不把预期错误码当作成功逆解。
+    """
     parser=argparse.ArgumentParser();parser.add_argument('--library',type=Path,default=ROOT/'build/librobot_contract.so');parser.add_argument('--output',type=Path,default=ROOT/'results/ik-selection');args=parser.parse_args()
     profile=json.loads((ROOT/'models/ur5/kinematics.json').read_text());model=pack_model(profile);selector=StatefulIKSelector(args.library);cases=[]
     def pose(q):return selector._fk(model,q).tolist()
