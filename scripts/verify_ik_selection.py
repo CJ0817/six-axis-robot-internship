@@ -104,7 +104,10 @@ def main():
     for name,q in [('regular',base),('near_wrist',[.3,-1,.9,-.7,1e-4,.2]),('joint_endpoint',[2*math.pi,-1,.9,-.7,.8,.2])]:
         s1=selector.sigma_min(model,q);s2=half.sigma_min(model,q)
         checks.append(dict(name='sigma_difference_step_'+name,sigma_h=s1,sigma_half_h=s2,passed=abs(s1-s2)<=1e-6))
-    report=dict(status='passed' if all(r['passed'] for r in cases+checks) else 'failed',expected=len(cases),passed=sum(r['passed'] for r in cases),checks=checks,cases=cases,python=platform.python_version(),numpy=np.__version__,model_sha256=hashlib.sha256((ROOT/'models/ur5/kinematics.json').read_bytes()).hexdigest(),library_sha256=hashlib.sha256(args.library.read_bytes()).hexdigest(),selector_sha256=hashlib.sha256((ROOT/'src/adapters/ik_selection.py').read_bytes()).hexdigest(),verifier_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),scope='simulation planning; selection guards are not trajectory collision/acceleration or real-time guarantees')
+    from ik_sequence_regression import verify_sequences
+    sequences, sequence_checks = verify_sequences(selector,profile)
+    checks.extend(sequence_checks)
+    report=dict(status='passed' if all(r['passed'] for r in cases+checks) else 'failed',expected=len(cases),passed=sum(r['passed'] for r in cases),checks=checks,cases=cases,sequences=sequences,sequence_verifier_sha256=hashlib.sha256((ROOT/'scripts/ik_sequence_regression.py').read_bytes()).hexdigest(),python=platform.python_version(),numpy=np.__version__,model_sha256=hashlib.sha256((ROOT/'models/ur5/kinematics.json').read_bytes()).hexdigest(),library_sha256=hashlib.sha256(args.library.read_bytes()).hexdigest(),selector_sha256=hashlib.sha256((ROOT/'src/adapters/ik_selection.py').read_bytes()).hexdigest(),verifier_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),scope='simulation planning; selection guards are not trajectory collision/acceleration or real-time guarantees')
     args.output.mkdir(parents=True,exist_ok=True);(args.output/'report.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
     # Keep a compact, reviewable record of every case; the detailed per-candidate
     # report is reproducible with the same command and generated at this path.
@@ -112,6 +115,7 @@ def main():
                  checks=checks,python=report['python'],numpy=report['numpy'],
                  model_sha256=report['model_sha256'],library_sha256=report['library_sha256'],
                  selector_sha256=report['selector_sha256'],verifier_sha256=report['verifier_sha256'],scope=report['scope'],
+                 sequences=sequences,sequence_verifier_sha256=report['sequence_verifier_sha256'],
                  cases=[dict(name=row['name'],passed=row['passed'],expected_code=row['expected_code'],
                              actual_code=row['actual_code'],mode=(row['result']['data'] or {}).get('mode')) for row in cases],
                  dls_regressions=[row for row in cases if row['name'] in (
