@@ -97,7 +97,7 @@
       "stage": "第2周",
       "availability": "implemented",
       "pending_reason": "",
-      "basis": "docs/c-analytic-ik.md; exact singular continuum search excluded, explicitly returns 2003"
+      "basis": "docs/kinematics-stage-baseline.md; reports/week02/kinematics-stage-test-report.md; 精确连续族单列2003"
     },
     {
       "id": "KIN-04",
@@ -120,7 +120,7 @@
       "unit": "ms",
       "stage": "第2周",
       "availability": "pending",
-      "pending_reason": "FK分层实测见FK-PERF；J尚未实现；FFI单次超限见PERF-01，不将其隐去",
+      "pending_reason": "C雅可比尚未实现；FK-PERF已测但FFI单次超限，详见阶段测试报告",
       "basis": "engineering-contract.md §9"
     },
     {
@@ -132,7 +132,7 @@
       "unit": "ms",
       "stage": "第2周",
       "availability": "pending",
-      "pending_reason": "C IK未实现",
+      "pending_reason": "C解析IK已有功能观测；100×10预热重复耗时验收尚未运行",
       "basis": "engineering-contract.md §9"
     },
     {
@@ -293,15 +293,15 @@
     },
     {
       "id": "IK-SELECT",
-      "name": "综合选解与基础连续性/奇异保护",
+      "name": "综合选解、奇异保护及局部阻尼退化",
       "test_id": "ik_selection",
-      "conditions": "100案例：连续轨迹、跨π、近奇异、保护区、失败状态、真实候选权重切换；5补充检查",
-      "threshold": "100/100按预期状态；5/5补充检查；成功步满足FK 1e-5m/1e-4rad和逐轴限步；失败不更新状态",
+      "conditions": "103例：连续轨迹、跨π、近奇异、精确奇异近起点阻尼、关闭阻尼及远起点拒绝；另6项检查",
+      "threshold": "103/103按预期状态、6/6检查；运动解FK误差≤1e-5m/1e-4rad、限位及单步合法；DLS成功另须最终和采样sigma>1e-5；singular_hold仅原位目标已满足；失败data和next_state=null",
       "unit": "count; m; rad",
       "stage": "第2周",
       "availability": "implemented",
       "pending_reason": "",
-      "basis": "docs/ik-stateful-selection.md；上层策略，不修改C nearest_seed语义"
+      "basis": "docs/ik-stateful-selection.md; reports/week02/kinematics-stage-test-report.md；Python上层策略不修改C ABI"
     },
     {
       "id": "IK-TARGETS",

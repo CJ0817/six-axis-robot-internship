@@ -14,7 +14,8 @@ def render():
         state='已接入' if m['availability']=='implemented' else '待实现：'+m['pending_reason']
         cells=[m['id']+' / '+m['stage'],m['name']+' / '+str(m['test_id'] or '待接入'),m['conditions'],m['threshold']+' / '+m['unit'],state]
         text.append('| '+' | '.join(c.replace('|','\\|') for c in cells)+' |')
-    text+=['','测量条件：seed=20260915、float64、BLAS单线程；记录提交、源码/模型/依赖锁哈希、版本、硬件、完整输入配置。统计包含失败与超时，不能只统计成功样本。','',
+    text+=['', '本阶段实际判定见[正式运动学测试报告](../reports/week02/kinematics-stage-test-report.md)：FK/IK功能误差通过；FK-PERF的C层通过、Python→C一次2.046632 ms超过单次1 ms门槛，因此整项未通过；IK 140组单次观测不替代100×10的正式耗时验收。C ABI DLS仍为1008；KIN-SEL的阻尼仅在Python选解层实现。','',
+           '测量条件：seed=20260915、float64、BLAS单线程；记录提交、源码/模型/依赖锁哈希、版本、硬件、完整输入配置。统计包含失败与超时，不能只统计成功样本。','',
            'FK姿态误差采用相对旋转角；IK位置与姿态分别判定。关节轨迹必须检查连续段极值；路径采样误差检查不等于证明连续路径无碰撞。','',
            'UR5模型核对见 ur5-model-conventions.md；RTB内置UR5存在d1差异，旧样本仅作依赖准备。BASE-02使用显式项目DH参数，不替代C算法验收。','',
            '来源：任务书第1～4阶段、docs/engineering-contract.md第9节及既有环境/ABI演示阈值。待定项和补充项在JSON中标明basis。','']

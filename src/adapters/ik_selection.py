@@ -23,16 +23,26 @@ class SelectionConfig:
     position_tol_m: float = 1e-5
     orientation_tol_rad: float = 1e-4
     timeout_s: float = 0.2
+    dls_enabled: bool = True
+    dls_max_iterations: int = 24
+    dls_line_search_steps: int = 8
+    dls_damping_min: float = 0.001
+    dls_damping_max: float = 0.1
 
     def validate(self):
-        if any(type(v) not in (int,float) or not math.isfinite(v) for v in asdict(self).values()):
+        numeric=(v for k,v in asdict(self).items() if k!='dls_enabled')
+        if type(self.dls_enabled) is not bool or any(type(v) not in (int,float) or not math.isfinite(v) for v in numeric):
             raise ContractError(1001,'Config must contain finite numbers')
+        if any(type(v) is not int or v<1 for v in (self.dls_max_iterations,self.dls_line_search_steps)):
+            raise ContractError(1001,'DLS budgets must be positive integers')
         if any(v<0 for v in (self.travel_weight,self.limit_weight,self.singular_weight,self.joint_margin_rad)) or self.travel_weight+self.limit_weight+self.singular_weight<=0:
             raise ContractError(1001,'Invalid weights/margin')
         if any(v<=0 for v in (self.max_step_rad,self.dt_s,self.limit_scale_rad,self.sigma_hard,self.characteristic_length_m,self.difference_step_rad,self.position_tol_m,self.orientation_tol_rad,self.timeout_s)):
             raise ContractError(1001,'Positive configuration required')
         if not self.sigma_hard<self.sigma_soft or not 0<self.near_step_scale<=1 or self.orientation_tol_rad>math.pi or self.difference_step_rad>1e-3:
             raise ContractError(1001,'Invalid singular/step/angle thresholds')
+        if self.dls_damping_min<=0 or self.dls_damping_max<self.dls_damping_min:
+            raise ContractError(1001,'Invalid DLS damping interval')
 
 def pose_error(a,b):
     R=a[:3,:3].T @ b[:3,:3]
@@ -52,7 +62,7 @@ class StatefulIKSelector:
         if code:raise ContractError(code,'C FK rejected selection input')
         return np.array(list(out)).reshape(4,4)
 
-    def sigma_min(self,model,q):
+    def jacobian(self,model,q):
         """Scaled spatial numerical Jacobian; central or one-sided at limits."""
         c=self.config;q=np.array(q,dtype=float);T=self._fk(model,q);J=np.empty((6,6))
         for i in range(6):
@@ -69,9 +79,60 @@ class StatefulIKSelector:
             dR=((B[:3,:3]-A[:3,:3])/delta) @ T[:3,:3].T
             J[:3,i]=(B[:3,3]-A[:3,3])/delta/c.characteristic_length_m
             J[3:,i]=np.array([dR[2,1]-dR[1,2],dR[0,2]-dR[2,0],dR[1,0]-dR[0,1]])/2
-        sigma=float(np.linalg.svd(J,compute_uv=False)[-1])
+        return J
+
+    def sigma_min(self,model,q):
+        sigma=float(np.linalg.svd(self.jacobian(model,q),compute_uv=False)[-1])
         if not math.isfinite(sigma):raise ContractError(2002,'Nonfinite singularity estimate')
         return sigma
+
+    @staticmethod
+    def _pose_twist(current,target,scale):
+        rotation=target[:3,:3] @ current[:3,:3].T
+        skew=np.array([rotation[2,1]-rotation[1,2],rotation[0,2]-rotation[2,0],rotation[1,0]-rotation[0,1]])/2
+        sine=float(np.linalg.norm(skew));angle=math.atan2(sine,float(np.clip((np.trace(rotation)-1)/2,-1,1)))
+        if angle>math.pi-1e-4:raise ContractError(2003,'DLS orientation error near pi is ambiguous')
+        angular=skew*(angle/sine if sine>1e-10 else 1.0)
+        return np.r_[(target[:3,3]-current[:3,3])/scale,angular]
+
+    def _dls_local(self,model,target,prev,lo,hi,cap,started):
+        """Bounded local fallback; never report partial progress as an IK solution."""
+        c=self.config;end=np.minimum(hi,prev+cap);begin=np.maximum(lo,prev-cap)
+        q=prev.copy();history=[]
+        def path_guard(candidate):
+            t0=model.joint_sign[4]*prev[4]+model.theta_offset_rad[4]
+            t1=model.joint_sign[4]*candidate[4]+model.theta_offset_rad[4]
+            low,high=sorted((t0,t1));cross=(math.floor(low/math.pi)+1)*math.pi
+            if low<cross<high:return None
+            return min(self.sigma_min(model,prev+f*(candidate-prev)) for f in (.25,.5,.75,1.0))
+        for iteration in range(c.dls_max_iterations+1):
+            if time.monotonic()-started>=c.timeout_s:return None,dict(reason='timeout',iterations=iteration,history=history)
+            current=self._fk(model,q);pe,re=pose_error(current,target)
+            J=self.jacobian(model,q);s=float(np.linalg.svd(J,compute_uv=False)[-1])
+            if not all(math.isfinite(x) for x in (pe,re,s)):
+                return None,dict(reason='nonfinite',iterations=iteration,history=history)
+            if pe<=c.position_tol_m and re<=c.orientation_tol_rad and s>c.sigma_hard:
+                path_sigma=path_guard(q)
+                if path_sigma is not None and path_sigma>c.sigma_hard:
+                    return dict(q_rad=q.tolist(),mode='dls_near_singular',selected_candidate_index=None,position_error_m=pe,orientation_error_rad=re,sigma_min=s),dict(reason='accepted',iterations=iteration,path_sigma_min=path_sigma,history=history)
+            if iteration==c.dls_max_iterations:break
+            twist=self._pose_twist(current,target,c.characteristic_length_m)
+            lam=c.dls_damping_min+(c.dls_damping_max-c.dls_damping_min)*max(0.0,1.0-s/c.sigma_soft)**2
+            try:step=J.T @ np.linalg.solve(J@J.T+lam*lam*np.eye(6),twist)
+            except np.linalg.LinAlgError:return None,dict(reason='linear_solve',iterations=iteration,history=history)
+            if not np.all(np.isfinite(step)):return None,dict(reason='nonfinite_step',iterations=iteration,history=history)
+            old=float(np.linalg.norm(twist));accepted=False
+            for trial in range(c.dls_line_search_steps):
+                if time.monotonic()-started>=c.timeout_s:return None,dict(reason='timeout',iterations=iteration,history=history)
+                proposal=np.clip(q+step*(0.5**trial),begin,end)
+                if np.array_equal(proposal,q):continue
+                trial_sigma=path_guard(proposal)
+                if trial_sigma is None or trial_sigma<=c.sigma_hard:continue
+                new=float(np.linalg.norm(self._pose_twist(self._fk(model,proposal),target,c.characteristic_length_m)))
+                if math.isfinite(new) and new<old-1e-14:
+                    q=proposal;history.append(dict(damping=lam,residual=new,step_scale=0.5**trial));accepted=True;break
+            if not accepted:break
+        return None,dict(reason='not_converged',iterations=len(history),history=history)
 
     def select(self,profile,target,state):
         """Return code/data/next_state/details; never mutate the previous state."""
@@ -104,7 +165,14 @@ class StatefulIKSelector:
                 return dict(code=0,message='Hold existing singular state; target already satisfied',data=dict(q_rad=q,mode='singular_hold',selected_candidate_index=None,position_error_m=p0,orientation_error_rad=r0,sigma_min=previous_sigma),next_state=dict(q_rad=q.copy(),step_index=state['step_index']+1),details=dict(candidates=[],previous_sigma_min=previous_sigma,step_cap_rad=base_cap.tolist(),hold=True))
             options=IKOptionsV1(1,1,c.position_tol_m,c.orientation_tol_rad,c.joint_margin_rad,max(1e-15,c.timeout_s-(time.monotonic()-started)),0,0,0,0,0)
             out=IKResultV1();code=self.inverse(C.byref(model),D16(*target.ravel()),16,D6(*prev),6,C.byref(options),C.byref(out))
-            if code:return fail(code,'C candidate generation failed; state not advanced',previous_sigma_min=previous_sigma)
+            if code:
+                if code==2003 and c.dls_enabled:
+                    cap=base_cap*(c.near_step_scale if previous_sigma<c.sigma_soft else 1.0)
+                    solution,dls=self._dls_local(model,target,prev,lo,hi,cap,started)
+                    if solution is not None:
+                        return dict(code=0,message='Bounded DLS fallback passed FK and singular guards',data=solution,next_state=dict(q_rad=solution['q_rad'].copy(),step_index=state['step_index']+1),details=dict(candidates=[],previous_sigma_min=previous_sigma,step_cap_rad=cap.tolist(),dls=dls,analytic_code=code))
+                    return fail(2002 if dls['reason']=='timeout' else 2003,'Analytic IK singular; bounded DLS did not produce a safe solution',previous_sigma_min=previous_sigma,dls=dls,analytic_code=code)
+                return fail(code,'C candidate generation failed; state not advanced',previous_sigma_min=previous_sigma)
             eligible=[]
             for k in range(out.solution_count):
                 if time.monotonic()-started>=c.timeout_s:return fail(2002,"Selection time budget exhausted")
@@ -143,6 +211,13 @@ class StatefulIKSelector:
                 if item['eligible']:eligible.append(item)
             if time.monotonic()-started>=c.timeout_s:return fail(2002,"Selection time budget exhausted")
             if not eligible:
+                singular_block=any(d['reason'] in ('singular_protection','wrist_singularity_crossing','sampled_path_singularity') for d in diagnostics)
+                if singular_block and c.dls_enabled:
+                    cap=base_cap*(c.near_step_scale if previous_sigma<c.sigma_soft else 1.0)
+                    solution,dls=self._dls_local(model,target,prev,lo,hi,cap,started)
+                    if solution is not None:
+                        return dict(code=0,message='Bounded DLS fallback passed FK and singular guards',data=solution,next_state=dict(q_rad=solution['q_rad'].copy(),step_index=state['step_index']+1),details=dict(candidates=diagnostics,previous_sigma_min=previous_sigma,step_cap_rad=cap.tolist(),dls=dls))
+                    return fail(2002 if dls['reason']=='timeout' else 2003,'No candidate passed singular guards or bounded DLS',previous_sigma_min=previous_sigma,dls=dls)
                 return fail(2003 if any(d['reason'] in ('singular_protection','wrist_singularity_crossing','sampled_path_singularity') for d in diagnostics) else 2002,'No candidate satisfies selection guards',previous_sigma_min=previous_sigma)
             chosen=min(eligible,key=lambda d:(d['total_cost'],tuple(d['q_rad'])))
             mode='near_singular_restricted' if chosen['path_sigma_min']<c.sigma_soft else 'regular'

@@ -1,0 +1,1185 @@
+{
+  "status": "passed",
+  "expected": 103,
+  "passed": 103,
+  "checks": [
+    {
+      "name": "weights_change_branch",
+      "passed": true,
+      "selected_indices": [
+        2,
+        7,
+        4,
+        2
+      ]
+    },
+    {
+      "name": "dls_fallback_exercised",
+      "passed": true
+    },
+    {
+      "name": "near_region_reduces_step_cap",
+      "passed": true
+    },
+    {
+      "name": "sigma_difference_step_regular",
+      "sigma_h": 0.1354176641721791,
+      "sigma_half_h": 0.13541766414773024,
+      "passed": true
+    },
+    {
+      "name": "sigma_difference_step_near_wrist",
+      "sigma_h": 3.987774489981177e-05,
+      "sigma_half_h": 3.987771547604752e-05,
+      "passed": true
+    },
+    {
+      "name": "sigma_difference_step_joint_endpoint",
+      "sigma_h": 0.13541768283150116,
+      "sigma_half_h": 0.13541767358886309,
+      "passed": true
+    }
+  ],
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "model_sha256": "a33abb6bd1b206eade01f19e3581f56bb7e53c1e9a058111a779c3b39666316e",
+  "library_sha256": "9790b622d75d844a20ffdfd66951ddb07011feef9ed4af38261b3cc86360eea9",
+  "selector_sha256": "1650d6d010aaab92c6bf3075bc239026a3bb832cf24d8e57259f349c8acf2b61",
+  "verifier_sha256": "1f9b7096d1e34d56b9fd1b5bd314861eb97500d9eb9466e8d5ea680eb518d1a4",
+  "scope": "simulation planning; selection guards are not trajectory collision/acceleration or real-time guarantees",
+  "cases": [
+    {
+      "name": "regular_01",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_02",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_03",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_04",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_05",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_06",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_07",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_08",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_09",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_10",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_11",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_12",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_13",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_14",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_15",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_16",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_17",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_18",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_19",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_20",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_21",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_22",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_23",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_24",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_25",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_26",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_27",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_28",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_29",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_30",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_31",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_32",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_33",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_34",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_35",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_36",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_37",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_38",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_39",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "regular_40",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_01",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_02",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_03",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_04",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_05",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_06",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_07",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_08",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_09",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_10",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_11",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_12",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_13",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_14",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_15",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_16",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_17",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_18",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_19",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_20",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_21",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_22",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_23",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_24",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_25",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_26",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_27",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_28",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_29",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "cross_pi_30",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "near_singular_01",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "near_singular_02",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "near_singular_03",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "near_singular_04",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "near_singular_05",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "near_singular_06",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "near_singular_07",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "near_singular_08",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "near_singular_09",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "near_singular_10",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "near_singular_11",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "near_singular_12",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "near_singular_13",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "near_singular_14",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "near_singular_15",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "protected_region_reject",
+      "passed": true,
+      "expected_code": 2003,
+      "actual_code": 2003,
+      "mode": null
+    },
+    {
+      "name": "exact_singular_hold",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "singular_hold"
+    },
+    {
+      "name": "dls_exact_wrist_near_seed",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "dls_near_singular"
+    },
+    {
+      "name": "dls_disabled_keeps_2003",
+      "passed": true,
+      "expected_code": 2003,
+      "actual_code": 2003,
+      "mode": null
+    },
+    {
+      "name": "dls_budget_guard",
+      "passed": true,
+      "expected_code": 2003,
+      "actual_code": 2003,
+      "mode": null
+    },
+    {
+      "name": "reject_wrist_crossing_between_valid_endpoints",
+      "passed": true,
+      "expected_code": 2003,
+      "actual_code": 2003,
+      "mode": null
+    },
+    {
+      "name": "small_step_exit_singularity",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "large_jump_reject",
+      "passed": true,
+      "expected_code": 2002,
+      "actual_code": 2002,
+      "mode": null
+    },
+    {
+      "name": "near_limit_no_jump",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "unreachable",
+      "passed": true,
+      "expected_code": 2001,
+      "actual_code": 2001,
+      "mode": null
+    },
+    {
+      "name": "invalid_weights",
+      "passed": true,
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "mode": null
+    },
+    {
+      "name": "selection_timeout",
+      "passed": true,
+      "expected_code": 2002,
+      "actual_code": 2002,
+      "mode": null
+    },
+    {
+      "name": "invalid_state_index",
+      "passed": true,
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "mode": null
+    },
+    {
+      "name": "previous_state_outside_limit",
+      "passed": true,
+      "expected_code": 1005,
+      "actual_code": 1005,
+      "mode": null
+    },
+    {
+      "name": "score_travel_only",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "score_limit_only",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    },
+    {
+      "name": "score_singular_only",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "near_singular_restricted"
+    },
+    {
+      "name": "score_combined",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "mode": "regular"
+    }
+  ],
+  "dls_regressions": [
+    {
+      "name": "dls_exact_wrist_near_seed",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "previous_state": {
+        "q_rad": [
+          0.3,
+          -1,
+          0.9,
+          -0.7,
+          0.005,
+          0.2
+        ],
+        "step_index": 0
+      },
+      "config": {
+        "travel_weight": 1.0,
+        "limit_weight": 0.05,
+        "singular_weight": 0.05,
+        "max_step_rad": 0.15,
+        "dt_s": 0.02,
+        "joint_margin_rad": 0.0,
+        "limit_scale_rad": 0.2,
+        "sigma_soft": 0.02,
+        "sigma_hard": 1e-05,
+        "near_step_scale": 0.25,
+        "characteristic_length_m": 1.0,
+        "difference_step_rad": 1e-06,
+        "position_tol_m": 1e-05,
+        "orientation_tol_rad": 0.0001,
+        "timeout_s": 0.2,
+        "dls_enabled": true,
+        "dls_max_iterations": 24,
+        "dls_line_search_steps": 8,
+        "dls_damping_min": 0.001,
+        "dls_damping_max": 0.1
+      },
+      "target_T_base_tool": [
+        [
+          0.7884732286981353,
+          0.5394235581444113,
+          0.29552020666133955,
+          -0.6005189692726457
+        ],
+        [
+          0.24390335148307182,
+          0.16686326042747077,
+          -0.955336489125606,
+          -0.3861628798887033
+        ],
+        [
+          -0.5646424733950353,
+          0.8253356149096784,
+          6.123233995736765e-17,
+          0.4200005361833651
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "actual_wait_s": 0.007224609999980203,
+      "result": {
+        "code": 0,
+        "message": "Bounded DLS fallback passed FK and singular guards",
+        "data": {
+          "q_rad": [
+            0.30001270357452386,
+            -0.9999969877692566,
+            0.8999985997492589,
+            -0.6999960810401558,
+            2.7432252363920652e-05,
+            0.19999443958722674
+          ],
+          "mode": "dls_near_singular",
+          "selected_candidate_index": null,
+          "position_error_m": 8.73845039766141e-06,
+          "orientation_error_rad": 2.069589298692406e-05,
+          "sigma_min": 1.0939506021363676e-05
+        },
+        "next_state": {
+          "q_rad": [
+            0.30001270357452386,
+            -0.9999969877692566,
+            0.8999985997492589,
+            -0.6999960810401558,
+            2.7432252363920652e-05,
+            0.19999443958722674
+          ],
+          "step_index": 1
+        },
+        "details": {
+          "candidates": [],
+          "previous_sigma_min": 0.001992450893408619,
+          "step_cap_rad": [
+            0.015707963267948967,
+            0.015707963267948967,
+            0.015707963267948967,
+            0.015707963267948967,
+            0.015707963267948967,
+            0.015707963267948967
+          ],
+          "dls": {
+            "reason": "accepted",
+            "iterations": 3,
+            "path_sigma_min": 1.093950602164455e-05,
+            "history": [
+              {
+                "damping": 0.08125727664450927,
+                "residual": 3.94668874825437e-05,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.09980983668821564,
+                "residual": 2.977611511073751e-05,
+                "step_scale": 0.25
+              },
+              {
+                "damping": 0.09985650894478115,
+                "residual": 2.246509518961313e-05,
+                "step_scale": 0.25
+              }
+            ]
+          },
+          "analytic_code": 2003
+        }
+      }
+    },
+    {
+      "name": "dls_disabled_keeps_2003",
+      "passed": true,
+      "expected_code": 2003,
+      "actual_code": 2003,
+      "previous_state": {
+        "q_rad": [
+          0.3,
+          -1,
+          0.9,
+          -0.7,
+          0.005,
+          0.2
+        ],
+        "step_index": 0
+      },
+      "config": {
+        "travel_weight": 1.0,
+        "limit_weight": 0.05,
+        "singular_weight": 0.05,
+        "max_step_rad": 0.15,
+        "dt_s": 0.02,
+        "joint_margin_rad": 0.0,
+        "limit_scale_rad": 0.2,
+        "sigma_soft": 0.02,
+        "sigma_hard": 1e-05,
+        "near_step_scale": 0.25,
+        "characteristic_length_m": 1.0,
+        "difference_step_rad": 1e-06,
+        "position_tol_m": 1e-05,
+        "orientation_tol_rad": 0.0001,
+        "timeout_s": 0.2,
+        "dls_enabled": false,
+        "dls_max_iterations": 24,
+        "dls_line_search_steps": 8,
+        "dls_damping_min": 0.001,
+        "dls_damping_max": 0.1
+      },
+      "target_T_base_tool": [
+        [
+          0.7884732286981353,
+          0.5394235581444113,
+          0.29552020666133955,
+          -0.6005189692726457
+        ],
+        [
+          0.24390335148307182,
+          0.16686326042747077,
+          -0.955336489125606,
+          -0.3861628798887033
+        ],
+        [
+          -0.5646424733950353,
+          0.8253356149096784,
+          6.123233995736765e-17,
+          0.4200005361833651
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "actual_wait_s": 0.0004826770000363467,
+      "result": {
+        "code": 2003,
+        "message": "C candidate generation failed; state not advanced",
+        "data": null,
+        "next_state": null,
+        "details": {
+          "candidates": [],
+          "previous_sigma_min": 0.001992450893408619
+        }
+      }
+    },
+    {
+      "name": "dls_budget_guard",
+      "passed": true,
+      "expected_code": 2003,
+      "actual_code": 2003,
+      "previous_state": {
+        "q_rad": [
+          0.3,
+          -1,
+          0.9,
+          -0.7,
+          0.02,
+          0.2
+        ],
+        "step_index": 0
+      },
+      "config": {
+        "travel_weight": 1.0,
+        "limit_weight": 0.05,
+        "singular_weight": 0.05,
+        "max_step_rad": 0.15,
+        "dt_s": 0.02,
+        "joint_margin_rad": 0.0,
+        "limit_scale_rad": 0.2,
+        "sigma_soft": 0.02,
+        "sigma_hard": 1e-05,
+        "near_step_scale": 0.25,
+        "characteristic_length_m": 1.0,
+        "difference_step_rad": 1e-06,
+        "position_tol_m": 1e-05,
+        "orientation_tol_rad": 0.0001,
+        "timeout_s": 0.2,
+        "dls_enabled": true,
+        "dls_max_iterations": 24,
+        "dls_line_search_steps": 8,
+        "dls_damping_min": 0.001,
+        "dls_damping_max": 0.1
+      },
+      "target_T_base_tool": [
+        [
+          0.7884732286981353,
+          0.5394235581444113,
+          0.29552020666133955,
+          -0.6005189692726457
+        ],
+        [
+          0.24390335148307182,
+          0.16686326042747077,
+          -0.955336489125606,
+          -0.3861628798887033
+        ],
+        [
+          -0.5646424733950353,
+          0.8253356149096784,
+          6.123233995736765e-17,
+          0.4200005361833651
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "actual_wait_s": 0.02375023100000817,
+      "result": {
+        "code": 2003,
+        "message": "Analytic IK singular; bounded DLS did not produce a safe solution",
+        "data": null,
+        "next_state": null,
+        "details": {
+          "candidates": [],
+          "previous_sigma_min": 0.00794848270280532,
+          "dls": {
+            "reason": "not_converged",
+            "iterations": 24,
+            "history": [
+              {
+                "damping": 0.036946669618234174,
+                "residual": 0.004300592553971506,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378979475590555,
+                "residual": 0.004292105815225627,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378979088078617,
+                "residual": 0.004292038325690459,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378977805411468,
+                "residual": 0.004292036445125095,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378976127140186,
+                "residual": 0.00429203607785773,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378974417980746,
+                "residual": 0.0042920359095228455,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378972669815558,
+                "residual": 0.004292035776252401,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378970921304936,
+                "residual": 0.004292035649161615,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378969165809975,
+                "residual": 0.004292035523273899,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378967411044827,
+                "residual": 0.004292035397741012,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378965662783132,
+                "residual": 0.004292035272035691,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378963926962636,
+                "residual": 0.004292035146297185,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378962170012692,
+                "residual": 0.004292035020725867,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.0837896040952205,
+                "residual": 0.004292034895115062,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378958668770435,
+                "residual": 0.00429203476940387,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378956927689463,
+                "residual": 0.004292034643772335,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378955166197473,
+                "residual": 0.004292034518107805,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378953429746186,
+                "residual": 0.004292034392428723,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378951674802429,
+                "residual": 0.0042920342667587385,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378949905881825,
+                "residual": 0.004292034141195937,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378948176054173,
+                "residual": 0.004292034015494416,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378946421347061,
+                "residual": 0.004292033889918739,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378944669338113,
+                "residual": 0.004292033764215348,
+                "step_scale": 1.0
+              },
+              {
+                "damping": 0.08378942920659535,
+                "residual": 0.004292033638549348,
+                "step_scale": 1.0
+              }
+            ]
+          },
+          "analytic_code": 2003
+        }
+      }
+    }
+  ]
+}

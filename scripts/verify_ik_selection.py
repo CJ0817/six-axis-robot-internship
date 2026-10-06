@@ -24,6 +24,19 @@ def main():
         if r['code']==0:
             ok &= r['next_state']['step_index']==state['step_index']+1 and r['next_state']['q_rad']==r['data']['q_rad']
             if r['data']['mode']=='singular_hold':ok &= r['data']['q_rad']==state['q_rad']
+            elif r['data']['mode']=='dls_near_singular':
+                d=r['details']['dls'];q=r['data']['q_rad'];cap=r['details']['step_cap_rad']
+                target=np.array(T);back=sel._fk(model,q)
+                from adapters.ik_selection import pose_error
+                pe,re=pose_error(back,target)
+                ok &= (r['data']['selected_candidate_index'] is None and d['reason']=='accepted'
+                       and d['iterations']<=sel.config.dls_max_iterations
+                       and 0<len(d['history'])<=sel.config.dls_max_iterations
+                       and all(abs(v-u)<=bound+1e-12 for v,u,bound in zip(q,state['q_rad'],cap))
+                       and all(float(model.q_min_rad[j])+sel.config.joint_margin_rad<=q[j]<=float(model.q_max_rad[j])-sel.config.joint_margin_rad for j in range(6))
+                       and pe<=sel.config.position_tol_m and re<=sel.config.orientation_tol_rad
+                       and sel.sigma_min(model,q)>sel.config.sigma_hard
+                       and d['path_sigma_min']>sel.config.sigma_hard)
             else:
                 chosen=next(d for d in r['details']['candidates'] if d['candidate_index']==r['data']['selected_candidate_index'])
                 allowed=[d for d in r['details']['candidates'] if d['eligible']]
@@ -53,6 +66,13 @@ def main():
     run('protected_region_reject',selector,pose(q),state,2003)
     q=base.copy();q[4]=0
     run('exact_singular_hold',selector,pose(q),dict(q_rad=q,step_index=3))
+    # The analytic all-branch request returns 2003 here. A bounded local DLS
+    # may choose a nonsingular pose within the explicitly configured tolerances.
+    q0=base.copy();q0[4]=.005;exact=base.copy();exact[4]=0
+    run('dls_exact_wrist_near_seed',selector,pose(exact),dict(q_rad=q0,step_index=0))
+    run('dls_disabled_keeps_2003',StatefulIKSelector(args.library,replace(selector.config,dls_enabled=False)),pose(exact),dict(q_rad=q0,step_index=0),2003)
+    far=base.copy();far[4]=.02
+    run('dls_budget_guard',selector,pose(exact),dict(q_rad=far,step_index=0),2003)
     before=base.copy();before[4]=1e-4;after=base.copy();after[4]=-1e-4
     run('reject_wrist_crossing_between_valid_endpoints',selector,pose(after),dict(q_rad=before,step_index=0),2003)
     before=base.copy();before[4]=0;after=base.copy();after[4]=.003
@@ -72,6 +92,10 @@ def main():
         r=run('score_'+name,StatefulIKSelector(args.library,cfg),fixture['target_T_base_tool'],dict(q_rad=fixture['q_seed_rad'],step_index=0))
         if r['code']==0:selected.append(r['data']['selected_candidate_index'])
     checks=[dict(name='weights_change_branch',passed=len(set(selected))>=2,selected_indices=selected)]
+    dls_case=next(row for row in cases if row['name']=='dls_exact_wrist_near_seed')
+    checks.append(dict(name='dls_fallback_exercised',passed=(dls_case['result']['code']==0
+                 and dls_case['result']['data']['mode']=='dls_near_singular'
+                 and dls_case['result']['details'].get('analytic_code')==2003)))
     near=[row for row in cases if row['name'].startswith('near_singular_')]
     checks.append(dict(name='near_region_reduces_step_cap',passed=all(r['result']['code']==0 and r['result']['data']['mode']=='near_singular_restricted' for r in near)))
     # Numerical singularity estimate stable against halving the difference step,
@@ -80,8 +104,19 @@ def main():
     for name,q in [('regular',base),('near_wrist',[.3,-1,.9,-.7,1e-4,.2]),('joint_endpoint',[2*math.pi,-1,.9,-.7,.8,.2])]:
         s1=selector.sigma_min(model,q);s2=half.sigma_min(model,q)
         checks.append(dict(name='sigma_difference_step_'+name,sigma_h=s1,sigma_half_h=s2,passed=abs(s1-s2)<=1e-6))
-    report=dict(status='passed' if all(r['passed'] for r in cases+checks) else 'failed',expected=len(cases),passed=sum(r['passed'] for r in cases),checks=checks,cases=cases,python=platform.python_version(),numpy=np.__version__,model_sha256=hashlib.sha256((ROOT/'models/ur5/kinematics.json').read_bytes()).hexdigest(),library_sha256=hashlib.sha256(args.library.read_bytes()).hexdigest(),selector_sha256=hashlib.sha256((ROOT/'src/adapters/ik_selection.py').read_bytes()).hexdigest(),scope='simulation planning; selection guards are not trajectory collision/acceleration or real-time guarantees')
+    report=dict(status='passed' if all(r['passed'] for r in cases+checks) else 'failed',expected=len(cases),passed=sum(r['passed'] for r in cases),checks=checks,cases=cases,python=platform.python_version(),numpy=np.__version__,model_sha256=hashlib.sha256((ROOT/'models/ur5/kinematics.json').read_bytes()).hexdigest(),library_sha256=hashlib.sha256(args.library.read_bytes()).hexdigest(),selector_sha256=hashlib.sha256((ROOT/'src/adapters/ik_selection.py').read_bytes()).hexdigest(),verifier_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),scope='simulation planning; selection guards are not trajectory collision/acceleration or real-time guarantees')
     args.output.mkdir(parents=True,exist_ok=True);(args.output/'report.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
+    # Keep a compact, reviewable record of every case; the detailed per-candidate
+    # report is reproducible with the same command and generated at this path.
+    compact=dict(status=report['status'],expected=report['expected'],passed=report['passed'],
+                 checks=checks,python=report['python'],numpy=report['numpy'],
+                 model_sha256=report['model_sha256'],library_sha256=report['library_sha256'],
+                 selector_sha256=report['selector_sha256'],verifier_sha256=report['verifier_sha256'],scope=report['scope'],
+                 cases=[dict(name=row['name'],passed=row['passed'],expected_code=row['expected_code'],
+                             actual_code=row['actual_code'],mode=(row['result']['data'] or {}).get('mode')) for row in cases],
+                 dls_regressions=[row for row in cases if row['name'] in (
+                     'dls_exact_wrist_near_seed','dls_disabled_keeps_2003','dls_budget_guard')])
+    (args.output/'summary.json').write_text(json.dumps(compact,indent=2,allow_nan=False)+'\n')
     print(json.dumps(dict(status=report['status'],cases=report['expected'],failed=[r['name'] for r in cases+checks if not r['passed']],checks=checks),indent=2))
     return 0 if report['status']=='passed' else 1
 if __name__=='__main__':raise SystemExit(main())

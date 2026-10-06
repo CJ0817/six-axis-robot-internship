@@ -107,3 +107,7 @@ Robotics Toolbox 使用独立、版本及哈希锁定的环境；未实现的算
 ## 运动学阶段汇总与短演示
 
 [误差、成功率、耗时与推导](docs/ik-summary-and-derivation.md) · [140组逐例来源](results/closeout-ik/ik/report.json) · [编译/运行复核与演示说明](docs/build-and-demo-check.md) · [阶段周报](reports/week02/kinematics-weekly-summary.md)。短视频是云端 PyBullet DIRECT 渲染的三个关键帧；后续的[用户 Windows 桌面录像与 GUI 证据](results/local-demo/README.md)另行归档，不在阶段标签 `v0.2.0-kinematics` 内。
+
+## 运动学阶段统一基准（2026-10-06）
+
+[统一技术方案与下游接口](docs/kinematics-stage-baseline.md) · [正式测试报告](reports/week02/kinematics-stage-test-report.md) · [近奇异阻尼选解说明](docs/ik-stateful-selection.md) · [103 例选解回归摘要](results/ik-selection-dls/summary.json)。FK/IK 功能精度通过；FK Python→C 单次耗时门槛仍有一次超限，正式 IK 重复性能验收未完成。
