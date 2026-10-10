@@ -1,0 +1,429 @@
+{
+  "status": "passed",
+  "expected_count": 51,
+  "passed_count": 51,
+  "cases": [
+    {
+      "name": "complete_shared_config",
+      "expected_code": 0,
+      "actual_code": 0,
+      "passed": true,
+      "data": {
+        "version": "1.0.0",
+        "config_sha256": "c4540f40e3e69d938603399d66499c92b33f36de5509460cc4b254798c212653",
+        "model_sha256": "a33abb6bd1b206eade01f19e3581f56bb7e53c1e9a058111a779c3b39666316e",
+        "velocity_scale": 0.5,
+        "acceleration_scale": 0.5,
+        "joint_velocity_rad_s": [
+          1.5707963267948966,
+          1.5707963267948966,
+          1.5707963267948966,
+          1.5707963267948966,
+          1.5707963267948966,
+          1.5707963267948966
+        ],
+        "joint_acceleration_rad_s2": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "linear_velocity_m_s": 0.125,
+        "angular_velocity_rad_s": 0.25,
+        "linear_acceleration_m_s2": 0.25,
+        "angular_acceleration_rad_s2": 0.5,
+        "tcp_frame": "tool0",
+        "tcp_point": "tool0_origin",
+        "expression_frame": "base",
+        "limit_metric": "euclidean_norm"
+      }
+    },
+    {
+      "name": "joint_equal_actual_limits",
+      "expected_code": 0,
+      "actual_code": 0,
+      "passed": true,
+      "data": true
+    },
+    {
+      "name": "joint_speed_over",
+      "expected_code": 3002,
+      "actual_code": 3002,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "joint_acceleration_over",
+      "expected_code": 3002,
+      "actual_code": 3002,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "zero_tcp",
+      "expected_code": 0,
+      "actual_code": 0,
+      "passed": true,
+      "data": true
+    },
+    {
+      "name": "tcp_equal_actual_limits",
+      "expected_code": 0,
+      "actual_code": 0,
+      "passed": true,
+      "data": true
+    },
+    {
+      "name": "tcp_norm_over_not_component_linear_velocity",
+      "expected_code": 3002,
+      "actual_code": 3002,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "tcp_norm_over_not_component_angular_velocity",
+      "expected_code": 3002,
+      "actual_code": 3002,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "tcp_norm_over_not_component_linear_acceleration",
+      "expected_code": 3002,
+      "actual_code": 3002,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "tcp_norm_over_not_component_angular_acceleration",
+      "expected_code": 3002,
+      "actual_code": 3002,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "request_scaling_product",
+      "expected_code": 0,
+      "actual_code": 0,
+      "passed": true,
+      "data": true
+    },
+    {
+      "name": "hardware_use_rejected",
+      "expected_code": 1008,
+      "actual_code": 1008,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "request_scale_over_one",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "request_scale_zero",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "wrong_rate_shape",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "nonfinite_rate",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "missing_joint_limits_velocity_rad_s",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "null_joint_limits_velocity_rad_s",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "missing_joint_limits_acceleration_rad_s2",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "null_joint_limits_acceleration_rad_s2",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "missing_tcp_limits_linear_velocity_m_s",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "null_tcp_limits_linear_velocity_m_s",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "missing_tcp_limits_angular_velocity_rad_s",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "null_tcp_limits_angular_velocity_rad_s",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "missing_tcp_limits_linear_acceleration_m_s2",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "null_tcp_limits_linear_acceleration_m_s2",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "missing_tcp_limits_angular_acceleration_rad_s2",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "null_tcp_limits_angular_acceleration_rad_s2",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "missing_tcp_frame",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "null_tcp_frame",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "missing_tcp_point",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "null_tcp_point",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "missing_tcp_expression_frame",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "null_tcp_expression_frame",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "missing_tcp_limit_metric",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "null_tcp_limit_metric",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "missing_tcp_T_tool0_tcp",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "null_tcp_T_tool0_tcp",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "missing_scales_velocity",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "null_scales_velocity",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "missing_scales_acceleration",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "null_scales_acceleration",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "negative_acceleration",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "infinite_tcp",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "bool_tcp",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "wrong_units",
+      "expected_code": 1002,
+      "actual_code": 1002,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "component_policy",
+      "expected_code": 1007,
+      "actual_code": 1007,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "different_tool",
+      "expected_code": 1007,
+      "actual_code": 1007,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "speed_above_model",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "model_hash_drift",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    },
+    {
+      "name": "missing_config_file",
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "passed": true,
+      "data": null
+    }
+  ],
+  "effective_limits": {
+    "version": "1.0.0",
+    "config_sha256": "c4540f40e3e69d938603399d66499c92b33f36de5509460cc4b254798c212653",
+    "model_sha256": "a33abb6bd1b206eade01f19e3581f56bb7e53c1e9a058111a779c3b39666316e",
+    "velocity_scale": 0.5,
+    "acceleration_scale": 0.5,
+    "joint_velocity_rad_s": [
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966
+    ],
+    "joint_acceleration_rad_s2": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "linear_velocity_m_s": 0.125,
+    "angular_velocity_rad_s": 0.25,
+    "linear_acceleration_m_s2": 0.25,
+    "angular_acceleration_rad_s2": 0.5,
+    "tcp_frame": "tool0",
+    "tcp_point": "tool0_origin",
+    "expression_frame": "base",
+    "limit_metric": "euclidean_norm"
+  },
+  "python": "3.12.14",
+  "scope": "simulation parameter gate only; planner not implemented",
+  "loader_sha256": "c5549b8b16e5af7c7b3acc86f31bd618ac806dd7cb19d979148b1574924c23e4",
+  "verifier_sha256": "53c846a3d99ca1a20ca64b35b984c1e7ce45c26c871b8748fcde5af954045aa2"
+}

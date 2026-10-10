@@ -1,4 +1,4 @@
-# 第三周周报（截至2026-10-06）
+# 第三周周报（截至2026-10-10）
 
 项目：六轴工业机器人运动规划与控制实习。本周先补齐运动学阶段的导师/检查者反馈，作为后续路径规划的调用基准。三次/五次/梯形及笛卡尔规划尚未实现，本页不将运动学选解验证计为完整规划器验收。
 
@@ -25,3 +25,7 @@
 阅读顺序：`include/robot_kinematics.h`了解冻结C入参/布局 → `src/kinematics/forward.c`了解标准DH链 → `src/kinematics/inverse.c`了解解析分支与过滤 → `src/adapters/c_kinematics.py`了解Python/C包装 → `src/adapters/ik_selection.py`了解连续性与阻尼 → `scripts/ik_sequence_regression.py`了解失败后的状态和重试编排。各方法前的中文说明列明参数单位与返回语义，具体阈值以[指标源](../../tests/metrics.json)为准。
 
 复现入口：按锁定环境构建后，运行 `python scripts/run_tests.py --suite ik_selection --output results/test-runs/ik-selection`。运行会生成完整逐候选/逐节点报告；既有证据与重跑耗时必须分别保留，不删除失败记录。
+
+## 2026-10-10：规划限值补充
+
+[规划参数冻结记录](planning-parameter-freeze.md)补齐关节加速度及TCP线/角速度、线/角加速度，配置v1.0.0仅适用仿真；默认速度/加速度缩放各0.5。共享加载入口和测试读同一JSON，缺失/null拒绝1004，不允许无限制。51/51参数闸门回归通过，原“仿真加速度待冻结”任务已补齐；完整规划器接入、连续极值、动力学与实机参数仍未完成。下一项使用这些实际上限实现和验收关节轨迹，不再重新抄写或猜测限值。

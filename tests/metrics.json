@@ -338,6 +338,18 @@
       "availability": "implemented",
       "pending_reason": "",
       "basis": "docs/workspace120-batch-validation.md"
+    },
+    {
+      "id": "PLAN-CONFIG",
+      "name": "仿真规划参数冻结与缺项闸门",
+      "test_id": "planning_limits",
+      "conditions": "统一JSON与绑定模型；51正负向用例；必需限值缺失/null、非有限、错误单位/TCP、向量模长超限、缩放、硬件用途拒绝",
+      "threshold": "51/51预期码；缺参数1004；超实际上限3002；请求缩放(0,1]；速度/加速度配置缩放各0.5；仅仿真",
+      "unit": "rad/s; rad/s²; m/s; m/s²; code",
+      "stage": "第3周前置",
+      "availability": "implemented",
+      "pending_reason": "",
+      "basis": "docs/planning-limits.md; config/planning-limits.v1.json"
     }
   ],
   "notes": [

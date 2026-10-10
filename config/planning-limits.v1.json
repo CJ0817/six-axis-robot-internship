@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "version": "1.0.0",
+  "revision": "2026-10-10",
+  "status": "frozen_simulation_only",
+  "usage": "simulation_only",
+  "model_id": "ur5_cb_generic",
+  "model_sha256": "a33abb6bd1b206eade01f19e3581f56bb7e53c1e9a058111a779c3b39666316e",
+  "joint_names": ["J1", "J2", "J3", "J4", "J5", "J6"],
+  "units": {"joint_velocity": "rad/s", "joint_acceleration": "rad/s^2", "linear_velocity": "m/s", "linear_acceleration": "m/s^2", "angular_velocity": "rad/s", "angular_acceleration": "rad/s^2"},
+  "tcp": {"frame": "tool0", "point": "tool0_origin", "expression_frame": "base", "limit_metric": "euclidean_norm", "T_tool0_tcp": [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]},
+  "joint_limits": {
+    "velocity_rad_s": [3.141592653589793,3.141592653589793,3.141592653589793,3.141592653589793,3.141592653589793,3.141592653589793],
+    "acceleration_rad_s2": [1.0,1.0,1.0,1.0,1.0,1.0]
+  },
+  "tcp_limits": {"linear_velocity_m_s": 0.25, "angular_velocity_rad_s": 0.5, "linear_acceleration_m_s2": 0.5, "angular_acceleration_rad_s2": 1.0},
+  "scales": {"velocity": 0.5, "acceleration": 0.5},
+  "sources": {
+    "joint_velocity": "models/ur5/kinematics.json qd_max_rad_s; ROS-Industrial joint_limits.yaml at 39ad110d8f2e8f66856a201cca88aa7a7025e3eb",
+    "joint_acceleration": "project experiment limit selected 2026-10-10; upstream acceleration absent; not a manufacturer rating",
+    "tcp_limits": "project experiment limits selected 2026-10-10 for low-speed simulation; not manufacturer ratings",
+    "scales": "project default test scaling, 2026-10-10; request scales multiply these values and cannot exceed 1"
+  }
+}

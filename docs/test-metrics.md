@@ -36,6 +36,7 @@
 | IK-TARGETS / 第2周 | 典型可达/不可达/近限位目标 / ik_targets | 6可达+9有证明的不可达+24近限位(6轴×两端×1e-3/1e-6rad)+1软件限位排除；显式RTB参考 | 40/40预期状态；逐候选C/RTB回代≤1e-5m、1e-4rad；失败不写输出 / count; m; rad | 已接入 |
 | IK-DATA120 / 第2周 | 固定种子120可达样本及独立边界/异常组 / workspace120 | seed20260928；8象限×3半径档×5；另16边界和11异常输入 | 主组120且每区5；DH与RTB矩阵差≤1e-12；日常只读校验拒绝输入漂移 / count; matrix absolute difference | 已接入 |
 | IK-BATCH120 / 第2周 | 120目标C与RTB批量对照及边界异常执行 / workspace120_batch | 冻结120主组，固定扰动种子20260929初值；16边界、11异常独立分母；逐候选C与显式参数RTB双回代 | 主组120/120返回0；候选逐解位置≤1e-5m/姿态≤1e-4rad且限位内；C和RTB正解矩阵最大差≤1e-12；16/16边界及11/11异常符合预期且失败不写输出 / count; m; rad; dimensionless | 已接入 |
+| PLAN-CONFIG / 第3周前置 | 仿真规划参数冻结与缺项闸门 / planning_limits | 统一JSON与绑定模型；51正负向用例；必需限值缺失/null、非有限、错误单位/TCP、向量模长超限、缩放、硬件用途拒绝 | 51/51预期码；缺参数1004；超实际上限3002；请求缩放(0,1]；速度/加速度配置缩放各0.5；仅仿真 / rad/s; rad/s²; m/s; m/s²; code | 已接入 |
 
 本阶段实际判定见[正式运动学测试报告](../reports/week02/kinematics-stage-test-report.md)：FK/IK功能误差通过；FK-PERF的C层通过、Python→C一次2.046632 ms超过单次1 ms门槛，因此整项未通过；IK 140组单次观测不替代100×10的正式耗时验收。C ABI DLS仍为1008；KIN-SEL的阻尼仅在Python选解层实现。
 

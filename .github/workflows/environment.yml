@@ -21,6 +21,8 @@ jobs:
         run: bash scripts/setup.sh
       - name: Standalone C library Python call
         run: .venv/bin/python examples/c_library_demo.py --report results/c-library/ci-python-report.json
+      - name: Frozen simulation planning limits and missing-parameter gates
+        run: .venv/bin/python scripts/run_tests.py --suite planning_limits --output results/test-runs/planning-limits
       - name: Frozen ABI layout and symbols
         run: .venv/bin/python -m unittest discover -s tests -p 'test_abi_v1.py' -v
       - name: C analytic IK candidates and boundaries
@@ -47,6 +49,7 @@ jobs:
             results/c-library/ci-python-report.json
             build/CMakeCache.txt
             results/test-runs/smoke/
+            results/test-runs/planning-limits/
             results/test-runs/ik/
             results/test-runs/ik-filter/
             results/test-runs/fk-performance/

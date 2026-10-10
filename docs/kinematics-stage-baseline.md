@@ -8,7 +8,7 @@
 |---|---|
 | 构建/语言 | Linux x86_64 C11 / C++17，GCC/G++ 13.3.0，CMake 3.31.6；Python 3.11.9、NumPy 1.26.4；PyBullet 3.2.7；RTB 1.1.1 在独立基准环境。完整版本见 [environment.lock.json](../environment.lock.json)。 |
 | 模型 | `ur5_cb_generic`，标准 DH，6 个旋转轴 J1～J6，从 base 到 tool0，长度 m、角度 rad、时间 s；ROS-Industrial URDF 固定上游提交 `39ad110d8f2e8f66856a201cca88aa7a7025e3eb`。`a=[0,-0.425,-0.39225,0,0,0]` m，`d=[0.089159,0,0,0.10915,0.09465,0.0823]` m，`alpha=[π/2,0,0,π/2,-π/2,0]` rad；逻辑关节零偏均0，符号均+1。 |
-| 变换与限位 | `A_i=Rz(sign_i*q_i+offset_i)Tz(d_i)Tx(a_i)Rx(alpha_i)`，`T_base_tool=T_base_dh0·A1…A6·T_dh6_flange·T_flange_tool`；从[模型 JSON](../models/ur5/kinematics.json)读取显式矩阵、逐轴 `q_min/q_max` 和 `qd_max`，不能用这里的摘要重建固定矩阵。`qdd_max_rad_s2=null`，规划/控制前必须另行冻结仿真加速度限值；没有实机标定。 |
+| 变换与限位 | `A_i=Rz(sign_i*q_i+offset_i)Tz(d_i)Tx(a_i)Rx(alpha_i)`，`T_base_tool=T_base_dh0·A1…A6·T_dh6_flange·T_flange_tool`；从[模型 JSON](../models/ur5/kinematics.json)读取显式矩阵、逐轴 `q_min/q_max` 和 `qd_max`，不能用这里的摘要重建固定矩阵。`qdd_max_rad_s2=null`，来源仍未知；仿真补充限值已由[规划参数v1.0.0](planning-limits.md)独立冻结；没有实机标定。 |
 | FK/IK | C FK 顺序累乘；UR5 C 解析 IK 枚举最多8个离散候选，等价角映射、限位筛选、逐候选 C FK 回代与去重。Python状态层对候选按行程/限位距离/奇异风险评分；近奇异限步，必要时在限定步长内局部阻尼退化。精确奇异连续族的全局最优仍未实现。 |
 
 不要用 RTB 内置 UR5 的 DH 参数作本模型真值：其 `d1=0.089459 m`，比项目显式参数大 0.0003 m。参数来源、矩阵与限制以[模型约定](ur5-model-conventions.md)为准。
@@ -45,3 +45,5 @@ int robot_inverse_v1(const robot_fk_model *model,
 规划器读取同一份模型和单位/轴序，逐路径节点核验 `code==0`、FK 误差、步长、限位和状态推进；无解时停止输出该段并重规划。数值阻尼仅在局部容差及路径保护都满足时提供有效节点，不能把失败的 `details.candidates` 或部分迭代作为轨迹。后续应补连续雅可比/奇异路径验证、速度及加速度极值、碰撞检查和动态限值。控制器需等待独立的反馈、状态机、增量 PID、前馈与周期验收；本阶段成功不构成实机运动许可。
 
 连续调用基准补充：统一ik_selection现覆盖55个连续节点，记录成功与失败状态交接；失败必须先停止原段再从保留状态重规划，已验证的离线关节途经点细分证据见[连续节点报告](../results/ik-selection-sequences/sequence-report.json)。这是后续规划器集成的状态与误差检查要求；真实停止动作及完整规划/碰撞约束另验。
+
+规划前置参数统一入口更新（2026-10-10）：[参数表](planning-limits.md)明确关节和TCP速率、tool0原点、向量模长与实际缩放；未来规划和测试必须调用同一共享配置闸门，缺参数不得生成正式轨迹。加速度与TCP限值均为项目仿真值，实机适用范围仍未确认。

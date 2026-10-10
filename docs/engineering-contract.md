@@ -1,6 +1,6 @@
-# 工程边界与数据约定 v1.3.0（正式方案与阶段基准）
+# 工程边界与数据约定 v1.4.0（正式方案与阶段基准）
 
-本文件定义本实习工程的接口规范；当前运动学实际状态和下游必须采用的固定基准见[运动学阶段统一技术基准](kinematics-stage-baseline.md)与[正式阶段测试报告](../reports/week02/kinematics-stage-test-report.md)。规划与控制尚未实现。字段采用语言无关表示，拟实现技术栈见第 8 节；机器可读常量及错误码以 [contract.json](../src/common/contract.json) 为唯一编号来源。
+本文件定义本实习工程的接口规范；当前运动学实际状态和下游必须采用的固定基准见[运动学阶段统一技术基准](kinematics-stage-baseline.md)与[正式阶段测试报告](../reports/week02/kinematics-stage-test-report.md)。规划限值与前置闸门已冻结，见[规划参数表](planning-limits.md)；完整规划与控制尚未实现。字段采用语言无关表示，拟实现技术栈见第 8 节；机器可读常量及错误码以 [contract.json](../src/common/contract.json) 为唯一编号来源。
 
 > 正式技术基线：C11 算法库、C++17 编译支持、Python 3.11.9 / PyBullet 3.2.7 仿真、UR5 URDF，固定版本及环境验证状态见[环境配置](environment-setup.md)。任务书要求解析 IK、三次/五次/梯形规划、直线/圆弧、避障、增量 PID 及速度/加速度前馈。第 7.1～7.4 节保留辅助基线接口定义，第 7.5 节列出正式要求的接口扩展计划；尚未实现的接口不代表可运行能力。早期选型已移至[历史方案归档](history/engineering-plan-python.md)，不作为当前方案或验收依据。
 
@@ -60,8 +60,8 @@ R 应满足 RᵀR≈I、det(R)≈1；校验容差必须显式配置并记录。�
 | forward(model, q_rad) | 模型、6 维关节位置 | T_base_tool |
 | inverse(model, T_base_tool, q_seed_rad, options) | 目标位姿、初始解、迭代预算及位置/角度容差 | 满足容差与限位的 q_rad |
 | jacobian(model, q_rad) | 模型、6 维关节位置 | J_base_tool |
-| plan_joint(model, q_start_rad, q_goal_rad, options) | 关节起终点、采样/时长与约束 | Trajectory |
-| plan_cartesian(model, T_start, T_goal, q_seed_rad, options) | 工具位姿起终点、初始解与约束 | Trajectory；通过运动学转换为关节参考 |
+| plan_joint(model, q_start_rad, q_goal_rad, options, limits) | 关节起终点、采样/时长与约束 | Trajectory |
+| plan_cartesian(model, T_start, T_goal, q_seed_rad, options, limits) | 工具位姿起终点、初始解与约束 | Trajectory；通过运动学转换为关节参考 |
 | step(reference, measured, dt_s, config, state, context) | 单点参考、反馈、正控制周期、控制配置、持久状态与当前时刻/事件 | command、action 与 next_state；详见第 7 节 |
 
 Trajectory：time_s 为长度 N 的数组，N≥2，首项为 0，后续严格递增；q_rad、qd_rad_s、qdd_rad_s2 均为 N×6，每一行对应同一时刻。
@@ -408,3 +408,9 @@ C矩阵运算、单节DH与forward已实现，语言无关forward由ctypes适配
 本节更新第7.5、8、9节原有计划状态以及第11、12节形成时的历史描述。当前可运行内容为 C11 FK、UR5 普通解析 IK、Python 候选连续选解与局部阻尼退化；C ABI v1.0.0 的签名、结构布局及错误码未改变。解析精确腕奇异 all 仍可返回2003，C DLS method=2仍返回1008；Python局部阻尼仅在回代、限位、离散步长和奇异路径保护均通过时返回成功。详见[统一技术基准](kinematics-stage-baseline.md)、[状态选解说明](ik-stateful-selection.md)及[正式阶段测试报告](../reports/week02/kinematics-stage-test-report.md)。
 
 阶段精度已验证：FK 115/115、IK 空间目标120/120与专项140/140。FK性能门槛规定原生C和Python→C各自p95及每次≤1 ms，现有FFI发生1次2.046632 ms超限，因此整项未通过；IK的100×10正式重复性能验收未运行。第7节语言无关 options 早期 DLS 字段和候选类型描述仅作设计记录；实际 C 接口必须采用[ABI 1.0.0](abi-v1.md)的数字枚举、uint32_t branch_ids 和固定缓冲布局。后续规划器、控制器以[tests/metrics.json](../tests/metrics.json)和[统计规则](statistics-rules.md)对齐样本与指标，不得将成功的功能观测替代性能、碰撞或实机验收。
+
+## 14. 规划参数冻结补充（2026-10-10）
+
+[规划参数表v1.0.0](planning-limits.md)和唯一配置[planning-limits.v1.json](../config/planning-limits.v1.json)补齐原未完成的关节加速度与TCP线/角速度、线/角加速度，仅适用于仿真实验；来源模型的qdd_max=null仍保留未知含义。采用tool0原点、base系欧氏向量模长，配置速度/加速度缩放各0.5，实际值和来源见书面表。实机值与动力学确认仍未完成。
+
+第4节未来plan_joint/plan_cartesian的limits为必需的PlanningLimits：规划入口和测试均先调用同一load_planning_limits，options请求缩放在加载时应用一次，实际限值为基础×配置缩放×请求缩放；后续不得重复缩放。缺配置/字段或null返回1004、非法有限正值1001，失败data=null，不能生成部分正式轨迹或隐式无限制。新参数不加入冻结C运动学结构。位置限位继续来自绑定模型；完整规划器实际接入与连续极值/碰撞回归尚未完成。原第7～9节加速度“待冻结”的描述以本节仿真配置状态更新，实机未知项保持未完成。
