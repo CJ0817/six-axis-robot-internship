@@ -23,6 +23,8 @@ jobs:
         run: .venv/bin/python examples/c_library_demo.py --report results/c-library/ci-python-report.json
       - name: Frozen simulation planning limits and missing-parameter gates
         run: .venv/bin/python scripts/run_tests.py --suite planning_limits --output results/test-runs/planning-limits
+      - name: Joint cubic quintic and trapezoidal trajectories
+        run: .venv/bin/python scripts/run_tests.py --suite joint_planning --output results/test-runs/joint-planning
       - name: Frozen ABI layout and symbols
         run: .venv/bin/python -m unittest discover -s tests -p 'test_abi_v1.py' -v
       - name: C analytic IK candidates and boundaries
@@ -50,6 +52,7 @@ jobs:
             build/CMakeCache.txt
             results/test-runs/smoke/
             results/test-runs/planning-limits/
+            results/test-runs/joint-planning/
             results/test-runs/ik/
             results/test-runs/ik-filter/
             results/test-runs/fk-performance/

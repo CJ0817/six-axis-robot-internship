@@ -41,3 +41,13 @@ target_compile_options(ik_filter_unit PRIVATE -Wall -Wextra -Werror -pedantic)
 target_link_libraries(ik_filter_unit PRIVATE m)
 add_test(NAME ik_candidate_filter COMMAND ik_filter_unit)
 set_tests_properties(ik_candidate_filter PROPERTIES TIMEOUT 10)
+
+# 独立关节规划库；运动学 ABI v1.0.0 的符号与结构不变。
+add_library(robot_planning SHARED src/planning/joint.c)
+target_include_directories(robot_planning PUBLIC include)
+target_compile_options(robot_planning PRIVATE -Wall -Wextra -Werror -pedantic)
+target_link_libraries(robot_planning PRIVATE m)
+add_test(NAME joint_trajectories
+  COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_joint_planning.py"
+          --library "$<TARGET_FILE:robot_planning>" --output "${CMAKE_CURRENT_BINARY_DIR}/joint-planning")
+set_tests_properties(joint_trajectories PROPERTIES TIMEOUT 120)

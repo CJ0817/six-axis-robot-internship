@@ -1,6 +1,6 @@
 # 规划参数表与配置闸门 v1.0.0（2026-10-10）
 
-唯一可执行配置为 [config/planning-limits.v1.json](../config/planning-limits.v1.json)，适用 `ur5_cb_generic` 的**纯仿真实验**。规划器与测试必须调用同一 [load_planning_limits](../src/planning/limits.py)，不得各自抄表、补默认值或把缺失参数当无限大。本轮冻结的是参数；完整轨迹规划器仍未实现。
+唯一可执行配置为 [config/planning-limits.v1.json](../config/planning-limits.v1.json)，适用 `ur5_cb_generic` 的**纯仿真实验**。规划器与测试必须调用同一 [load_planning_limits](../src/planning/limits.py)，不得各自抄表、补默认值或把缺失参数当无限大。参数已冻结；静止关节曲线已接入共享加载器，见[关节规划](joint-planning.md)，完整笛卡尔/避障规划仍待实现。
 
 ## 逐轴关节限值
 
@@ -44,10 +44,10 @@ limits.check_tcp_rates(v_base_m_s, omega_base_rad_s,
                        a_base_m_s2, alpha_base_rad_s2)
 ```
 
-配置绑定模型字节SHA-256；模型发生任何修改需重新审查并更新绑定。本版本拒绝非仿真用途(1008)。文件/必需字段不存在或为null返回1004；NaN/Inf、零/负限值、错误形状/缩放返回1001；单位1002、轴序1003、TCP/坐标/模长规则1007。`load_planning_limits`抛统一 `ContractError`，上层将非0码映射成 `data=null`，不得产生部分正式轨迹。没有有效 `PlanningLimits` 时，正式规划入口必须拒绝；本轮没有伪造尚未实现的 `plan_joint/plan_cartesian` 成功结果。
+配置绑定模型字节SHA-256；模型发生任何修改需重新审查并更新绑定。本版本拒绝非仿真用途(1008)。文件/必需字段不存在或为null返回1004；NaN/Inf、零/负限值、错误形状/缩放返回1001；单位1002、轴序1003、TCP/坐标/模长规则1007。`load_planning_limits`抛统一 `ContractError`，上层将非0码映射成 `data=null`，不得产生部分正式轨迹。没有有效 `PlanningLimits` 时，正式规划入口必须拒绝；静止关节plan_joint子集已实现；plan_cartesian仍待实现。
 
 ## 验收与未完成项
 
 [51项逐例证据](../results/planning-limits/report.json)验证共享读取、实际缩放、边界、缺项/null、非有限值、错误单位/工具/模长规则、模型漂移、硬件用途拒绝和向量模长超限，51/51通过。统一入口：`python scripts/run_tests.py --suite planning_limits --output results/test-runs/planning-limits`；CI执行同一入口。
 
-参数状态见[冻结记录](../reports/week03/planning-parameter-freeze.md)：原先缺失的关节加速度和笛卡尔限值已用明确仿真配置补齐；厂家/实机适用值及动力学确认仍未完成。完整规划器接入、连续极值、笛卡尔映射、奇异/碰撞和跟踪验收仍待后续，不以参数校验结果抵扣。
+参数状态见[冻结记录](../reports/week03/planning-parameter-freeze.md)：原先缺失的关节加速度和笛卡尔限值已用明确仿真配置补齐；厂家/实机适用值及动力学确认仍未完成。静止关节规划接入与连续关节极值已完成；笛卡尔映射、奇异/碰撞和跟踪验收仍待后续，不以参数校验结果抵扣。

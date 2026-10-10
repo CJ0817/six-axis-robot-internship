@@ -138,26 +138,26 @@
     {
       "id": "PLAN-01",
       "name": "轨迹连续约束",
-      "test_id": null,
-      "conditions": "100对端点；零位移/近限位；≥10不可行时长；导数实根与端点极值",
+      "test_id": "joint_planning",
+      "conditions": "97项：三次/五次/梯形同步、三角形临界两侧、静止端点、解析极值/左右极限、固定seed20261010、负向C/Python输入；非零边界与TCP/碰撞另验",
       "threshold": "不超模型/配置限值；位置容差1e-9、速度1e-8、加速度1e-7",
       "unit": "rad; rad/s; rad/s²",
       "stage": "第3周",
-      "availability": "pending",
-      "pending_reason": "C三次/五次/梯形规划与连续极值检查未实现",
-      "basis": "engineering-contract.md §9"
+      "availability": "implemented",
+      "pending_reason": "",
+      "basis": "docs/joint-planning.md; rest-to-rest joint scope only"
     },
     {
       "id": "PLAN-02",
       "name": "轨迹边界/拼接/采样一致性",
-      "test_id": null,
-      "conditions": "各规划器按自身边界条件检查；五次段要求C2，梯形加速度跳变单列",
+      "test_id": "joint_planning",
+      "conditions": "97项：三次/五次/梯形同步、三角形临界两侧、静止端点、解析极值/左右极限、固定seed20261010、负向C/Python输入；非零边界与TCP/碰撞另验",
       "threshold": "q≤1e-9、qd≤1e-8、qdd≤1e-7；时间严格递增；不能要求梯形全程C2",
       "unit": "rad; rad/s; rad/s²",
       "stage": "第3周",
-      "availability": "pending",
-      "pending_reason": "规划器未实现；避免把五次C2条件误用于全部规划器",
-      "basis": "engineering-contract.md §9"
+      "availability": "implemented",
+      "pending_reason": "",
+      "basis": "docs/joint-planning.md; rest-to-rest joint scope only"
     },
     {
       "id": "PLAN-03",

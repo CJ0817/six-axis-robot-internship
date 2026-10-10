@@ -1,0 +1,5810 @@
+{
+  "status": "passed",
+  "passed_count": 97,
+  "expected_count": 97,
+  "scope": "rest-to-rest joint planning; no TCP, collision or hardware acceptance",
+  "thresholds": {
+    "position_rad": 1e-09,
+    "velocity_rad_s": 1e-08,
+    "acceleration_rad_s2": 1e-07
+  },
+  "effective_limits": {
+    "version": "1.0.0",
+    "config_sha256": "c4540f40e3e69d938603399d66499c92b33f36de5509460cc4b254798c212653",
+    "model_sha256": "a33abb6bd1b206eade01f19e3581f56bb7e53c1e9a058111a779c3b39666316e",
+    "velocity_scale": 0.5,
+    "acceleration_scale": 0.5,
+    "joint_velocity_rad_s": [
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966
+    ],
+    "joint_acceleration_rad_s2": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "linear_velocity_m_s": 0.125,
+    "angular_velocity_rad_s": 0.25,
+    "linear_acceleration_m_s2": 0.25,
+    "angular_acceleration_rad_s2": 0.5,
+    "tcp_frame": "tool0",
+    "tcp_point": "tool0_origin",
+    "expression_frame": "base",
+    "limit_metric": "euclidean_norm"
+  },
+  "source_sha256": {
+    "include/robot_planning.h": "c7cdf70df07f8fa6c8afef868db334b6e82f09e4d138c3113e5b4ceeeb4278d6",
+    "src/planning/joint.c": "c79ed7dbcd92bfd5cb79e20842790a62da63f14d3be58b0cede68554547a5b65",
+    "src/planning/joint.py": "bac0896b80c728ae7eb8057262864b0ab540dc120876ba980c0b18659fb93d7a",
+    "scripts/verify_joint_planning.py": "92d186257df4297b664c87e423f4bd1278bd89ab92a7c312fde09040edf85dd8"
+  },
+  "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7",
+  "timing": {
+    "scope": "Python plan_joint wall includes shared load, C planning/evaluation and full serialization; not C-only",
+    "valid_count": 55,
+    "mean_ms": 1.115474109090909,
+    "p95_ms": 1.9176319999999978,
+    "maximum_ms": 2.671228,
+    "quantile": "linear interpolation (n-1)*p",
+    "timeout_scope": "unified runner whole process budget 120s; no per-call interruption"
+  },
+  "artifacts": [
+    {
+      "path": "cubic-mixed.csv",
+      "sha256": "ee08a8b02a500a60684a947ecc741795abb2ab2d3568fbb4e7d5a53eb7595590"
+    },
+    {
+      "path": "cubic-mixed.svg",
+      "sha256": "cdcecac856cc86e6f5ddefa4e332a17f066a8697f0e2dd67f34e7321667aa70f"
+    },
+    {
+      "path": "quintic-mixed.csv",
+      "sha256": "45d09254395dd0941d07c84c7470658781320b8e2615606a908cd74e85ceeba7"
+    },
+    {
+      "path": "quintic-mixed.svg",
+      "sha256": "40317926d3d7213d05de746e69c918f2cde8ff4a55c48501bfb4d60446e985e1"
+    },
+    {
+      "path": "trapezoidal-short.csv",
+      "sha256": "8ffbe181f54c2cefaa6450a1ea415c5b77c5899662066ad6af1d78f15feffb9b"
+    },
+    {
+      "path": "trapezoidal-short.svg",
+      "sha256": "b77d72a498ee7297d285e5132a14a86a0e43da327cb090a9e6a0de44bc9b3622"
+    },
+    {
+      "path": "trapezoidal-long.csv",
+      "sha256": "b5bfe692723b37755b9dc9f9129ac23c3e5a62f95457c1e3fff643dcc6fdcaf5"
+    },
+    {
+      "path": "trapezoidal-long.svg",
+      "sha256": "659d89ecb92c9fecb1da0f7b01bafb9051a015ea276098f3e74b8199e9affe6d"
+    }
+  ],
+  "cases": [
+    {
+      "id": "cubic-mixed",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        -0.7,
+        0.3,
+        0,
+        0.02,
+        -0.1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.056345,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 3.4641016151412187,
+        "minimum_duration_s": 3.4641016151412187,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899997,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          3.3306690738754696e-16,
+          2.220446049250313e-16,
+          1.1102230246251565e-16
+        ],
+        "peak_formula_max_difference": 5.551115123125783e-17,
+        "continuous_peak_velocity_rad_s": [
+          0.4330127018917863,
+          0.30310889132425034,
+          0.1299038105675359,
+          0.0,
+          0.008660254037835725,
+          0.04330127018917864
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.49999999999899997,
+          0.3499999999992999,
+          0.14999999999969998,
+          0.0,
+          0.009999999999979999,
+          0.049999999999900006
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 3.4641016151412187,
+      "segment_times_s": [
+        0.0,
+        3.4641016151412187
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "cubic-strict-minimum",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        -0.7,
+        0.3,
+        0,
+        0.02,
+        -0.1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": 3.4641016151412187,
+        "duration_policy": "strict",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 2.671228,
+      "passed": true,
+      "details": {
+        "requested_duration_s": 3.4641016151412187,
+        "actual_duration_s": 3.4641016151412187,
+        "minimum_duration_s": 3.4641016151412187,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899997,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          3.3306690738754696e-16,
+          2.220446049250313e-16,
+          1.1102230246251565e-16
+        ],
+        "peak_formula_max_difference": 5.551115123125783e-17,
+        "continuous_peak_velocity_rad_s": [
+          0.4330127018917863,
+          0.30310889132425034,
+          0.1299038105675359,
+          0.0,
+          0.008660254037835725,
+          0.04330127018917864
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.49999999999899997,
+          0.3499999999992999,
+          0.14999999999969998,
+          0.0,
+          0.009999999999979999,
+          0.049999999999900006
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 3.4641016151412187,
+      "segment_times_s": [
+        0.0,
+        3.4641016151412187
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "cubic-hold",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.606752,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 0.1,
+        "minimum_duration_s": 0.0,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 0.1,
+      "segment_times_s": [
+        0.0,
+        0.1
+      ],
+      "segment_kind": [
+        "hold"
+      ],
+      "triangular": false,
+      "extra_check_passed": true
+    },
+    {
+      "id": "cubic-reverse",
+      "q_start_rad": [
+        1,
+        -0.7,
+        0.3,
+        0,
+        0.02,
+        -0.1
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.577293,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 3.4641016151412187,
+        "minimum_duration_s": 3.4641016151412187,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899997,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          3.3306690738754696e-16,
+          2.220446049250313e-16,
+          1.1102230246251565e-16
+        ],
+        "peak_formula_max_difference": 5.551115123125783e-17,
+        "continuous_peak_velocity_rad_s": [
+          0.4330127018917863,
+          0.30310889132425034,
+          0.1299038105675359,
+          0.0,
+          0.008660254037835725,
+          0.04330127018917864
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.49999999999899997,
+          0.3499999999992999,
+          0.14999999999969998,
+          0.0,
+          0.009999999999979999,
+          0.049999999999900006
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 3.4641016151412187,
+      "segment_times_s": [
+        0.0,
+        3.4641016151412187
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "cubic-short",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        0.01,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.38616,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 0.3464101615141219,
+        "minimum_duration_s": 0.3464101615141219,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.4999999999989999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          3.469446951953614e-18,
+          1.3877787807814457e-17,
+          5.551115123125783e-17
+        ],
+        "peak_formula_max_difference": 5.551115123125783e-17,
+        "continuous_peak_velocity_rad_s": [
+          0.04330127018917863,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.49999999999899986,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 0.3464101615141219,
+      "segment_times_s": [
+        0.0,
+        0.3464101615141219
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "cubic-near-limits",
+      "q_start_rad": [
+        -6.283185307179586,
+        -6.283185307179586,
+        -3.141592653589793,
+        -6.283185307179586,
+        -6.283185307179586,
+        -6.283185307179586
+      ],
+      "q_goal_rad": [
+        6.283185307179586,
+        6.283185307179586,
+        3.141592653589793,
+        6.283185307179586,
+        6.283185307179586,
+        6.283185307179586
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 2.446431,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 12.279920495370144,
+        "minimum_duration_s": 12.279920495370144,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899986,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          5.329070518200751e-15,
+          1.4432899320127035e-15,
+          2.220446049250313e-16
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          1.5349900619181975,
+          1.5349900619181975,
+          0.7674950309590988,
+          1.5349900619181975,
+          1.5349900619181975,
+          1.5349900619181975
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.49999999999899986,
+          0.49999999999899986,
+          0.24999999999949993,
+          0.49999999999899986,
+          0.49999999999899986,
+          0.49999999999899986
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 12.279920495370144,
+      "segment_times_s": [
+        0.0,
+        12.279920495370144
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "cubic-strict-too-short",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": 0.1,
+        "duration_policy": "strict",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 3002,
+      "actual_code": 3002,
+      "python_planning_wall_ms": 0.441976,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "C planner rejected request",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "cubic-stretch",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": 0.1,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.704073,
+      "passed": true,
+      "details": {
+        "requested_duration_s": 0.1,
+        "actual_duration_s": 3.4641016151412187,
+        "minimum_duration_s": 3.4641016151412187,
+        "duration_stretched": true,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899997,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          1.1102230246251565e-16,
+          2.220446049250313e-16,
+          1.1102230246251565e-16
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.4330127018917863,
+          0.4330127018917863,
+          0.4330127018917863,
+          0.4330127018917863,
+          0.4330127018917863,
+          0.4330127018917863
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.49999999999899997,
+          0.49999999999899997,
+          0.49999999999899997,
+          0.49999999999899997,
+          0.49999999999899997,
+          0.49999999999899997
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 3.4641016151412187,
+      "segment_times_s": [
+        0.0,
+        3.4641016151412187
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false,
+      "extra_check_passed": true
+    },
+    {
+      "id": "cubic-strict-long",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": 10,
+        "duration_policy": "strict",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.487791,
+      "passed": true,
+      "details": {
+        "requested_duration_s": 10,
+        "actual_duration_s": 10.0,
+        "minimum_duration_s": 3.4641016151412187,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.06,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          3.3306690738754696e-16,
+          1.249000902703301e-16,
+          1.0408340855860843e-17
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.06,
+          0.06,
+          0.06,
+          0.06,
+          0.06,
+          0.06
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 10.0,
+      "segment_times_s": [
+        0.0,
+        10.0
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false,
+      "extra_check_passed": true
+    },
+    {
+      "id": "cubic-max-duration",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 0.1,
+        "method": "cubic"
+      },
+      "expected_code": 3001,
+      "actual_code": 3001,
+      "python_planning_wall_ms": 0.463642,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "C planner rejected request",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "cubic-scaled",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic",
+        "velocity_scale": 0.5,
+        "acceleration_scale": 0.25
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.46676,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 6.9282032302824375,
+        "minimum_duration_s": 6.9282032302824375,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.12499999999974999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          3.3306690738754696e-16,
+          1.6306400674181987e-16,
+          2.7755575615628914e-17
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.21650635094589316,
+          0.21650635094589316,
+          0.21650635094589316,
+          0.21650635094589316,
+          0.21650635094589316,
+          0.21650635094589316
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.12499999999974999,
+          0.12499999999974999,
+          0.12499999999974999,
+          0.12499999999974999,
+          0.12499999999974999,
+          0.12499999999974999
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 6.9282032302824375,
+      "segment_times_s": [
+        0.0,
+        6.9282032302824375
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false,
+      "extra_check_passed": true
+    },
+    {
+      "id": "quintic-mixed",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        -0.7,
+        0.3,
+        0,
+        0.02,
+        -0.1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.502436,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 3.3980884896976433,
+        "minimum_duration_s": 3.3980884896976433,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          1.887379141862766e-15,
+          3.3688329903469594e-15,
+          3.608224830031759e-15
+        ],
+        "peak_formula_max_difference": 1.5543122344752192e-15,
+        "continuous_peak_velocity_rad_s": [
+          0.5517808043212067,
+          0.3862465630248444,
+          0.165534241296362,
+          0.0,
+          0.01103561608642414,
+          0.05517808043212068
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.4999999999989999,
+          0.34999999999930154,
+          0.14999999999969996,
+          0.0,
+          0.009999999999980004,
+          0.04999999999990001
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 3.3980884896976433,
+      "segment_times_s": [
+        0.0,
+        3.3980884896976433
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "quintic-strict-minimum",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        -0.7,
+        0.3,
+        0,
+        0.02,
+        -0.1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": 3.3980884896976433,
+        "duration_policy": "strict",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.568669,
+      "passed": true,
+      "details": {
+        "requested_duration_s": 3.3980884896976433,
+        "actual_duration_s": 3.3980884896976433,
+        "minimum_duration_s": 3.3980884896976433,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          1.887379141862766e-15,
+          3.3688329903469594e-15,
+          3.608224830031759e-15
+        ],
+        "peak_formula_max_difference": 1.5543122344752192e-15,
+        "continuous_peak_velocity_rad_s": [
+          0.5517808043212067,
+          0.3862465630248444,
+          0.165534241296362,
+          0.0,
+          0.01103561608642414,
+          0.05517808043212068
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.4999999999989999,
+          0.34999999999930154,
+          0.14999999999969996,
+          0.0,
+          0.009999999999980004,
+          0.04999999999990001
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 3.3980884896976433,
+      "segment_times_s": [
+        0.0,
+        3.3980884896976433
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "quintic-hold",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.344836,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 0.1,
+        "minimum_duration_s": 0.0,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 0.1,
+      "segment_times_s": [
+        0.0,
+        0.1
+      ],
+      "segment_kind": [
+        "hold"
+      ],
+      "triangular": false,
+      "extra_check_passed": true
+    },
+    {
+      "id": "quintic-reverse",
+      "q_start_rad": [
+        1,
+        -0.7,
+        0.3,
+        0,
+        0.02,
+        -0.1
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.762604,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 3.3980884896976433,
+        "minimum_duration_s": 3.3980884896976433,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          1.887379141862766e-15,
+          3.3688329903469594e-15,
+          3.608224830031759e-15
+        ],
+        "peak_formula_max_difference": 1.5543122344752192e-15,
+        "continuous_peak_velocity_rad_s": [
+          0.5517808043212067,
+          0.3862465630248444,
+          0.165534241296362,
+          0.0,
+          0.01103561608642414,
+          0.05517808043212068
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.4999999999989999,
+          0.34999999999930154,
+          0.14999999999969996,
+          0.0,
+          0.009999999999980004,
+          0.04999999999990001
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 3.3980884896976433,
+      "segment_times_s": [
+        0.0,
+        3.3980884896976433
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "quintic-short",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        0.01,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.468338,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 0.3398088489697644,
+        "minimum_duration_s": 0.3398088489697644,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          8.673617379884035e-18,
+          2.498001805406602e-16,
+          1.7763568394002505e-15
+        ],
+        "peak_formula_max_difference": 5.551115123125783e-17,
+        "continuous_peak_velocity_rad_s": [
+          0.05517808043212071,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.49999999999899997,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 0.3398088489697644,
+      "segment_times_s": [
+        0.0,
+        0.3398088489697644
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "quintic-near-limits",
+      "q_start_rad": [
+        -6.283185307179586,
+        -6.283185307179586,
+        -3.141592653589793,
+        -6.283185307179586,
+        -6.283185307179586,
+        -6.283185307179586
+      ],
+      "q_goal_rad": [
+        6.283185307179586,
+        6.283185307179586,
+        3.141592653589793,
+        6.283185307179586,
+        6.283185307179586,
+        6.283185307179586
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.624416,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 15.000000000015001,
+        "minimum_duration_s": 15.000000000015001,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          3.197442310920451e-14,
+          5.329070518200751e-15,
+          2.9976021664879227e-15
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          1.5707963267933256,
+          1.5707963267933256,
+          0.7853981633966628,
+          1.5707963267933256,
+          1.5707963267933256,
+          1.5707963267933256
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.32245322030766044,
+          0.32245322030766044,
+          0.16122661015383022,
+          0.32245322030766044,
+          0.32245322030766044,
+          0.32245322030766044
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 15.000000000015001,
+      "segment_times_s": [
+        0.0,
+        15.000000000015001
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "quintic-strict-too-short",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": 0.1,
+        "duration_policy": "strict",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 3002,
+      "actual_code": 3002,
+      "python_planning_wall_ms": 0.339738,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "C planner rejected request",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "quintic-stretch",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": 0.1,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.501637,
+      "passed": true,
+      "details": {
+        "requested_duration_s": 0.1,
+        "actual_duration_s": 3.3980884896976433,
+        "minimum_duration_s": 3.3980884896976433,
+        "duration_stretched": true,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          1.887379141862766e-15,
+          1.5161483180037294e-15,
+          3.3306690738754696e-15
+        ],
+        "peak_formula_max_difference": 5.551115123125783e-17,
+        "continuous_peak_velocity_rad_s": [
+          0.5517808043212067,
+          0.5517808043212067,
+          0.5517808043212067,
+          0.5517808043212067,
+          0.5517808043212067,
+          0.5517808043212067
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.4999999999989999,
+          0.4999999999989999,
+          0.4999999999989999,
+          0.4999999999989999,
+          0.4999999999989999,
+          0.4999999999989999
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 3.3980884896976433,
+      "segment_times_s": [
+        0.0,
+        3.3980884896976433
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false,
+      "extra_check_passed": true
+    },
+    {
+      "id": "quintic-strict-long",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": 10,
+        "duration_policy": "strict",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.874725,
+      "passed": true,
+      "details": {
+        "requested_duration_s": 10,
+        "actual_duration_s": 10.0,
+        "minimum_duration_s": 3.3980884896976433,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          1.887379141862766e-15,
+          1.0581813203458523e-15,
+          2.949029909160572e-16
+        ],
+        "peak_formula_max_difference": 1.3877787807814457e-17,
+        "continuous_peak_velocity_rad_s": [
+          0.1875,
+          0.1875,
+          0.1875,
+          0.1875,
+          0.1875,
+          0.1875
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.057735026918962595,
+          0.057735026918962595,
+          0.057735026918962595,
+          0.057735026918962595,
+          0.057735026918962595,
+          0.057735026918962595
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 10.0,
+      "segment_times_s": [
+        0.0,
+        10.0
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false,
+      "extra_check_passed": true
+    },
+    {
+      "id": "quintic-max-duration",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 0.1,
+        "method": "quintic"
+      },
+      "expected_code": 3001,
+      "actual_code": 3001,
+      "python_planning_wall_ms": 0.396645,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "C planner rejected request",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "quintic-scaled",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic",
+        "velocity_scale": 0.5,
+        "acceleration_scale": 0.25
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.954359,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 6.796176979395287,
+        "minimum_duration_s": 6.796176979395287,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          1.887379141862766e-15,
+          9.548568533079838e-16,
+          8.326672684688674e-16
+        ],
+        "peak_formula_max_difference": 1.3877787807814457e-17,
+        "continuous_peak_velocity_rad_s": [
+          0.27589040216060334,
+          0.27589040216060334,
+          0.27589040216060334,
+          0.27589040216060334,
+          0.27589040216060334,
+          0.27589040216060334
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.12499999999974998,
+          0.12499999999974998,
+          0.12499999999974998,
+          0.12499999999974998,
+          0.12499999999974998,
+          0.12499999999974998
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 6.796176979395287,
+      "segment_times_s": [
+        0.0,
+        6.796176979395287
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false,
+      "extra_check_passed": true
+    },
+    {
+      "id": "trapezoidal-mixed",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        -0.7,
+        0.3,
+        0,
+        0.02,
+        -0.1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.188139,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 2.8284271247490187,
+        "minimum_duration_s": 2.8284271247490187,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.4999999999989999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.7071067811858404,
+          0.49497474683008824,
+          0.2121320343557521,
+          0.0,
+          0.014142135623716807,
+          0.07071067811858404
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.4999999999989999,
+          0.3499999999992999,
+          0.14999999999969996,
+          0.0,
+          0.009999999999979999,
+          0.04999999999989999
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 1.4142135623745093,
+            "q_jump_rad": 0.0,
+            "qd_jump_rad_s": 0.0,
+            "qdd_jump_rad_s2": 0.9999999999979998,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 2.8284271247490187,
+      "segment_times_s": [
+        0.0,
+        1.4142135623745093,
+        2.8284271247490187
+      ],
+      "segment_kind": [
+        "acceleration",
+        "deceleration"
+      ],
+      "triangular": true
+    },
+    {
+      "id": "trapezoidal-strict-minimum",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        -0.7,
+        0.3,
+        0,
+        0.02,
+        -0.1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": 2.8284271247490187,
+        "duration_policy": "strict",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.953271,
+      "passed": true,
+      "details": {
+        "requested_duration_s": 2.8284271247490187,
+        "actual_duration_s": 2.8284271247490187,
+        "minimum_duration_s": 2.8284271247490187,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.4999999999989999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.7071067811858404,
+          0.49497474683008824,
+          0.2121320343557521,
+          0.0,
+          0.014142135623716807,
+          0.07071067811858404
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.4999999999989999,
+          0.3499999999992999,
+          0.14999999999969996,
+          0.0,
+          0.009999999999979999,
+          0.04999999999989999
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 1.4142135623745093,
+            "q_jump_rad": 0.0,
+            "qd_jump_rad_s": 0.0,
+            "qdd_jump_rad_s2": 0.9999999999979998,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 2.8284271247490187,
+      "segment_times_s": [
+        0.0,
+        1.4142135623745093,
+        2.8284271247490187
+      ],
+      "segment_kind": [
+        "acceleration",
+        "deceleration"
+      ],
+      "triangular": true
+    },
+    {
+      "id": "trapezoidal-hold",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.5855,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 0.1,
+        "minimum_duration_s": 0.0,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 0.1,
+      "segment_times_s": [
+        0.0,
+        0.1
+      ],
+      "segment_kind": [
+        "hold"
+      ],
+      "triangular": false,
+      "extra_check_passed": true
+    },
+    {
+      "id": "trapezoidal-reverse",
+      "q_start_rad": [
+        1,
+        -0.7,
+        0.3,
+        0,
+        0.02,
+        -0.1
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.351814,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 2.8284271247490187,
+        "minimum_duration_s": 2.8284271247490187,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.4999999999989999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.7071067811858404,
+          0.49497474683008824,
+          0.2121320343557521,
+          0.0,
+          0.014142135623716807,
+          0.07071067811858404
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.4999999999989999,
+          0.3499999999992999,
+          0.14999999999969996,
+          0.0,
+          0.009999999999979999,
+          0.04999999999989999
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 1.4142135623745093,
+            "q_jump_rad": 0.0,
+            "qd_jump_rad_s": 0.0,
+            "qdd_jump_rad_s2": 0.9999999999979998,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 2.8284271247490187,
+      "segment_times_s": [
+        0.0,
+        1.4142135623745093,
+        2.8284271247490187
+      ],
+      "segment_kind": [
+        "acceleration",
+        "deceleration"
+      ],
+      "triangular": true
+    },
+    {
+      "id": "trapezoidal-short",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        0.01,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.445383,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 0.2828427124749019,
+        "minimum_duration_s": 0.2828427124749019,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899986,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.07071067811858403,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.49999999999899986,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 0.14142135623745095,
+            "q_jump_rad": 0.0,
+            "qd_jump_rad_s": 0.0,
+            "qdd_jump_rad_s2": 0.9999999999979997,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 0.2828427124749019,
+      "segment_times_s": [
+        0.0,
+        0.14142135623745095,
+        0.2828427124749019
+      ],
+      "segment_kind": [
+        "acceleration",
+        "deceleration"
+      ],
+      "triangular": true,
+      "extra_check_passed": true
+    },
+    {
+      "id": "trapezoidal-near-limits",
+      "q_start_rad": [
+        -6.283185307179586,
+        -6.283185307179586,
+        -3.141592653589793,
+        -6.283185307179586,
+        -6.283185307179586,
+        -6.283185307179586
+      ],
+      "q_goal_rad": [
+        6.283185307179586,
+        6.283185307179586,
+        3.141592653589793,
+        6.283185307179586,
+        6.283185307179586,
+        6.283185307179586
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 2.431964,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 11.141592653600936,
+        "minimum_duration_s": 11.141592653600936,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899986,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          2.6645352591003757e-15,
+          3.3306690738754696e-16,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          1.5707963267933256,
+          1.5707963267933256,
+          0.7853981633966628,
+          1.5707963267933256,
+          1.5707963267933256,
+          1.5707963267933256
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.49999999999899986,
+          0.49999999999899986,
+          0.24999999999949993,
+          0.49999999999899986,
+          0.49999999999899986,
+          0.49999999999899986
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 3.141592653592935,
+            "q_jump_rad": 4.440892098500626e-16,
+            "qd_jump_rad_s": 2.220446049250313e-16,
+            "qdd_jump_rad_s2": 0.49999999999899986,
+            "acceleration_jump_allowed": true
+          },
+          {
+            "time_s": 8.000000000008,
+            "q_jump_rad": 1.7763568394002505e-15,
+            "qd_jump_rad_s": 0.0,
+            "qdd_jump_rad_s2": 0.49999999999899986,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 11.141592653600936,
+      "segment_times_s": [
+        0.0,
+        3.141592653592935,
+        8.000000000008,
+        11.141592653600936
+      ],
+      "segment_kind": [
+        "acceleration",
+        "cruise",
+        "deceleration"
+      ],
+      "triangular": false,
+      "extra_check_passed": true
+    },
+    {
+      "id": "trapezoidal-strict-too-short",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": 0.1,
+        "duration_policy": "strict",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 3002,
+      "actual_code": 3002,
+      "python_planning_wall_ms": 0.517075,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "C planner rejected request",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "trapezoidal-stretch",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": 0.1,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.092401,
+      "passed": true,
+      "details": {
+        "requested_duration_s": 0.1,
+        "actual_duration_s": 2.8284271247490187,
+        "minimum_duration_s": 2.8284271247490187,
+        "duration_stretched": true,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.4999999999989999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.7071067811858404,
+          0.7071067811858404,
+          0.7071067811858404,
+          0.7071067811858404,
+          0.7071067811858404,
+          0.7071067811858404
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.4999999999989999,
+          0.4999999999989999,
+          0.4999999999989999,
+          0.4999999999989999,
+          0.4999999999989999,
+          0.4999999999989999
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 1.4142135623745093,
+            "q_jump_rad": 0.0,
+            "qd_jump_rad_s": 0.0,
+            "qdd_jump_rad_s2": 0.9999999999979998,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 2.8284271247490187,
+      "segment_times_s": [
+        0.0,
+        1.4142135623745093,
+        2.8284271247490187
+      ],
+      "segment_kind": [
+        "acceleration",
+        "deceleration"
+      ],
+      "triangular": true,
+      "extra_check_passed": true
+    },
+    {
+      "id": "trapezoidal-strict-long",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": 10,
+        "duration_policy": "strict",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.413053,
+      "passed": true,
+      "details": {
+        "requested_duration_s": 10,
+        "actual_duration_s": 10.0,
+        "minimum_duration_s": 2.8284271247490187,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.04,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          1.1102230246251565e-16,
+          2.7755575615628914e-17,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 5.0,
+            "q_jump_rad": 0.0,
+            "qd_jump_rad_s": 0.0,
+            "qdd_jump_rad_s2": 0.08,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 10.0,
+      "segment_times_s": [
+        0.0,
+        5.0,
+        10.0
+      ],
+      "segment_kind": [
+        "acceleration",
+        "deceleration"
+      ],
+      "triangular": true,
+      "extra_check_passed": true
+    },
+    {
+      "id": "trapezoidal-max-duration",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 0.1,
+        "method": "trapezoidal"
+      },
+      "expected_code": 3001,
+      "actual_code": 3001,
+      "python_planning_wall_ms": 0.621933,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "C planner rejected request",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "trapezoidal-scaled",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal",
+        "velocity_scale": 0.5,
+        "acceleration_scale": 0.25
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.512881,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 5.656854249498037,
+        "minimum_duration_s": 5.656854249498037,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.12499999999974998,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          1.1102230246251565e-16,
+          5.551115123125783e-17,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.3535533905929202,
+          0.3535533905929202,
+          0.3535533905929202,
+          0.3535533905929202,
+          0.3535533905929202,
+          0.3535533905929202
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.12499999999974998,
+          0.12499999999974998,
+          0.12499999999974998,
+          0.12499999999974998,
+          0.12499999999974998,
+          0.12499999999974998
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 2.8284271247490187,
+            "q_jump_rad": 0.0,
+            "qd_jump_rad_s": 0.0,
+            "qdd_jump_rad_s2": 0.24999999999949996,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 5.656854249498037,
+      "segment_times_s": [
+        0.0,
+        2.8284271247490187,
+        5.656854249498037
+      ],
+      "segment_kind": [
+        "acceleration",
+        "deceleration"
+      ],
+      "triangular": true,
+      "extra_check_passed": true
+    },
+    {
+      "id": "trapezoidal-long",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        5.5,
+        -3,
+        1.5,
+        0,
+        0.1,
+        -0.7
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.432586,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 6.643001401618134,
+        "minimum_duration_s": 6.643001401618134,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899997,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          8.881784197001252e-16,
+          4.440892098500626e-16,
+          5.551115123125783e-17
+        ],
+        "peak_formula_max_difference": 1.1102230246251565e-16,
+        "continuous_peak_velocity_rad_s": [
+          1.5707963267933258,
+          0.8567979964327233,
+          0.4283989982163616,
+          0.0,
+          0.02855993321442411,
+          0.19991953250096872
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.4999999999989999,
+          0.27272727272672725,
+          0.13636363636336363,
+          0.0,
+          0.009090909090890909,
+          0.06363636363623636
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 3.141592653592935,
+            "q_jump_rad": 4.440892098500626e-16,
+            "qd_jump_rad_s": 2.220446049250313e-16,
+            "qdd_jump_rad_s2": 0.4999999999989999,
+            "acceleration_jump_allowed": true
+          },
+          {
+            "time_s": 3.501408748025199,
+            "q_jump_rad": 4.440892098500626e-16,
+            "qd_jump_rad_s": 2.220446049250313e-16,
+            "qdd_jump_rad_s2": 0.4999999999989999,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 6.643001401618134,
+      "segment_times_s": [
+        0.0,
+        3.141592653592935,
+        3.501408748025199,
+        6.643001401618134
+      ],
+      "segment_kind": [
+        "acceleration",
+        "cruise",
+        "deceleration"
+      ],
+      "triangular": false,
+      "extra_check_passed": true
+    },
+    {
+      "id": "nan-start",
+      "q_start_rad": [
+        "nan",
+        "nan",
+        "nan",
+        "nan",
+        "nan",
+        "nan"
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "python_planning_wall_ms": 0.330434,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Expected finite numeric array",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "bad-length",
+      "q_start_rad": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "python_planning_wall_ms": 0.161363,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Invalid array shape",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "position-over",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        6.284185307179587,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1005,
+      "actual_code": 1005,
+      "python_planning_wall_ms": 0.454049,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "C planner rejected request",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "negative-dt",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": -0.01,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "python_planning_wall_ms": 0.007219,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Invalid sample_period_s",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "underflow-dt",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 1e-300,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "python_planning_wall_ms": 0.003683,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Invalid sample_period_s",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "zero-duration",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": 0,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "python_planning_wall_ms": 0.003971,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Invalid duration_s",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "inf-duration",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": "inf",
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "python_planning_wall_ms": 0.002849,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Invalid duration_s",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "unknown-method",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "spline"
+      },
+      "expected_code": 1008,
+      "actual_code": 1008,
+      "python_planning_wall_ms": 0.002581,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Unsupported method",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "invalid-policy",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "ignore",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "python_planning_wall_ms": 0.002698,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Unknown duration policy",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "auto-strict",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "strict",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "python_planning_wall_ms": 0.00229,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Automatic duration requires stretch",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "scale-increase",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic",
+        "velocity_scale": 2
+      },
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "python_planning_wall_ms": 0.33921,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "request velocity scale exceeds allowed maximum",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "nonzero-boundary-unsupported",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic",
+        "qd_start_rad_s": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected_code": 1008,
+      "actual_code": 1008,
+      "python_planning_wall_ms": 0.005297,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Unsupported option/boundary condition",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "collision-required",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic",
+        "collision_policy": "required"
+      },
+      "expected_code": 1008,
+      "actual_code": 1008,
+      "python_planning_wall_ms": 0.00581,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Collision checker not implemented",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "sampling-budget",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 1e-09,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 3001,
+      "actual_code": 3001,
+      "python_planning_wall_ms": 0.185284,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Sampling budget exceeded (100000 intervals)",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "margin-over",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic",
+        "joint_margin_rad": 10
+      },
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "python_planning_wall_ms": 0.147974,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "C planner rejected request",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "missing-config",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "python_planning_wall_ms": 0.034547,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Planning configuration/model unavailable",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "missing-acceleration_rad_s2",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "python_planning_wall_ms": 0.52869,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Planning parameter missing: acceleration_rad_s2",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "missing-linear_velocity_m_s",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "python_planning_wall_ms": 0.326973,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Planning parameter missing: linear_velocity_m_s",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "missing-angular_velocity_rad_s",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "python_planning_wall_ms": 0.168613,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Planning parameter missing: angular_velocity_rad_s",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "missing-linear_acceleration_m_s2",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "python_planning_wall_ms": 0.595028,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Planning parameter missing: linear_acceleration_m_s2",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "missing-angular_acceleration_rad_s2",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "python_planning_wall_ms": 0.183583,
+      "passed": true,
+      "details": {
+        "module": "planning"
+      },
+      "message": "Planning parameter missing: angular_acceleration_rad_s2",
+      "failure_data_is_null": true
+    },
+    {
+      "id": "triangle-threshold",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        4.934802200544679,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.057533,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 6.28318530718587,
+        "minimum_duration_s": 6.28318530718587,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.4999999999989999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          8.881784197001252e-16,
+          2.220446049250313e-16,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          1.5707963267933256,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.4999999999989999,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 3.141592653592935,
+            "q_jump_rad": 0.0,
+            "qd_jump_rad_s": 0.0,
+            "qdd_jump_rad_s2": 0.9999999999979998,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 6.28318530718587,
+      "segment_times_s": [
+        0.0,
+        3.141592653592935,
+        6.28318530718587
+      ],
+      "segment_kind": [
+        "acceleration",
+        "deceleration"
+      ],
+      "triangular": true,
+      "extra_check_passed": true
+    },
+    {
+      "id": "triangle-threshold-0.999",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        4.929867398344134,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.896592,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 6.280042928741169,
+        "minimum_duration_s": 6.280042928741169,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899986,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          8.881784197001252e-16,
+          4.440892098500626e-16,
+          5.551115123125783e-17
+        ],
+        "peak_formula_max_difference": 5.551115123125783e-17,
+        "continuous_peak_velocity_rad_s": [
+          1.5700107321821517,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.4999999999989998,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 3.1400214643705846,
+            "q_jump_rad": 4.440892098500626e-16,
+            "qd_jump_rad_s": 0.0,
+            "qdd_jump_rad_s2": 0.9999999999979996,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 6.280042928741169,
+      "segment_times_s": [
+        0.0,
+        3.1400214643705846,
+        6.280042928741169
+      ],
+      "segment_kind": [
+        "acceleration",
+        "deceleration"
+      ],
+      "triangular": true,
+      "extra_check_passed": true
+    },
+    {
+      "id": "triangle-threshold-1.001",
+      "q_start_rad": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_goal_rad": [
+        4.939737002745223,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.167748,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 6.286326899839462,
+        "minimum_duration_s": 6.286326899839462,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.4999999999989999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          8.881784197001252e-16,
+          2.220446049250313e-16,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          1.5707963267933256,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.4999999999989999,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 3.141592653592935,
+            "q_jump_rad": 0.0,
+            "qd_jump_rad_s": 0.0,
+            "qdd_jump_rad_s2": 0.4999999999989999,
+            "acceleration_jump_allowed": true
+          },
+          {
+            "time_s": 3.1447342462465273,
+            "q_jump_rad": 4.440892098500626e-16,
+            "qd_jump_rad_s": 0.0,
+            "qdd_jump_rad_s2": 0.4999999999989999,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 6.286326899839462,
+      "segment_times_s": [
+        0.0,
+        3.141592653592935,
+        3.1447342462465273,
+        6.286326899839462
+      ],
+      "segment_kind": [
+        "acceleration",
+        "cruise",
+        "deceleration"
+      ],
+      "triangular": false,
+      "extra_check_passed": true
+    },
+    {
+      "id": "seed20261010-0-cubic",
+      "q_start_rad": [
+        -1.5060397747591603,
+        1.6295284515145312,
+        -2.3012530832289153,
+        3.333322949498383,
+        -2.4417074529245415,
+        -0.9912197864161731
+      ],
+      "q_goal_rad": [
+        -1.4408342796188611,
+        1.2766123636778657,
+        -1.6405344727269737,
+        -1.078468581127542,
+        -0.4706924920918043,
+        2.8730681605209014
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.542761,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 7.276090871313867,
+        "minimum_duration_s": 7.276090871313867,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 4.440892098500626e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.4999999999989998,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          2.6645352591003757e-15,
+          8.881784197001252e-16,
+          2.220446049250313e-16
+        ],
+        "peak_formula_max_difference": 2.220446049250313e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.013442416324960932,
+          0.07275529417067429,
+          0.13621021689823265,
+          0.9095113589124142,
+          0.40633390834977806,
+          0.7966409467559233
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.007389911183192021,
+          0.039996913429167565,
+          0.07488098722639329,
+          0.49999999999899986,
+          0.22338033734666923,
+          0.4379499711289733
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 7.276090871313867,
+      "segment_times_s": [
+        0.0,
+        7.276090871313867
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-0-quintic",
+      "q_start_rad": [
+        -1.5060397747591603,
+        1.6295284515145312,
+        -2.3012530832289153,
+        3.333322949498383,
+        -2.4417074529245415,
+        -0.9912197864161731
+      ],
+      "q_goal_rad": [
+        -1.4408342796188611,
+        1.2766123636778657,
+        -1.6405344727269737,
+        -1.078468581127542,
+        -0.4706924920918043,
+        2.8730681605209014
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.930739,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 7.1374351525187025,
+        "minimum_duration_s": 7.1374351525187025,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 4.440892098500626e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          1.021405182655144e-14,
+          5.717648576819556e-15,
+          2.6645352591003757e-15
+        ],
+        "peak_formula_max_difference": 8.881784197001252e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.01712944507032291,
+          0.09271084788213273,
+          0.17357038883274034,
+          1.1589750299874173,
+          0.517784466350946,
+          1.015146161846412
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.007389911183192021,
+          0.039996913429167585,
+          0.0748809872263933,
+          0.4999999999989999,
+          0.2233803373466692,
+          0.4379499711289733
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 7.1374351525187025,
+      "segment_times_s": [
+        0.0,
+        7.1374351525187025
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-0-trapezoidal",
+      "q_start_rad": [
+        -1.5060397747591603,
+        1.6295284515145312,
+        -2.3012530832289153,
+        3.333322949498383,
+        -2.4417074529245415,
+        -0.9912197864161731
+      ],
+      "q_goal_rad": [
+        -1.4408342796188611,
+        1.2766123636778657,
+        -1.6405344727269737,
+        -1.078468581127542,
+        -0.4706924920918043,
+        2.8730681605209014
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.342595,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 5.9409033189472105,
+        "minimum_duration_s": 5.9409033189472105,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 4.440892098500626e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999900013,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          8.881784197001252e-16,
+          2.7755575615628914e-16,
+          8.673617379884035e-19
+        ],
+        "peak_formula_max_difference": 1.1102230246251565e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.02195137393747531,
+          0.118808897869493,
+          0.22243035276966192,
+          1.4852258297338325,
+          0.6635404937651879,
+          1.3009092185064768
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.0073899111831920265,
+          0.03999691342916759,
+          0.07488098722639333,
+          0.49999999999900013,
+          0.22338033734666937,
+          0.4379499711289735
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 2.9704516594736052,
+            "q_jump_rad": 4.440892098500626e-16,
+            "qd_jump_rad_s": 1.1102230246251565e-16,
+            "qdd_jump_rad_s2": 0.9999999999980003,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 5.9409033189472105,
+      "segment_times_s": [
+        0.0,
+        2.9704516594736052,
+        5.9409033189472105
+      ],
+      "segment_kind": [
+        "acceleration",
+        "deceleration"
+      ],
+      "triangular": true
+    },
+    {
+      "id": "seed20261010-1-cubic",
+      "q_start_rad": [
+        0.13235657327701578,
+        -1.7332668053274074,
+        0.5272624448547703,
+        -3.3135675399129165,
+        -1.5570619338645648,
+        -2.0202012322823735
+      ],
+      "q_goal_rad": [
+        2.5897095911487265,
+        1.8061044150631194,
+        -2.0853263922467864,
+        -1.8232971383655756,
+        3.643676690747009,
+        -1.0677245339120787
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.287607,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 7.899928069005674,
+        "minimum_duration_s": 7.899928069005674,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 4.440892098500626e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.4999999999989999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          1.7763568394002505e-15,
+          6.938893903907228e-16,
+          1.6653345369377348e-16
+        ],
+        "peak_formula_max_difference": 5.551115123125783e-17,
+        "continuous_peak_velocity_rad_s": [
+          0.46659026444420637,
+          0.6720386292395718,
+          0.4960656883734874,
+          0.2829653109236944,
+          0.9874910086237342,
+          0.18085165270818315
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.23625038626607842,
+          0.34027582194132966,
+          0.25117478743622274,
+          0.1432748796961185,
+          0.4999999999989999,
+          0.0915712908413588
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 7.899928069005674,
+      "segment_times_s": [
+        0.0,
+        7.899928069005674
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-1-quintic",
+      "q_start_rad": [
+        0.13235657327701578,
+        -1.7332668053274074,
+        0.5272624448547703,
+        -3.3135675399129165,
+        -1.5570619338645648,
+        -2.0202012322823735
+      ],
+      "q_goal_rad": [
+        2.5897095911487265,
+        1.8061044150631194,
+        -2.0853263922467864,
+        -1.8232971383655756,
+        3.643676690747009,
+        -1.0677245339120787
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.941591,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 7.7493842915555335,
+        "minimum_duration_s": 7.7493842915555335,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 4.440892098500626e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          1.3322676295501878e-14,
+          8.1601392309949e-15,
+          3.0808688933348094e-15
+        ],
+        "peak_formula_max_difference": 1.3322676295501878e-15,
+        "continuous_peak_velocity_rad_s": [
+          0.5945681276292192,
+          0.8563675239933325,
+          0.6321281646728248,
+          0.36057793726220966,
+          1.2583431862803265,
+          0.23045621977869682
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.23625038626607836,
+          0.3402758219413297,
+          0.251174787436224,
+          0.14327487969611852,
+          0.4999999999990008,
+          0.0915712908413588
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 7.7493842915555335,
+      "segment_times_s": [
+        0.0,
+        7.7493842915555335
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-1-trapezoidal",
+      "q_start_rad": [
+        0.13235657327701578,
+        -1.7332668053274074,
+        0.5272624448547703,
+        -3.3135675399129165,
+        -1.5570619338645648,
+        -2.0202012322823735
+      ],
+      "q_goal_rad": [
+        2.5897095911487265,
+        1.8061044150631194,
+        -2.0853263922467864,
+        -1.8232971383655756,
+        3.643676690747009,
+        -1.0677245339120787
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.884002,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 6.452485692939754,
+        "minimum_duration_s": 6.452485692939754,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 4.440892098500626e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899997,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          8.881784197001252e-16,
+          4.996003610813204e-16,
+          5.551115123125783e-17
+        ],
+        "peak_formula_max_difference": 5.551115123125783e-17,
+        "continuous_peak_velocity_rad_s": [
+          0.7422024779020052,
+          1.0690080224061789,
+          0.7890888669774043,
+          0.4501113094977375,
+          1.5707963267933258,
+          0.28767969458723486
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.23625038626607842,
+          0.34027582194132966,
+          0.25117478743622274,
+          0.14327487969611852,
+          0.4999999999989999,
+          0.09157129084135882
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 3.141592653592935,
+            "q_jump_rad": 2.220446049250313e-16,
+            "qd_jump_rad_s": 2.220446049250313e-16,
+            "qdd_jump_rad_s2": 0.4999999999989999,
+            "acceleration_jump_allowed": true
+          },
+          {
+            "time_s": 3.3108930393468197,
+            "q_jump_rad": 1.1102230246251565e-15,
+            "qd_jump_rad_s": 2.220446049250313e-16,
+            "qdd_jump_rad_s2": 0.4999999999989999,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 6.452485692939754,
+      "segment_times_s": [
+        0.0,
+        3.141592653592935,
+        3.3108930393468197,
+        6.452485692939754
+      ],
+      "segment_kind": [
+        "acceleration",
+        "cruise",
+        "deceleration"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-2-cubic",
+      "q_start_rad": [
+        1.7414824782597051,
+        -0.45857693625168583,
+        -1.8302134562709076,
+        2.391949080257773,
+        0.6135253191136485,
+        4.824113492923754
+      ],
+      "q_goal_rad": [
+        0.4628253294131355,
+        -3.218208864937912,
+        0.5133363797106205,
+        2.908129021962023,
+        3.0515280996531313,
+        -1.6528721052312787
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.254098,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 8.81611179477755,
+        "minimum_duration_s": 8.81611179477755,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 4.440892098500626e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.499999999999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          2.6645352591003757e-15,
+          9.992007221626409e-16,
+          1.6653345369377348e-16
+        ],
+        "peak_formula_max_difference": 1.1102230246251565e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.21755460546746044,
+          0.46953214630075907,
+          0.3987386770724351,
+          0.08782442085353698,
+          0.41480918753497925,
+          1.1020139743449897
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.09870773444426352,
+          0.21303366256262699,
+          0.18091362104034944,
+          0.0398472355604937,
+          0.1882050487520824,
+          0.4999999999990001
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 8.81611179477755,
+      "segment_times_s": [
+        0.0,
+        8.81611179477755
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-2-quintic",
+      "q_start_rad": [
+        1.7414824782597051,
+        -0.45857693625168583,
+        -1.8302134562709076,
+        2.391949080257773,
+        0.6135253191136485,
+        4.824113492923754
+      ],
+      "q_goal_rad": [
+        0.4628253294131355,
+        -3.218208864937912,
+        0.5133363797106205,
+        2.908129021962023,
+        3.0515280996531313,
+        -1.6528721052312787
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.68085,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 8.648108901534043,
+        "minimum_duration_s": 8.648108901534043,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 4.440892098500626e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          2.220446049250313e-14,
+          5.405398351143731e-15,
+          2.9976021664879227e-15
+        ],
+        "peak_formula_max_difference": 9.992007221626409e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.2772261752696062,
+          0.5983169182072663,
+          0.5081059908584065,
+          0.11191318260617514,
+          0.528584372093263,
+          1.404277875638969
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.09870773444426373,
+          0.21303366256262685,
+          0.18091362104035036,
+          0.0398472355604938,
+          0.18820504875208233,
+          0.49999999999899986
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 8.648108901534043,
+      "segment_times_s": [
+        0.0,
+        8.648108901534043
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-2-trapezoidal",
+      "q_start_rad": [
+        1.7414824782597051,
+        -0.45857693625168583,
+        -1.8302134562709076,
+        2.391949080257773,
+        0.6135253191136485,
+        4.824113492923754
+      ],
+      "q_goal_rad": [
+        0.4628253294131355,
+        -3.218208864937912,
+        0.5133363797106205,
+        2.908129021962023,
+        3.0515280996531313,
+        -1.6528721052312787
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.693926,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 7.264969750722618,
+        "minimum_duration_s": 7.264969750722618,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 4.440892098500626e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899986,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          8.881784197001252e-16,
+          3.0531133177191805e-16,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.3100994933829005,
+          0.6692649892747449,
+          0.5683569027952579,
+          0.12518378250283413,
+          0.5912635985286421,
+          1.5707963267933256
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.09870773444426348,
+          0.21303366256262687,
+          0.18091362104034936,
+          0.03984723556049369,
+          0.18820504875208235,
+          0.49999999999899986
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 3.141592653592935,
+            "q_jump_rad": 4.440892098500626e-16,
+            "qd_jump_rad_s": 2.220446049250313e-16,
+            "qdd_jump_rad_s2": 0.49999999999899986,
+            "acceleration_jump_allowed": true
+          },
+          {
+            "time_s": 4.1233770971296835,
+            "q_jump_rad": 4.440892098500626e-16,
+            "qd_jump_rad_s": 2.220446049250313e-16,
+            "qdd_jump_rad_s2": 0.49999999999899986,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 7.264969750722618,
+      "segment_times_s": [
+        0.0,
+        3.141592653592935,
+        4.1233770971296835,
+        7.264969750722618
+      ],
+      "segment_kind": [
+        "acceleration",
+        "cruise",
+        "deceleration"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-3-cubic",
+      "q_start_rad": [
+        3.822402262035137,
+        1.0791950016167107,
+        1.8769091569768035,
+        1.7891511223072047,
+        -0.8250108563322724,
+        -2.9163007844712086
+      ],
+      "q_goal_rad": [
+        0.38502542483781976,
+        -0.9802676202705847,
+        -2.0097525573961503,
+        -4.908870460959785,
+        -0.1482398031462342,
+        2.294904382723125
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.25551,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 8.965280754073719,
+        "minimum_duration_s": 8.965280754073719,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899997,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          2.6645352591003757e-15,
+          1.4432899320127035e-15,
+          1.6653345369377348e-16
+        ],
+        "peak_formula_max_difference": 2.220446049250313e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.5751147562727604,
+          0.34457302761291086,
+          0.6502855550742624,
+          1.1206600942569735,
+          0.11323198989811692,
+          0.8718977090862029
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.2565964288453253,
+          0.15373663672778612,
+          0.2901350545118312,
+          0.499999999999,
+          0.05052022039428743,
+          0.38901077746618146
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 8.965280754073719,
+      "segment_times_s": [
+        0.0,
+        8.965280754073719
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-3-quintic",
+      "q_start_rad": [
+        3.822402262035137,
+        1.0791950016167107,
+        1.8769091569768035,
+        1.7891511223072047,
+        -0.8250108563322724,
+        -2.9163007844712086
+      ],
+      "q_goal_rad": [
+        0.38502542483781976,
+        -0.9802676202705847,
+        -2.0097525573961503,
+        -4.908870460959785,
+        -0.1482398031462342,
+        2.294904382723125
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.381014,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 8.794435245250096,
+        "minimum_duration_s": 8.794435245250096,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          1.509903313490213e-14,
+          7.105427357601002e-15,
+          3.164135620181696e-15
+        ],
+        "peak_formula_max_difference": 9.992007221626409e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.7328590625789162,
+          0.4390836146214487,
+          0.8286479473921069,
+          1.4280383126828584,
+          0.14428962057673717,
+          1.1110445885387275
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.25659642884532513,
+          0.15373663672778615,
+          0.2901350545118313,
+          0.4999999999990008,
+          0.05052022039428755,
+          0.3890107774661824
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 8.794435245250096,
+      "segment_times_s": [
+        0.0,
+        8.794435245250096
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-3-trapezoidal",
+      "q_start_rad": [
+        3.822402262035137,
+        1.0791950016167107,
+        1.8769091569768035,
+        1.7891511223072047,
+        -0.8250108563322724,
+        -2.9163007844712086
+      ],
+      "q_goal_rad": [
+        0.38502542483781976,
+        -0.9802676202705847,
+        -2.0097525573961503,
+        -4.908870460959785,
+        -0.1482398031462342,
+        2.294904382723125
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.901451,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 7.405685629249778,
+        "minimum_duration_s": 7.405685629249778,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899997,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          1.7763568394002505e-15,
+          4.440892098500626e-16,
+          5.551115123125783e-17
+        ],
+        "peak_formula_max_difference": 2.220446049250313e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.8061214557986561,
+          0.4829778885320988,
+          0.9114861558041548,
+          1.570796326793326,
+          0.15871395324858936,
+          1.222113400656232
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.2565964288453253,
+          0.15373663672778612,
+          0.2901350545118312,
+          0.4999999999989999,
+          0.05052022039428743,
+          0.38901077746618146
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 3.141592653592935,
+            "q_jump_rad": 4.440892098500626e-16,
+            "qd_jump_rad_s": 2.220446049250313e-16,
+            "qdd_jump_rad_s2": 0.4999999999989999,
+            "acceleration_jump_allowed": true
+          },
+          {
+            "time_s": 4.264092975656842,
+            "q_jump_rad": 1.7763568394002505e-15,
+            "qd_jump_rad_s": 2.220446049250313e-16,
+            "qdd_jump_rad_s2": 0.4999999999989999,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 7.405685629249778,
+      "segment_times_s": [
+        0.0,
+        3.141592653592935,
+        4.264092975656842,
+        7.405685629249778
+      ],
+      "segment_kind": [
+        "acceleration",
+        "cruise",
+        "deceleration"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-4-cubic",
+      "q_start_rad": [
+        -2.2130923466279926,
+        -4.760175429856264,
+        1.1130386155437373,
+        -4.204922039142284,
+        -3.4928661810080905,
+        0.4157388606331862
+      ],
+      "q_goal_rad": [
+        2.319337642487713,
+        0.6762542519300627,
+        0.2526993369551138,
+        0.8985128570588516,
+        -0.9021030438561191,
+        -2.015725256232958
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.16894,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 8.076952159172814,
+        "minimum_duration_s": 8.076952159172814,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.4999999999990001,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          2.6645352591003757e-15,
+          5.551115123125783e-16,
+          1.249000902703301e-16
+        ],
+        "peak_formula_max_difference": 1.1102230246251565e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.841733967181233,
+          1.0096190198945827,
+          0.15977671929346926,
+          0.9477773538138291,
+          0.4811399930497978,
+          0.4515559958043304
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.4168572256431132,
+          0.49999999999900013,
+          0.07912723321606625,
+          0.4693737613574742,
+          0.23827799574292535,
+          0.22362692605106416
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 8.076952159172814,
+      "segment_times_s": [
+        0.0,
+        8.076952159172814
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-4-quintic",
+      "q_start_rad": [
+        -2.2130923466279926,
+        -4.760175429856264,
+        1.1130386155437373,
+        -4.204922039142284,
+        -3.4928661810080905,
+        0.4157388606331862
+      ],
+      "q_goal_rad": [
+        2.319337642487713,
+        0.6762542519300627,
+        0.2526993369551138,
+        0.8985128570588516,
+        -0.9021030438561191,
+        -2.015725256232958
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.96532,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 7.923034949078649,
+        "minimum_duration_s": 7.923034949078649,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          1.3322676295501878e-14,
+          5.662137425588298e-15,
+          2.6645352591003757e-15
+        ],
+        "peak_formula_max_difference": 1.2212453270876722e-15,
+        "continuous_peak_velocity_rad_s": [
+          1.0726074394737075,
+          1.2865405389300621,
+          0.20360078653209243,
+          1.2077367437953657,
+          0.6131086021177825,
+          0.5754102119231695
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.4168572256431142,
+          0.4999999999989999,
+          0.0791272332160663,
+          0.4693737613574753,
+          0.23827799574292552,
+          0.22362692605106416
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 7.923034949078649,
+      "segment_times_s": [
+        0.0,
+        7.923034949078649
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-4-trapezoidal",
+      "q_start_rad": [
+        -2.2130923466279926,
+        -4.760175429856264,
+        1.1130386155437373,
+        -4.204922039142284,
+        -3.4928661810080905,
+        0.4157388606331862
+      ],
+      "q_goal_rad": [
+        2.319337642487713,
+        0.6762542519300627,
+        0.2526993369551138,
+        0.8985128570588516,
+        -0.9021030438561191,
+        -2.015725256232958
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.064742,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 6.60253128010757,
+        "minimum_duration_s": 6.60253128010757,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.499999999999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          8.881784197001252e-16,
+          4.440892098500626e-16,
+          5.551115123125783e-17
+        ],
+        "peak_formula_max_difference": 1.1102230246251565e-16,
+        "continuous_peak_velocity_rad_s": [
+          1.3095955976775364,
+          1.5707963267933258,
+          0.24858553457072854,
+          1.4745811604699242,
+          0.7485724009388228,
+          0.7025447080275935
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.41685722564311306,
+          0.499999999999,
+          0.07912723321606624,
+          0.46937376135747416,
+          0.23827799574292532,
+          0.2236269260510641
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 3.141592653592935,
+            "q_jump_rad": 4.440892098500626e-16,
+            "qd_jump_rad_s": 1.1102230246251565e-16,
+            "qdd_jump_rad_s2": 0.499999999999,
+            "acceleration_jump_allowed": true
+          },
+          {
+            "time_s": 3.460938626514635,
+            "q_jump_rad": 4.440892098500626e-16,
+            "qd_jump_rad_s": 1.1102230246251565e-16,
+            "qdd_jump_rad_s2": 0.499999999999,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 6.60253128010757,
+      "segment_times_s": [
+        0.0,
+        3.141592653592935,
+        3.460938626514635,
+        6.60253128010757
+      ],
+      "segment_kind": [
+        "acceleration",
+        "cruise",
+        "deceleration"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-5-cubic",
+      "q_start_rad": [
+        -2.588619313584319,
+        3.2014878840032353,
+        -1.1634535080475343,
+        -2.3860390262996662,
+        4.674853716166773,
+        0.2720948353775201
+      ],
+      "q_goal_rad": [
+        -3.503907588643681,
+        1.3729077028692043,
+        -1.2093693805191412,
+        -4.617326063646855,
+        -2.8477345045393205,
+        3.5952051305024355
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.160567,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 9.501108285281969,
+        "minimum_duration_s": 9.501108285281969,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.4999999999989999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          3.552713678800501e-15,
+          1.4710455076283324e-15,
+          1.6653345369377348e-16
+        ],
+        "peak_formula_max_difference": 4.440892098500626e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.144502343449325,
+          0.2886895075125065,
+          0.007249028917405537,
+          0.35226738350150855,
+          1.1876385356578703,
+          0.524640420150673
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.06083599475365272,
+          0.12153929787736921,
+          0.003051866666390869,
+          0.14830580724869788,
+          0.499999999999,
+          0.2208754618504395
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 9.501108285281969,
+      "segment_times_s": [
+        0.0,
+        9.501108285281969
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-5-quintic",
+      "q_start_rad": [
+        -2.588619313584319,
+        3.2014878840032353,
+        -1.1634535080475343,
+        -2.3860390262996662,
+        4.674853716166773,
+        0.2720948353775201
+      ],
+      "q_goal_rad": [
+        -3.503907588643681,
+        1.3729077028692043,
+        -1.2093693805191412,
+        -4.617326063646855,
+        -2.8477345045393205,
+        3.5952051305024355
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.595996,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 9.320051860624014,
+        "minimum_duration_s": 9.320051860624014,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          1.865174681370263e-14,
+          8.132383655379272e-15,
+          2.831068712794149e-15
+        ],
+        "peak_formula_max_difference": 9.992007221626409e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.18413690625337362,
+          0.36787218471515576,
+          0.009237315647136184,
+          0.4488884029391938,
+          1.513387814226128,
+          0.668540464853383
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.06083599475365281,
+          0.12153929787736961,
+          0.0030518666663908837,
+          0.1483058072486989,
+          0.49999999999900024,
+          0.22087546185044027
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 9.320051860624014,
+      "segment_times_s": [
+        0.0,
+        9.320051860624014
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-5-trapezoidal",
+      "q_start_rad": [
+        -2.588619313584319,
+        3.2014878840032353,
+        -1.1634535080475343,
+        -2.3860390262996662,
+        4.674853716166773,
+        0.2720948353775201
+      ],
+      "q_goal_rad": [
+        -3.503907588643681,
+        1.3729077028692043,
+        -1.2093693805191412,
+        -4.617326063646855,
+        -2.8477345045393205,
+        3.5952051305024355
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.493194,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 7.930621054278687,
+        "minimum_duration_s": 7.930621054278687,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 0.0,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.499999999999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          1.3322676295501878e-15,
+          2.220446049250313e-16,
+          2.7755575615628914e-17
+        ],
+        "peak_formula_max_difference": 4.440892098500626e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.19112191419209376,
+          0.3818269653343867,
+          0.009587721898878718,
+          0.4659164345376793,
+          1.5707963267933263,
+          0.6939007283082875
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.06083599475365273,
+          0.12153929787736924,
+          0.00305186666639087,
+          0.1483058072486979,
+          0.499999999999,
+          0.22087546185043958
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 3.1415926535929346,
+            "q_jump_rad": 0.0,
+            "qd_jump_rad_s": 5.551115123125783e-17,
+            "qdd_jump_rad_s2": 0.499999999999,
+            "acceleration_jump_allowed": true
+          },
+          {
+            "time_s": 4.789028400685751,
+            "q_jump_rad": 1.7763568394002505e-15,
+            "qd_jump_rad_s": 4.440892098500626e-16,
+            "qdd_jump_rad_s2": 0.499999999999,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 7.930621054278687,
+      "segment_times_s": [
+        0.0,
+        3.1415926535929346,
+        4.789028400685751,
+        7.930621054278687
+      ],
+      "segment_kind": [
+        "acceleration",
+        "cruise",
+        "deceleration"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-6-cubic",
+      "q_start_rad": [
+        3.79813048148651,
+        4.066270551623354,
+        0.13214333246360832,
+        -3.892428711713052,
+        3.298748650476236,
+        -4.65785502569584
+      ],
+      "q_goal_rad": [
+        2.951337704222399,
+        -2.785542457811871,
+        -0.5196863955793001,
+        2.7386829035422178,
+        2.192552755934843,
+        0.6804238855401712
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.869236,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 9.067621304034876,
+        "minimum_duration_s": 9.067621304034876,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 4.440892098500626e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.499999999999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          3.552713678800501e-15,
+          1.5959455978986625e-15,
+          2.7755575615628914e-16
+        ],
+        "peak_formula_max_difference": 2.220446049250313e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.14007964418749622,
+          1.1334526630020925,
+          0.10782812374721576,
+          1.0969434087919918,
+          0.18299108290657704,
+          0.8830781633206171
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.06179333674870789,
+          0.4999999999990002,
+          0.047566222775198966,
+          0.48389467182705487,
+          0.08072286072430059,
+          0.3895522910413862
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 9.067621304034876,
+      "segment_times_s": [
+        0.0,
+        9.067621304034876
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-6-quintic",
+      "q_start_rad": [
+        3.79813048148651,
+        4.066270551623354,
+        0.13214333246360832,
+        -3.892428711713052,
+        3.298748650476236,
+        -4.65785502569584
+      ],
+      "q_goal_rad": [
+        2.951337704222399,
+        -2.785542457811871,
+        -0.5196863955793001,
+        2.7386829035422178,
+        2.192552755934843,
+        0.6804238855401712
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.697204,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 8.894825558089737,
+        "minimum_duration_s": 8.894825558089737,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 4.440892098500626e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          2.1316282072803006e-14,
+          1.1379786002407855e-14,
+          4.052314039881821e-15
+        ],
+        "peak_formula_max_difference": 8.881784197001252e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.17850113495774858,
+          1.4443396679102636,
+          0.13740356481402768,
+          1.3978165392232635,
+          0.23318245970307175,
+          1.125291653355046
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.06179333674870813,
+          0.4999999999990001,
+          0.04756622277519901,
+          0.48389467182705515,
+          0.0807228607243006,
+          0.3895522910413862
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 8.894825558089737,
+      "segment_times_s": [
+        0.0,
+        8.894825558089737
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-6-trapezoidal",
+      "q_start_rad": [
+        3.79813048148651,
+        4.066270551623354,
+        0.13214333246360832,
+        -3.892428711713052,
+        3.298748650476236,
+        -4.65785502569584
+      ],
+      "q_goal_rad": [
+        2.951337704222399,
+        -2.785542457811871,
+        -0.5196863955793001,
+        2.7386829035422178,
+        2.192552755934843,
+        0.6804238855401712
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 0.942577,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 7.503592291969183,
+        "minimum_duration_s": 7.503592291969183,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 4.440892098500626e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899986,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          1.1102230246251565e-15,
+          2.7755575615628914e-16,
+          0.0
+        ],
+        "peak_formula_max_difference": 0.0,
+        "continuous_peak_velocity_rad_s": [
+          0.194129492770735,
+          1.5707963267933254,
+          0.14943369602972997,
+          1.5201999461246392,
+          0.2535983462284683,
+          1.2238146157259153
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.06179333674870787,
+          0.49999999999899986,
+          0.047566222775198945,
+          0.4838946718270547,
+          0.08072286072430056,
+          0.38955229104138606
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 3.141592653592935,
+            "q_jump_rad": 4.440892098500626e-16,
+            "qd_jump_rad_s": 2.7755575615628914e-17,
+            "qdd_jump_rad_s2": 0.49999999999899986,
+            "acceleration_jump_allowed": true
+          },
+          {
+            "time_s": 4.361999638376249,
+            "q_jump_rad": 1.3322676295501878e-15,
+            "qd_jump_rad_s": 2.220446049250313e-16,
+            "qdd_jump_rad_s2": 0.49999999999899986,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 7.503592291969183,
+      "segment_times_s": [
+        0.0,
+        3.141592653592935,
+        4.361999638376249,
+        7.503592291969183
+      ],
+      "segment_kind": [
+        "acceleration",
+        "cruise",
+        "deceleration"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-7-cubic",
+      "q_start_rad": [
+        -2.5253904715573143,
+        -4.66245708246724,
+        2.1685946700702967,
+        4.058333013837032,
+        3.164403768474326,
+        4.834187568469975
+      ],
+      "q_goal_rad": [
+        2.8019191919678432,
+        -1.0026041127450558,
+        -1.9706632104855974,
+        4.77945166507131,
+        -3.6227840512473577,
+        -4.995318467351461
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "cubic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.32127,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 10.860666297704444,
+        "minimum_duration_s": 10.860666297704444,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 8.881784197001252e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.49999999999899986,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          3.552713678800501e-15,
+          9.992007221626409e-16,
+          1.3877787807814457e-16
+        ],
+        "peak_formula_max_difference": 1.1102230246251565e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.7357711098237814,
+          0.5054735413188801,
+          0.5716856268888564,
+          0.09959591310526178,
+          0.9373993685575606,
+          1.35758328721034
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.27098562451156316,
+          0.1861666779783922,
+          0.210552690311345,
+          0.0366813270476095,
+          0.3452456204296391,
+          0.49999999999899986
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 10.860666297704444,
+      "segment_times_s": [
+        0.0,
+        10.860666297704444
+      ],
+      "segment_kind": [
+        "cubic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-7-quintic",
+      "q_start_rad": [
+        -2.5253904715573143,
+        -4.66245708246724,
+        2.1685946700702967,
+        4.058333013837032,
+        3.164403768474326,
+        4.834187568469975
+      ],
+      "q_goal_rad": [
+        2.8019191919678432,
+        -1.0026041127450558,
+        -1.9706632104855974,
+        4.77945166507131,
+        -3.6227840512473577,
+        -4.995318467351461
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "quintic"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.14263,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 11.733108553156253,
+        "minimum_duration_s": 11.733108553156253,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 8.881784197001252e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.0,
+        "zero_acceleration_required": true,
+        "coefficient_sample_max_errors": [
+          2.6645352591003757e-14,
+          9.284240043427872e-15,
+          2.248201624865942e-15
+        ],
+        "peak_formula_max_difference": 1.27675647831893e-15,
+        "continuous_peak_velocity_rad_s": [
+          0.8513264471948199,
+          0.5848598678807186,
+          0.6614707850763502,
+          0.11523778757680983,
+          1.084621104826889,
+          1.5707963267933256
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.2234195317086516,
+          0.15348885051986558,
+          0.1735943873559616,
+          0.030242655588097845,
+          0.28464467434345936,
+          0.4122350255865177
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": []
+      },
+      "duration_s": 11.733108553156253,
+      "segment_times_s": [
+        0.0,
+        11.733108553156253
+      ],
+      "segment_kind": [
+        "quintic"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "seed20261010-7-trapezoidal",
+      "q_start_rad": [
+        -2.5253904715573143,
+        -4.66245708246724,
+        2.1685946700702967,
+        4.058333013837032,
+        3.164403768474326,
+        4.834187568469975
+      ],
+      "q_goal_rad": [
+        2.8019191919678432,
+        -1.0026041127450558,
+        -1.9706632104855974,
+        4.77945166507131,
+        -3.6227840512473577,
+        -4.995318467351461
+      ],
+      "options": {
+        "sample_period_s": 0.1,
+        "duration_s": null,
+        "duration_policy": "stretch",
+        "max_duration_s": 60,
+        "method": "trapezoidal"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "python_planning_wall_ms": 1.299538,
+      "passed": true,
+      "details": {
+        "requested_duration_s": null,
+        "actual_duration_s": 9.399250548609603,
+        "minimum_duration_s": 9.399250548609603,
+        "duration_stretched": false,
+        "library_sha256": "fa0c5d209ae9b9ee493c0d6221ff96d520bbbd8e3d744aeb7746a5153e32bfb7"
+      },
+      "message": "OK",
+      "checks": {
+        "passed": true,
+        "endpoint_position_error_rad": 8.881784197001252e-16,
+        "endpoint_velocity_error_rad_s": 0.0,
+        "endpoint_acceleration_magnitude_rad_s2": 0.4999999999989999,
+        "zero_acceleration_required": false,
+        "coefficient_sample_max_errors": [
+          1.7763568394002505e-15,
+          4.440892098500626e-16,
+          2.7755575615628914e-17
+        ],
+        "peak_formula_max_difference": 1.1102230246251565e-16,
+        "continuous_peak_velocity_rad_s": [
+          0.8513264471948204,
+          0.5848598678807186,
+          0.6614707850763499,
+          0.11523778757680984,
+          1.0846211048268892,
+          1.5707963267933256
+        ],
+        "continuous_peak_acceleration_rad_s2": [
+          0.27098562451156316,
+          0.18616667797839223,
+          0.210552690311345,
+          0.036681327047609506,
+          0.34524562042963913,
+          0.4999999999989999
+        ],
+        "position_monotone": true,
+        "time_strictly_increasing": true,
+        "joins": [
+          {
+            "time_s": 3.1415926535929346,
+            "q_jump_rad": 0.0,
+            "qd_jump_rad_s": 1.1102230246251565e-16,
+            "qdd_jump_rad_s2": 0.4999999999989999,
+            "acceleration_jump_allowed": true
+          },
+          {
+            "time_s": 6.257657895016668,
+            "q_jump_rad": 1.3322676295501878e-15,
+            "qd_jump_rad_s": 1.1102230246251565e-16,
+            "qdd_jump_rad_s2": 0.4999999999989999,
+            "acceleration_jump_allowed": true
+          }
+        ]
+      },
+      "duration_s": 9.399250548609603,
+      "segment_times_s": [
+        0.0,
+        3.1415926535929346,
+        6.257657895016668,
+        9.399250548609603
+      ],
+      "segment_kind": [
+        "acceleration",
+        "cruise",
+        "deceleration"
+      ],
+      "triangular": false
+    },
+    {
+      "id": "C-null-input-0",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_untouched": true,
+      "passed": true
+    },
+    {
+      "id": "C-null-input-1",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_untouched": true,
+      "passed": true
+    },
+    {
+      "id": "C-null-input-2",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_untouched": true,
+      "passed": true
+    },
+    {
+      "id": "C-null-input-3",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_untouched": true,
+      "passed": true
+    },
+    {
+      "id": "C-null-input-4",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_untouched": true,
+      "passed": true
+    },
+    {
+      "id": "C-null-input-5",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_untouched": true,
+      "passed": true
+    },
+    {
+      "id": "C-length-0",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_untouched": true,
+      "passed": true
+    },
+    {
+      "id": "C-length-5",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_untouched": true,
+      "passed": true
+    },
+    {
+      "id": "C-length-7",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_untouched": true,
+      "passed": true
+    },
+    {
+      "id": "C-null-output",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_untouched": true,
+      "passed": true
+    },
+    {
+      "id": "C-negative-cap-4",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_untouched": true,
+      "passed": true
+    },
+    {
+      "id": "C-negative-cap-5",
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "output_untouched": true,
+      "passed": true
+    },
+    {
+      "id": "C-evaluate-before",
+      "actual_code": 1006,
+      "expected_code": 1006,
+      "passed": true
+    },
+    {
+      "id": "C-evaluate-after",
+      "actual_code": 1006,
+      "expected_code": 1006,
+      "passed": true
+    },
+    {
+      "id": "C-evaluate-nan",
+      "actual_code": 1006,
+      "expected_code": 1006,
+      "passed": true
+    }
+  ]
+}
