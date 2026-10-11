@@ -1,0 +1,68 @@
+{
+  "scene_id": "guided-upperarm-blocked",
+  "revision": "2026-10-11",
+  "T_world_base": [
+    [
+      -1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ]
+  ],
+  "clearance_m": 0.003,
+  "query_distance_m": 0.25,
+  "obstacles": [
+    {
+      "id": "static-sphere",
+      "kind": "sphere",
+      "position_m": [
+        0.72,
+        0.42,
+        0.68
+      ],
+      "radius_m": 0.035
+    },
+    {
+      "id": "static-box",
+      "kind": "box",
+      "position_m": [
+        0.0,
+        -0.6,
+        0.3
+      ],
+      "half_extents_m": [
+        0.06,
+        0.06,
+        0.06
+      ]
+    },
+    {
+      "id": "upperarm-blocker",
+      "kind": "sphere",
+      "position_m": [
+        0.03275625648820424,
+        0.1541119910888223,
+        0.2873632019113335
+      ],
+      "radius_m": 0.04
+    }
+  ]
+}

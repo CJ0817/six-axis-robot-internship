@@ -1,0 +1,33 @@
+{
+  "code": 3003,
+  "message": "Input smoothing edge 0: Whole-arm/self collision",
+  "data": null,
+  "next_state": null,
+  "details": {
+    "input_edge_checks": [
+      {
+        "edge_index": 0,
+        "proof": {
+          "passed": false,
+          "code": 3003,
+          "reason": "Whole-arm/self collision",
+          "fraction": 0.6681614349775785,
+          "collision": {
+            "passed": false,
+            "minimum_distance_lower_bound_m": 0.0029132644915925415,
+            "nearest": {
+              "self_link_pair": [
+                3,
+                5
+              ]
+            }
+          },
+          "checks": 150
+        }
+      }
+    ],
+    "events": [],
+    "stop_segment": true,
+    "replan_required": true
+  }
+}

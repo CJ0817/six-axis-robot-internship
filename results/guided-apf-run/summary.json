@@ -1,0 +1,39 @@
+{
+  "statistics_version": 1,
+  "suite": "guided_apf",
+  "utc": "2026-10-11T11:45:11.432787+00:00",
+  "results": [
+    {
+      "test_id": "guided_apf",
+      "command": [
+        "/workspace/scratch/9be573269881/six-axis-robot-internship/.venv/bin/python",
+        "/workspace/scratch/9be573269881/six-axis-robot-internship/scripts/verify_guided_apf.py",
+        "--library",
+        "/tmp/cartesian-clean-build/librobot_contract.so",
+        "--planning-library",
+        "/tmp/cartesian-clean-build/librobot_planning.so",
+        "--output",
+        "/workspace/scratch/9be573269881/six-axis-robot-internship/results/guided-apf-run/guided_apf"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 18.42662521300008,
+      "actual_wait_s": 18.42662521300008,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "guided_apf/report.json",
+      "elapsed_s": 18.42797622499984
+    }
+  ],
+  "metrics_sha256": "fe4f553f5f815bc89f0cce983c6bb0c6a19394912879d95e1c2669da31a3a536",
+  "commit": "3964d80043cdda18e4a398e7c85f86e56ce3cf18",
+  "working_tree_dirty": true,
+  "status": "passed",
+  "scope_note": "Available checks do not imply completion of unimplemented algorithm or user desktop acceptance.",
+  "process_timeout_count": 0,
+  "suite_elapsed_s": 18.43498198799989
+}

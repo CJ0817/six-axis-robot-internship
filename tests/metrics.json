@@ -186,14 +186,14 @@
     {
       "id": "PLAN-05",
       "name": "避障与作业节拍",
-      "test_id": null,
-      "conditions": "固定场景、相同起终点/限值；原始势场和改进方案对照；报告失败案例",
-      "threshold": "碰撞违规数=0；成功率/时长中位数/p95必须报告；成功率及节拍改进门槛待第3周周四冻结",
+      "test_id": "guided_apf",
+      "conditions": "50项检查；同场景同起终/共享限值；每方案1次预热+3次交替重复；正常、每次4迭代预算、自碰撞与上臂堵塞；平滑边内部碰撞、缩时速度/加速度拒绝",
+      "threshold": "50/50；连续净距>0.003m；关节/TCP速度与加速度不超实际上限；失败data/next_state=null；逐次耗时及路径/失败原因、成功率、轨迹时长中位数/P95；通用改善率/正式延迟门槛仍待冻结",
       "unit": "count; %; s",
       "stage": "第3周",
-      "availability": "pending",
-      "pending_reason": "场景、碰撞检查和时间优化未实现",
-      "basis": "任务书第3/5阶段；未定门槛不可判通过"
+      "availability": "implemented",
+      "pending_reason": "",
+      "basis": "docs/guided-apf-comparison.md; 仿真功能对照，不等于通用改善率或正式性能验收"
     },
     {
       "id": "CTRL-01",

@@ -27,6 +27,8 @@ jobs:
         run: .venv/bin/python scripts/run_tests.py --suite joint_planning --output results/test-runs/joint-planning
       - name: Cartesian line arc continuous IK and static APF
         run: .venv/bin/python scripts/run_tests.py --suite cartesian_planning --output results/test-runs/cartesian-planning
+      - name: Guided APF smoothing retiming and paired comparison
+        run: .venv/bin/python scripts/run_tests.py --suite guided_apf --output results/test-runs/guided-apf
       - name: Frozen ABI layout and symbols
         run: .venv/bin/python -m unittest discover -s tests -p 'test_abi_v1.py' -v
       - name: C analytic IK candidates and boundaries
@@ -56,6 +58,7 @@ jobs:
             results/test-runs/planning-limits/
             results/test-runs/joint-planning/
             results/test-runs/cartesian-planning/
+            results/test-runs/guided-apf/
             results/test-runs/ik/
             results/test-runs/ik-filter/
             results/test-runs/fk-performance/

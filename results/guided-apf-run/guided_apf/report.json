@@ -1,0 +1,4316 @@
+{
+  "status": "passed",
+  "passed_count": 50,
+  "expected_count": 50,
+  "comparisons": [
+    {
+      "case_id": "nominal",
+      "start_q_rad": [
+        0.3,
+        -1.2,
+        1.1,
+        -1.1,
+        1.0,
+        0.2
+      ],
+      "goal_q_rad": [
+        0.36,
+        -1.17,
+        1.06,
+        -1.08,
+        1.01,
+        0.2
+      ],
+      "scene": {
+        "scene_id": "ur5-static-apf-v1",
+        "revision": "2026-10-11",
+        "T_world_base": [
+          [
+            -1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "clearance_m": 0.003,
+        "query_distance_m": 0.25,
+        "obstacles": [
+          {
+            "id": "static-sphere",
+            "kind": "sphere",
+            "position_m": [
+              0.72,
+              0.42,
+              0.68
+            ],
+            "radius_m": 0.035
+          },
+          {
+            "id": "static-box",
+            "kind": "box",
+            "position_m": [
+              0.0,
+              -0.6,
+              0.3
+            ],
+            "half_extents_m": [
+              0.06,
+              0.06,
+              0.06
+            ]
+          }
+        ]
+      },
+      "scene_sha256": "2fc1d630bcf03143d72704d02a5d73d833e0a82bf6c1abea01b70a250dbb66da",
+      "apf_configuration": {
+        "attraction_gain": 1.0,
+        "repulsion_gain": 2e-06,
+        "influence_distance_m": 0.12,
+        "gradient_step_rad": 0.0001,
+        "maximum_step_rad": 0.02,
+        "goal_tolerance_rad": 0.002,
+        "maximum_iterations": 160,
+        "line_search_steps": 12
+      },
+      "methods": {
+        "baseline": {
+          "trials": [
+            {
+              "repetition": 0,
+              "code": 0,
+              "message": "OK",
+              "pipeline_wall_s": 0.8056345709992456,
+              "input_state_unchanged": true,
+              "duration_s": 5.0,
+              "joint_path_length_rad": 0.0812406814436294,
+              "tcp_path_length_m": 0.039244539094975515,
+              "joint_check": {
+                "position_min_rad": [
+                  0.29999997696512803,
+                  -1.200000011606702,
+                  1.0599999990447364,
+                  -1.100000007680751,
+                  0.9999999961596245,
+                  0.2
+                ],
+                "position_max_rad": [
+                  0.3600000014428935,
+                  -1.1699999993125882,
+                  1.100000015361502,
+                  -1.0799999995223681,
+                  1.0100000002388159,
+                  0.2
+                ],
+                "peak_velocity_rad_s": [
+                  0.02773493073905486,
+                  0.013942631476315134,
+                  0.01847988662578557,
+                  0.009239943312902515,
+                  0.004619971656450488,
+                  0.0
+                ],
+                "peak_acceleration_rad_s2": [
+                  0.08609778979187072,
+                  0.043282233704899975,
+                  0.05736727482898524,
+                  0.028683637416618883,
+                  0.014341818706721236,
+                  0.0
+                ],
+                "proof": "all real polynomial extrema"
+              },
+              "tcp_continuous_bounds": [
+                0.06445473946935365,
+                0.07401749782787237,
+                0.2096292152508505,
+                0.23525217420654956
+              ],
+              "certified_minimum_distance_m": 0.008323819160856002,
+              "node_count": 251,
+              "validation_node_count": 501,
+              "joint_path_sha256": "93883f34e3c810dc07c3bb10d8312661333ac03a47d46fbbba4586c388262c84"
+            },
+            {
+              "repetition": 1,
+              "code": 0,
+              "message": "OK",
+              "pipeline_wall_s": 0.8429346949997125,
+              "input_state_unchanged": true,
+              "duration_s": 5.0,
+              "joint_path_length_rad": 0.0812406814436294,
+              "tcp_path_length_m": 0.039244539094975515,
+              "joint_check": {
+                "position_min_rad": [
+                  0.29999997696512803,
+                  -1.200000011606702,
+                  1.0599999990447364,
+                  -1.100000007680751,
+                  0.9999999961596245,
+                  0.2
+                ],
+                "position_max_rad": [
+                  0.3600000014428935,
+                  -1.1699999993125882,
+                  1.100000015361502,
+                  -1.0799999995223681,
+                  1.0100000002388159,
+                  0.2
+                ],
+                "peak_velocity_rad_s": [
+                  0.02773493073905486,
+                  0.013942631476315134,
+                  0.01847988662578557,
+                  0.009239943312902515,
+                  0.004619971656450488,
+                  0.0
+                ],
+                "peak_acceleration_rad_s2": [
+                  0.08609778979187072,
+                  0.043282233704899975,
+                  0.05736727482898524,
+                  0.028683637416618883,
+                  0.014341818706721236,
+                  0.0
+                ],
+                "proof": "all real polynomial extrema"
+              },
+              "tcp_continuous_bounds": [
+                0.06445473946935365,
+                0.07401749782787237,
+                0.2096292152508505,
+                0.23525217420654956
+              ],
+              "certified_minimum_distance_m": 0.008323819160856002,
+              "node_count": 251,
+              "validation_node_count": 501,
+              "joint_path_sha256": "93883f34e3c810dc07c3bb10d8312661333ac03a47d46fbbba4586c388262c84"
+            },
+            {
+              "repetition": 2,
+              "code": 0,
+              "message": "OK",
+              "pipeline_wall_s": 0.8384707180002806,
+              "input_state_unchanged": true,
+              "duration_s": 5.0,
+              "joint_path_length_rad": 0.0812406814436294,
+              "tcp_path_length_m": 0.039244539094975515,
+              "joint_check": {
+                "position_min_rad": [
+                  0.29999997696512803,
+                  -1.200000011606702,
+                  1.0599999990447364,
+                  -1.100000007680751,
+                  0.9999999961596245,
+                  0.2
+                ],
+                "position_max_rad": [
+                  0.3600000014428935,
+                  -1.1699999993125882,
+                  1.100000015361502,
+                  -1.0799999995223681,
+                  1.0100000002388159,
+                  0.2
+                ],
+                "peak_velocity_rad_s": [
+                  0.02773493073905486,
+                  0.013942631476315134,
+                  0.01847988662578557,
+                  0.009239943312902515,
+                  0.004619971656450488,
+                  0.0
+                ],
+                "peak_acceleration_rad_s2": [
+                  0.08609778979187072,
+                  0.043282233704899975,
+                  0.05736727482898524,
+                  0.028683637416618883,
+                  0.014341818706721236,
+                  0.0
+                ],
+                "proof": "all real polynomial extrema"
+              },
+              "tcp_continuous_bounds": [
+                0.06445473946935365,
+                0.07401749782787237,
+                0.2096292152508505,
+                0.23525217420654956
+              ],
+              "certified_minimum_distance_m": 0.008323819160856002,
+              "node_count": 251,
+              "validation_node_count": 501,
+              "joint_path_sha256": "93883f34e3c810dc07c3bb10d8312661333ac03a47d46fbbba4586c388262c84"
+            }
+          ],
+          "success_count": 3,
+          "executed_count": 3,
+          "success_rate": 1.0,
+          "expected_result_rate": 1.0,
+          "failure_count": 0,
+          "timeout_count": 0,
+          "pipeline_timing": {
+            "count": 3,
+            "mean_s": 0.8290133279997463,
+            "median_s": 0.8384707180002806,
+            "p95_s": 0.8424882972997694,
+            "maximum_s": 0.8429346949997125
+          },
+          "trajectory_duration_statistics": {
+            "count": 3,
+            "mean_s": 5.0,
+            "median_s": 5.0,
+            "p95_s": 5.0,
+            "maximum_s": 5.0
+          }
+        },
+        "improved": {
+          "trials": [
+            {
+              "repetition": 0,
+              "code": 0,
+              "message": "Guided smoothed retimed path certified",
+              "pipeline_wall_s": 0.9384787909993975,
+              "input_state_unchanged": true,
+              "duration_s": 2.32,
+              "joint_path_length_rad": 0.08124038404635964,
+              "tcp_path_length_m": 0.03924274725085644,
+              "joint_check": {
+                "position_min_rad": [
+                  0.29999999722185994,
+                  -1.20000000138907,
+                  1.0599999981479067,
+                  -1.1000000009260467,
+                  0.9999999995369766,
+                  0.2
+                ],
+                "position_max_rad": [
+                  0.36000000277814004,
+                  -1.16999999861093,
+                  1.1000000018520935,
+                  -1.0799999990739535,
+                  1.0100000004630234,
+                  0.2
+                ],
+                "peak_velocity_rad_s": [
+                  0.048492733885159275,
+                  0.02424636694257796,
+                  0.032328489256765756,
+                  0.016164244628389782,
+                  0.008082122314201726,
+                  0.0
+                ],
+                "peak_acceleration_rad_s2": [
+                  0.06445375053444023,
+                  0.03222687526771919,
+                  0.0429691670222511,
+                  0.021484583511610672,
+                  0.010742291757105747,
+                  0.0
+                ],
+                "proof": "all real polynomial extrema"
+              },
+              "tcp_continuous_bounds": [
+                0.11256515093835133,
+                0.1293141463410515,
+                0.17872795711486023,
+                0.18859958841370994
+              ],
+              "certified_minimum_distance_m": 0.007397333128107173,
+              "node_count": 117,
+              "validation_node_count": 233,
+              "joint_path_sha256": "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293"
+            },
+            {
+              "repetition": 1,
+              "code": 0,
+              "message": "Guided smoothed retimed path certified",
+              "pipeline_wall_s": 1.008481369999572,
+              "input_state_unchanged": true,
+              "duration_s": 2.32,
+              "joint_path_length_rad": 0.08124038404635964,
+              "tcp_path_length_m": 0.03924274725085644,
+              "joint_check": {
+                "position_min_rad": [
+                  0.29999999722185994,
+                  -1.20000000138907,
+                  1.0599999981479067,
+                  -1.1000000009260467,
+                  0.9999999995369766,
+                  0.2
+                ],
+                "position_max_rad": [
+                  0.36000000277814004,
+                  -1.16999999861093,
+                  1.1000000018520935,
+                  -1.0799999990739535,
+                  1.0100000004630234,
+                  0.2
+                ],
+                "peak_velocity_rad_s": [
+                  0.048492733885159275,
+                  0.02424636694257796,
+                  0.032328489256765756,
+                  0.016164244628389782,
+                  0.008082122314201726,
+                  0.0
+                ],
+                "peak_acceleration_rad_s2": [
+                  0.06445375053444023,
+                  0.03222687526771919,
+                  0.0429691670222511,
+                  0.021484583511610672,
+                  0.010742291757105747,
+                  0.0
+                ],
+                "proof": "all real polynomial extrema"
+              },
+              "tcp_continuous_bounds": [
+                0.11256515093835133,
+                0.1293141463410515,
+                0.17872795711486023,
+                0.18859958841370994
+              ],
+              "certified_minimum_distance_m": 0.007397333128107173,
+              "node_count": 117,
+              "validation_node_count": 233,
+              "joint_path_sha256": "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293"
+            },
+            {
+              "repetition": 2,
+              "code": 0,
+              "message": "Guided smoothed retimed path certified",
+              "pipeline_wall_s": 0.9578954210001029,
+              "input_state_unchanged": true,
+              "duration_s": 2.32,
+              "joint_path_length_rad": 0.08124038404635964,
+              "tcp_path_length_m": 0.03924274725085644,
+              "joint_check": {
+                "position_min_rad": [
+                  0.29999999722185994,
+                  -1.20000000138907,
+                  1.0599999981479067,
+                  -1.1000000009260467,
+                  0.9999999995369766,
+                  0.2
+                ],
+                "position_max_rad": [
+                  0.36000000277814004,
+                  -1.16999999861093,
+                  1.1000000018520935,
+                  -1.0799999990739535,
+                  1.0100000004630234,
+                  0.2
+                ],
+                "peak_velocity_rad_s": [
+                  0.048492733885159275,
+                  0.02424636694257796,
+                  0.032328489256765756,
+                  0.016164244628389782,
+                  0.008082122314201726,
+                  0.0
+                ],
+                "peak_acceleration_rad_s2": [
+                  0.06445375053444023,
+                  0.03222687526771919,
+                  0.0429691670222511,
+                  0.021484583511610672,
+                  0.010742291757105747,
+                  0.0
+                ],
+                "proof": "all real polynomial extrema"
+              },
+              "tcp_continuous_bounds": [
+                0.11256515093835133,
+                0.1293141463410515,
+                0.17872795711486023,
+                0.18859958841370994
+              ],
+              "certified_minimum_distance_m": 0.007397333128107173,
+              "node_count": 117,
+              "validation_node_count": 233,
+              "joint_path_sha256": "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293"
+            }
+          ],
+          "success_count": 3,
+          "executed_count": 3,
+          "success_rate": 1.0,
+          "expected_result_rate": 1.0,
+          "failure_count": 0,
+          "timeout_count": 0,
+          "pipeline_timing": {
+            "count": 3,
+            "mean_s": 0.9682851939996908,
+            "median_s": 0.9578954210001029,
+            "p95_s": 1.0034227750996252,
+            "maximum_s": 1.008481369999572
+          },
+          "trajectory_duration_statistics": {
+            "count": 3,
+            "mean_s": 2.32,
+            "median_s": 2.32,
+            "p95_s": 2.32,
+            "maximum_s": 2.32
+          }
+        }
+      }
+    },
+    {
+      "case_id": "short-stage-budget",
+      "start_q_rad": [
+        0.3,
+        -1.2,
+        1.1,
+        -1.1,
+        1.0,
+        0.2
+      ],
+      "goal_q_rad": [
+        0.36,
+        -1.17,
+        1.06,
+        -1.08,
+        1.01,
+        0.2
+      ],
+      "scene": {
+        "scene_id": "ur5-static-apf-v1",
+        "revision": "2026-10-11",
+        "T_world_base": [
+          [
+            -1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "clearance_m": 0.003,
+        "query_distance_m": 0.25,
+        "obstacles": [
+          {
+            "id": "static-sphere",
+            "kind": "sphere",
+            "position_m": [
+              0.72,
+              0.42,
+              0.68
+            ],
+            "radius_m": 0.035
+          },
+          {
+            "id": "static-box",
+            "kind": "box",
+            "position_m": [
+              0.0,
+              -0.6,
+              0.3
+            ],
+            "half_extents_m": [
+              0.06,
+              0.06,
+              0.06
+            ]
+          }
+        ]
+      },
+      "scene_sha256": "2fc1d630bcf03143d72704d02a5d73d833e0a82bf6c1abea01b70a250dbb66da",
+      "apf_configuration": {
+        "attraction_gain": 1.0,
+        "repulsion_gain": 2e-06,
+        "influence_distance_m": 0.12,
+        "gradient_step_rad": 0.0001,
+        "maximum_step_rad": 0.02,
+        "goal_tolerance_rad": 0.002,
+        "maximum_iterations": 4,
+        "line_search_steps": 12
+      },
+      "methods": {
+        "baseline": {
+          "trials": [
+            {
+              "repetition": 0,
+              "code": 3001,
+              "message": "APF iteration budget exhausted",
+              "pipeline_wall_s": 0.007918429000710603,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3001,
+                "message": "APF iteration budget exhausted",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "geometric": {
+                    "code": 3001,
+                    "message": "APF iteration budget exhausted",
+                    "data": null,
+                    "details": {
+                      "iterations": [
+                        {
+                          "iteration": 0,
+                          "q_rad": [
+                            0.3,
+                            -1.2,
+                            1.1,
+                            -1.1,
+                            1.0,
+                            0.2
+                          ],
+                          "potential": 0.003435752371264758,
+                          "repulsion": 0.00013575237126475524,
+                          "goal_error_rad": 0.06,
+                          "minimum_distance_lower_bound_m": 0.00958975542848415
+                        },
+                        {
+                          "iteration": 1,
+                          "q_rad": [
+                            0.31475383083470193,
+                            -1.192565909661639,
+                            1.090160961078987,
+                            -1.0950804805394936,
+                            1.0024597597302531,
+                            0.2
+                          ],
+                          "potential": 0.0019516382310894266,
+                          "repulsion": 7.644033467555198e-05,
+                          "goal_error_rad": 0.045246169165298056,
+                          "minimum_distance_lower_bound_m": 0.00961819244867737
+                        },
+                        {
+                          "iteration": 2,
+                          "q_rad": [
+                            0.3295154428539802,
+                            -1.18515855915278,
+                            1.0803154508513337,
+                            -1.0901577254256674,
+                            1.0049211372871667,
+                            0.2
+                          ],
+                          "potential": 0.0008848401318266636,
+                          "repulsion": 3.4449174052019333e-05,
+                          "goal_error_rad": 0.030484557146019775,
+                          "minimum_distance_lower_bound_m": 0.00963776772315159
+                        },
+                        {
+                          "iteration": 3,
+                          "q_rad": [
+                            0.34428780214025817,
+                            -1.1777810329193803,
+                            1.0704651616975362,
+                            -1.0852325808487684,
+                            1.007383709575616,
+                            0.2
+                          ],
+                          "potential": 0.00023468816631294872,
+                          "repulsion": 9.107105235270916e-06,
+                          "goal_error_rad": 0.015712197859741817,
+                          "minimum_distance_lower_bound_m": 0.009648478169699553
+                        }
+                      ],
+                      "last_valid_q_rad": [
+                        0.3590758269828265,
+                        -1.1704402870727841,
+                        1.0606118462131295,
+                        -1.080305923106565,
+                        1.0098470384467175,
+                        0.2
+                      ],
+                      "stop_segment": true,
+                      "replan_required": true
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "repetition": 1,
+              "code": 3001,
+              "message": "APF iteration budget exhausted",
+              "pipeline_wall_s": 0.008665860999826691,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3001,
+                "message": "APF iteration budget exhausted",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "geometric": {
+                    "code": 3001,
+                    "message": "APF iteration budget exhausted",
+                    "data": null,
+                    "details": {
+                      "iterations": [
+                        {
+                          "iteration": 0,
+                          "q_rad": [
+                            0.3,
+                            -1.2,
+                            1.1,
+                            -1.1,
+                            1.0,
+                            0.2
+                          ],
+                          "potential": 0.003435752371264758,
+                          "repulsion": 0.00013575237126475524,
+                          "goal_error_rad": 0.06,
+                          "minimum_distance_lower_bound_m": 0.00958975542848415
+                        },
+                        {
+                          "iteration": 1,
+                          "q_rad": [
+                            0.31475383083470193,
+                            -1.192565909661639,
+                            1.090160961078987,
+                            -1.0950804805394936,
+                            1.0024597597302531,
+                            0.2
+                          ],
+                          "potential": 0.0019516382310894266,
+                          "repulsion": 7.644033467555198e-05,
+                          "goal_error_rad": 0.045246169165298056,
+                          "minimum_distance_lower_bound_m": 0.00961819244867737
+                        },
+                        {
+                          "iteration": 2,
+                          "q_rad": [
+                            0.3295154428539802,
+                            -1.18515855915278,
+                            1.0803154508513337,
+                            -1.0901577254256674,
+                            1.0049211372871667,
+                            0.2
+                          ],
+                          "potential": 0.0008848401318266636,
+                          "repulsion": 3.4449174052019333e-05,
+                          "goal_error_rad": 0.030484557146019775,
+                          "minimum_distance_lower_bound_m": 0.00963776772315159
+                        },
+                        {
+                          "iteration": 3,
+                          "q_rad": [
+                            0.34428780214025817,
+                            -1.1777810329193803,
+                            1.0704651616975362,
+                            -1.0852325808487684,
+                            1.007383709575616,
+                            0.2
+                          ],
+                          "potential": 0.00023468816631294872,
+                          "repulsion": 9.107105235270916e-06,
+                          "goal_error_rad": 0.015712197859741817,
+                          "minimum_distance_lower_bound_m": 0.009648478169699553
+                        }
+                      ],
+                      "last_valid_q_rad": [
+                        0.3590758269828265,
+                        -1.1704402870727841,
+                        1.0606118462131295,
+                        -1.080305923106565,
+                        1.0098470384467175,
+                        0.2
+                      ],
+                      "stop_segment": true,
+                      "replan_required": true
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "repetition": 2,
+              "code": 3001,
+              "message": "APF iteration budget exhausted",
+              "pipeline_wall_s": 0.007438782000463107,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3001,
+                "message": "APF iteration budget exhausted",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "geometric": {
+                    "code": 3001,
+                    "message": "APF iteration budget exhausted",
+                    "data": null,
+                    "details": {
+                      "iterations": [
+                        {
+                          "iteration": 0,
+                          "q_rad": [
+                            0.3,
+                            -1.2,
+                            1.1,
+                            -1.1,
+                            1.0,
+                            0.2
+                          ],
+                          "potential": 0.003435752371264758,
+                          "repulsion": 0.00013575237126475524,
+                          "goal_error_rad": 0.06,
+                          "minimum_distance_lower_bound_m": 0.00958975542848415
+                        },
+                        {
+                          "iteration": 1,
+                          "q_rad": [
+                            0.31475383083470193,
+                            -1.192565909661639,
+                            1.090160961078987,
+                            -1.0950804805394936,
+                            1.0024597597302531,
+                            0.2
+                          ],
+                          "potential": 0.0019516382310894266,
+                          "repulsion": 7.644033467555198e-05,
+                          "goal_error_rad": 0.045246169165298056,
+                          "minimum_distance_lower_bound_m": 0.00961819244867737
+                        },
+                        {
+                          "iteration": 2,
+                          "q_rad": [
+                            0.3295154428539802,
+                            -1.18515855915278,
+                            1.0803154508513337,
+                            -1.0901577254256674,
+                            1.0049211372871667,
+                            0.2
+                          ],
+                          "potential": 0.0008848401318266636,
+                          "repulsion": 3.4449174052019333e-05,
+                          "goal_error_rad": 0.030484557146019775,
+                          "minimum_distance_lower_bound_m": 0.00963776772315159
+                        },
+                        {
+                          "iteration": 3,
+                          "q_rad": [
+                            0.34428780214025817,
+                            -1.1777810329193803,
+                            1.0704651616975362,
+                            -1.0852325808487684,
+                            1.007383709575616,
+                            0.2
+                          ],
+                          "potential": 0.00023468816631294872,
+                          "repulsion": 9.107105235270916e-06,
+                          "goal_error_rad": 0.015712197859741817,
+                          "minimum_distance_lower_bound_m": 0.009648478169699553
+                        }
+                      ],
+                      "last_valid_q_rad": [
+                        0.3590758269828265,
+                        -1.1704402870727841,
+                        1.0606118462131295,
+                        -1.080305923106565,
+                        1.0098470384467175,
+                        0.2
+                      ],
+                      "stop_segment": true,
+                      "replan_required": true
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "success_count": 0,
+          "executed_count": 3,
+          "success_rate": 0.0,
+          "expected_result_rate": 1.0,
+          "failure_count": 3,
+          "timeout_count": 0,
+          "pipeline_timing": {
+            "count": 3,
+            "mean_s": 0.008007690667000134,
+            "median_s": 0.007918429000710603,
+            "p95_s": 0.008591117799915083,
+            "maximum_s": 0.008665860999826691
+          },
+          "trajectory_duration_statistics": null
+        },
+        "improved": {
+          "trials": [
+            {
+              "repetition": 0,
+              "code": 0,
+              "message": "Guided smoothed retimed path certified",
+              "pipeline_wall_s": 1.0412112809999599,
+              "input_state_unchanged": true,
+              "duration_s": 2.32,
+              "joint_path_length_rad": 0.08124038404635964,
+              "tcp_path_length_m": 0.03924274725085644,
+              "joint_check": {
+                "position_min_rad": [
+                  0.29999999722185994,
+                  -1.20000000138907,
+                  1.0599999981479067,
+                  -1.1000000009260467,
+                  0.9999999995369766,
+                  0.2
+                ],
+                "position_max_rad": [
+                  0.36000000277814004,
+                  -1.16999999861093,
+                  1.1000000018520935,
+                  -1.0799999990739535,
+                  1.0100000004630234,
+                  0.2
+                ],
+                "peak_velocity_rad_s": [
+                  0.048492733885159275,
+                  0.02424636694257796,
+                  0.032328489256765756,
+                  0.016164244628389782,
+                  0.008082122314201726,
+                  0.0
+                ],
+                "peak_acceleration_rad_s2": [
+                  0.06445375053444023,
+                  0.03222687526771919,
+                  0.0429691670222511,
+                  0.021484583511610672,
+                  0.010742291757105747,
+                  0.0
+                ],
+                "proof": "all real polynomial extrema"
+              },
+              "tcp_continuous_bounds": [
+                0.11256515093835133,
+                0.1293141463410515,
+                0.17872795711486023,
+                0.18859958841370994
+              ],
+              "certified_minimum_distance_m": 0.007397333128107173,
+              "node_count": 117,
+              "validation_node_count": 233,
+              "joint_path_sha256": "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293"
+            },
+            {
+              "repetition": 1,
+              "code": 0,
+              "message": "Guided smoothed retimed path certified",
+              "pipeline_wall_s": 1.252484906999598,
+              "input_state_unchanged": true,
+              "duration_s": 2.32,
+              "joint_path_length_rad": 0.08124038404635964,
+              "tcp_path_length_m": 0.03924274725085644,
+              "joint_check": {
+                "position_min_rad": [
+                  0.29999999722185994,
+                  -1.20000000138907,
+                  1.0599999981479067,
+                  -1.1000000009260467,
+                  0.9999999995369766,
+                  0.2
+                ],
+                "position_max_rad": [
+                  0.36000000277814004,
+                  -1.16999999861093,
+                  1.1000000018520935,
+                  -1.0799999990739535,
+                  1.0100000004630234,
+                  0.2
+                ],
+                "peak_velocity_rad_s": [
+                  0.048492733885159275,
+                  0.02424636694257796,
+                  0.032328489256765756,
+                  0.016164244628389782,
+                  0.008082122314201726,
+                  0.0
+                ],
+                "peak_acceleration_rad_s2": [
+                  0.06445375053444023,
+                  0.03222687526771919,
+                  0.0429691670222511,
+                  0.021484583511610672,
+                  0.010742291757105747,
+                  0.0
+                ],
+                "proof": "all real polynomial extrema"
+              },
+              "tcp_continuous_bounds": [
+                0.11256515093835133,
+                0.1293141463410515,
+                0.17872795711486023,
+                0.18859958841370994
+              ],
+              "certified_minimum_distance_m": 0.007397333128107173,
+              "node_count": 117,
+              "validation_node_count": 233,
+              "joint_path_sha256": "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293"
+            },
+            {
+              "repetition": 2,
+              "code": 0,
+              "message": "Guided smoothed retimed path certified",
+              "pipeline_wall_s": 1.0377500000004147,
+              "input_state_unchanged": true,
+              "duration_s": 2.32,
+              "joint_path_length_rad": 0.08124038404635964,
+              "tcp_path_length_m": 0.03924274725085644,
+              "joint_check": {
+                "position_min_rad": [
+                  0.29999999722185994,
+                  -1.20000000138907,
+                  1.0599999981479067,
+                  -1.1000000009260467,
+                  0.9999999995369766,
+                  0.2
+                ],
+                "position_max_rad": [
+                  0.36000000277814004,
+                  -1.16999999861093,
+                  1.1000000018520935,
+                  -1.0799999990739535,
+                  1.0100000004630234,
+                  0.2
+                ],
+                "peak_velocity_rad_s": [
+                  0.048492733885159275,
+                  0.02424636694257796,
+                  0.032328489256765756,
+                  0.016164244628389782,
+                  0.008082122314201726,
+                  0.0
+                ],
+                "peak_acceleration_rad_s2": [
+                  0.06445375053444023,
+                  0.03222687526771919,
+                  0.0429691670222511,
+                  0.021484583511610672,
+                  0.010742291757105747,
+                  0.0
+                ],
+                "proof": "all real polynomial extrema"
+              },
+              "tcp_continuous_bounds": [
+                0.11256515093835133,
+                0.1293141463410515,
+                0.17872795711486023,
+                0.18859958841370994
+              ],
+              "certified_minimum_distance_m": 0.007397333128107173,
+              "node_count": 117,
+              "validation_node_count": 233,
+              "joint_path_sha256": "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293"
+            }
+          ],
+          "success_count": 3,
+          "executed_count": 3,
+          "success_rate": 1.0,
+          "expected_result_rate": 1.0,
+          "failure_count": 0,
+          "timeout_count": 0,
+          "pipeline_timing": {
+            "count": 3,
+            "mean_s": 1.1104820626666576,
+            "median_s": 1.0412112809999599,
+            "p95_s": 1.2313575443996343,
+            "maximum_s": 1.252484906999598
+          },
+          "trajectory_duration_statistics": {
+            "count": 3,
+            "mean_s": 2.32,
+            "median_s": 2.32,
+            "p95_s": 2.32,
+            "maximum_s": 2.32
+          }
+        }
+      }
+    },
+    {
+      "case_id": "self-blocked",
+      "start_q_rad": [
+        0.3,
+        -1.2,
+        1.1,
+        -1.1,
+        1.0,
+        0.2
+      ],
+      "goal_q_rad": [
+        -0.3742565963470028,
+        -2.3843366984624392,
+        -0.8970081111253569,
+        1.1288944496614386,
+        -0.2917323291194913,
+        -1.869156334633904
+      ],
+      "scene": {
+        "scene_id": "ur5-static-apf-v1",
+        "revision": "2026-10-11",
+        "T_world_base": [
+          [
+            -1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "clearance_m": 0.003,
+        "query_distance_m": 0.25,
+        "obstacles": [
+          {
+            "id": "static-sphere",
+            "kind": "sphere",
+            "position_m": [
+              0.72,
+              0.42,
+              0.68
+            ],
+            "radius_m": 0.035
+          },
+          {
+            "id": "static-box",
+            "kind": "box",
+            "position_m": [
+              0.0,
+              -0.6,
+              0.3
+            ],
+            "half_extents_m": [
+              0.06,
+              0.06,
+              0.06
+            ]
+          }
+        ]
+      },
+      "scene_sha256": "2fc1d630bcf03143d72704d02a5d73d833e0a82bf6c1abea01b70a250dbb66da",
+      "apf_configuration": {
+        "attraction_gain": 1.0,
+        "repulsion_gain": 2e-06,
+        "influence_distance_m": 0.12,
+        "gradient_step_rad": 0.0001,
+        "maximum_step_rad": 0.02,
+        "goal_tolerance_rad": 0.002,
+        "maximum_iterations": 160,
+        "line_search_steps": 12
+      },
+      "methods": {
+        "baseline": {
+          "trials": [
+            {
+              "repetition": 0,
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "pipeline_wall_s": 0.0009211879996655625,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "geometric": {
+                    "code": 3003,
+                    "message": "APF start/goal blocked",
+                    "data": null,
+                    "details": {
+                      "iterations": [],
+                      "last_valid_q_rad": [
+                        0.3,
+                        -1.2,
+                        1.1,
+                        -1.1,
+                        1.0,
+                        0.2
+                      ],
+                      "stop_segment": true,
+                      "replan_required": true
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "repetition": 1,
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "pipeline_wall_s": 0.000646043000415375,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "geometric": {
+                    "code": 3003,
+                    "message": "APF start/goal blocked",
+                    "data": null,
+                    "details": {
+                      "iterations": [],
+                      "last_valid_q_rad": [
+                        0.3,
+                        -1.2,
+                        1.1,
+                        -1.1,
+                        1.0,
+                        0.2
+                      ],
+                      "stop_segment": true,
+                      "replan_required": true
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "repetition": 2,
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "pipeline_wall_s": 0.0006132649996288819,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "geometric": {
+                    "code": 3003,
+                    "message": "APF start/goal blocked",
+                    "data": null,
+                    "details": {
+                      "iterations": [],
+                      "last_valid_q_rad": [
+                        0.3,
+                        -1.2,
+                        1.1,
+                        -1.1,
+                        1.0,
+                        0.2
+                      ],
+                      "stop_segment": true,
+                      "replan_required": true
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "success_count": 0,
+          "executed_count": 3,
+          "success_rate": 0.0,
+          "expected_result_rate": 1.0,
+          "failure_count": 3,
+          "timeout_count": 0,
+          "pipeline_timing": {
+            "count": 3,
+            "mean_s": 0.0007268319999032732,
+            "median_s": 0.000646043000415375,
+            "p95_s": 0.0008936734997405438,
+            "maximum_s": 0.0009211879996655625
+          },
+          "trajectory_duration_statistics": null
+        },
+        "improved": {
+          "trials": [
+            {
+              "repetition": 0,
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "pipeline_wall_s": 0.0014994620005381876,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "stages": {
+                    "guided": {
+                      "code": 3003,
+                      "message": "APF start/goal blocked",
+                      "data": null,
+                      "next_state": null,
+                      "details": {
+                        "attempts": [
+                          {
+                            "candidate_index": 0,
+                            "kind": "direct",
+                            "result": {
+                              "code": 3003,
+                              "message": "APF start/goal blocked",
+                              "data": null,
+                              "details": {
+                                "iterations": [],
+                                "last_valid_q_rad": [
+                                  0.3,
+                                  -1.2,
+                                  1.1,
+                                  -1.1,
+                                  1.0,
+                                  0.2
+                                ],
+                                "stop_segment": true,
+                                "replan_required": true
+                              }
+                            }
+                          }
+                        ],
+                        "retained_input_q_rad": [
+                          0.3,
+                          -1.2,
+                          1.1,
+                          -1.1,
+                          1.0,
+                          0.2
+                        ],
+                        "stop_segment": true,
+                        "replan_required": true
+                      }
+                    }
+                  },
+                  "retained_input_q_rad": [
+                    0.3,
+                    -1.2,
+                    1.1,
+                    -1.1,
+                    1.0,
+                    0.2
+                  ],
+                  "stop_segment": true,
+                  "replan_required": true
+                }
+              }
+            },
+            {
+              "repetition": 1,
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "pipeline_wall_s": 0.0013079990003461717,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "stages": {
+                    "guided": {
+                      "code": 3003,
+                      "message": "APF start/goal blocked",
+                      "data": null,
+                      "next_state": null,
+                      "details": {
+                        "attempts": [
+                          {
+                            "candidate_index": 0,
+                            "kind": "direct",
+                            "result": {
+                              "code": 3003,
+                              "message": "APF start/goal blocked",
+                              "data": null,
+                              "details": {
+                                "iterations": [],
+                                "last_valid_q_rad": [
+                                  0.3,
+                                  -1.2,
+                                  1.1,
+                                  -1.1,
+                                  1.0,
+                                  0.2
+                                ],
+                                "stop_segment": true,
+                                "replan_required": true
+                              }
+                            }
+                          }
+                        ],
+                        "retained_input_q_rad": [
+                          0.3,
+                          -1.2,
+                          1.1,
+                          -1.1,
+                          1.0,
+                          0.2
+                        ],
+                        "stop_segment": true,
+                        "replan_required": true
+                      }
+                    }
+                  },
+                  "retained_input_q_rad": [
+                    0.3,
+                    -1.2,
+                    1.1,
+                    -1.1,
+                    1.0,
+                    0.2
+                  ],
+                  "stop_segment": true,
+                  "replan_required": true
+                }
+              }
+            },
+            {
+              "repetition": 2,
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "pipeline_wall_s": 0.0010513310007809196,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "stages": {
+                    "guided": {
+                      "code": 3003,
+                      "message": "APF start/goal blocked",
+                      "data": null,
+                      "next_state": null,
+                      "details": {
+                        "attempts": [
+                          {
+                            "candidate_index": 0,
+                            "kind": "direct",
+                            "result": {
+                              "code": 3003,
+                              "message": "APF start/goal blocked",
+                              "data": null,
+                              "details": {
+                                "iterations": [],
+                                "last_valid_q_rad": [
+                                  0.3,
+                                  -1.2,
+                                  1.1,
+                                  -1.1,
+                                  1.0,
+                                  0.2
+                                ],
+                                "stop_segment": true,
+                                "replan_required": true
+                              }
+                            }
+                          }
+                        ],
+                        "retained_input_q_rad": [
+                          0.3,
+                          -1.2,
+                          1.1,
+                          -1.1,
+                          1.0,
+                          0.2
+                        ],
+                        "stop_segment": true,
+                        "replan_required": true
+                      }
+                    }
+                  },
+                  "retained_input_q_rad": [
+                    0.3,
+                    -1.2,
+                    1.1,
+                    -1.1,
+                    1.0,
+                    0.2
+                  ],
+                  "stop_segment": true,
+                  "replan_required": true
+                }
+              }
+            }
+          ],
+          "success_count": 0,
+          "executed_count": 3,
+          "success_rate": 0.0,
+          "expected_result_rate": 1.0,
+          "failure_count": 3,
+          "timeout_count": 0,
+          "pipeline_timing": {
+            "count": 3,
+            "mean_s": 0.001286264000555093,
+            "median_s": 0.0013079990003461717,
+            "p95_s": 0.001480315700518986,
+            "maximum_s": 0.0014994620005381876
+          },
+          "trajectory_duration_statistics": null
+        }
+      }
+    },
+    {
+      "case_id": "upperarm-blocked",
+      "start_q_rad": [
+        0.3,
+        -1.2,
+        1.1,
+        -1.1,
+        1.0,
+        0.2
+      ],
+      "goal_q_rad": [
+        0.36,
+        -1.17,
+        1.06,
+        -1.08,
+        1.01,
+        0.2
+      ],
+      "scene": {
+        "scene_id": "guided-upperarm-blocked",
+        "revision": "2026-10-11",
+        "T_world_base": [
+          [
+            -1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "clearance_m": 0.003,
+        "query_distance_m": 0.25,
+        "obstacles": [
+          {
+            "id": "static-sphere",
+            "kind": "sphere",
+            "position_m": [
+              0.72,
+              0.42,
+              0.68
+            ],
+            "radius_m": 0.035
+          },
+          {
+            "id": "static-box",
+            "kind": "box",
+            "position_m": [
+              0.0,
+              -0.6,
+              0.3
+            ],
+            "half_extents_m": [
+              0.06,
+              0.06,
+              0.06
+            ]
+          },
+          {
+            "id": "upperarm-blocker",
+            "kind": "sphere",
+            "position_m": [
+              0.03275625648820424,
+              0.1541119910888223,
+              0.2873632019113335
+            ],
+            "radius_m": 0.04
+          }
+        ]
+      },
+      "scene_sha256": "b0752324be8a282c59285b96518fb49163804434ed7b0fdfdbb992896b6d11a1",
+      "apf_configuration": {
+        "attraction_gain": 1.0,
+        "repulsion_gain": 2e-06,
+        "influence_distance_m": 0.12,
+        "gradient_step_rad": 0.0001,
+        "maximum_step_rad": 0.02,
+        "goal_tolerance_rad": 0.002,
+        "maximum_iterations": 160,
+        "line_search_steps": 12
+      },
+      "methods": {
+        "baseline": {
+          "trials": [
+            {
+              "repetition": 0,
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "pipeline_wall_s": 0.0005133280001246021,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "geometric": {
+                    "code": 3003,
+                    "message": "APF start/goal blocked",
+                    "data": null,
+                    "details": {
+                      "iterations": [],
+                      "last_valid_q_rad": [
+                        0.3,
+                        -1.2,
+                        1.1,
+                        -1.1,
+                        1.0,
+                        0.2
+                      ],
+                      "stop_segment": true,
+                      "replan_required": true
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "repetition": 1,
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "pipeline_wall_s": 0.0005117749997225474,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "geometric": {
+                    "code": 3003,
+                    "message": "APF start/goal blocked",
+                    "data": null,
+                    "details": {
+                      "iterations": [],
+                      "last_valid_q_rad": [
+                        0.3,
+                        -1.2,
+                        1.1,
+                        -1.1,
+                        1.0,
+                        0.2
+                      ],
+                      "stop_segment": true,
+                      "replan_required": true
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "repetition": 2,
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "pipeline_wall_s": 0.00046545700024580583,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "geometric": {
+                    "code": 3003,
+                    "message": "APF start/goal blocked",
+                    "data": null,
+                    "details": {
+                      "iterations": [],
+                      "last_valid_q_rad": [
+                        0.3,
+                        -1.2,
+                        1.1,
+                        -1.1,
+                        1.0,
+                        0.2
+                      ],
+                      "stop_segment": true,
+                      "replan_required": true
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "success_count": 0,
+          "executed_count": 3,
+          "success_rate": 0.0,
+          "expected_result_rate": 1.0,
+          "failure_count": 3,
+          "timeout_count": 0,
+          "pipeline_timing": {
+            "count": 3,
+            "mean_s": 0.0004968533333643185,
+            "median_s": 0.0005117749997225474,
+            "p95_s": 0.0005131727000843966,
+            "maximum_s": 0.0005133280001246021
+          },
+          "trajectory_duration_statistics": null
+        },
+        "improved": {
+          "trials": [
+            {
+              "repetition": 0,
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "pipeline_wall_s": 0.0009240019999197102,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "stages": {
+                    "guided": {
+                      "code": 3003,
+                      "message": "APF start/goal blocked",
+                      "data": null,
+                      "next_state": null,
+                      "details": {
+                        "attempts": [
+                          {
+                            "candidate_index": 0,
+                            "kind": "direct",
+                            "result": {
+                              "code": 3003,
+                              "message": "APF start/goal blocked",
+                              "data": null,
+                              "details": {
+                                "iterations": [],
+                                "last_valid_q_rad": [
+                                  0.3,
+                                  -1.2,
+                                  1.1,
+                                  -1.1,
+                                  1.0,
+                                  0.2
+                                ],
+                                "stop_segment": true,
+                                "replan_required": true
+                              }
+                            }
+                          }
+                        ],
+                        "retained_input_q_rad": [
+                          0.3,
+                          -1.2,
+                          1.1,
+                          -1.1,
+                          1.0,
+                          0.2
+                        ],
+                        "stop_segment": true,
+                        "replan_required": true
+                      }
+                    }
+                  },
+                  "retained_input_q_rad": [
+                    0.3,
+                    -1.2,
+                    1.1,
+                    -1.1,
+                    1.0,
+                    0.2
+                  ],
+                  "stop_segment": true,
+                  "replan_required": true
+                }
+              }
+            },
+            {
+              "repetition": 1,
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "pipeline_wall_s": 0.0011578169996937504,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "stages": {
+                    "guided": {
+                      "code": 3003,
+                      "message": "APF start/goal blocked",
+                      "data": null,
+                      "next_state": null,
+                      "details": {
+                        "attempts": [
+                          {
+                            "candidate_index": 0,
+                            "kind": "direct",
+                            "result": {
+                              "code": 3003,
+                              "message": "APF start/goal blocked",
+                              "data": null,
+                              "details": {
+                                "iterations": [],
+                                "last_valid_q_rad": [
+                                  0.3,
+                                  -1.2,
+                                  1.1,
+                                  -1.1,
+                                  1.0,
+                                  0.2
+                                ],
+                                "stop_segment": true,
+                                "replan_required": true
+                              }
+                            }
+                          }
+                        ],
+                        "retained_input_q_rad": [
+                          0.3,
+                          -1.2,
+                          1.1,
+                          -1.1,
+                          1.0,
+                          0.2
+                        ],
+                        "stop_segment": true,
+                        "replan_required": true
+                      }
+                    }
+                  },
+                  "retained_input_q_rad": [
+                    0.3,
+                    -1.2,
+                    1.1,
+                    -1.1,
+                    1.0,
+                    0.2
+                  ],
+                  "stop_segment": true,
+                  "replan_required": true
+                }
+              }
+            },
+            {
+              "repetition": 2,
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "pipeline_wall_s": 0.0008396080002057715,
+              "input_state_unchanged": true,
+              "duration_s": null,
+              "joint_path_length_rad": null,
+              "tcp_path_length_m": null,
+              "failure_result": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "stages": {
+                    "guided": {
+                      "code": 3003,
+                      "message": "APF start/goal blocked",
+                      "data": null,
+                      "next_state": null,
+                      "details": {
+                        "attempts": [
+                          {
+                            "candidate_index": 0,
+                            "kind": "direct",
+                            "result": {
+                              "code": 3003,
+                              "message": "APF start/goal blocked",
+                              "data": null,
+                              "details": {
+                                "iterations": [],
+                                "last_valid_q_rad": [
+                                  0.3,
+                                  -1.2,
+                                  1.1,
+                                  -1.1,
+                                  1.0,
+                                  0.2
+                                ],
+                                "stop_segment": true,
+                                "replan_required": true
+                              }
+                            }
+                          }
+                        ],
+                        "retained_input_q_rad": [
+                          0.3,
+                          -1.2,
+                          1.1,
+                          -1.1,
+                          1.0,
+                          0.2
+                        ],
+                        "stop_segment": true,
+                        "replan_required": true
+                      }
+                    }
+                  },
+                  "retained_input_q_rad": [
+                    0.3,
+                    -1.2,
+                    1.1,
+                    -1.1,
+                    1.0,
+                    0.2
+                  ],
+                  "stop_segment": true,
+                  "replan_required": true
+                }
+              }
+            }
+          ],
+          "success_count": 0,
+          "executed_count": 3,
+          "success_rate": 0.0,
+          "expected_result_rate": 1.0,
+          "failure_count": 3,
+          "timeout_count": 0,
+          "pipeline_timing": {
+            "count": 3,
+            "mean_s": 0.000973808999939744,
+            "median_s": 0.0009240019999197102,
+            "p95_s": 0.0011344354997163465,
+            "maximum_s": 0.0011578169996937504
+          },
+          "trajectory_duration_statistics": null
+        }
+      }
+    }
+  ],
+  "checks": [
+    {
+      "id": "nominal-baseline-0",
+      "passed": true,
+      "details": {
+        "repetition": 0,
+        "code": 0,
+        "message": "OK",
+        "pipeline_wall_s": 0.8056345709992456,
+        "input_state_unchanged": true,
+        "duration_s": 5.0,
+        "joint_path_length_rad": 0.0812406814436294,
+        "tcp_path_length_m": 0.039244539094975515,
+        "joint_check": {
+          "position_min_rad": [
+            0.29999997696512803,
+            -1.200000011606702,
+            1.0599999990447364,
+            -1.100000007680751,
+            0.9999999961596245,
+            0.2
+          ],
+          "position_max_rad": [
+            0.3600000014428935,
+            -1.1699999993125882,
+            1.100000015361502,
+            -1.0799999995223681,
+            1.0100000002388159,
+            0.2
+          ],
+          "peak_velocity_rad_s": [
+            0.02773493073905486,
+            0.013942631476315134,
+            0.01847988662578557,
+            0.009239943312902515,
+            0.004619971656450488,
+            0.0
+          ],
+          "peak_acceleration_rad_s2": [
+            0.08609778979187072,
+            0.043282233704899975,
+            0.05736727482898524,
+            0.028683637416618883,
+            0.014341818706721236,
+            0.0
+          ],
+          "proof": "all real polynomial extrema"
+        },
+        "tcp_continuous_bounds": [
+          0.06445473946935365,
+          0.07401749782787237,
+          0.2096292152508505,
+          0.23525217420654956
+        ],
+        "certified_minimum_distance_m": 0.008323819160856002,
+        "node_count": 251,
+        "validation_node_count": 501,
+        "joint_path_sha256": "93883f34e3c810dc07c3bb10d8312661333ac03a47d46fbbba4586c388262c84"
+      }
+    },
+    {
+      "id": "nominal-improved-0",
+      "passed": true,
+      "details": {
+        "repetition": 0,
+        "code": 0,
+        "message": "Guided smoothed retimed path certified",
+        "pipeline_wall_s": 0.9384787909993975,
+        "input_state_unchanged": true,
+        "duration_s": 2.32,
+        "joint_path_length_rad": 0.08124038404635964,
+        "tcp_path_length_m": 0.03924274725085644,
+        "joint_check": {
+          "position_min_rad": [
+            0.29999999722185994,
+            -1.20000000138907,
+            1.0599999981479067,
+            -1.1000000009260467,
+            0.9999999995369766,
+            0.2
+          ],
+          "position_max_rad": [
+            0.36000000277814004,
+            -1.16999999861093,
+            1.1000000018520935,
+            -1.0799999990739535,
+            1.0100000004630234,
+            0.2
+          ],
+          "peak_velocity_rad_s": [
+            0.048492733885159275,
+            0.02424636694257796,
+            0.032328489256765756,
+            0.016164244628389782,
+            0.008082122314201726,
+            0.0
+          ],
+          "peak_acceleration_rad_s2": [
+            0.06445375053444023,
+            0.03222687526771919,
+            0.0429691670222511,
+            0.021484583511610672,
+            0.010742291757105747,
+            0.0
+          ],
+          "proof": "all real polynomial extrema"
+        },
+        "tcp_continuous_bounds": [
+          0.11256515093835133,
+          0.1293141463410515,
+          0.17872795711486023,
+          0.18859958841370994
+        ],
+        "certified_minimum_distance_m": 0.007397333128107173,
+        "node_count": 117,
+        "validation_node_count": 233,
+        "joint_path_sha256": "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293"
+      }
+    },
+    {
+      "id": "nominal-improved-1",
+      "passed": true,
+      "details": {
+        "repetition": 1,
+        "code": 0,
+        "message": "Guided smoothed retimed path certified",
+        "pipeline_wall_s": 1.008481369999572,
+        "input_state_unchanged": true,
+        "duration_s": 2.32,
+        "joint_path_length_rad": 0.08124038404635964,
+        "tcp_path_length_m": 0.03924274725085644,
+        "joint_check": {
+          "position_min_rad": [
+            0.29999999722185994,
+            -1.20000000138907,
+            1.0599999981479067,
+            -1.1000000009260467,
+            0.9999999995369766,
+            0.2
+          ],
+          "position_max_rad": [
+            0.36000000277814004,
+            -1.16999999861093,
+            1.1000000018520935,
+            -1.0799999990739535,
+            1.0100000004630234,
+            0.2
+          ],
+          "peak_velocity_rad_s": [
+            0.048492733885159275,
+            0.02424636694257796,
+            0.032328489256765756,
+            0.016164244628389782,
+            0.008082122314201726,
+            0.0
+          ],
+          "peak_acceleration_rad_s2": [
+            0.06445375053444023,
+            0.03222687526771919,
+            0.0429691670222511,
+            0.021484583511610672,
+            0.010742291757105747,
+            0.0
+          ],
+          "proof": "all real polynomial extrema"
+        },
+        "tcp_continuous_bounds": [
+          0.11256515093835133,
+          0.1293141463410515,
+          0.17872795711486023,
+          0.18859958841370994
+        ],
+        "certified_minimum_distance_m": 0.007397333128107173,
+        "node_count": 117,
+        "validation_node_count": 233,
+        "joint_path_sha256": "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293"
+      }
+    },
+    {
+      "id": "nominal-baseline-1",
+      "passed": true,
+      "details": {
+        "repetition": 1,
+        "code": 0,
+        "message": "OK",
+        "pipeline_wall_s": 0.8429346949997125,
+        "input_state_unchanged": true,
+        "duration_s": 5.0,
+        "joint_path_length_rad": 0.0812406814436294,
+        "tcp_path_length_m": 0.039244539094975515,
+        "joint_check": {
+          "position_min_rad": [
+            0.29999997696512803,
+            -1.200000011606702,
+            1.0599999990447364,
+            -1.100000007680751,
+            0.9999999961596245,
+            0.2
+          ],
+          "position_max_rad": [
+            0.3600000014428935,
+            -1.1699999993125882,
+            1.100000015361502,
+            -1.0799999995223681,
+            1.0100000002388159,
+            0.2
+          ],
+          "peak_velocity_rad_s": [
+            0.02773493073905486,
+            0.013942631476315134,
+            0.01847988662578557,
+            0.009239943312902515,
+            0.004619971656450488,
+            0.0
+          ],
+          "peak_acceleration_rad_s2": [
+            0.08609778979187072,
+            0.043282233704899975,
+            0.05736727482898524,
+            0.028683637416618883,
+            0.014341818706721236,
+            0.0
+          ],
+          "proof": "all real polynomial extrema"
+        },
+        "tcp_continuous_bounds": [
+          0.06445473946935365,
+          0.07401749782787237,
+          0.2096292152508505,
+          0.23525217420654956
+        ],
+        "certified_minimum_distance_m": 0.008323819160856002,
+        "node_count": 251,
+        "validation_node_count": 501,
+        "joint_path_sha256": "93883f34e3c810dc07c3bb10d8312661333ac03a47d46fbbba4586c388262c84"
+      }
+    },
+    {
+      "id": "nominal-baseline-2",
+      "passed": true,
+      "details": {
+        "repetition": 2,
+        "code": 0,
+        "message": "OK",
+        "pipeline_wall_s": 0.8384707180002806,
+        "input_state_unchanged": true,
+        "duration_s": 5.0,
+        "joint_path_length_rad": 0.0812406814436294,
+        "tcp_path_length_m": 0.039244539094975515,
+        "joint_check": {
+          "position_min_rad": [
+            0.29999997696512803,
+            -1.200000011606702,
+            1.0599999990447364,
+            -1.100000007680751,
+            0.9999999961596245,
+            0.2
+          ],
+          "position_max_rad": [
+            0.3600000014428935,
+            -1.1699999993125882,
+            1.100000015361502,
+            -1.0799999995223681,
+            1.0100000002388159,
+            0.2
+          ],
+          "peak_velocity_rad_s": [
+            0.02773493073905486,
+            0.013942631476315134,
+            0.01847988662578557,
+            0.009239943312902515,
+            0.004619971656450488,
+            0.0
+          ],
+          "peak_acceleration_rad_s2": [
+            0.08609778979187072,
+            0.043282233704899975,
+            0.05736727482898524,
+            0.028683637416618883,
+            0.014341818706721236,
+            0.0
+          ],
+          "proof": "all real polynomial extrema"
+        },
+        "tcp_continuous_bounds": [
+          0.06445473946935365,
+          0.07401749782787237,
+          0.2096292152508505,
+          0.23525217420654956
+        ],
+        "certified_minimum_distance_m": 0.008323819160856002,
+        "node_count": 251,
+        "validation_node_count": 501,
+        "joint_path_sha256": "93883f34e3c810dc07c3bb10d8312661333ac03a47d46fbbba4586c388262c84"
+      }
+    },
+    {
+      "id": "nominal-improved-2",
+      "passed": true,
+      "details": {
+        "repetition": 2,
+        "code": 0,
+        "message": "Guided smoothed retimed path certified",
+        "pipeline_wall_s": 0.9578954210001029,
+        "input_state_unchanged": true,
+        "duration_s": 2.32,
+        "joint_path_length_rad": 0.08124038404635964,
+        "tcp_path_length_m": 0.03924274725085644,
+        "joint_check": {
+          "position_min_rad": [
+            0.29999999722185994,
+            -1.20000000138907,
+            1.0599999981479067,
+            -1.1000000009260467,
+            0.9999999995369766,
+            0.2
+          ],
+          "position_max_rad": [
+            0.36000000277814004,
+            -1.16999999861093,
+            1.1000000018520935,
+            -1.0799999990739535,
+            1.0100000004630234,
+            0.2
+          ],
+          "peak_velocity_rad_s": [
+            0.048492733885159275,
+            0.02424636694257796,
+            0.032328489256765756,
+            0.016164244628389782,
+            0.008082122314201726,
+            0.0
+          ],
+          "peak_acceleration_rad_s2": [
+            0.06445375053444023,
+            0.03222687526771919,
+            0.0429691670222511,
+            0.021484583511610672,
+            0.010742291757105747,
+            0.0
+          ],
+          "proof": "all real polynomial extrema"
+        },
+        "tcp_continuous_bounds": [
+          0.11256515093835133,
+          0.1293141463410515,
+          0.17872795711486023,
+          0.18859958841370994
+        ],
+        "certified_minimum_distance_m": 0.007397333128107173,
+        "node_count": 117,
+        "validation_node_count": 233,
+        "joint_path_sha256": "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293"
+      }
+    },
+    {
+      "id": "nominal-baseline-repeatability",
+      "passed": true,
+      "details": {
+        "successful_path_hashes": [
+          "93883f34e3c810dc07c3bb10d8312661333ac03a47d46fbbba4586c388262c84",
+          "93883f34e3c810dc07c3bb10d8312661333ac03a47d46fbbba4586c388262c84",
+          "93883f34e3c810dc07c3bb10d8312661333ac03a47d46fbbba4586c388262c84"
+        ]
+      }
+    },
+    {
+      "id": "nominal-improved-repeatability",
+      "passed": true,
+      "details": {
+        "successful_path_hashes": [
+          "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293",
+          "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293",
+          "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293"
+        ]
+      }
+    },
+    {
+      "id": "short-stage-budget-baseline-0",
+      "passed": true,
+      "details": {
+        "repetition": 0,
+        "code": 3001,
+        "message": "APF iteration budget exhausted",
+        "pipeline_wall_s": 0.007918429000710603,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3001,
+          "message": "APF iteration budget exhausted",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "geometric": {
+              "code": 3001,
+              "message": "APF iteration budget exhausted",
+              "data": null,
+              "details": {
+                "iterations": [
+                  {
+                    "iteration": 0,
+                    "q_rad": [
+                      0.3,
+                      -1.2,
+                      1.1,
+                      -1.1,
+                      1.0,
+                      0.2
+                    ],
+                    "potential": 0.003435752371264758,
+                    "repulsion": 0.00013575237126475524,
+                    "goal_error_rad": 0.06,
+                    "minimum_distance_lower_bound_m": 0.00958975542848415
+                  },
+                  {
+                    "iteration": 1,
+                    "q_rad": [
+                      0.31475383083470193,
+                      -1.192565909661639,
+                      1.090160961078987,
+                      -1.0950804805394936,
+                      1.0024597597302531,
+                      0.2
+                    ],
+                    "potential": 0.0019516382310894266,
+                    "repulsion": 7.644033467555198e-05,
+                    "goal_error_rad": 0.045246169165298056,
+                    "minimum_distance_lower_bound_m": 0.00961819244867737
+                  },
+                  {
+                    "iteration": 2,
+                    "q_rad": [
+                      0.3295154428539802,
+                      -1.18515855915278,
+                      1.0803154508513337,
+                      -1.0901577254256674,
+                      1.0049211372871667,
+                      0.2
+                    ],
+                    "potential": 0.0008848401318266636,
+                    "repulsion": 3.4449174052019333e-05,
+                    "goal_error_rad": 0.030484557146019775,
+                    "minimum_distance_lower_bound_m": 0.00963776772315159
+                  },
+                  {
+                    "iteration": 3,
+                    "q_rad": [
+                      0.34428780214025817,
+                      -1.1777810329193803,
+                      1.0704651616975362,
+                      -1.0852325808487684,
+                      1.007383709575616,
+                      0.2
+                    ],
+                    "potential": 0.00023468816631294872,
+                    "repulsion": 9.107105235270916e-06,
+                    "goal_error_rad": 0.015712197859741817,
+                    "minimum_distance_lower_bound_m": 0.009648478169699553
+                  }
+                ],
+                "last_valid_q_rad": [
+                  0.3590758269828265,
+                  -1.1704402870727841,
+                  1.0606118462131295,
+                  -1.080305923106565,
+                  1.0098470384467175,
+                  0.2
+                ],
+                "stop_segment": true,
+                "replan_required": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "short-stage-budget-improved-0",
+      "passed": true,
+      "details": {
+        "repetition": 0,
+        "code": 0,
+        "message": "Guided smoothed retimed path certified",
+        "pipeline_wall_s": 1.0412112809999599,
+        "input_state_unchanged": true,
+        "duration_s": 2.32,
+        "joint_path_length_rad": 0.08124038404635964,
+        "tcp_path_length_m": 0.03924274725085644,
+        "joint_check": {
+          "position_min_rad": [
+            0.29999999722185994,
+            -1.20000000138907,
+            1.0599999981479067,
+            -1.1000000009260467,
+            0.9999999995369766,
+            0.2
+          ],
+          "position_max_rad": [
+            0.36000000277814004,
+            -1.16999999861093,
+            1.1000000018520935,
+            -1.0799999990739535,
+            1.0100000004630234,
+            0.2
+          ],
+          "peak_velocity_rad_s": [
+            0.048492733885159275,
+            0.02424636694257796,
+            0.032328489256765756,
+            0.016164244628389782,
+            0.008082122314201726,
+            0.0
+          ],
+          "peak_acceleration_rad_s2": [
+            0.06445375053444023,
+            0.03222687526771919,
+            0.0429691670222511,
+            0.021484583511610672,
+            0.010742291757105747,
+            0.0
+          ],
+          "proof": "all real polynomial extrema"
+        },
+        "tcp_continuous_bounds": [
+          0.11256515093835133,
+          0.1293141463410515,
+          0.17872795711486023,
+          0.18859958841370994
+        ],
+        "certified_minimum_distance_m": 0.007397333128107173,
+        "node_count": 117,
+        "validation_node_count": 233,
+        "joint_path_sha256": "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293"
+      }
+    },
+    {
+      "id": "short-stage-budget-improved-1",
+      "passed": true,
+      "details": {
+        "repetition": 1,
+        "code": 0,
+        "message": "Guided smoothed retimed path certified",
+        "pipeline_wall_s": 1.252484906999598,
+        "input_state_unchanged": true,
+        "duration_s": 2.32,
+        "joint_path_length_rad": 0.08124038404635964,
+        "tcp_path_length_m": 0.03924274725085644,
+        "joint_check": {
+          "position_min_rad": [
+            0.29999999722185994,
+            -1.20000000138907,
+            1.0599999981479067,
+            -1.1000000009260467,
+            0.9999999995369766,
+            0.2
+          ],
+          "position_max_rad": [
+            0.36000000277814004,
+            -1.16999999861093,
+            1.1000000018520935,
+            -1.0799999990739535,
+            1.0100000004630234,
+            0.2
+          ],
+          "peak_velocity_rad_s": [
+            0.048492733885159275,
+            0.02424636694257796,
+            0.032328489256765756,
+            0.016164244628389782,
+            0.008082122314201726,
+            0.0
+          ],
+          "peak_acceleration_rad_s2": [
+            0.06445375053444023,
+            0.03222687526771919,
+            0.0429691670222511,
+            0.021484583511610672,
+            0.010742291757105747,
+            0.0
+          ],
+          "proof": "all real polynomial extrema"
+        },
+        "tcp_continuous_bounds": [
+          0.11256515093835133,
+          0.1293141463410515,
+          0.17872795711486023,
+          0.18859958841370994
+        ],
+        "certified_minimum_distance_m": 0.007397333128107173,
+        "node_count": 117,
+        "validation_node_count": 233,
+        "joint_path_sha256": "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293"
+      }
+    },
+    {
+      "id": "short-stage-budget-baseline-1",
+      "passed": true,
+      "details": {
+        "repetition": 1,
+        "code": 3001,
+        "message": "APF iteration budget exhausted",
+        "pipeline_wall_s": 0.008665860999826691,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3001,
+          "message": "APF iteration budget exhausted",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "geometric": {
+              "code": 3001,
+              "message": "APF iteration budget exhausted",
+              "data": null,
+              "details": {
+                "iterations": [
+                  {
+                    "iteration": 0,
+                    "q_rad": [
+                      0.3,
+                      -1.2,
+                      1.1,
+                      -1.1,
+                      1.0,
+                      0.2
+                    ],
+                    "potential": 0.003435752371264758,
+                    "repulsion": 0.00013575237126475524,
+                    "goal_error_rad": 0.06,
+                    "minimum_distance_lower_bound_m": 0.00958975542848415
+                  },
+                  {
+                    "iteration": 1,
+                    "q_rad": [
+                      0.31475383083470193,
+                      -1.192565909661639,
+                      1.090160961078987,
+                      -1.0950804805394936,
+                      1.0024597597302531,
+                      0.2
+                    ],
+                    "potential": 0.0019516382310894266,
+                    "repulsion": 7.644033467555198e-05,
+                    "goal_error_rad": 0.045246169165298056,
+                    "minimum_distance_lower_bound_m": 0.00961819244867737
+                  },
+                  {
+                    "iteration": 2,
+                    "q_rad": [
+                      0.3295154428539802,
+                      -1.18515855915278,
+                      1.0803154508513337,
+                      -1.0901577254256674,
+                      1.0049211372871667,
+                      0.2
+                    ],
+                    "potential": 0.0008848401318266636,
+                    "repulsion": 3.4449174052019333e-05,
+                    "goal_error_rad": 0.030484557146019775,
+                    "minimum_distance_lower_bound_m": 0.00963776772315159
+                  },
+                  {
+                    "iteration": 3,
+                    "q_rad": [
+                      0.34428780214025817,
+                      -1.1777810329193803,
+                      1.0704651616975362,
+                      -1.0852325808487684,
+                      1.007383709575616,
+                      0.2
+                    ],
+                    "potential": 0.00023468816631294872,
+                    "repulsion": 9.107105235270916e-06,
+                    "goal_error_rad": 0.015712197859741817,
+                    "minimum_distance_lower_bound_m": 0.009648478169699553
+                  }
+                ],
+                "last_valid_q_rad": [
+                  0.3590758269828265,
+                  -1.1704402870727841,
+                  1.0606118462131295,
+                  -1.080305923106565,
+                  1.0098470384467175,
+                  0.2
+                ],
+                "stop_segment": true,
+                "replan_required": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "short-stage-budget-baseline-2",
+      "passed": true,
+      "details": {
+        "repetition": 2,
+        "code": 3001,
+        "message": "APF iteration budget exhausted",
+        "pipeline_wall_s": 0.007438782000463107,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3001,
+          "message": "APF iteration budget exhausted",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "geometric": {
+              "code": 3001,
+              "message": "APF iteration budget exhausted",
+              "data": null,
+              "details": {
+                "iterations": [
+                  {
+                    "iteration": 0,
+                    "q_rad": [
+                      0.3,
+                      -1.2,
+                      1.1,
+                      -1.1,
+                      1.0,
+                      0.2
+                    ],
+                    "potential": 0.003435752371264758,
+                    "repulsion": 0.00013575237126475524,
+                    "goal_error_rad": 0.06,
+                    "minimum_distance_lower_bound_m": 0.00958975542848415
+                  },
+                  {
+                    "iteration": 1,
+                    "q_rad": [
+                      0.31475383083470193,
+                      -1.192565909661639,
+                      1.090160961078987,
+                      -1.0950804805394936,
+                      1.0024597597302531,
+                      0.2
+                    ],
+                    "potential": 0.0019516382310894266,
+                    "repulsion": 7.644033467555198e-05,
+                    "goal_error_rad": 0.045246169165298056,
+                    "minimum_distance_lower_bound_m": 0.00961819244867737
+                  },
+                  {
+                    "iteration": 2,
+                    "q_rad": [
+                      0.3295154428539802,
+                      -1.18515855915278,
+                      1.0803154508513337,
+                      -1.0901577254256674,
+                      1.0049211372871667,
+                      0.2
+                    ],
+                    "potential": 0.0008848401318266636,
+                    "repulsion": 3.4449174052019333e-05,
+                    "goal_error_rad": 0.030484557146019775,
+                    "minimum_distance_lower_bound_m": 0.00963776772315159
+                  },
+                  {
+                    "iteration": 3,
+                    "q_rad": [
+                      0.34428780214025817,
+                      -1.1777810329193803,
+                      1.0704651616975362,
+                      -1.0852325808487684,
+                      1.007383709575616,
+                      0.2
+                    ],
+                    "potential": 0.00023468816631294872,
+                    "repulsion": 9.107105235270916e-06,
+                    "goal_error_rad": 0.015712197859741817,
+                    "minimum_distance_lower_bound_m": 0.009648478169699553
+                  }
+                ],
+                "last_valid_q_rad": [
+                  0.3590758269828265,
+                  -1.1704402870727841,
+                  1.0606118462131295,
+                  -1.080305923106565,
+                  1.0098470384467175,
+                  0.2
+                ],
+                "stop_segment": true,
+                "replan_required": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "short-stage-budget-improved-2",
+      "passed": true,
+      "details": {
+        "repetition": 2,
+        "code": 0,
+        "message": "Guided smoothed retimed path certified",
+        "pipeline_wall_s": 1.0377500000004147,
+        "input_state_unchanged": true,
+        "duration_s": 2.32,
+        "joint_path_length_rad": 0.08124038404635964,
+        "tcp_path_length_m": 0.03924274725085644,
+        "joint_check": {
+          "position_min_rad": [
+            0.29999999722185994,
+            -1.20000000138907,
+            1.0599999981479067,
+            -1.1000000009260467,
+            0.9999999995369766,
+            0.2
+          ],
+          "position_max_rad": [
+            0.36000000277814004,
+            -1.16999999861093,
+            1.1000000018520935,
+            -1.0799999990739535,
+            1.0100000004630234,
+            0.2
+          ],
+          "peak_velocity_rad_s": [
+            0.048492733885159275,
+            0.02424636694257796,
+            0.032328489256765756,
+            0.016164244628389782,
+            0.008082122314201726,
+            0.0
+          ],
+          "peak_acceleration_rad_s2": [
+            0.06445375053444023,
+            0.03222687526771919,
+            0.0429691670222511,
+            0.021484583511610672,
+            0.010742291757105747,
+            0.0
+          ],
+          "proof": "all real polynomial extrema"
+        },
+        "tcp_continuous_bounds": [
+          0.11256515093835133,
+          0.1293141463410515,
+          0.17872795711486023,
+          0.18859958841370994
+        ],
+        "certified_minimum_distance_m": 0.007397333128107173,
+        "node_count": 117,
+        "validation_node_count": 233,
+        "joint_path_sha256": "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293"
+      }
+    },
+    {
+      "id": "short-stage-budget-baseline-repeatability",
+      "passed": true,
+      "details": {
+        "successful_path_hashes": []
+      }
+    },
+    {
+      "id": "short-stage-budget-improved-repeatability",
+      "passed": true,
+      "details": {
+        "successful_path_hashes": [
+          "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293",
+          "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293",
+          "65221de0a43defbef4f0e59c4c8ed5c2105dcc9d8db50d5b7a1fec9b705f7293"
+        ]
+      }
+    },
+    {
+      "id": "self-blocked-baseline-0",
+      "passed": true,
+      "details": {
+        "repetition": 0,
+        "code": 3003,
+        "message": "APF start/goal blocked",
+        "pipeline_wall_s": 0.0009211879996655625,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3003,
+          "message": "APF start/goal blocked",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "geometric": {
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "data": null,
+              "details": {
+                "iterations": [],
+                "last_valid_q_rad": [
+                  0.3,
+                  -1.2,
+                  1.1,
+                  -1.1,
+                  1.0,
+                  0.2
+                ],
+                "stop_segment": true,
+                "replan_required": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "self-blocked-improved-0",
+      "passed": true,
+      "details": {
+        "repetition": 0,
+        "code": 3003,
+        "message": "APF start/goal blocked",
+        "pipeline_wall_s": 0.0014994620005381876,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3003,
+          "message": "APF start/goal blocked",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "stages": {
+              "guided": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "attempts": [
+                    {
+                      "candidate_index": 0,
+                      "kind": "direct",
+                      "result": {
+                        "code": 3003,
+                        "message": "APF start/goal blocked",
+                        "data": null,
+                        "details": {
+                          "iterations": [],
+                          "last_valid_q_rad": [
+                            0.3,
+                            -1.2,
+                            1.1,
+                            -1.1,
+                            1.0,
+                            0.2
+                          ],
+                          "stop_segment": true,
+                          "replan_required": true
+                        }
+                      }
+                    }
+                  ],
+                  "retained_input_q_rad": [
+                    0.3,
+                    -1.2,
+                    1.1,
+                    -1.1,
+                    1.0,
+                    0.2
+                  ],
+                  "stop_segment": true,
+                  "replan_required": true
+                }
+              }
+            },
+            "retained_input_q_rad": [
+              0.3,
+              -1.2,
+              1.1,
+              -1.1,
+              1.0,
+              0.2
+            ],
+            "stop_segment": true,
+            "replan_required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "self-blocked-improved-1",
+      "passed": true,
+      "details": {
+        "repetition": 1,
+        "code": 3003,
+        "message": "APF start/goal blocked",
+        "pipeline_wall_s": 0.0013079990003461717,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3003,
+          "message": "APF start/goal blocked",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "stages": {
+              "guided": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "attempts": [
+                    {
+                      "candidate_index": 0,
+                      "kind": "direct",
+                      "result": {
+                        "code": 3003,
+                        "message": "APF start/goal blocked",
+                        "data": null,
+                        "details": {
+                          "iterations": [],
+                          "last_valid_q_rad": [
+                            0.3,
+                            -1.2,
+                            1.1,
+                            -1.1,
+                            1.0,
+                            0.2
+                          ],
+                          "stop_segment": true,
+                          "replan_required": true
+                        }
+                      }
+                    }
+                  ],
+                  "retained_input_q_rad": [
+                    0.3,
+                    -1.2,
+                    1.1,
+                    -1.1,
+                    1.0,
+                    0.2
+                  ],
+                  "stop_segment": true,
+                  "replan_required": true
+                }
+              }
+            },
+            "retained_input_q_rad": [
+              0.3,
+              -1.2,
+              1.1,
+              -1.1,
+              1.0,
+              0.2
+            ],
+            "stop_segment": true,
+            "replan_required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "self-blocked-baseline-1",
+      "passed": true,
+      "details": {
+        "repetition": 1,
+        "code": 3003,
+        "message": "APF start/goal blocked",
+        "pipeline_wall_s": 0.000646043000415375,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3003,
+          "message": "APF start/goal blocked",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "geometric": {
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "data": null,
+              "details": {
+                "iterations": [],
+                "last_valid_q_rad": [
+                  0.3,
+                  -1.2,
+                  1.1,
+                  -1.1,
+                  1.0,
+                  0.2
+                ],
+                "stop_segment": true,
+                "replan_required": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "self-blocked-baseline-2",
+      "passed": true,
+      "details": {
+        "repetition": 2,
+        "code": 3003,
+        "message": "APF start/goal blocked",
+        "pipeline_wall_s": 0.0006132649996288819,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3003,
+          "message": "APF start/goal blocked",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "geometric": {
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "data": null,
+              "details": {
+                "iterations": [],
+                "last_valid_q_rad": [
+                  0.3,
+                  -1.2,
+                  1.1,
+                  -1.1,
+                  1.0,
+                  0.2
+                ],
+                "stop_segment": true,
+                "replan_required": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "self-blocked-improved-2",
+      "passed": true,
+      "details": {
+        "repetition": 2,
+        "code": 3003,
+        "message": "APF start/goal blocked",
+        "pipeline_wall_s": 0.0010513310007809196,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3003,
+          "message": "APF start/goal blocked",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "stages": {
+              "guided": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "attempts": [
+                    {
+                      "candidate_index": 0,
+                      "kind": "direct",
+                      "result": {
+                        "code": 3003,
+                        "message": "APF start/goal blocked",
+                        "data": null,
+                        "details": {
+                          "iterations": [],
+                          "last_valid_q_rad": [
+                            0.3,
+                            -1.2,
+                            1.1,
+                            -1.1,
+                            1.0,
+                            0.2
+                          ],
+                          "stop_segment": true,
+                          "replan_required": true
+                        }
+                      }
+                    }
+                  ],
+                  "retained_input_q_rad": [
+                    0.3,
+                    -1.2,
+                    1.1,
+                    -1.1,
+                    1.0,
+                    0.2
+                  ],
+                  "stop_segment": true,
+                  "replan_required": true
+                }
+              }
+            },
+            "retained_input_q_rad": [
+              0.3,
+              -1.2,
+              1.1,
+              -1.1,
+              1.0,
+              0.2
+            ],
+            "stop_segment": true,
+            "replan_required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "self-blocked-baseline-repeatability",
+      "passed": true,
+      "details": {
+        "successful_path_hashes": []
+      }
+    },
+    {
+      "id": "self-blocked-improved-repeatability",
+      "passed": true,
+      "details": {
+        "successful_path_hashes": []
+      }
+    },
+    {
+      "id": "explicit-non-parent-self-collision",
+      "passed": true,
+      "details": {
+        "passed": false,
+        "minimum_distance_lower_bound_m": -0.02134994888062091,
+        "nearest": {
+          "self_link_pair": [
+            3,
+            5
+          ]
+        }
+      }
+    },
+    {
+      "id": "upperarm-blocked-baseline-0",
+      "passed": true,
+      "details": {
+        "repetition": 0,
+        "code": 3003,
+        "message": "APF start/goal blocked",
+        "pipeline_wall_s": 0.0005133280001246021,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3003,
+          "message": "APF start/goal blocked",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "geometric": {
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "data": null,
+              "details": {
+                "iterations": [],
+                "last_valid_q_rad": [
+                  0.3,
+                  -1.2,
+                  1.1,
+                  -1.1,
+                  1.0,
+                  0.2
+                ],
+                "stop_segment": true,
+                "replan_required": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "upperarm-blocked-improved-0",
+      "passed": true,
+      "details": {
+        "repetition": 0,
+        "code": 3003,
+        "message": "APF start/goal blocked",
+        "pipeline_wall_s": 0.0009240019999197102,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3003,
+          "message": "APF start/goal blocked",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "stages": {
+              "guided": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "attempts": [
+                    {
+                      "candidate_index": 0,
+                      "kind": "direct",
+                      "result": {
+                        "code": 3003,
+                        "message": "APF start/goal blocked",
+                        "data": null,
+                        "details": {
+                          "iterations": [],
+                          "last_valid_q_rad": [
+                            0.3,
+                            -1.2,
+                            1.1,
+                            -1.1,
+                            1.0,
+                            0.2
+                          ],
+                          "stop_segment": true,
+                          "replan_required": true
+                        }
+                      }
+                    }
+                  ],
+                  "retained_input_q_rad": [
+                    0.3,
+                    -1.2,
+                    1.1,
+                    -1.1,
+                    1.0,
+                    0.2
+                  ],
+                  "stop_segment": true,
+                  "replan_required": true
+                }
+              }
+            },
+            "retained_input_q_rad": [
+              0.3,
+              -1.2,
+              1.1,
+              -1.1,
+              1.0,
+              0.2
+            ],
+            "stop_segment": true,
+            "replan_required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "upperarm-blocked-improved-1",
+      "passed": true,
+      "details": {
+        "repetition": 1,
+        "code": 3003,
+        "message": "APF start/goal blocked",
+        "pipeline_wall_s": 0.0011578169996937504,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3003,
+          "message": "APF start/goal blocked",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "stages": {
+              "guided": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "attempts": [
+                    {
+                      "candidate_index": 0,
+                      "kind": "direct",
+                      "result": {
+                        "code": 3003,
+                        "message": "APF start/goal blocked",
+                        "data": null,
+                        "details": {
+                          "iterations": [],
+                          "last_valid_q_rad": [
+                            0.3,
+                            -1.2,
+                            1.1,
+                            -1.1,
+                            1.0,
+                            0.2
+                          ],
+                          "stop_segment": true,
+                          "replan_required": true
+                        }
+                      }
+                    }
+                  ],
+                  "retained_input_q_rad": [
+                    0.3,
+                    -1.2,
+                    1.1,
+                    -1.1,
+                    1.0,
+                    0.2
+                  ],
+                  "stop_segment": true,
+                  "replan_required": true
+                }
+              }
+            },
+            "retained_input_q_rad": [
+              0.3,
+              -1.2,
+              1.1,
+              -1.1,
+              1.0,
+              0.2
+            ],
+            "stop_segment": true,
+            "replan_required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "upperarm-blocked-baseline-1",
+      "passed": true,
+      "details": {
+        "repetition": 1,
+        "code": 3003,
+        "message": "APF start/goal blocked",
+        "pipeline_wall_s": 0.0005117749997225474,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3003,
+          "message": "APF start/goal blocked",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "geometric": {
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "data": null,
+              "details": {
+                "iterations": [],
+                "last_valid_q_rad": [
+                  0.3,
+                  -1.2,
+                  1.1,
+                  -1.1,
+                  1.0,
+                  0.2
+                ],
+                "stop_segment": true,
+                "replan_required": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "upperarm-blocked-baseline-2",
+      "passed": true,
+      "details": {
+        "repetition": 2,
+        "code": 3003,
+        "message": "APF start/goal blocked",
+        "pipeline_wall_s": 0.00046545700024580583,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3003,
+          "message": "APF start/goal blocked",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "geometric": {
+              "code": 3003,
+              "message": "APF start/goal blocked",
+              "data": null,
+              "details": {
+                "iterations": [],
+                "last_valid_q_rad": [
+                  0.3,
+                  -1.2,
+                  1.1,
+                  -1.1,
+                  1.0,
+                  0.2
+                ],
+                "stop_segment": true,
+                "replan_required": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "upperarm-blocked-improved-2",
+      "passed": true,
+      "details": {
+        "repetition": 2,
+        "code": 3003,
+        "message": "APF start/goal blocked",
+        "pipeline_wall_s": 0.0008396080002057715,
+        "input_state_unchanged": true,
+        "duration_s": null,
+        "joint_path_length_rad": null,
+        "tcp_path_length_m": null,
+        "failure_result": {
+          "code": 3003,
+          "message": "APF start/goal blocked",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "stages": {
+              "guided": {
+                "code": 3003,
+                "message": "APF start/goal blocked",
+                "data": null,
+                "next_state": null,
+                "details": {
+                  "attempts": [
+                    {
+                      "candidate_index": 0,
+                      "kind": "direct",
+                      "result": {
+                        "code": 3003,
+                        "message": "APF start/goal blocked",
+                        "data": null,
+                        "details": {
+                          "iterations": [],
+                          "last_valid_q_rad": [
+                            0.3,
+                            -1.2,
+                            1.1,
+                            -1.1,
+                            1.0,
+                            0.2
+                          ],
+                          "stop_segment": true,
+                          "replan_required": true
+                        }
+                      }
+                    }
+                  ],
+                  "retained_input_q_rad": [
+                    0.3,
+                    -1.2,
+                    1.1,
+                    -1.1,
+                    1.0,
+                    0.2
+                  ],
+                  "stop_segment": true,
+                  "replan_required": true
+                }
+              }
+            },
+            "retained_input_q_rad": [
+              0.3,
+              -1.2,
+              1.1,
+              -1.1,
+              1.0,
+              0.2
+            ],
+            "stop_segment": true,
+            "replan_required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "upperarm-blocked-baseline-repeatability",
+      "passed": true,
+      "details": {
+        "successful_path_hashes": []
+      }
+    },
+    {
+      "id": "upperarm-blocked-improved-repeatability",
+      "passed": true,
+      "details": {
+        "successful_path_hashes": []
+      }
+    },
+    {
+      "id": "upperarm-blocker-away-from-tool",
+      "passed": true,
+      "details": {
+        "tcp_to_blocker_m": 0.6395390990314677,
+        "collision": {
+          "passed": false,
+          "minimum_distance_lower_bound_m": -0.09999086346541722,
+          "nearest": {
+            "obstacle": "upperarm-blocker",
+            "robot_link": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "safe-compression-shortens-duration",
+      "passed": true,
+      "details": {
+        "requested_factor": 0.8,
+        "actual_factor": 0.8055555555555556,
+        "input_duration_s": 2.88,
+        "actual_duration_s": 2.32,
+        "sampled_and_refitted": true,
+        "revalidated": [
+          "joint_position",
+          "joint_velocity",
+          "joint_acceleration",
+          "tcp_linear_angular_rates",
+          "whole_arm",
+          "self_collision",
+          "continuous_clearance"
+        ]
+      }
+    },
+    {
+      "id": "actual-subgoal-selected",
+      "passed": true,
+      "details": {
+        "selected_candidate": 1
+      }
+    },
+    {
+      "id": "excessive-speed-compression",
+      "passed": true,
+      "details": {
+        "code": 3002,
+        "message": "Continuous polynomial joint rates exceeded",
+        "data": null,
+        "next_state": null,
+        "details": {
+          "requested_factor": 0.02,
+          "stop_segment": true,
+          "replan_required": true,
+          "rejected_derivative_peaks": {
+            "actual_duration_s": 0.06,
+            "peak_velocity_rad_s": [
+              2.1921296296296284,
+              1.0960648148148249,
+              1.4614197530864335,
+              0.7307098765432171,
+              0.36535493827160814,
+              0.0
+            ],
+            "peak_acceleration_rad_s2": [
+              149.99999999999986,
+              75.00000000000149,
+              100.00000000000166,
+              50.000000000000874,
+              25.000000000000515,
+              0.0
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "excessive-acceleration-compression",
+      "passed": true,
+      "details": {
+        "code": 3002,
+        "message": "Continuous polynomial joint rates exceeded",
+        "data": null,
+        "next_state": null,
+        "details": {
+          "requested_factor": 0.1,
+          "stop_segment": true,
+          "replan_required": true,
+          "rejected_derivative_peaks": {
+            "actual_duration_s": 0.08,
+            "peak_velocity_rad_s": [
+              0.023050987785347345,
+              0.0,
+              4.8166096055124e-16,
+              4.8166096055124e-16,
+              0.0,
+              0.0
+            ],
+            "peak_acceleration_rad_s2": [
+              1.3185108065160924,
+              0.0,
+              3.552713678800504e-13,
+              3.552713678800504e-13,
+              0.0,
+              0.0
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "invalid-factor-zero",
+      "passed": true,
+      "details": {
+        "code": 1001,
+        "message": "Retime factor must be in (0,1]",
+        "data": null,
+        "next_state": null,
+        "details": {
+          "requested_factor": "zero",
+          "stop_segment": true,
+          "replan_required": true
+        }
+      }
+    },
+    {
+      "id": "invalid-factor-nan",
+      "passed": true,
+      "details": {
+        "code": 1001,
+        "message": "Retime factor must be in (0,1]",
+        "data": null,
+        "next_state": null,
+        "details": {
+          "requested_factor": "nan",
+          "stop_segment": true,
+          "replan_required": true
+        }
+      }
+    },
+    {
+      "id": "invalid-factor-expansion",
+      "passed": true,
+      "details": {
+        "code": 1001,
+        "message": "Retime factor must be in (0,1]",
+        "data": null,
+        "next_state": null,
+        "details": {
+          "requested_factor": "expansion",
+          "stop_segment": true,
+          "replan_required": true
+        }
+      }
+    },
+    {
+      "id": "edge-proof-budget-rejects",
+      "passed": true,
+      "details": {
+        "passed": false,
+        "code": 3001,
+        "reason": "Continuous edge clearance proof budget exhausted",
+        "checks": 0
+      }
+    },
+    {
+      "id": "unsafe-smoothing-rejected",
+      "passed": true,
+      "details": {
+        "code": 3003,
+        "message": "Input smoothing edge 0: Whole-arm/self collision",
+        "data": null,
+        "next_state": null,
+        "details": {
+          "input_edge_checks": [
+            {
+              "edge_index": 0,
+              "proof": {
+                "passed": false,
+                "code": 3003,
+                "reason": "Whole-arm/self collision",
+                "fraction": 0.6681614349775785,
+                "collision": {
+                  "passed": false,
+                  "minimum_distance_lower_bound_m": 0.0029132644915925415,
+                  "nearest": {
+                    "self_link_pair": [
+                      3,
+                      5
+                    ]
+                  }
+                },
+                "checks": 150
+              }
+            }
+          ],
+          "events": [],
+          "stop_segment": true,
+          "replan_required": true
+        }
+      }
+    },
+    {
+      "id": "safe-endpoints-colliding-interior",
+      "passed": true,
+      "details": {
+        "endpoints_safe": true,
+        "start_q_rad": [
+          -0.3742565963470028,
+          -2.3843366984624392,
+          -0.8970081111253569,
+          -0.8711055503385614,
+          -0.2917323291194913,
+          -1.869156334633904
+        ],
+        "goal_q_rad": [
+          -0.3742565963470028,
+          -2.3843366984624392,
+          -0.8970081111253569,
+          3.1288944496614386,
+          -0.2917323291194913,
+          -1.869156334633904
+        ],
+        "failure": {
+          "code": 3003,
+          "message": "Input smoothing edge 0: Whole-arm/self collision",
+          "data": null,
+          "next_state": null,
+          "details": {
+            "input_edge_checks": [
+              {
+                "edge_index": 0,
+                "proof": {
+                  "passed": false,
+                  "code": 3003,
+                  "reason": "Whole-arm/self collision",
+                  "fraction": 0.335,
+                  "collision": {
+                    "passed": false,
+                    "minimum_distance_lower_bound_m": 0.0029405982417010446,
+                    "nearest": {
+                      "self_link_pair": [
+                        3,
+                        5
+                      ]
+                    }
+                  },
+                  "checks": 135
+                }
+              }
+            ],
+            "events": [],
+            "stop_segment": true,
+            "replan_required": true
+          }
+        }
+      }
+    },
+    {
+      "id": "missing-guide-config-rejected",
+      "passed": true,
+      "details": {
+        "code": 1004,
+        "message": "Incomplete guided APF configuration",
+        "data": null,
+        "next_state": null,
+        "details": {
+          "stages": {},
+          "retained_input_q_rad": [
+            0.3,
+            -1.2,
+            1.1,
+            -1.1,
+            1.0,
+            0.2
+          ],
+          "stop_segment": true,
+          "replan_required": true
+        }
+      }
+    },
+    {
+      "id": "default-budget-subgoal-geometric-recovery",
+      "passed": true,
+      "details": {
+        "baseline_code": 3001,
+        "guided_code": 0,
+        "baseline_wall_s": 0.26058648400066886,
+        "guided_wall_s": 0.7607517349997579,
+        "executable": false
+      }
+    },
+    {
+      "id": "long-route-no-partial-executable-output",
+      "passed": true,
+      "details": {
+        "code": 3001,
+        "message": "Smoothed trajectory duration/node budget exhausted",
+        "retained_input_q_rad": [
+          0.3,
+          -1.2,
+          1.1,
+          -1.1,
+          1.0,
+          0.2
+        ]
+      }
+    },
+    {
+      "id": "nominal-baseline-C2-endpoint-and-limits",
+      "passed": true,
+      "details": {
+        "joint_check": {
+          "position_min_rad": [
+            0.29999997696512803,
+            -1.200000011606702,
+            1.0599999990447364,
+            -1.100000007680751,
+            0.9999999961596245,
+            0.2
+          ],
+          "position_max_rad": [
+            0.3600000014428935,
+            -1.1699999993125882,
+            1.100000015361502,
+            -1.0799999995223681,
+            1.0100000002388159,
+            0.2
+          ],
+          "peak_velocity_rad_s": [
+            0.02773493073905486,
+            0.013942631476315134,
+            0.01847988662578557,
+            0.009239943312902515,
+            0.004619971656450488,
+            0.0
+          ],
+          "peak_acceleration_rad_s2": [
+            0.08609778979187072,
+            0.043282233704899975,
+            0.05736727482898524,
+            0.028683637416618883,
+            0.014341818706721236,
+            0.0
+          ],
+          "proof": "all real polynomial extrema"
+        },
+        "tcp_bounds": [
+          0.06445473946935365,
+          0.07401749782787237,
+          0.2096292152508505,
+          0.23525217420654956
+        ],
+        "max_join_jump": 6.245004513516506e-17
+      }
+    },
+    {
+      "id": "nominal-improved-C2-endpoint-and-limits",
+      "passed": true,
+      "details": {
+        "joint_check": {
+          "position_min_rad": [
+            0.29999999722185994,
+            -1.20000000138907,
+            1.0599999981479067,
+            -1.1000000009260467,
+            0.9999999995369766,
+            0.2
+          ],
+          "position_max_rad": [
+            0.36000000277814004,
+            -1.16999999861093,
+            1.1000000018520935,
+            -1.0799999990739535,
+            1.0100000004630234,
+            0.2
+          ],
+          "peak_velocity_rad_s": [
+            0.048492733885159275,
+            0.02424636694257796,
+            0.032328489256765756,
+            0.016164244628389782,
+            0.008082122314201726,
+            0.0
+          ],
+          "peak_acceleration_rad_s2": [
+            0.06445375053444023,
+            0.03222687526771919,
+            0.0429691670222511,
+            0.021484583511610672,
+            0.010742291757105747,
+            0.0
+          ],
+          "proof": "all real polynomial extrema"
+        },
+        "tcp_bounds": [
+          0.11256515093835133,
+          0.1293141463410515,
+          0.17872795711486023,
+          0.18859958841370994
+        ],
+        "max_join_jump": 2.168404344971009e-17
+      }
+    },
+    {
+      "id": "short-stage-budget-improved-C2-endpoint-and-limits",
+      "passed": true,
+      "details": {
+        "joint_check": {
+          "position_min_rad": [
+            0.29999999722185994,
+            -1.20000000138907,
+            1.0599999981479067,
+            -1.1000000009260467,
+            0.9999999995369766,
+            0.2
+          ],
+          "position_max_rad": [
+            0.36000000277814004,
+            -1.16999999861093,
+            1.1000000018520935,
+            -1.0799999990739535,
+            1.0100000004630234,
+            0.2
+          ],
+          "peak_velocity_rad_s": [
+            0.048492733885159275,
+            0.02424636694257796,
+            0.032328489256765756,
+            0.016164244628389782,
+            0.008082122314201726,
+            0.0
+          ],
+          "peak_acceleration_rad_s2": [
+            0.06445375053444023,
+            0.03222687526771919,
+            0.0429691670222511,
+            0.021484583511610672,
+            0.010742291757105747,
+            0.0
+          ],
+          "proof": "all real polynomial extrema"
+        },
+        "tcp_bounds": [
+          0.11256515093835133,
+          0.1293141463410515,
+          0.17872795711486023,
+          0.18859958841370994
+        ],
+        "max_join_jump": 2.168404344971009e-17
+      }
+    }
+  ],
+  "environment": {
+    "python": "3.11.9",
+    "numpy": "1.26.4",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39"
+  },
+  "timing": {
+    "clock": "perf_counter monotonic",
+    "start": "before complete planning pipeline call",
+    "stop": "after return including full certification",
+    "excludes": "scene construction, measures/FK path statistics, serialization, plotting; 1 warmup per method",
+    "repeats": 3,
+    "order": "alternate baseline/improved",
+    "quantile": "h=(n-1)p linear",
+    "c_function_ms": null,
+    "python_to_c_ms": null,
+    "function_timing_status": "not separately measured; pipeline wall time is not C/FFI time",
+    "script_work_wall_s": 18.282515400999728,
+    "script_work_scope": "main entry after imports through final report construction; excludes final report write/process startup; actual process wall is recorded by unified runner",
+    "timeout_count": 0,
+    "timeout_scope": "whole script limited to 120s by unified runner/CTest; no per-candidate preemptive timeout"
+  },
+  "configuration": {
+    "version": "1.0.0",
+    "usage": "simulation_only",
+    "guide_fractions": [
+      0.5,
+      0.33,
+      0.67
+    ],
+    "guide_offsets_rad": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0.25,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        -0.25,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0.25,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        -0.25,
+        0,
+        0,
+        0
+      ],
+      [
+        0.25,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        -0.25,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0.25,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        -0.25,
+        0
+      ]
+    ],
+    "maximum_candidates": 27,
+    "smoothing_passes": 2,
+    "smoothing_weight": 0.3,
+    "edge_maximum_subdivisions": 4096,
+    "compression_factor": 0.8,
+    "source": "project deterministic bounded subgoal and smoothing experiment, 2026-10-11; not manufacturer specifications"
+  },
+  "effective_limits": {
+    "version": "1.0.0",
+    "config_sha256": "c4540f40e3e69d938603399d66499c92b33f36de5509460cc4b254798c212653",
+    "model_sha256": "a33abb6bd1b206eade01f19e3581f56bb7e53c1e9a058111a779c3b39666316e",
+    "velocity_scale": 0.5,
+    "acceleration_scale": 0.5,
+    "joint_velocity_rad_s": [
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966
+    ],
+    "joint_acceleration_rad_s2": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "linear_velocity_m_s": 0.125,
+    "angular_velocity_rad_s": 0.25,
+    "linear_acceleration_m_s2": 0.25,
+    "angular_acceleration_rad_s2": 0.5,
+    "tcp_frame": "tool0",
+    "tcp_point": "tool0_origin",
+    "expression_frame": "base",
+    "limit_metric": "euclidean_norm"
+  },
+  "limitations": [
+    "Simulation only; no global completeness or optimality guarantee",
+    "Subgoals have more APF calls than direct baseline; per-call settings equal, total work reported",
+    "Rest quintic segments retain stops; no minimum-time claim",
+    "3 measured repetitions are observations, not formal latency acceptance",
+    "Long-route geometric recovery cannot execute when total-duration/node budgets fail"
+  ],
+  "sources_sha256": {
+    "src/planning/guided_apf.py": "39d214b7b9bda7fc29da79e73a130ab4242d18095dd147def80cd53cdd2ec2fe",
+    "scripts/verify_guided_apf.py": "f2154ac666d8c3cc4ee8f62025fc091c60e8fc8606a259c4e7d93636ea547103",
+    "src/planning/apf.py": "07392bae63633104c57f87238ded4716a20db179322505b3fc5d4fb8f7299eb6",
+    "src/planning/cartesian.py": "db7d87dbf8c0e46108d4e79e6b59f18aa9198b83c476d1ed1d67538140c55eeb",
+    "src/planning/collision.py": "9ed9a3dc692e740b37cb4718724cb653b2c4243f608190cf5d5752a96bb56f30",
+    "config/guided-apf.v1.json": "a4df87bb58f7162ba47abf8881c3801ca62281c31a668dd4b4b58b5689045993",
+    "config/planning-limits.v1.json": "c4540f40e3e69d938603399d66499c92b33f36de5509460cc4b254798c212653",
+    "config/cartesian-planning.v1.json": "35c6835f055cc89119f58b604b7139f77884d27898f82464b635ada3707a7ab5",
+    "scenes/static-apf.v1.json": "afe3e7289f6b8a4af4631b3c60beaeaf834357a734d5aeefe9e1ee57547d4f9b"
+  },
+  "libraries_sha256": {
+    "librobot_contract.so": "3375aeb28dbda980bdfb0ef759305851ff55b8c441ff7c6f4e0dd3ea0271ead6",
+    "librobot_planning.so": "ec43478d3ab964964e3fe59a91ad6d7f03e82a2e6787fed4ef7f63ae3fbcfbc0"
+  },
+  "artifacts": [
+    {
+      "path": "short-stage-algorithm-config.json",
+      "sha256": "8526c5fdd3ac87647f13a448bad6b9fac6d56b58dbbbdb7e5a080c14ab110402"
+    },
+    {
+      "path": "upperarm-blocked-scene.json",
+      "sha256": "cd7e5c89d75fe32bfca1aefe6ce77dcbc5a514c7b00794c093a05579f3acf2d7"
+    },
+    {
+      "path": "nominal-baseline.json",
+      "sha256": "0c173a02d0870ba8e1ef06ba4014982709ae332efe7a84f42206bccac6f6695b"
+    },
+    {
+      "path": "nominal-baseline.csv",
+      "sha256": "61201b7eb96dfc5ee54cf2e797c5ed789566700421af8d9ab21ab93e85322f3a"
+    },
+    {
+      "path": "nominal-baseline.svg",
+      "sha256": "77046630b5e947296a20c4e74505682c660e91932b473cee91149f20cc38f57d"
+    },
+    {
+      "path": "nominal-improved.json",
+      "sha256": "a0df5f7fd85f8bb8f434a43058d654574a23fb4126fb12346777ea44b273451f"
+    },
+    {
+      "path": "nominal-improved.csv",
+      "sha256": "35ee656734c009a6172266caa0e6ae7c60279674ce385a1ed07a6ae28c5d58ad"
+    },
+    {
+      "path": "nominal-improved.svg",
+      "sha256": "a73d7f5465ac35d1eb7c36227548676d95a96aae8ccd9051dbe003166ca1c3a7"
+    },
+    {
+      "path": "short-stage-budget-baseline.json",
+      "sha256": "23d5755a18c4eb9e0856d7f125c4f3a5d7a467f68d81e06adb39fceb1b7b9f5b"
+    },
+    {
+      "path": "short-stage-budget-improved.json",
+      "sha256": "a87322c48fe72938ec4744a607b9ca6e210d5ae6ee0017d18fe16183866fe7eb"
+    },
+    {
+      "path": "short-stage-budget-improved.csv",
+      "sha256": "35ee656734c009a6172266caa0e6ae7c60279674ce385a1ed07a6ae28c5d58ad"
+    },
+    {
+      "path": "short-stage-budget-improved.svg",
+      "sha256": "de75f2e288a57d019b68a63339a71545d23925d1315b4ac40ddf4ca1033cb768"
+    },
+    {
+      "path": "self-blocked-baseline.json",
+      "sha256": "4b71fccc13b6180999bd6246b7aade2ae9244e4dc0d9aa89ca5b40d273c66b53"
+    },
+    {
+      "path": "self-blocked-improved.json",
+      "sha256": "846ca2cf7a7aa2c9fc60a350a84d54c049e72ec52f558588dd5a5f9549a55f33"
+    },
+    {
+      "path": "upperarm-blocked-baseline.json",
+      "sha256": "4b71fccc13b6180999bd6246b7aade2ae9244e4dc0d9aa89ca5b40d273c66b53"
+    },
+    {
+      "path": "upperarm-blocked-improved.json",
+      "sha256": "846ca2cf7a7aa2c9fc60a350a84d54c049e72ec52f558588dd5a5f9549a55f33"
+    },
+    {
+      "path": "excessive-speed-compression.json",
+      "sha256": "c327c425ecacb9aa80a6f2846fc11898e4a678675e9d42a7755ad6933d4f769f"
+    },
+    {
+      "path": "excessive-acceleration-compression.json",
+      "sha256": "37c743c3505953814caf42e9d492b19bfceef524dd4aa38e991095ed99924e97"
+    },
+    {
+      "path": "invalid-factor-zero.json",
+      "sha256": "c306e7d3beba098162ecf63e35c3cb26ced76c4906fde1bac8dd9c0d3bfe19b0"
+    },
+    {
+      "path": "invalid-factor-nan.json",
+      "sha256": "76029b25d282e34a74130ba4996d9b1718fe4898a885f1954d261876e7724292"
+    },
+    {
+      "path": "invalid-factor-expansion.json",
+      "sha256": "4c48e06c7197ac44de1ab6a604bc096e7378950934af5fcddaabd2fcef2c0278"
+    },
+    {
+      "path": "unsafe-smoothing-rejected.json",
+      "sha256": "8cf92b10c6ec9936e2484dc8524efc16a036e251314561edff8ad68f52b16d44"
+    },
+    {
+      "path": "safe-endpoints-colliding-interior.json",
+      "sha256": "53a428248656b7e8eef6ed5b556bf4f9f981ea93bb5822873376f083452d3d02"
+    },
+    {
+      "path": "missing-guide-config-rejected.json",
+      "sha256": "8b09129a980cded18fd34d156535be71d9335eb166082b6be1feee85d59c7973"
+    },
+    {
+      "path": "long-route-geometric-baseline.json",
+      "sha256": "ffbe0d036a799351a434fd608dad72034c0b694ecb1120815fe01688753faa40"
+    },
+    {
+      "path": "long-route-geometric-guided.json",
+      "sha256": "94b1f3e5d7eb734d6523517026614ee297983ec1af29476b42e8f2cf339d06d4"
+    },
+    {
+      "path": "long-route-duration-budget-failure.json",
+      "sha256": "9089d60e2d88b96182f3aaa02d11045cf93ec0e356ecbbeeb93c81f1dc94fef3"
+    },
+    {
+      "path": "comparison.svg",
+      "sha256": "c2141f29c6da3a5ff20c2761412e2768d8b32a7586b80556b102e3adf560ee4f"
+    }
+  ]
+}

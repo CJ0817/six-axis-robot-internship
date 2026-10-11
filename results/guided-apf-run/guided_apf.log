@@ -1,0 +1,26 @@
+pybullet build time: Jan 29 2025 23:17:20
+nominal baseline 0 0 0.8056 OK
+nominal improved 0 0 0.9385 Guided smoothed retimed path certified
+nominal improved 1 0 1.0085 Guided smoothed retimed path certified
+nominal baseline 1 0 0.8429 OK
+nominal baseline 2 0 0.8385 OK
+nominal improved 2 0 0.9579 Guided smoothed retimed path certified
+short-stage-budget baseline 0 3001 0.0079 APF iteration budget exhausted
+short-stage-budget improved 0 0 1.0412 Guided smoothed retimed path certified
+short-stage-budget improved 1 0 1.2525 Guided smoothed retimed path certified
+short-stage-budget baseline 1 3001 0.0087 APF iteration budget exhausted
+short-stage-budget baseline 2 3001 0.0074 APF iteration budget exhausted
+short-stage-budget improved 2 0 1.0378 Guided smoothed retimed path certified
+self-blocked baseline 0 3003 0.0009 APF start/goal blocked
+self-blocked improved 0 3003 0.0015 APF start/goal blocked
+self-blocked improved 1 3003 0.0013 APF start/goal blocked
+self-blocked baseline 1 3003 0.0006 APF start/goal blocked
+self-blocked baseline 2 3003 0.0006 APF start/goal blocked
+self-blocked improved 2 3003 0.0011 APF start/goal blocked
+upperarm-blocked baseline 0 3003 0.0005 APF start/goal blocked
+upperarm-blocked improved 0 3003 0.0009 APF start/goal blocked
+upperarm-blocked improved 1 3003 0.0012 APF start/goal blocked
+upperarm-blocked baseline 1 3003 0.0005 APF start/goal blocked
+upperarm-blocked baseline 2 3003 0.0005 APF start/goal blocked
+upperarm-blocked improved 2 3003 0.0008 APF start/goal blocked
+50/50 guided APF checks passed

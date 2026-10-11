@@ -1,0 +1,30 @@
+{
+  "code": 3002,
+  "message": "Continuous polynomial joint rates exceeded",
+  "data": null,
+  "next_state": null,
+  "details": {
+    "requested_factor": 0.1,
+    "stop_segment": true,
+    "replan_required": true,
+    "rejected_derivative_peaks": {
+      "actual_duration_s": 0.08,
+      "peak_velocity_rad_s": [
+        0.023050987785347345,
+        0.0,
+        4.8166096055124e-16,
+        4.8166096055124e-16,
+        0.0,
+        0.0
+      ],
+      "peak_acceleration_rad_s2": [
+        1.3185108065160924,
+        0.0,
+        3.552713678800504e-13,
+        3.552713678800504e-13,
+        0.0,
+        0.0
+      ]
+    }
+  }
+}

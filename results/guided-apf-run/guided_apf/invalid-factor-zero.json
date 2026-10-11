@@ -1,0 +1,11 @@
+{
+  "code": 1001,
+  "message": "Retime factor must be in (0,1]",
+  "data": null,
+  "next_state": null,
+  "details": {
+    "requested_factor": "zero",
+    "stop_segment": true,
+    "replan_required": true
+  }
+}

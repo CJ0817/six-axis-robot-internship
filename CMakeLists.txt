@@ -57,3 +57,9 @@ add_test(NAME cartesian_and_static_apf
           --library "$<TARGET_FILE:robot_contract>" --planning-library "$<TARGET_FILE:robot_planning>"
           --output "${CMAKE_CURRENT_BINARY_DIR}/cartesian-planning")
 set_tests_properties(cartesian_and_static_apf PROPERTIES TIMEOUT 120)
+
+add_test(NAME guided_apf_smoothing_retiming
+  COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_guided_apf.py"
+          --library "$<TARGET_FILE:robot_contract>" --planning-library "$<TARGET_FILE:robot_planning>"
+          --output "${CMAKE_CURRENT_BINARY_DIR}/guided-apf")
+set_tests_properties(guided_apf_smoothing_retiming PROPERTIES TIMEOUT 120)

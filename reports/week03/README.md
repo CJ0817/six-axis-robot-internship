@@ -7,3 +7,5 @@
 - [关节三次/五次/梯形规划与97项验收](../../docs/joint-planning.md)
 
 - [直线/圆弧、静态势场与35项验证](../../docs/cartesian-and-static-apf.md)
+
+- [子目标引导、平滑与缩时同场景对照](../../docs/guided-apf-comparison.md)

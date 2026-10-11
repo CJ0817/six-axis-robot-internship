@@ -27,7 +27,7 @@ git clone https://github.com/CJ0817/six-axis-robot-internship.git
 cd six-axis-robot-internship
 ```
 
-仓库当前为公开仓库，可直接克隆；向 `main` 提交仍需相应写入权限。
+仓库为私有仓库，克隆时需要具备访问权限的 GitHub 账号。
 
 ## 日常提交
 
@@ -106,8 +106,6 @@ Robotics Toolbox 使用独立、版本及哈希锁定的环境；未实现的算
 
 ## 运动学阶段汇总与短演示
 
-[误差、成功率、耗时与推导](docs/ik-summary-and-derivation.md) · [140组逐例来源](results/closeout-ik/ik/report.json) · [编译/运行复核与演示说明](docs/build-and-demo-check.md) · [阶段周报](reports/week02/kinematics-weekly-summary.md)。短视频是云端 PyBullet DIRECT 渲染的三个关键帧；后续的[用户 Windows 桌面录像与 GUI 证据](results/local-demo/README.md)另行归档，不在阶段标签 `v0.2.0-kinematics` 内。
+[误差、成功率、耗时与推导](docs/ik-summary-and-derivation.md) · [140组逐例来源](results/closeout-ik/ik/report.json) · [编译/运行复核与演示说明](docs/build-and-demo-check.md) · [阶段周报](reports/week02/kinematics-weekly-summary.md)。短视频是本轮云端PyBullet DIRECT渲染的三个关键帧，不是用户Windows桌面录屏。
 
-## 运动学阶段统一基准（2026-10-06）
-
-[统一技术方案与下游接口](docs/kinematics-stage-baseline.md) · [正式测试报告](reports/week02/kinematics-stage-test-report.md) · [近奇异阻尼选解说明](docs/ik-stateful-selection.md) · [103 例选解回归摘要](results/ik-selection-dls/summary.json)。FK/IK 功能精度通过；FK Python→C 单次耗时门槛仍有一次超限，正式 IK 重复性能验收未完成。
+子目标引导、轨迹平滑、缩时后整臂/自碰撞及关节/TCP限值重验：[实现与同场景对照](docs/guided-apf-comparison.md)，统一入口 `scripts/run_tests.py --suite guided_apf`。
