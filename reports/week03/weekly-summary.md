@@ -43,3 +43,5 @@
 完成C几何路径、fixed/最短SLERP姿态规则、0.02s固定周期、连续逆解与C2关节段；全部读取既有仿真限值。增加全关节解析极值、DH保守TCP导数界、PyBullet全连杆/非父子自碰撞和网格运动界检查。保存直线、圆弧、静态势场三条成功轨迹、CSV/SVG与逐点原始记录；33/33预期检查通过，干净构建CTest 7/7。
 
 失败证据覆盖共线圆弧、姿态不一致、逆解限步、关节速率、上臂堵塞（TCP远离物体）、势场堵塞/预算和缺公共参数；失败无部分可执行输出。详见[正式阶段说明](../../docs/cartesian-and-static-apf.md)。剩余动态障碍、RRT/PRM对比、正式性能、非零边界/不停顿及控制/跟踪不能由静态成功样本抵扣。本轮是云端DIRECT验证，不新增用户电脑GUI证据。
+
+本轮CI首次运行发现CMake沿用actions/setup-python全局解释器，导致CTest找不到安装在.venv的PyBullet。已将scripts/setup.sh的Python3_EXECUTABLE显式指向工程.venv；算法与依赖版本不变，按同样全局Python_ROOT提示重做路径选择验证。
