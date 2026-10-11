@@ -1,0 +1,34 @@
+{
+  "code": 3001,
+  "message": "APF iteration budget exhausted",
+  "data": null,
+  "details": {
+    "iterations": [
+      {
+        "iteration": 0,
+        "q_rad": [
+          0.3,
+          -1.2,
+          1.1,
+          -1.1,
+          1.0,
+          0.2
+        ],
+        "potential": 0.003435752371264758,
+        "repulsion": 0.00013575237126475524,
+        "goal_error_rad": 0.06,
+        "minimum_distance_lower_bound_m": 0.00958975542848415
+      }
+    ],
+    "last_valid_q_rad": [
+      0.31475383083470193,
+      -1.192565909661639,
+      1.090160961078987,
+      -1.0950804805394936,
+      1.0024597597302531,
+      0.2
+    ],
+    "stop_segment": true,
+    "replan_required": true
+  }
+}

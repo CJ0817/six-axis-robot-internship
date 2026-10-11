@@ -43,7 +43,7 @@ add_test(NAME ik_candidate_filter COMMAND ik_filter_unit)
 set_tests_properties(ik_candidate_filter PROPERTIES TIMEOUT 10)
 
 # 独立关节规划库；运动学 ABI v1.0.0 的符号与结构不变。
-add_library(robot_planning SHARED src/planning/joint.c)
+add_library(robot_planning SHARED src/planning/joint.c src/planning/cartesian.c)
 target_include_directories(robot_planning PUBLIC include)
 target_compile_options(robot_planning PRIVATE -Wall -Wextra -Werror -pedantic)
 target_link_libraries(robot_planning PRIVATE m)
@@ -51,3 +51,9 @@ add_test(NAME joint_trajectories
   COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_joint_planning.py"
           --library "$<TARGET_FILE:robot_planning>" --output "${CMAKE_CURRENT_BINARY_DIR}/joint-planning")
 set_tests_properties(joint_trajectories PROPERTIES TIMEOUT 120)
+
+add_test(NAME cartesian_and_static_apf
+  COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_cartesian_planning.py"
+          --library "$<TARGET_FILE:robot_contract>" --planning-library "$<TARGET_FILE:robot_planning>"
+          --output "${CMAKE_CURRENT_BINARY_DIR}/cartesian-planning")
+set_tests_properties(cartesian_and_static_apf PROPERTIES TIMEOUT 120)

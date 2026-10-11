@@ -28,6 +28,14 @@ int robot_plan_joint(int method, const double *start, const double *goal,
  * 返回1001非法指针/长度/plan，1006时间越界/非有限。 */
 int robot_joint_evaluate(const robot_joint_plan *plan, double time_s,
                          double *q, double *qd, double *qdd, size_t count);
+/* 笛卡尔几何路径：method1直线origin+s*u；method2圆弧
+ * origin+radius*(u*cos(sweep*s)+v*sin(sweep*s))。
+ * u/v为单位正交圆平面基，sweep带符号且绝对值<2pi。
+ * 输出位置m、对无量纲s的一/二阶导数；count=3，s在[0,1]。
+ * 0成功；1001非法输入；1008方法；失败不写输出。 */
+typedef struct { int method; double origin[3], u[3], v[3], radius, sweep; } robot_cartesian_path;
+int robot_path_position(const robot_cartesian_path *path, double progress,
+                        double *position, double *first, double *second, size_t count);
 #ifdef __cplusplus
 }
 #endif

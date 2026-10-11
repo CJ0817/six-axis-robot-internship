@@ -1,0 +1,314 @@
+Start testing: Oct 11 21:30 AEDT
+----------------------------------------------------------
+1/7 Testing: cxx_abi_smoke
+1/7 Test: cxx_abi_smoke
+Command: "/tmp/cartesian-clean-build/cxx_smoke"
+Directory: /tmp/cartesian-clean-build
+"cxx_abi_smoke" start time: Oct 11 21:30 AEDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"cxx_abi_smoke" end time: Oct 11 21:30 AEDT
+"cxx_abi_smoke" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/7 Testing: python_abi_smoke
+2/7 Test: python_abi_smoke
+Command: "/workspace/scratch/9be573269881/six-axis-robot-internship/.venv/bin/python" "/workspace/scratch/9be573269881/six-axis-robot-internship/examples/c_library_demo.py" "--library" "/tmp/cartesian-clean-build/librobot_contract.so"
+Directory: /tmp/cartesian-clean-build
+"python_abi_smoke" start time: Oct 11 21:30 AEDT
+Output:
+----------------------------------------------------------
+{
+  "status": "passed",
+  "python": "3.11.9",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "utc": "2026-10-11T10:30:24.733255+00:00",
+  "library_name": "librobot_contract.so",
+  "sizeof_double": 8,
+  "sizeof_size_t": 8,
+  "library_sha256": "3375aeb28dbda980bdfb0ef759305851ff55b8c441ff7c6f4e0dd3ea0271ead6",
+  "source_sha256": {
+    "src/common/abi_probe.c": "a40a6942bd60ad2b3dee381b0d4be60ef43ca6d0dd1873744f4865ed3b3fbabc",
+    "include/robot_contract.h": "9a5c1870d248c85b7018d5a63fb2f450b8145e2d087c5e50355c19f467a29c5f",
+    "examples/c_library_demo.py": "bec9ab12b5d5397bf9b2943c7402e1297e055b30a941725e541212cd5f24f6b8"
+  },
+  "checks": [
+    {
+      "case": "six_joint_roundtrip",
+      "code": 0,
+      "input_rad": [
+        0.1,
+        -0.2,
+        0.3,
+        -0.4,
+        0.5,
+        -0.6
+      ],
+      "output_rad": [
+        0.1,
+        -0.2,
+        0.3,
+        -0.4,
+        0.5,
+        -0.6
+      ]
+    },
+    {
+      "case": "wrong_length",
+      "code": 1001,
+      "output_unchanged": true
+    },
+    {
+      "case": "nan",
+      "code": 1001,
+      "output_unchanged": true
+    },
+    {
+      "case": "infinity",
+      "code": 1001,
+      "output_unchanged": true
+    },
+    {
+      "case": "null_input",
+      "code": 1001,
+      "output_unchanged": true
+    },
+    {
+      "case": "null_output",
+      "code": 1001
+    }
+  ]
+}
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"python_abi_smoke" end time: Oct 11 21:30 AEDT
+"python_abi_smoke" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/7 Testing: fk_matrix_and_contract
+3/7 Test: fk_matrix_and_contract
+Command: "/tmp/cartesian-clean-build/fk_unit"
+Directory: /tmp/cartesian-clean-build
+"fk_matrix_and_contract" start time: Oct 11 21:30 AEDT
+Output:
+----------------------------------------------------------
+matrix operations, aliasing, validation, limits and 3 independent FK poses: passed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"fk_matrix_and_contract" end time: Oct 11 21:30 AEDT
+"fk_matrix_and_contract" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/7 Testing: c_analytic_ik
+4/7 Test: c_analytic_ik
+Command: "/workspace/scratch/9be573269881/six-axis-robot-internship/.venv/bin/python" "/workspace/scratch/9be573269881/six-axis-robot-internship/scripts/verify_c_ik.py" "--library" "/tmp/cartesian-clean-build/librobot_contract.so" "--output" "/tmp/cartesian-clean-build/ik-check"
+Directory: /tmp/cartesian-clean-build
+"c_analytic_ik" start time: Oct 11 21:30 AEDT
+Output:
+----------------------------------------------------------
+{
+  "status": "passed",
+  "groups": {
+    "normal": {
+      "expected": 100,
+      "passed": 100,
+      "failed": 0,
+      "success_rate": 1.0,
+      "position_m": {
+        "valid_count": 100,
+        "mean": 3.7269387151749725e-16,
+        "rmse": 3.970996597592183e-16,
+        "p95": 6.032351645751135e-16,
+        "maximum": 7.369614944603283e-16
+      },
+      "orientation_rad": {
+        "valid_count": 100,
+        "mean": 8.940333642327174e-16,
+        "rmse": 9.461242787268474e-16,
+        "p95": 1.3979216820028186e-15,
+        "maximum": 2.02794442253026e-15
+      },
+      "c_interface_s": {
+        "valid_count": 100,
+        "mean": 1.309798000875162e-05,
+        "rmse": 1.6448212154324706e-05,
+        "p95": 1.3894049993723457e-05,
+        "maximum": 0.00010064799994324858
+      },
+      "python_to_c_s": {
+        "valid_count": 100,
+        "mean": 1.4408990004994848e-05,
+        "rmse": 1.7613309833231837e-05,
+        "p95": 1.602949992047797e-05,
+        "maximum": 0.00010243099995932425
+      }
+    },
+    "wide_initial": {
+      "expected": 20,
+      "passed": 20,
+      "failed": 0,
+      "success_rate": 1.0,
+      "position_m": {
+        "valid_count": 20,
+        "mean": 3.8222174720110347e-16,
+        "rmse": 4.0361763063377797e-16,
+        "p95": 6.074732356477779e-16,
+        "maximum": 6.923611508150807e-16
+      },
+      "orientation_rad": {
+        "valid_count": 20,
+        "mean": 8.481217430836687e-16,
+        "rmse": 9.064589740773744e-16,
+        "p95": 1.314604500076786e-15,
+        "maximum": 1.544258594079659e-15
+      },
+      "c_interface_s": {
+        "valid_count": 20,
+        "mean": 1.4528899964716401e-05,
+        "rmse": 1.7852620090738534e-05,
+        "p95": 1.6108850070395452e-05,
+        "maximum": 5.921700017097464e-05
+      },
+      "python_to_c_s": {
+        "valid_count": 20,
+        "mean": 1.5789849965130997e-05,
+        "rmse": 1.906742286421714e-05,
+        "p95": 1.7467949817273654e-05,
+        "maximum": 6.185099982758402e-05
+      }
+    },
+    "near_singular": {
+      "expected": 20,
+      "passed": 20,
+      "failed": 0,
+      "success_rate": 1.0,
+      "position_m": {
+        "valid_count": 20,
+        "mean": 4.1493487530044633e-16,
+        "rmse": 4.415744605317135e-16,
+        "p95": 6.824443318487967e-16,
+        "maximum": 7.74487495818625e-16
+      },
+      "orientation_rad": {
+        "valid_count": 20,
+        "mean": 8.462131929217815e-16,
+        "rmse": 8.727651691870078e-16,
+        "p95": 1.1752669684353273e-15,
+        "maximum": 1.2699724084788805e-15
+      },
+      "c_interface_s": {
+        "valid_count": 20,
+        "mean": 1.1880950000886515e-05,
+        "rmse": 1.1972473184283297e-05,
+        "p95": 1.2964000052306802e-05,
+        "maximum": 1.3058999911663705e-05
+      },
+      "python_to_c_s": {
+        "valid_count": 20,
+        "mean": 1.319965001584933e-05,
+        "rmse": 1.3253041860766745e-05,
+        "p95": 1.4154999962556759e-05,
+        "maximum": 1.4231000022846274e-05
+      }
+    }
+  },
+  "special_count": 52,
+  "special_failures": []
+}
+<end of output>
+Test time =   0.12 sec
+----------------------------------------------------------
+Test Passed.
+"c_analytic_ik" end time: Oct 11 21:30 AEDT
+"c_analytic_ik" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/7 Testing: ik_candidate_filter
+5/7 Test: ik_candidate_filter
+Command: "/tmp/cartesian-clean-build/ik_filter_unit"
+Directory: /tmp/cartesian-clean-build
+"ik_candidate_filter" start time: Oct 11 21:30 AEDT
+Output:
+----------------------------------------------------------
+position_residual_rejected: passed
+orientation_only_residual_rejected: passed
+valid_survives_bad_predecessors: passed
+exact_duplicate: passed
+two_pi_duplicate_after_lift: passed
+duplicate_inside_1e_9: passed
+distinct_outside_1e_9: passed
+nan_candidate: passed
+infinite_candidate: passed
+no_legal_two_pi_lift: passed
+margin_excludes_endpoint: passed
+mixed_stream_has_two_valid_representatives: passed
+public_all_baseline: passed
+public_partial_residual_filter: passed
+every_retained_candidate_passes: passed
+retained=7 / initial=8; orientation_tol=6.1421238246335785e-16 rad
+all_residual_rejected_2002_output_unchanged: passed
+checks=16 failed=0
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ik_candidate_filter" end time: Oct 11 21:30 AEDT
+"ik_candidate_filter" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/7 Testing: joint_trajectories
+6/7 Test: joint_trajectories
+Command: "/workspace/scratch/9be573269881/six-axis-robot-internship/.venv/bin/python" "/workspace/scratch/9be573269881/six-axis-robot-internship/scripts/verify_joint_planning.py" "--library" "/tmp/cartesian-clean-build/librobot_planning.so" "--output" "/tmp/cartesian-clean-build/joint-planning"
+Directory: /tmp/cartesian-clean-build
+"joint_trajectories" start time: Oct 11 21:30 AEDT
+Output:
+----------------------------------------------------------
+97/97 joint planning checks passed
+<end of output>
+Test time =   0.34 sec
+----------------------------------------------------------
+Test Passed.
+"joint_trajectories" end time: Oct 11 21:30 AEDT
+"joint_trajectories" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/7 Testing: cartesian_and_static_apf
+7/7 Test: cartesian_and_static_apf
+Command: "/workspace/scratch/9be573269881/six-axis-robot-internship/.venv/bin/python" "/workspace/scratch/9be573269881/six-axis-robot-internship/scripts/verify_cartesian_planning.py" "--library" "/tmp/cartesian-clean-build/librobot_contract.so" "--planning-library" "/tmp/cartesian-clean-build/librobot_planning.so" "--output" "/tmp/cartesian-clean-build/cartesian-planning"
+Directory: /tmp/cartesian-clean-build
+"cartesian_and_static_apf" start time: Oct 11 21:30 AEDT
+Output:
+----------------------------------------------------------
+pybullet build time: Jan 29 2025 23:17:20
+line-success 0 OK
+arc-success 0 OK
+fixed-orientation-failure 1007 Fixed orientation endpoints differ
+collinear-arc-failure 1001 Degenerate three-point arc
+ik-step-failure 2002 IK failed at node 1
+rate-failure 3002 Continuous polynomial joint rates exceeded
+apf-waypoints 0 APF goal reached
+apf-success 0 OK
+blocked-upperarm-failure 3003 Initial configuration collides
+blocked-line-failure 3003 Initial configuration collides
+blocked-apf-failure 3003 APF start/goal blocked
+apf-budget-failure 3001 APF iteration budget exhausted
+missing-limits-failure 1004 Planning configuration/model unavailable
+missing-apf-limits-failure 1004 Planning configuration/model unavailable
+33/33 Cartesian/APF checks passed
+<end of output>
+Test time =   3.16 sec
+----------------------------------------------------------
+Test Passed.
+"cartesian_and_static_apf" end time: Oct 11 21:30 AEDT
+"cartesian_and_static_apf" time elapsed: 00:00:03
+----------------------------------------------------------
+
+End testing: Oct 11 21:30 AEDT

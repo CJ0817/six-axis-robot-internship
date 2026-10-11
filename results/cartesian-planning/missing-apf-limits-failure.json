@@ -1,0 +1,11 @@
+{
+  "code": 1004,
+  "message": "Planning configuration/model unavailable",
+  "data": null,
+  "details": {
+    "iterations": [],
+    "last_valid_q_rad": null,
+    "stop_segment": true,
+    "replan_required": true
+  }
+}

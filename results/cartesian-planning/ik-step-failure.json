@@ -1,0 +1,67 @@
+{
+  "code": 2002,
+  "message": "IK failed at node 1",
+  "data": null,
+  "next_state": null,
+  "details": {
+    "ik_nodes": [
+      {
+        "node_index": 1,
+        "time_s": 0.02,
+        "target_T_base_tool": [
+          [
+            0.6039222200393775,
+            0.7860997836547772,
+            -0.13162477836874817,
+            -0.5469261035816526
+          ],
+          [
+            -0.676438486874333,
+            0.4181593108863413,
+            -0.6062786192784821,
+            -0.34109117307915093
+          ],
+          [
+            -0.4215553648310888,
+            0.4551811956319949,
+            0.7842838475482936,
+            0.5552638684077968
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "code": 2002,
+        "state_advanced": false,
+        "input_state_unchanged": true,
+        "position_error_m": null,
+        "orientation_error_rad": null,
+        "sigma_min": null
+      }
+    ],
+    "last_ik_candidate_state": {
+      "q_rad": [
+        0.3,
+        -1.2,
+        1.1,
+        -1.1,
+        1.0,
+        0.2
+      ],
+      "step_index": 0
+    },
+    "retained_input_q_rad": [
+      0.3,
+      -1.2,
+      1.1,
+      -1.1,
+      1.0,
+      0.2
+    ],
+    "stop_segment": true,
+    "replan_required": true
+  }
+}

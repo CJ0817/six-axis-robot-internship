@@ -162,14 +162,14 @@
     {
       "id": "PLAN-03",
       "name": "笛卡尔路径误差",
-      "test_id": null,
-      "conditions": "10条已确认工作区路径；101节点/每段20细分；圆弧另设用例",
+      "test_id": "cartesian_planning",
+      "conditions": "直线/三点圆弧、fixed/最短SLERP、固定0.02s节点、连续IK与C2段；声明静态URDF场景和共享限值；几何退化/姿态/限步/超限负向",
       "threshold": "采样位置偏差≤1e-3、姿态角≤1e-3；段间无碰撞保证另验",
       "unit": "m; rad",
       "stage": "第3周",
-      "availability": "pending",
-      "pending_reason": "直线/圆弧及IK联调未实现",
-      "basis": "engineering-contract.md §9"
+      "availability": "implemented",
+      "pending_reason": "",
+      "basis": "docs/cartesian-and-static-apf.md; 静态基线，路径形状误差细分检查"
     },
     {
       "id": "PLAN-04",
@@ -350,6 +350,18 @@
       "availability": "implemented",
       "pending_reason": "",
       "basis": "docs/planning-limits.md; config/planning-limits.v1.json"
+    },
+    {
+      "id": "PLAN-APF",
+      "name": "静态势场与连续限值/碰撞基线",
+      "test_id": "cartesian_planning",
+      "conditions": "33项预期码；全连杆/非父子自碰撞，DH TCP导数保守界、网格运动界；势场到达及堵塞/预算/缺限值失败",
+      "threshold": "33/33；净距连续下界>0.003m；共享关节及TCP实际上限；失败data=null；固定周期/C2/端点通过",
+      "unit": "m; rad; s; code",
+      "stage": "第3周",
+      "availability": "implemented",
+      "pending_reason": "",
+      "basis": "docs/cartesian-and-static-apf.md; RRT/PRM改善率和正式性能仍未验收"
     }
   ],
   "notes": [

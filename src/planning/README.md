@@ -6,6 +6,6 @@
 
 规划器与测试共同调用`load_planning_limits()`读取唯一`config/planning-limits.v1.json`。缺项必须拒绝规划；请求缩放默认1，在加载时一次应用，位置限位读取绑定模型，不再重复缩放。
 
-只完成关节限位/速度/加速度和端点检查；TCP限值虽必需加载但尚未做曲线导数检查，返回`cartesian_limits_checked=false`。碰撞为unchecked。非零边界导数、笛卡尔轨迹/避障和控制仍待后续，不可宣称完成全规划验收。
+静止关节入口仍标记TCP/碰撞未检查。新`CartesianPlanner.plan`支持直线/圆弧、姿态、固定周期连续IK及C2段；使用DH保守TCP导数界和全URDF网格碰撞运动界。`static_apf`提供静态势场及失败诊断，详见[笛卡尔与势场](../../docs/cartesian-and-static-apf.md)。非零边界、动态避障、比较指标/性能和控制仍待后续。
 
 [参数表](../../docs/planning-limits.md) · [工程总方案](../../docs/engineering-contract.md) · [97项证据](../../results/joint-planning/report.json)。

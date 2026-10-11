@@ -1,0 +1,244 @@
+{
+  "code": 0,
+  "message": "APF goal reached",
+  "data": {
+    "waypoints_rad": [
+      [
+        0.3,
+        -1.2,
+        1.1,
+        -1.1,
+        1.0,
+        0.2
+      ],
+      [
+        0.31475383083470193,
+        -1.192565909661639,
+        1.090160961078987,
+        -1.0950804805394936,
+        1.0024597597302531,
+        0.2
+      ],
+      [
+        0.3295154428539802,
+        -1.18515855915278,
+        1.0803154508513337,
+        -1.0901577254256674,
+        1.0049211372871667,
+        0.2
+      ],
+      [
+        0.34428780214025817,
+        -1.1777810329193803,
+        1.0704651616975362,
+        -1.0852325808487684,
+        1.007383709575616,
+        0.2
+      ],
+      [
+        0.3590758269828265,
+        -1.1704402870727841,
+        1.0606118462131295,
+        -1.080305923106565,
+        1.0098470384467175,
+        0.2
+      ],
+      [
+        0.36,
+        -1.17,
+        1.06,
+        -1.08,
+        1.01,
+        0.2
+      ]
+    ],
+    "iterations": [
+      {
+        "iteration": 0,
+        "q_rad": [
+          0.3,
+          -1.2,
+          1.1,
+          -1.1,
+          1.0,
+          0.2
+        ],
+        "potential": 0.003435752371264758,
+        "repulsion": 0.00013575237126475524,
+        "goal_error_rad": 0.06,
+        "minimum_distance_lower_bound_m": 0.00958975542848415
+      },
+      {
+        "iteration": 1,
+        "q_rad": [
+          0.31475383083470193,
+          -1.192565909661639,
+          1.090160961078987,
+          -1.0950804805394936,
+          1.0024597597302531,
+          0.2
+        ],
+        "potential": 0.0019516382310894266,
+        "repulsion": 7.644033467555198e-05,
+        "goal_error_rad": 0.045246169165298056,
+        "minimum_distance_lower_bound_m": 0.00961819244867737
+      },
+      {
+        "iteration": 2,
+        "q_rad": [
+          0.3295154428539802,
+          -1.18515855915278,
+          1.0803154508513337,
+          -1.0901577254256674,
+          1.0049211372871667,
+          0.2
+        ],
+        "potential": 0.0008848401318266636,
+        "repulsion": 3.4449174052019333e-05,
+        "goal_error_rad": 0.030484557146019775,
+        "minimum_distance_lower_bound_m": 0.00963776772315159
+      },
+      {
+        "iteration": 3,
+        "q_rad": [
+          0.34428780214025817,
+          -1.1777810329193803,
+          1.0704651616975362,
+          -1.0852325808487684,
+          1.007383709575616,
+          0.2
+        ],
+        "potential": 0.00023468816631294872,
+        "repulsion": 9.107105235270916e-06,
+        "goal_error_rad": 0.015712197859741817,
+        "minimum_distance_lower_bound_m": 0.009648478169699553
+      },
+      {
+        "iteration": 4,
+        "q_rad": [
+          0.3590758269828265,
+          -1.1704402870727841,
+          1.0606118462131295,
+          -1.080305923106565,
+          1.0098470384467175,
+          0.2
+        ],
+        "potential": 7.998723167329227e-07,
+        "repulsion": 3.022709444976263e-08,
+        "goal_error_rad": 0.000924173017173513,
+        "minimum_distance_lower_bound_m": 0.00973557042385542
+      }
+    ]
+  },
+  "details": {
+    "scene": {
+      "scene_id": "ur5-static-apf-v1",
+      "revision": "2026-10-11",
+      "scene_sha256": "2fc1d630bcf03143d72704d02a5d73d833e0a82bf6c1abea01b70a250dbb66da",
+      "geometry_sha256": {
+        "models/ur5/ur5.urdf": "5314d4a6212361fb3e8b45ab79bb5c8ab80f2c1dff93816764ba220f79a4f188",
+        "models/ur5/meshes/base.stl": "1b9d4941ffba8e771ca119ab1c34d2ce7e393273955e14c6f6b56b75875923af",
+        "models/ur5/meshes/forearm.stl": "8e79aa80a532494ba5320c30b40363ff63d228e3d59e2904703dca341dcba2ac",
+        "models/ur5/meshes/shoulder.stl": "1d62e23a8c3ff9e6334fb157c805e6202037bcfca65bc6a36c5c9ae866751b3b",
+        "models/ur5/meshes/upperarm.stl": "55c11ac0ad1e144f230849b2033532e8b140b2e818ea497296d08dfb88757440",
+        "models/ur5/meshes/wrist1.stl": "0a1fd12150140efdee91650dcb4c2d0443065551a9207a2d2dbde58ff1fb4eb7",
+        "models/ur5/meshes/wrist2.stl": "c1d9f7843366068cb331f3f5c43fa716d3eceeb8c80216eccbbc878905dab123",
+        "models/ur5/meshes/wrist3.stl": "cf7220397b56f1d3047be9465eea1181d471b40fc82728052e31c97588585b4b"
+      },
+      "checker": "PyBullet 3.2.7 DIRECT closestPoints, URDF collision meshes",
+      "clearance_m": 0.003,
+      "query_distance_m": 0.25,
+      "excluded_near_assembly_pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "checked_self_pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "calls": 678,
+      "motion_radius_bound_m": 1.7314230517675708,
+      "motion_bound_source": "sum URDF joint translations + max scaled binary-STL vertex/collision offset + 0.01m padding"
+    }
+  }
+}
