@@ -255,7 +255,13 @@ class CartesianPlanner:
                     state_advanced=result['code']==0,input_state_unchanged=state==before,
                     position_error_m=None,orientation_error_rad=None,sigma_min=None)
                 records.append(record)
-                if result['code']:raise ContractError(result['code'],'IK failed at node '+str(index))
+                if result['code']:
+                    # 保存实际调用前后状态与求解器输出，失败记录不能假定状态未变。
+                    record.update(state_before=before,state_after=copy.deepcopy(state),
+                        solver_next_state_is_null=result.get('next_state') is None,
+                        solver_data_is_null=result.get('data') is None,
+                        state_advanced=state!=before)
+                    raise ContractError(result['code'],'IK failed at node '+str(index))
                 state=copy.deepcopy(result['next_state']);actual=self.selector._fk(self.model,state['q_rad']);pe,re=pose_error(actual,target)
                 record.update(q_rad=state['q_rad'].copy(),position_error_m=pe,orientation_error_rad=re,
                     sigma_min=self.selector.sigma_min(self.model,state['q_rad']),mode=result['data']['mode'])

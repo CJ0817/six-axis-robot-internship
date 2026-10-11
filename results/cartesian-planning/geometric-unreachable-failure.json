@@ -1,0 +1,99 @@
+{
+  "code": 2001,
+  "message": "IK failed at node 1",
+  "data": null,
+  "next_state": null,
+  "details": {
+    "ik_nodes": [
+      {
+        "node_index": 1,
+        "time_s": 0.02,
+        "target_T_base_tool": [
+          [
+            0.6039222200393775,
+            0.7860997836547775,
+            -0.13162477836874817,
+            4.417163496418348
+          ],
+          [
+            -0.6764384868743333,
+            0.4181593108863413,
+            -0.6062786192784823,
+            -0.34109117307915093
+          ],
+          [
+            -0.4215553648310889,
+            0.455181195631995,
+            0.7842838475482936,
+            0.5546846684077968
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "code": 2001,
+        "state_advanced": false,
+        "input_state_unchanged": true,
+        "position_error_m": null,
+        "orientation_error_rad": null,
+        "sigma_min": null,
+        "state_before": {
+          "q_rad": [
+            0.3,
+            -1.2,
+            1.1,
+            -1.1,
+            1.0,
+            0.2
+          ],
+          "step_index": 0
+        },
+        "state_after": {
+          "q_rad": [
+            0.3,
+            -1.2,
+            1.1,
+            -1.1,
+            1.0,
+            0.2
+          ],
+          "step_index": 0
+        },
+        "solver_next_state_is_null": true,
+        "solver_data_is_null": true
+      }
+    ],
+    "last_ik_candidate_state": {
+      "q_rad": [
+        0.3,
+        -1.2,
+        1.1,
+        -1.1,
+        1.0,
+        0.2
+      ],
+      "step_index": 0
+    },
+    "retained_input_q_rad": [
+      0.3,
+      -1.2,
+      1.1,
+      -1.1,
+      1.0,
+      0.2
+    ],
+    "stop_segment": true,
+    "replan_required": true,
+    "unreachable_sample_proof": {
+      "method": "norm(p_dh0_dh6) > sum(abs(a_m)+abs(d_m)) + 1e-12",
+      "conservative_reach_bound_m": 1.192509,
+      "sampled_target_distance_m": 4.464902196443942,
+      "geometrically_unreachable": true,
+      "input_seed_unchanged": true,
+      "state_retained": true
+    }
+  }
+}

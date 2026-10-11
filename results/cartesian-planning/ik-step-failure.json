@@ -39,7 +39,31 @@
         "input_state_unchanged": true,
         "position_error_m": null,
         "orientation_error_rad": null,
-        "sigma_min": null
+        "sigma_min": null,
+        "state_before": {
+          "q_rad": [
+            0.3,
+            -1.2,
+            1.1,
+            -1.1,
+            1.0,
+            0.2
+          ],
+          "step_index": 0
+        },
+        "state_after": {
+          "q_rad": [
+            0.3,
+            -1.2,
+            1.1,
+            -1.1,
+            1.0,
+            0.2
+          ],
+          "step_index": 0
+        },
+        "solver_next_state_is_null": true,
+        "solver_data_is_null": true
       }
     ],
     "last_ik_candidate_state": {

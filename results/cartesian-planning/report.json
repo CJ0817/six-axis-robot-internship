@@ -1,17 +1,17 @@
 {
   "status": "passed",
-  "passed_count": 33,
-  "expected_count": 33,
+  "passed_count": 35,
+  "expected_count": 35,
   "groups": {
     "valid_trajectories": {
       "total": 3,
       "passed": 3
     },
     "expected_negative_requests": {
-      "total": 10,
-      "passed": 10
+      "total": 11,
+      "passed": 11
     },
-    "note": "33 is expected-check pass count; negative requests are not successful trajectories"
+    "note": "Expected-check pass count includes deliberate negative requests; these are not successful trajectories"
   },
   "environment": {
     "python": "3.11.9",
@@ -21,11 +21,11 @@
   },
   "sources_sha256": {
     "src/planning/cartesian.c": "77eba086a3cdcca439aad12de6f2446e5e40f193accfbd0472afd21d307fee7a",
-    "src/planning/cartesian.py": "9b52ab63f8a198a2281853bf9fcae5b571b08aa4703cc6d54db0ad184032a61b",
+    "src/planning/cartesian.py": "db7d87dbf8c0e46108d4e79e6b59f18aa9198b83c476d1ed1d67538140c55eeb",
     "src/planning/collision.py": "9ed9a3dc692e740b37cb4718724cb653b2c4243f608190cf5d5752a96bb56f30",
     "src/planning/apf.py": "07392bae63633104c57f87238ded4716a20db179322505b3fc5d4fb8f7299eb6",
     "include/robot_planning.h": "b8d14031a46b068cab9e0be05ec84cbbe61026b6552d37132aa1d493f89483bf",
-    "scripts/verify_cartesian_planning.py": "888ee3bb6f4470e3a383facc4e295eb8587feb6bb8aa3ef0e77eb4f43c95cf24",
+    "scripts/verify_cartesian_planning.py": "cd472ac0b2a84ebd1beeebb54e1f1f7c684fa14f89a6b1ecad043fe13653594a",
     "config/cartesian-planning.v1.json": "35c6835f055cc89119f58b604b7139f77884d27898f82464b635ada3707a7ab5",
     "scenes/static-apf.v1.json": "afe3e7289f6b8a4af4631b3c60beaeaf834357a734d5aeefe9e1ee57547d4f9b",
     "requirements.lock": "35fc63a8ea9f56dbdf101f4ea18a3164bd37c77e85a23e43a91427ac3d2e0652",
@@ -185,7 +185,11 @@
     },
     {
       "path": "ik-step-failure.json",
-      "sha256": "97a2a42ab1ab22544728e132a06236b1cbfc6447577ffc7d03e4d478eb8e67a3"
+      "sha256": "f5751a4cfe2d731f1dc24bc241bb4cbc6cad1b93667fd656eac6950871d815cf"
+    },
+    {
+      "path": "geometric-unreachable-failure.json",
+      "sha256": "1b8ddccefd1096a2c8fd8b63d0d86cc87af83552cd7b8f1379844359b0aacf71"
     },
     {
       "path": "rate-failure.json",
@@ -193,7 +197,7 @@
     },
     {
       "path": "apf-waypoints.json",
-      "sha256": "2c69bce5f106c175d4f3ddb1c8b0a281c82f47ee01d4a496c91d56cd50a612be"
+      "sha256": "e06faa44d44b22daa75e45307f038be7f9143b7abd18500766cbe1335e6881f1"
     },
     {
       "path": "apf-success.csv",
@@ -205,7 +209,7 @@
     },
     {
       "path": "apf-success.json",
-      "sha256": "522282ed4b0fd4319d243443153b95f052581d1ee63eb6e6f96b742a274c1865"
+      "sha256": "3b1762036bdb673ee57ba1396e0c639ae1aaec32a48d33c36208af4ae754ad25"
     },
     {
       "path": "blocked-upperarm-failure.json",
@@ -549,7 +553,31 @@
             "input_state_unchanged": true,
             "position_error_m": null,
             "orientation_error_rad": null,
-            "sigma_min": null
+            "sigma_min": null,
+            "state_before": {
+              "q_rad": [
+                0.3,
+                -1.2,
+                1.1,
+                -1.1,
+                1.0,
+                0.2
+              ],
+              "step_index": 0
+            },
+            "state_after": {
+              "q_rad": [
+                0.3,
+                -1.2,
+                1.1,
+                -1.1,
+                1.0,
+                0.2
+              ],
+              "step_index": 0
+            },
+            "solver_next_state_is_null": true,
+            "solver_data_is_null": true
           }
         ],
         "last_ik_candidate_state": {
@@ -573,6 +601,118 @@
         ],
         "stop_segment": true,
         "replan_required": true
+      }
+    },
+    {
+      "id": "geometric-unreachable-failure",
+      "passed": true,
+      "expected_code": 2001,
+      "actual_code": 2001,
+      "message": "IK failed at node 1",
+      "details": {
+        "ik_nodes": [
+          {
+            "node_index": 1,
+            "time_s": 0.02,
+            "target_T_base_tool": [
+              [
+                0.6039222200393775,
+                0.7860997836547775,
+                -0.13162477836874817,
+                4.417163496418348
+              ],
+              [
+                -0.6764384868743333,
+                0.4181593108863413,
+                -0.6062786192784823,
+                -0.34109117307915093
+              ],
+              [
+                -0.4215553648310889,
+                0.455181195631995,
+                0.7842838475482936,
+                0.5546846684077968
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "code": 2001,
+            "state_advanced": false,
+            "input_state_unchanged": true,
+            "position_error_m": null,
+            "orientation_error_rad": null,
+            "sigma_min": null,
+            "state_before": {
+              "q_rad": [
+                0.3,
+                -1.2,
+                1.1,
+                -1.1,
+                1.0,
+                0.2
+              ],
+              "step_index": 0
+            },
+            "state_after": {
+              "q_rad": [
+                0.3,
+                -1.2,
+                1.1,
+                -1.1,
+                1.0,
+                0.2
+              ],
+              "step_index": 0
+            },
+            "solver_next_state_is_null": true,
+            "solver_data_is_null": true
+          }
+        ],
+        "last_ik_candidate_state": {
+          "q_rad": [
+            0.3,
+            -1.2,
+            1.1,
+            -1.1,
+            1.0,
+            0.2
+          ],
+          "step_index": 0
+        },
+        "retained_input_q_rad": [
+          0.3,
+          -1.2,
+          1.1,
+          -1.1,
+          1.0,
+          0.2
+        ],
+        "stop_segment": true,
+        "replan_required": true,
+        "unreachable_sample_proof": {
+          "method": "norm(p_dh0_dh6) > sum(abs(a_m)+abs(d_m)) + 1e-12",
+          "conservative_reach_bound_m": 1.192509,
+          "sampled_target_distance_m": 4.464902196443942,
+          "geometrically_unreachable": true,
+          "input_seed_unchanged": true,
+          "state_retained": true
+        }
+      }
+    },
+    {
+      "id": "geometric-unreachable-state-and-proof",
+      "passed": true,
+      "details": {
+        "method": "norm(p_dh0_dh6) > sum(abs(a_m)+abs(d_m)) + 1e-12",
+        "conservative_reach_bound_m": 1.192509,
+        "sampled_target_distance_m": 4.464902196443942,
+        "geometrically_unreachable": true,
+        "input_seed_unchanged": true,
+        "state_retained": true
       }
     },
     {
@@ -1169,7 +1309,7 @@
               6
             ]
           ],
-          "calls": 678,
+          "calls": 679,
           "motion_radius_bound_m": 1.7314230517675708,
           "motion_bound_source": "sum URDF joint translations + max scaled binary-STL vertex/collision offset + 0.01m padding"
         }

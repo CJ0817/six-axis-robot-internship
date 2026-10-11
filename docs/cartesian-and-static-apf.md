@@ -6,7 +6,7 @@
 
 - 运动限值仍唯一读取`config/planning-limits.v1.json`：默认六轴速度π/2 rad/s、加速度0.5 rad/s²；TCP线/角速度0.125 m/s、0.25 rad/s，线/角加速度0.25 m/s²、0.5 rad/s²。
 - `config/cartesian-planning.v1.json`只存算法周期、容差与预算，不重复运动限值；`scenes/static-apf.v1.json`记录固定障碍物和世界→base关系。
-- 位姿为base→tool0，TCP是tool0原点，位置m、角度rad。碰撞世界为URDF base_link，`T_world_base`与冻结模型逐项校验；33项测试含C FK与PyBullet tool0对齐。
+- 位姿为base→tool0，TCP是tool0原点，位置m、角度rad。碰撞世界为URDF base_link，`T_world_base`与冻结模型逐项校验；35项测试含C FK与PyBullet tool0对齐。
 - 磁盘模型不改写。连续选解的临时profile只把速度字段换成共享配置的**实际使用上限**，避免沿用较高的上游速度；失败配置1004、非法数值1001。
 
 ## 几何和姿态规则
@@ -84,7 +84,7 @@ Python入口`CartesianPlanner(kinematics_library,planning_library).plan(start,go
 
 ## 本轮逐例报告和曲线
 
-[33项汇总](../results/cartesian-planning/report.json)全部通过，干净CMake/CTest 7/7。汇总索引包含源码/配置/场景/网格/库及全部证据SHA256；原始JSON可逐节点重算。这里是验收预期通过数，不把预期失败案例称为成功规划。
+[35项汇总](../results/cartesian-planning/report.json)全部通过，干净CMake/CTest 7/7。汇总索引包含源码/配置/场景/网格/库及全部证据SHA256；原始JSON可逐节点重算。这里是验收预期通过数，不把预期失败案例称为成功规划。
 
 | 成功轨迹 | 固定节点 / 验证节点 | 证明的最小净距离下界 | 原始证据与曲线 |
 |---|---:|---:|---|
@@ -98,6 +98,7 @@ Python入口`CartesianPlanner(kinematics_library,planning_library).plan(start,go
 |---|---:|---|
 | 固定姿态目标改变 | 1007 | [JSON](../results/cartesian-planning/fixed-orientation-failure.json) |
 | 共线圆弧 | 1001 | [JSON](../results/cartesian-planning/collinear-arc-failure.json) |
+| 直线采样几何不可达 | 2001 | [JSON](../results/cartesian-planning/geometric-unreachable-failure.json) |
 | 连续逆解限步无法到达 | 2002 | [JSON](../results/cartesian-planning/ik-step-failure.json) |
 | 过短时长连续关节速率超限 | 3002 | [JSON](../results/cartesian-planning/rate-failure.json) |
 | 上臂堵塞、TCP远离障碍 | 3003 | [JSON](../results/cartesian-planning/blocked-upperarm-failure.json) |
@@ -106,3 +107,11 @@ Python入口`CartesianPlanner(kinematics_library,planning_library).plan(start,go
 | 缺公共限值 | 1004 | [直线](../results/cartesian-planning/missing-limits-failure.json) · [势场](../results/cartesian-planning/missing-apf-limits-failure.json) |
 
 未完成项：非零边界/不停顿路径策略、动态障碍、RRT/PRM对比及成功率/节拍改善正式验收、正式重复性能统计、控制/跟踪及本机新GUI验证。没有由一个静态基线推断全场景或实机可执行性。
+
+### 几何不可达节点回归（2026-10-11补充）
+
+新增两周期直线请求：起点由合法种子FK获得，终点沿base X方向偏移10 m，姿态固定。周期0.02 s、时长0.04 s，首采样节点编号1、时间0.02 s、五次进度0.5，因此目标已偏移5 m。真实C解析IK返回2001；原限步失败2002案例继续保留，两者不混用。
+
+原始JSON保存完整`target_T_base_tool`、节点编号、时间、错误码，以及调用前后`state_before/state_after`、求解器空输出标志。剥离基座/工具固定变换后，以`norm(p_dh0_dh6) > sum(|a|+|d|)+1e-12`验证几何不可达，半径和实际距离均写入证据。
+
+回归同时断言仅尝试首节点、关节和step_index保持初始状态、调用方种子不变、`state_advanced=false`、求解器及规划器`data/next_state=null`。该段停止并要求重规划；没有部分可执行轨迹。统一`cartesian_planning`入口和CTest/CI均包含此项。当前35项检查含3条成功轨迹、11次预期失败请求及独立验证。

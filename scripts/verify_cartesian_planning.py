@@ -108,6 +108,37 @@ def main():
         record('collinear-arc-failure',planner.plan(start.tolist(),goal.tolist(),q0,scene,method='arc',via=((start[:3,3]+goal[:3,3])/2).tolist()),1001)
         far=goal.copy();far[:3,3]+=[.6,0,0]
         record('ik-step-failure',planner.plan(start.tolist(),far.tolist(),q0,scene,duration_s=.1),2002)
+        # 真正的几何不可达采样：两周期直线在首节点到达5m偏移；不放宽限步或伪造错误码。
+        unreachable_goal=start.copy();unreachable_goal[:3,3]+=[10.,0.,0.]
+        seed_before=copy.deepcopy(q0)
+        unreachable=planner.plan(start.tolist(),unreachable_goal.tolist(),q0,scene,
+            duration_s=2*planner.config['sample_period_s'],orientation='fixed')
+        nodes=unreachable.get('details',{}).get('ik_nodes',[])
+        node=nodes[0] if nodes else {}
+        # 与C解析IK相同：剥离固定变换后，sum(|a|+|d|)是保守最大伸展界。
+        target=np.array(node.get('target_T_base_tool',np.eye(4)))
+        dh_target=(np.linalg.inv(np.array(planner.profile['T_base_dh0']))@target@
+            np.linalg.inv(np.array(planner.profile['T_flange_tool']))@
+            np.linalg.inv(np.array(planner.profile['T_dh6_flange'])))
+        radius=sum(abs(a)+abs(d) for a,d in zip(planner.profile['a_m'],planner.profile['d_m']))
+        distance=float(np.linalg.norm(dh_target[:3,3]))
+        initial_state=dict(q_rad=seed_before,step_index=0)
+        state_retained=(node.get('state_before')==node.get('state_after')==initial_state and
+            unreachable['details'].get('last_ik_candidate_state')==initial_state and q0==seed_before)
+        proof=dict(method='norm(p_dh0_dh6) > sum(abs(a_m)+abs(d_m)) + 1e-12',
+            conservative_reach_bound_m=radius,sampled_target_distance_m=distance,
+            geometrically_unreachable=distance>radius+1e-12,
+            input_seed_unchanged=q0==seed_before,state_retained=state_retained)
+        unreachable['details']['unreachable_sample_proof']=proof
+        record('geometric-unreachable-failure',unreachable,2001)
+        check('geometric-unreachable-state-and-proof',len(nodes)==1 and
+            node.get('node_index')==1 and node.get('time_s')==planner.config['sample_period_s'] and
+            node.get('code')==2001 and proof['geometrically_unreachable'] and state_retained and
+            node.get('input_state_unchanged') is True and node.get('state_advanced') is False and
+            node.get('solver_next_state_is_null') is True and node.get('solver_data_is_null') is True and
+            unreachable['data'] is None and unreachable['next_state'] is None and
+            unreachable['details'].get('stop_segment') is True and unreachable['details'].get('replan_required') is True,
+            proof)
         # 强制时长过短，即使IK逐节点有解也不能接受超速/超加速度。
         record('rate-failure',planner.plan(start.tolist(),goal.tolist(),q0,scene,duration_s=.2),3002)
         apf_goal=[.36,-1.17,1.06,-1.08,1.01,.2]
@@ -180,7 +211,7 @@ def main():
     report=dict(status='passed' if passed==len(cases) else 'failed',passed_count=passed,expected_count=len(cases),
         groups=dict(valid_trajectories=dict(total=3,passed=sum(c['passed'] for c in cases if c['id'] in ('line-success','arc-success','apf-success'))),
             expected_negative_requests=dict(total=sum(c.get('expected_code',0)!=0 for c in cases),passed=sum(c['passed'] and c.get('expected_code',0)!=0 for c in cases)),
-            note='33 is expected-check pass count; negative requests are not successful trajectories'),
+            note='Expected-check pass count includes deliberate negative requests; these are not successful trajectories'),
         environment=dict(python=platform.python_version(),numpy=np.__version__,pybullet=version('pybullet'),platform=platform.platform()),
         sources_sha256={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in sources},
         libraries_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (args.library,args.planning_library)},

@@ -26226,7 +26226,7 @@
           6
         ]
       ],
-      "calls": 1179,
+      "calls": 1180,
       "motion_radius_bound_m": 1.7314230517675708,
       "motion_bound_source": "sum URDF joint translations + max scaled binary-STL vertex/collision offset + 0.01m padding"
     },

@@ -45,3 +45,7 @@
 失败证据覆盖共线圆弧、姿态不一致、逆解限步、关节速率、上臂堵塞（TCP远离物体）、势场堵塞/预算和缺公共参数；失败无部分可执行输出。详见[正式阶段说明](../../docs/cartesian-and-static-apf.md)。剩余动态障碍、RRT/PRM对比、正式性能、非零边界/不停顿及控制/跟踪不能由静态成功样本抵扣。本轮是云端DIRECT验证，不新增用户电脑GUI证据。
 
 本轮CI首次运行发现CMake沿用actions/setup-python全局解释器，导致CTest找不到安装在.venv的PyBullet。已将scripts/setup.sh的Python3_EXECUTABLE显式指向工程.venv；算法与依赖版本不变，按同样全局Python_ROOT提示重做路径选择验证。
+
+## 2026-10-11：不可达采样节点补测
+
+新增直线首节点明确超出几何可达范围的案例，保存节点1、0.02 s、完整目标位姿与真实返回码2001。逐项确认调用前后关节状态和step_index不变、种子未修改、无后续节点推进，求解器及规划器输出均为空，不交付部分可执行轨迹。几何伸展界和状态快照见[原始证据](../../results/cartesian-planning/geometric-unreachable-failure.json)。统一回归现为35/35；历史33项结果属于本补测前批次。
