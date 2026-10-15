@@ -29,6 +29,15 @@ jobs:
       - name: Test runner regressions
         if: always()
         run: python -m unittest discover -s tests -p 'test_runner.py' -v
+      - name: Feedforward recurrence saturation and metric contracts
+        if: always()
+        run: python -m unittest discover -s tests -p 'test_feedforward.py' -v
+      - name: Matched PID versus feedforward second-order and disturbance trials
+        if: always()
+        run: python scripts/verify_pid_feedforward.py --library build/librobot_control.so --output results/pid-feedforward-second-order
+      - name: Matched UR5 load tracking and disturbance trials
+        if: always()
+        run: python scripts/verify_pid_feedforward.py --library build/librobot_control.so --plant pybullet --output results/pid-feedforward-pybullet
       - name: Save raw traces and reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -37,3 +46,5 @@ jobs:
           path: |
             results/single-joint-pid-integrator/
             results/single-joint-pid-pybullet/
+            results/pid-feedforward-second-order/
+            results/pid-feedforward-pybullet/

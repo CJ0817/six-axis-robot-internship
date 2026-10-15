@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "scope": "simulation_only_UR5_J1_feedforward_disturbance_comparison",
+  "dt_s": 0.01,
+  "duration_s": 24.0,
+  "repetitions": 2,
+  "pid": {"dt_s": 0.01, "kp": 80.0, "ki": 15.0, "kd": 12.0, "integral_min": -3.0, "integral_max": 3.0, "output_min": -12.0, "output_max": 12.0},
+  "pybullet": {"gravity_m_s2": [0.0,0.0,0.0], "physics_substeps": 4, "other_joint_force_nm": 200.0},
+  "load_mass_kg": [0.0,0.75],
+  "load_link": "wrist_3_link",
+  "added_load_radius_m": 0.04,
+  "joint_viscous_damping_nm_s_rad": 0.4,
+  "feedforward": {"velocity_gain": "configured_J1_viscous_damping", "acceleration_gain": "loaded_UR5_mass_matrix_00_at_initial_pose", "inertia_scale": 1.0},
+  "second_order_model": {"nominal_inertia_kg_m2": 1.5, "payload_radius_to_J1_m": 0.5},
+  "trajectory": {"start_s": 0.5, "move_duration_s": 2.0, "move_target_rad": 0.2, "sine_duration_s": 8.0, "sine_amplitude_rad": 0.12, "sine_frequency_hz": 0.25, "hold_rad": 0.15},
+  "disturbance": {"start_s": 4.0, "pulse_end_s": 6.0, "torque_nm": 2.0},
+  "metrics": {"steady_window_s": 1.0, "absolute_settling_band_rad": 0.001, "relative_settling_band": 0.02, "minimum_settling_dwell_s": 0.5},
+  "functional_gates": {"maximum_abs_position_rad": 1.0, "maximum_final_abs_error_rad": 0.03, "repeatability_tolerance_rad": 1e-10},
+  "note": "One predeclared PID parameter set for both modes and all loads. Load is added at wrist_3_link inertial COM with spherical intrinsic inertia; no gravity compensation or full computed torque. Improvement is measured, not required in every case."
+}

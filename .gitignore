@@ -17,6 +17,8 @@ slprj/
 
 # Build and temporary outputs
 build/
+results/pid-feedforward-*/*-r*.csv
+results/pid-feedforward-*/*-comparison.svg
 *.log
 *.tmp
 

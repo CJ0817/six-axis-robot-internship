@@ -79,3 +79,11 @@ add_test(NAME single_joint_pid
   COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_single_joint_pid.py"
           --library "$<TARGET_FILE:robot_control>" --output "${CMAKE_CURRENT_BINARY_DIR}/single-joint-pid")
 set_tests_properties(single_joint_pid PROPERTIES TIMEOUT 120)
+
+add_test(NAME pid_feedforward_contracts
+  COMMAND "${CMAKE_COMMAND}" -E env "ROBOT_CONTROL_LIBRARY=$<TARGET_FILE:robot_control>"
+          "${Python3_EXECUTABLE}" -m unittest discover -s "${CMAKE_CURRENT_SOURCE_DIR}/tests" -p test_feedforward.py -v)
+add_test(NAME pid_feedforward_comparison
+  COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_pid_feedforward.py"
+          --library "$<TARGET_FILE:robot_control>" --output "${CMAKE_CURRENT_BINARY_DIR}/pid-feedforward")
+set_tests_properties(pid_feedforward_contracts pid_feedforward_comparison PROPERTIES TIMEOUT 120)
