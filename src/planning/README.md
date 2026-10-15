@@ -6,6 +6,11 @@
 
 规划器与测试共同调用`load_planning_limits()`读取唯一`config/planning-limits.v1.json`。缺项必须拒绝规划；请求缩放默认1，在加载时一次应用，位置限位读取绑定模型，不再重复缩放。
 
-静止关节入口仍标记TCP/碰撞未检查。新`CartesianPlanner.plan`支持直线/圆弧、姿态、固定周期连续IK及C2段；使用DH保守TCP导数界和全URDF网格碰撞运动界。`static_apf`提供静态势场及失败诊断，详见[笛卡尔与势场](../../docs/cartesian-and-static-apf.md)。非零边界、动态避障、比较指标/性能和控制仍待后续。
+`JointPlanner.plan_joint` 与 `CartesianPlanner.plan` 共用完整多项式认证，检查关节约束、TCP 导数界和全 URDF 网格整臂／自碰撞运动界。笛卡尔入口支持直线／圆弧、姿态、固定周期连续 IK 及 C2 段。`static_apf` 提供静态势场及失败诊断，详见[笛卡尔与势场](../../docs/cartesian-and-static-apf.md)。
 
 [参数表](../../docs/planning-limits.md) · [工程总方案](../../docs/engineering-contract.md) · [97项证据](../../results/joint-planning/report.json)。
+
+
+## 完整认证入口
+
+`JointPlanner.plan_joint` 现要求场景和运动学库，认证关节约束、TCP 导数及整臂／自碰撞后才返回可执行轨迹。低层公式试验使用 `plan_candidate`，其结果明确不可执行。仿真执行统一经过 `planning.execution.execute_trajectory`。详见[统一认证说明](../../docs/trajectory-certification.md)。历史 97 项仅为候选生成器回归，不代表完整认证。

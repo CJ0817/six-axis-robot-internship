@@ -64,6 +64,12 @@ add_test(NAME guided_apf_smoothing_retiming
           --output "${CMAKE_CURRENT_BINARY_DIR}/guided-apf")
 set_tests_properties(guided_apf_smoothing_retiming PROPERTIES TIMEOUT 120)
 
+add_test(NAME trajectory_certification
+  COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_trajectory_certification.py"
+          --library "$<TARGET_FILE:robot_contract>" --planning-library "$<TARGET_FILE:robot_planning>"
+          --output "${CMAKE_CURRENT_BINARY_DIR}/trajectory-certification")
+set_tests_properties(trajectory_certification PROPERTIES TIMEOUT 180)
+
 # Independent control ABI; frozen kinematics structures/symbols remain unchanged.
 add_library(robot_control SHARED src/control/pid.c)
 target_include_directories(robot_control PUBLIC include)

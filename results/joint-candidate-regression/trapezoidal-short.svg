@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="790" viewBox="0 0 960 790">
+<rect width="960" height="790" fill="white"/>
+<text x="60" y="26" font-family="sans-serif" font-size="18">trapezoidal-short: trapezoidal / C1 / simulation</text>
+<text x="80" y="50" font-family="sans-serif" font-size="15">Position (rad)</text>
+<path d="M80,235.000 H880" stroke="#e2e8f0"/><text x="8" y="239.000" font-size="12">-0.0012</text>
+<path d="M80,191.250 H880" stroke="#e2e8f0"/><text x="8" y="195.250" font-size="12">0.0019</text>
+<path d="M80,147.500 H880" stroke="#e2e8f0"/><text x="8" y="151.500" font-size="12">0.005</text>
+<path d="M80,103.750 H880" stroke="#e2e8f0"/><text x="8" y="107.750" font-size="12">0.0081</text>
+<path d="M80,60.000 H880" stroke="#e2e8f0"/><text x="8" y="64.000" font-size="12">0.0112</text>
+<polyline points="80.000,218.065 362.843,182.782 480.000,147.500 645.685,101.149 880.000,76.935" fill="none" stroke="#2563eb" stroke-width="1.7"/>
+<polyline points="80.000,218.065 362.843,218.065 480.000,218.065 645.685,218.065 880.000,218.065" fill="none" stroke="#dc2626" stroke-width="1.7"/>
+<polyline points="80.000,218.065 362.843,218.065 480.000,218.065 645.685,218.065 880.000,218.065" fill="none" stroke="#16a34a" stroke-width="1.7"/>
+<polyline points="80.000,218.065 362.843,218.065 480.000,218.065 645.685,218.065 880.000,218.065" fill="none" stroke="#9333ea" stroke-width="1.7"/>
+<polyline points="80.000,218.065 362.843,218.065 480.000,218.065 645.685,218.065 880.000,218.065" fill="none" stroke="#ea580c" stroke-width="1.7"/>
+<polyline points="80.000,218.065 362.843,218.065 480.000,218.065 645.685,218.065 880.000,218.065" fill="none" stroke="#0891b2" stroke-width="1.7"/>
+<path d="M80.000,60 v175" stroke="#94a3b8" stroke-dasharray="3 4"/>
+<path d="M480.000,60 v175" stroke="#94a3b8" stroke-dasharray="3 4"/>
+<path d="M880.000,60 v175" stroke="#94a3b8" stroke-dasharray="3 4"/>
+<text x="80.000" y="255" font-size="12">0s</text>
+<text x="280.000" y="255" font-size="12">0.0707s</text>
+<text x="480.000" y="255" font-size="12">0.141s</text>
+<text x="680.000" y="255" font-size="12">0.212s</text>
+<text x="880.000" y="255" font-size="12">0.283s</text>
+<text x="80" y="280" font-family="sans-serif" font-size="15">Velocity (rad/s)</text>
+<path d="M80,465.000 H880" stroke="#e2e8f0"/><text x="8" y="469.000" font-size="12">-0.00849</text>
+<path d="M80,421.250 H880" stroke="#e2e8f0"/><text x="8" y="425.250" font-size="12">0.0134</text>
+<path d="M80,377.500 H880" stroke="#e2e8f0"/><text x="8" y="381.500" font-size="12">0.0354</text>
+<path d="M80,333.750 H880" stroke="#e2e8f0"/><text x="8" y="337.750" font-size="12">0.0573</text>
+<path d="M80,290.000 H880" stroke="#e2e8f0"/><text x="8" y="294.000" font-size="12">0.0792</text>
+<polyline points="80.000,448.065 362.843,348.271 480.000,306.935 645.685,365.393 880.000,448.065" fill="none" stroke="#2563eb" stroke-width="1.7"/>
+<polyline points="80.000,448.065 362.843,448.065 480.000,448.065 645.685,448.065 880.000,448.065" fill="none" stroke="#dc2626" stroke-width="1.7"/>
+<polyline points="80.000,448.065 362.843,448.065 480.000,448.065 645.685,448.065 880.000,448.065" fill="none" stroke="#16a34a" stroke-width="1.7"/>
+<polyline points="80.000,448.065 362.843,448.065 480.000,448.065 645.685,448.065 880.000,448.065" fill="none" stroke="#9333ea" stroke-width="1.7"/>
+<polyline points="80.000,448.065 362.843,448.065 480.000,448.065 645.685,448.065 880.000,448.065" fill="none" stroke="#ea580c" stroke-width="1.7"/>
+<polyline points="80.000,448.065 362.843,448.065 480.000,448.065 645.685,448.065 880.000,448.065" fill="none" stroke="#0891b2" stroke-width="1.7"/>
+<path d="M80.000,290 v175" stroke="#94a3b8" stroke-dasharray="3 4"/>
+<path d="M480.000,290 v175" stroke="#94a3b8" stroke-dasharray="3 4"/>
+<path d="M880.000,290 v175" stroke="#94a3b8" stroke-dasharray="3 4"/>
+<text x="80.000" y="485" font-size="12">0s</text>
+<text x="280.000" y="485" font-size="12">0.0707s</text>
+<text x="480.000" y="485" font-size="12">0.141s</text>
+<text x="680.000" y="485" font-size="12">0.212s</text>
+<text x="880.000" y="485" font-size="12">0.283s</text>
+<text x="80" y="510" font-family="sans-serif" font-size="15">Acceleration (rad/s^2)</text>
+<path d="M80,695.000 H880" stroke="#e2e8f0"/><text x="8" y="699.000" font-size="12">-0.62</text>
+<path d="M80,651.250 H880" stroke="#e2e8f0"/><text x="8" y="655.250" font-size="12">-0.31</text>
+<path d="M80,607.500 H880" stroke="#e2e8f0"/><text x="8" y="611.500" font-size="12">0</text>
+<path d="M80,563.750 H880" stroke="#e2e8f0"/><text x="8" y="567.750" font-size="12">0.31</text>
+<path d="M80,520.000 H880" stroke="#e2e8f0"/><text x="8" y="524.000" font-size="12">0.62</text>
+<polyline points="80.000,536.935 362.843,536.935 362.843,536.935 480.000,536.935 480.000,678.065 645.685,678.065 645.685,678.065 880.000,678.065 880.000,678.065" fill="none" stroke="#2563eb" stroke-width="1.7"/>
+<polyline points="80.000,607.500 362.843,607.500 362.843,607.500 480.000,607.500 480.000,607.500 645.685,607.500 645.685,607.500 880.000,607.500 880.000,607.500" fill="none" stroke="#dc2626" stroke-width="1.7"/>
+<polyline points="80.000,607.500 362.843,607.500 362.843,607.500 480.000,607.500 480.000,607.500 645.685,607.500 645.685,607.500 880.000,607.500 880.000,607.500" fill="none" stroke="#16a34a" stroke-width="1.7"/>
+<polyline points="80.000,607.500 362.843,607.500 362.843,607.500 480.000,607.500 480.000,607.500 645.685,607.500 645.685,607.500 880.000,607.500 880.000,607.500" fill="none" stroke="#9333ea" stroke-width="1.7"/>
+<polyline points="80.000,607.500 362.843,607.500 362.843,607.500 480.000,607.500 480.000,607.500 645.685,607.500 645.685,607.500 880.000,607.500 880.000,607.500" fill="none" stroke="#ea580c" stroke-width="1.7"/>
+<polyline points="80.000,607.500 362.843,607.500 362.843,607.500 480.000,607.500 480.000,607.500 645.685,607.500 645.685,607.500 880.000,607.500 880.000,607.500" fill="none" stroke="#0891b2" stroke-width="1.7"/>
+<path d="M80.000,520 v175" stroke="#94a3b8" stroke-dasharray="3 4"/>
+<path d="M480.000,520 v175" stroke="#94a3b8" stroke-dasharray="3 4"/>
+<path d="M880.000,520 v175" stroke="#94a3b8" stroke-dasharray="3 4"/>
+<text x="80.000" y="715" font-size="12">0s</text>
+<text x="280.000" y="715" font-size="12">0.0707s</text>
+<text x="480.000" y="715" font-size="12">0.141s</text>
+<text x="680.000" y="715" font-size="12">0.212s</text>
+<text x="880.000" y="715" font-size="12">0.283s</text>
+<text x="80" y="753" fill="#2563eb" font-family="sans-serif">J1</text>
+<text x="180" y="753" fill="#dc2626" font-family="sans-serif">J2</text>
+<text x="280" y="753" fill="#16a34a" font-family="sans-serif">J3</text>
+<text x="380" y="753" fill="#9333ea" font-family="sans-serif">J4</text>
+<text x="480" y="753" fill="#ea580c" font-family="sans-serif">J5</text>
+<text x="580" y="753" fill="#0891b2" font-family="sans-serif">J6</text>
+<text x="80" y="777" font-family="sans-serif" font-size="12">Acceleration: right at switches; left at final endpoint. No TCP/collision acceptance.</text></svg>

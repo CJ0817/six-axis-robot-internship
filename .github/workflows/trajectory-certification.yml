@@ -1,0 +1,43 @@
+name: Trajectory certification
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  certification:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.9'
+      - name: Install frozen numerical and collision engines
+        run: python -m pip install numpy==1.26.4 pybullet==3.2.7
+      - name: Strict C11 build
+        run: |
+          mkdir -p build
+          gcc-13 -std=c11 -O2 -Wall -Wextra -Werror -pedantic -fPIC -shared -Iinclude src/common/abi_probe.c src/common/abi_v1.c src/kinematics/forward.c src/kinematics/inverse.c -lm -o build/librobot_contract.so
+          gcc-13 -std=c11 -O2 -Wall -Wextra -Werror -pedantic -fPIC -shared -Iinclude src/planning/joint.c src/planning/cartesian.c -lm -o build/librobot_planning.so
+      - name: Full joint certification and execution rejection cases
+        run: python scripts/verify_trajectory_certification.py
+      - name: Certification and execution gate unit regressions
+        run: python -m unittest discover -s tests -p test_trajectory_gate.py -v
+      - name: Existing joint candidate regressions
+        run: python scripts/verify_joint_planning.py --output results/joint-candidate-regression
+      - name: Existing Cartesian and APF certification regressions
+        run: python scripts/verify_cartesian_planning.py --output results/cartesian-certification-regression
+      - name: Existing smoothing and retiming regressions
+        run: python scripts/verify_guided_apf.py --output results/guided-certification-regression
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trajectory-certification-evidence
+          path: |
+            results/trajectory-certification/
+            results/joint-candidate-regression/
+            results/cartesian-certification-regression/
+            results/guided-certification-regression/

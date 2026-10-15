@@ -24,6 +24,7 @@ class StaticScene:
         import numpy as np
         if not np.array_equal(scene['T_world_base'],profile['T_world_base']):
             raise ContractError(1007,'Scene base transform mismatch')
+        self.profile_sha256=hashlib.sha256(json.dumps(profile,sort_keys=True).encode()).hexdigest()
         self.scene=scene;self.clearance=scene['clearance_m'];self.query=scene['query_distance_m']
         if any(type(x) not in (int,float) or not math.isfinite(x) for x in (self.clearance,self.query)) or not 0<=self.clearance<self.query:
             raise ContractError(1001,'Invalid collision clearance')
@@ -110,7 +111,9 @@ class StaticScene:
 
     def metadata(self):
         """返回场景/URDF/碰撞网格哈希、检查协议和排除对，用于复现。"""
+        if not p.isConnected(self.client):raise ContractError(1004,'Collision scene is closed')
         return {'scene_id':self.scene['scene_id'],'revision':self.scene['revision'],
+            'model_profile_sha256':self.profile_sha256,
             'scene_sha256':hashlib.sha256(json.dumps(self.scene,sort_keys=True).encode()).hexdigest(),
             'geometry_sha256':{str(x.relative_to(ROOT)):hashlib.sha256(x.read_bytes()).hexdigest()
                 for x in [ROOT/'models/ur5/ur5.urdf']+sorted((ROOT/'models/ur5/meshes').glob('*.stl'))},

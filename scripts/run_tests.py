@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     suite_start=time.monotonic()
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--suite', choices=['single_joint_pid','guided_apf','cartesian_planning','joint_planning','planning_limits','smoke','baseline','model','fk','fk_known','ik_prepare','ik','ik_filter','ik_selection','ik_targets','workspace120','workspace120_batch','fk_robustness','fk_performance','available','acceptance'], default='smoke')
+    parser.add_argument('--suite', choices=['trajectory_certification','single_joint_pid','guided_apf','cartesian_planning','joint_planning','planning_limits','smoke','baseline','model','fk','fk_known','ik_prepare','ik','ik_filter','ik_selection','ik_targets','workspace120','workspace120_batch','fk_robustness','fk_performance','available','acceptance'], default='smoke')
     parser.add_argument('--output', type=Path, default=ROOT/'results/test-runs/latest')
     parser.add_argument('--smoke-python', type=Path, default=ROOT/'.venv/bin/python')
     parser.add_argument('--baseline-python', type=Path, default=ROOT/'.venv-baseline/bin/python')
@@ -28,6 +28,8 @@ def main():
     if len(set(ids))!=len(ids):
         raise ValueError('Duplicate metric ID')
     selected=['c_abi','scene'] if args.suite=='smoke' else ['rtb'] if args.suite=='baseline' else ['model_alignment'] if args.suite=='model' else ['fk'] if args.suite=='fk' else ['fk_known'] if args.suite=='fk_known' else ['ik_prepare'] if args.suite=='ik_prepare' else ['workspace120_batch'] if args.suite=='workspace120_batch' else ['workspace120'] if args.suite=='workspace120' else ['ik_targets'] if args.suite=='ik_targets' else ['ik_selection'] if args.suite=='ik_selection' else ['ik_filter'] if args.suite=='ik_filter' else ['ik'] if args.suite=='ik' else ['fk_robustness'] if args.suite=='fk_robustness' else ['fk_performance'] if args.suite=='fk_performance' else ['c_abi','scene','rtb','model_alignment','fk','fk_known','ik_prepare','ik','ik_filter','ik_selection','ik_targets','workspace120','workspace120_batch','fk_robustness']
+    if args.suite=='trajectory_certification':
+        selected=['trajectory_certification']
     if args.suite=='single_joint_pid':
         selected=['single_joint_pid']
     if args.suite=='guided_apf':
@@ -39,10 +41,11 @@ def main():
     if args.suite=='planning_limits':
         selected=['planning_limits']
     if args.suite in ('available','acceptance'):
-        selected.extend(['single_joint_pid','planning_limits','joint_planning','cartesian_planning','guided_apf'])
+        selected.extend(['trajectory_certification','single_joint_pid','planning_limits','joint_planning','cartesian_planning','guided_apf'])
     if args.suite=='acceptance':
         selected.append('fk_performance')
     specs={
+        'trajectory_certification': [str(args.smoke_python.absolute()),str(ROOT/'scripts/verify_trajectory_certification.py'),'--library',str(args.library.resolve()),'--planning-library',str(args.library.resolve().parent/'librobot_planning.so'),'--output',str(output/'trajectory_certification')],
         'single_joint_pid': [str(args.smoke_python.absolute()),str(ROOT/'scripts/verify_single_joint_pid.py'),'--library',str(args.library.resolve().parent/('robot_control.dll' if sys.platform=='win32' else 'librobot_control.so')),'--output',str(output/'single_joint_pid')],
         'guided_apf': [str(args.smoke_python.absolute()),str(ROOT/'scripts/verify_guided_apf.py'),'--library',str(args.library.resolve()),'--planning-library',str(args.library.resolve().parent/'librobot_planning.so'),'--output',str(output/'guided_apf')],
         'cartesian_planning': [str(args.smoke_python.absolute()),str(ROOT/'scripts/verify_cartesian_planning.py'),'--library',str(args.library.resolve()),'--planning-library',str(args.library.resolve().parent/'librobot_planning.so'),'--output',str(output/'cartesian_planning')],

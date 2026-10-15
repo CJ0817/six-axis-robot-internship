@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "tests_run": 12,
+  "failures": 0,
+  "errors": 0,
+  "python": "3.12.11",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "scope": "Real C joint planning and FK; synthetic collision checker for gate/failure propagation only; not physical collision acceptance",
+  "physical_pybullet_validation": "pending: remote upload blocked by automatic approval review",
+  "source_sha256": {
+    "src/planning/cartesian.py": "aca02cf3cf659116fe592c7e9a76895e1dd409d8863275d8e98cf7d80e72e8af",
+    "src/planning/collision.py": "fa0f83c36724ae3a43c2a0a8be04761f31fc818fea2a121ae6d0b343f47df083",
+    "src/planning/joint.py": "9e2d54bad5e85855df21b1be78a32375c07e7b6702dba6d4ffd611ce8be2b79f",
+    "src/planning/execution.py": "6d498aa4588294286298042e7d81d282e0d8bd7c3045a216914d57b54eb68d0f",
+    "tests/test_trajectory_gate.py": "9e3ab1ad87a3935b793a97dcd57dd3edbf849fdb67ff157cf1e18933e15e5d1b",
+    "scripts/verify_trajectory_certification.py": "2b2875e266772cb33dd76b2fef9efd64c53e41073285f62673e8a2d4b081783f"
+  }
+}

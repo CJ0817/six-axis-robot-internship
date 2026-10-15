@@ -47,7 +47,7 @@ class JointPlanner:
             raise ContractError(code, 'C trajectory evaluation rejected')
         return list(q), list(v), list(a)
 
-    def plan_joint(self, q_start_rad, q_goal_rad, options):
+    def plan_candidate(self, q_start_rad, q_goal_rad, options):
         """生成静止到静止、六轴同步的完整关节轨迹。
 
         入参：两组J1..J6角度(rad)；options必填method、sample_period_s、
@@ -106,6 +106,57 @@ class JointPlanner:
             return {'code': getattr(exc, 'code', 1004 if isinstance(exc, (KeyError, OSError)) else 1001),
                     'message': str(exc), 'data': None, 'details': {'module': 'planning'}}
 
+    def plan_joint(self, q_start_rad, q_goal_rad, options, scene=None,
+                   kinematics_library=None, certification_config=None):
+        """Plan and fully certify; only success exposes executable data.
+
+        Inputs: six-axis endpoints, candidate options, StaticScene and FK library.
+        Strict violations return 3002; stretch retries re-run ALL certification.
+        Missing dependencies return 1004. Failure evidence stays in details.
+        """
+        from planning.execution import failure
+        attempts=[]
+        try:
+            from planning.cartesian import CartesianPlanner, ROOT
+            if scene is None or kinematics_library is None:
+                raise ContractError(1004,'Certification requires scene and kinematics library')
+            verifier=CartesianPlanner(kinematics_library,self.library,
+                config_path=certification_config or ROOT/'config/cartesian-planning.v1.json',
+                limits_path=self.config_path,model_path=self.model_path)
+            opts=dict(options) if isinstance(options,dict) else options
+            for attempt in range(16):
+                candidate=self.plan_candidate(q_start_rad,q_goal_rad,opts)
+                attempts.append(dict(attempt=attempt,code=candidate['code'],message=candidate['message'],
+                    stage='candidate',details=candidate['details']))
+                if candidate['code']:
+                    raise ContractError(3002 if candidate['code']==1005 else candidate['code'],candidate['message'])
+                verifier.setup()
+                verifier.config['sample_period_s']=opts['sample_period_s']
+                verifier.limits=load_planning_limits(self.config_path,self.model_path,
+                    velocity_scale=opts.get('velocity_scale',1.0),acceleration_scale=opts.get('acceleration_scale',1.0))
+                # The exact C polynomials, including unequal trapezoidal segments,
+                # pass through the same full certification as Cartesian paths.
+                d=candidate['data']
+                try:
+                    data=verifier.certify_polynomial(d['coefficients_rad'],d['segment_times_s'],scene)
+                except ContractError as exc:
+                    attempts.append(dict(attempt=attempt,stage='certification',code=exc.code,message=str(exc),
+                        duration_s=d['segment_times_s'][-1],failure_log=getattr(exc,'certification_log',[])))
+                    if exc.code!=3002 or opts['duration_policy']!='stretch':raise
+                    duration=d['segment_times_s'][-1]*1.5
+                    if duration>min(opts['max_duration_s'],verifier.config['maximum_duration_s']):raise
+                    opts=dict(opts,duration_s=duration)
+                    continue
+                data.update(method=d['method'],boundary=d['boundary'],continuity=d['continuity'],
+                    sample_period_s=opts['sample_period_s'],actual_duration_s=d['segment_times_s'][-1])
+                attempts.append(dict(attempt=attempt,stage='certification',code=0,message='Fully certified'))
+                return dict(code=0,message='Fully certified joint trajectory',data=data,next_state=None,
+                    details=dict(attempts=attempts,requested_duration_s=options['duration_s'],
+                        actual_duration_s=d['segment_times_s'][-1],duration_stretched=attempt>0 or candidate['details']['duration_stretched']))
+            raise ContractError(3002,'Full certification retry budget exhausted')
+        except (ContractError,OSError,ValueError,TypeError,KeyError,ArithmeticError,ImportError) as exc:
+            return failure(exc,'joint_certification',attempts)
+
     def _serialize(self, p, method, dt, lo, hi, limits):
         """按解析极值确认整段关节约束，再序列化采样和归一化局部升幂系数(M,6,6)。"""
         T = p.duration_s
@@ -157,5 +208,6 @@ class JointPlanner:
             'effective_limits': limits.as_dict(),
             'continuous_joint_check': {'passed': True, 'proof': 'monotone position and closed-form extrema',
                 'peak_velocity_rad_s': peak_v, 'peak_acceleration_rad_s2': peak_a},
+            'trajectory_status': 'candidate', 'executable': False,
             'collision_checked': False, 'cartesian_limits_checked': False,
             'triangular': method=='trapezoidal' and moving and p.cruise_s==0.0}

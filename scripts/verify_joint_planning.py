@@ -122,7 +122,7 @@ def main():
     cases=[];artifacts=[];elapsed=[]
     base=dict(sample_period_s=.1,duration_s=None,duration_policy='stretch',max_duration_s=60)
     def run(name,start,goal,options,expected=0,extra=None,curves=False,instance=planner):
-        begin=time.perf_counter_ns();r=instance.plan_joint(start,goal,options);ms=(time.perf_counter_ns()-begin)/1e6
+        begin=time.perf_counter_ns();r=instance.plan_candidate(start,goal,options);ms=(time.perf_counter_ns()-begin)/1e6
         record={'id':name,'q_start_rad':start,'q_goal_rad':goal,'options':options,'expected_code':expected,
                 'actual_code':r['code'],'python_planning_wall_ms':ms,'passed':r['code']==expected,
                 'details':r['details'],'message':r['message']}

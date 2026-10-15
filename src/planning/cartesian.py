@@ -137,29 +137,32 @@ def evaluate(co,dt,t):
 def joint_extrema(co,dt,profile,limits):
     """对每段多项式全部实根检查位置/速度/加速度极值；越限1005/3002。"""
     peaks=np.zeros((2,6));minimum=np.full(6,np.inf);maximum=np.full(6,-np.inf)
-    for segment in co:
+    for index,segment in enumerate(co):
+        duration = float(dt if np.isscalar(dt) else dt[index])
         for i,c in enumerate(segment):
             for order in range(3):
                 derivative=np.polynomial.polynomial.polyder(c,m=order)
                 roots=np.polynomial.polynomial.polyroots(np.polynomial.polynomial.polyder(derivative))
                 points=[0.,1.]+[float(x.real) for x in roots if abs(x.imag)<1e-7 and 0<x.real<1]
-                values=np.array([np.polynomial.polynomial.polyval(x,derivative)/dt**order for x in points])
+                values=np.array([np.polynomial.polynomial.polyval(x,derivative)/duration**order for x in points])
                 if order==0:minimum[i]=min(minimum[i],min(values));maximum[i]=max(maximum[i],max(values))
                 else:peaks[order-1,i]=max(peaks[order-1,i],max(abs(values)))
-    if np.any(minimum<np.array(profile['q_min_rad'])-1e-9) or np.any(maximum>np.array(profile['q_max_rad'])+1e-9):raise ContractError(1005,'Continuous polynomial position exceeded')
+    if np.any(minimum<np.array(profile['q_min_rad'])-1e-9) or np.any(maximum>np.array(profile['q_max_rad'])+1e-9):raise ContractError(3002,'Continuous polynomial position exceeded')
     if np.any(peaks[0]>np.array(limits.joint_velocity_rad_s)+1e-8) or np.any(peaks[1]>np.array(limits.joint_acceleration_rad_s2)+1e-7):raise ContractError(3002,'Continuous polynomial joint rates exceeded')
     return dict(position_min_rad=minimum.tolist(),position_max_rad=maximum.tolist(),peak_velocity_rad_s=peaks[0].tolist(),peak_acceleration_rad_s2=peaks[1].tolist(),proof='all real polynomial extrema')
 
 class CartesianPlanner:
-    def __init__(self,kinematics_library,planning_library,config_path=ROOT/'config/cartesian-planning.v1.json',limits_path=DEFAULT_CONFIG):
+    def __init__(self,kinematics_library,planning_library,config_path=ROOT/'config/cartesian-planning.v1.json',limits_path=DEFAULT_CONFIG,model_path=DEFAULT_MODEL):
         """入参两独立C库和算法/限值配置路径；路径几何C11，编排与连续选解Python。"""
         self.kinematics_library=Path(kinematics_library);self.planning_library=Path(planning_library)
         self.config_path=config_path;self.limits_path=limits_path
-        self.profile=json.loads(DEFAULT_MODEL.read_text())
+        self.model_path=Path(model_path)
+        self.profile=json.loads(self.model_path.read_text())
 
     def setup(self):
         """重新读取共享限值；选解临时profile采用有效速度，模型磁盘内容不修改。"""
-        self.config=configuration(self.config_path);self.limits=load_planning_limits(self.limits_path)
+        self.config=configuration(self.config_path);self.limits=load_planning_limits(self.limits_path,self.model_path)
+        self.profile=json.loads(self.model_path.read_text())
         self.selection_profile=copy.deepcopy(self.profile);self.selection_profile['qd_max_rad_s']=list(self.limits.joint_velocity_rad_s)
         c=self.config
         self.selector=StatefulIKSelector(self.kinematics_library,SelectionConfig(dt_s=c['sample_period_s'],
@@ -172,7 +175,56 @@ class CartesianPlanner:
         q为固定周期节点，scene为StaticScene；target_at(t)可选目标位姿。
         TCP用标准DH半径及解析关节极值的保守导数界；路径误差按细分验收；碰撞用网格运动界覆盖间隔。
         """
-        c=self.config;dt=c['sample_period_s'];co=coefficients(q,dt);extrema=joint_extrema(co,dt,self.profile,self.limits)
+        dt=self.config['sample_period_s']
+        co=coefficients(q,dt)
+        data=self.certify_polynomial(co, np.arange(len(co)+1)*dt, scene, target_at)
+        data['continuity']='C2'
+        return data
+
+    def certify_polynomial(self, co, times, scene, target_at=None):
+        """Run complete certification, retaining partial validation evidence on error."""
+        self.certification_log=[]
+        try:
+            return self._certify_polynomial(co,times,scene,target_at)
+        except (ContractError,OSError,KeyError,ValueError,TypeError,ArithmeticError,ImportError) as exc:
+            self.certification_log.append(dict(stage='rejected',code=getattr(exc,'code',1001),message=str(exc)))
+            exc.certification_log=copy.deepcopy(self.certification_log)
+            raise
+
+    def _certify_polynomial(self, co, times, scene, target_at=None):
+        """Certify the supplied normalized polynomials without refitting them.
+
+        Inputs: (M,6,6) coefficients, M+1 segment times in seconds and a
+        StaticScene. Returns full evidence or raises; never returns partial data.
+        """
+        from planning.execution import seal
+        c=self.config
+        co=np.asarray(co,float);times=np.asarray(times,float)
+        if co.ndim!=3 or co.shape[1:]!=(6,6) or len(co)<1 or times.shape!=(len(co)+1,) or not np.all(np.isfinite(co)) or not np.all(np.isfinite(times)) or times[0]!=0 or np.any(np.diff(times)<=0):
+            raise ContractError(1001,'Invalid polynomial trajectory')
+        if scene is None:
+            raise ContractError(1004,'Whole-arm/self collision scene required')
+        from planning.collision import StaticScene
+        if not isinstance(scene,StaticScene):
+            raise ContractError(1004,'Frozen StaticScene checker required')
+        if scene.profile_sha256!=hashlib.sha256(json.dumps(self.profile,sort_keys=True).encode()).hexdigest():
+            raise ContractError(1004,'Collision/kinematics model binding differs')
+        durations=np.diff(times)
+        if times[-1]>c['maximum_duration_s'] or len(co)>c['maximum_nodes']:
+            raise ContractError(3001,'Certification time/node budget exhausted')
+        # C1 joins are mandatory; acceleration may jump for cubic/trapezoidal.
+        for i in range(1,len(co)):
+            for order,tolerance in ((0,1e-9),(1,1e-8)):
+                left=np.array([np.polynomial.polynomial.polyval(1,np.polynomial.polynomial.polyder(axis,m=order))/durations[i-1]**order for axis in co[i-1]])
+                right=np.array([np.polynomial.polynomial.polyval(0,np.polynomial.polynomial.polyder(axis,m=order))/durations[i]**order for axis in co[i]])
+                if np.max(abs(left-right))>tolerance:
+                    raise ContractError(3001,'Discontinuous polynomial position/velocity')
+        def at(t):
+            i=min(int(np.searchsorted(times,t,side='right'))-1,len(co)-1)
+            u=(min(t,times[-1])-times[i])/durations[i]
+            return tuple(np.array([np.polynomial.polynomial.polyval(u,np.polynomial.polynomial.polyder(axis,m=o))/durations[i]**o for axis in co[i]]) for o in range(3))
+        extrema=joint_extrema(co,durations,self.profile,self.limits)
+        self.certification_log.append(dict(stage='joint_extrema',passed=True,evidence=extrema))
         # 标准DH全转动关节：TCP到第i轴距离不超过剩余连杆平移长度之和。
         radii=np.cumsum(np.hypot(self.profile['a_m'],self.profile['d_m'])[::-1])[::-1]
         for key in ('T_dh6_flange','T_flange_tool'):radii+=np.linalg.norm(np.array(self.profile[key])[:3,3])
@@ -182,19 +234,24 @@ class CartesianPlanner:
         # Jdot的保守界：线性列<=2*R_i*sum|qd|；角列<=sum|qd|。
         linear_a=float(radii@a+2*linear_v*angular_v);angular_a=float(sum(a)+angular_v**2)
         tcp_bounds=[linear_v,angular_v,linear_a,angular_a]
+        self.certification_log.append(dict(stage='tcp_bounds',bounds=tcp_bounds))
         self.limits.check_tcp_rates(*([x,0.,0.] for x in tcp_bounds))
-        T=(len(q)-1)*dt;nodes=[];minimum=math.inf;maxp=maxr=0.;tcppeaks=np.zeros(4);previous=None;max_motion_bound=0.;min_clearance_certificate=math.inf
+        T=float(times[-1]);nodes=[];minimum=math.inf;maxp=maxr=0.;tcppeaks=np.zeros(4);previous=None;max_motion_bound=0.;min_clearance_certificate=math.inf
+        clearance_gap=None
         for i,segment in enumerate(co):
+            dt=float(durations[i])
             # 基于解析速度峰值上界保证各子步关节变化有界，同时至少固定细分数。
             vmax=0.;axis_peaks=[]
             for axis in segment:
                 d=np.polynomial.polynomial.polyder(axis);roots=np.polynomial.polynomial.polyroots(np.polynomial.polynomial.polyder(d))
                 us=[0,1]+[x.real for x in roots if abs(x.imag)<1e-7 and 0<x.real<1]
                 peak=max(abs(np.polynomial.polynomial.polyval(u,d))/dt for u in us);axis_peaks.append(peak);vmax=max(vmax,peak)
-            count=max(c['collision_subdivisions'],math.ceil(vmax*dt/c['collision_max_joint_step_rad']))
+            count=max(c['collision_subdivisions'],math.ceil(dt/c['sample_period_s']),math.ceil(vmax*dt/c['collision_max_joint_step_rad']))
+            if count>100000:raise ContractError(3001,'Certification subdivision budget exhausted')
             for k in range(count+(i==len(co)-1)):
-                t=(i+k/count)*dt;angles,vel,acc=evaluate(co,dt,t);actual=self.selector._fk(self.model,angles)
+                t=float(times[i]+k/count*dt);angles,vel,acc=at(t);actual=self.selector._fk(self.model,angles)
                 collision=scene.check(angles.tolist());minimum=min(minimum,collision['minimum_distance_lower_bound_m'])
+                self.certification_log.append(dict(stage='collision',segment_index=i,time_s=t,q_rad=angles.tolist(),result=collision))
                 if not collision['passed']:raise ContractError(3003,'Collision/clearance failed at t='+str(t))
                 speed_sum=sum(axis_peaks)*(1+1e-6)+1e-8
                 if previous is not None:
@@ -203,7 +260,10 @@ class CartesianPlanner:
                     bound=scene.motion_radius_bound_m*max(previous_speed,speed_sum)*(t-previous_t)
                     certified=min(previous_distance,collision['minimum_distance_lower_bound_m'])-bound
                     max_motion_bound=max(max_motion_bound,bound);min_clearance_certificate=min(min_clearance_certificate,certified)
-                    if certified<=scene.clearance:raise ContractError(3001,'Insufficient clearance for continuous motion bound')
+                    # Finish collision queries first so an actual colliding node
+                    # is reported as 3003 rather than an earlier proof gap.
+                    if certified<=scene.clearance and clearance_gap is None:
+                        clearance_gap=dict(start_time_s=previous_t,end_time_s=t,clearance_lower_bound_m=certified)
                 previous=(t,collision['minimum_distance_lower_bound_m'],speed_sum)
                 pe=re=None
                 if target_at is not None:
@@ -211,7 +271,7 @@ class CartesianPlanner:
                     if pe>c['position_tolerance_m'] or re>c['orientation_tolerance_rad']:raise ContractError(3001,'Cartesian interpolation tracking error')
                 # 由C FK的数值雅可比和沿轨迹J变化估计TCP空间导数，不采用Euler角差分。
                 J=self.selector.jacobian(self.model,angles);twist=J@vel
-                h=min(c['derivative_step_s'],dt/10);ql=evaluate(co,dt,max(0,t-h))[0];qr=evaluate(co,dt,min(T,t+h))[0]
+                h=min(c['derivative_step_s'],dt/10);ql=at(max(0,t-h))[0];qr=at(min(T,t+h))[0]
                 interval=min(T,t+h)-max(0,t-h)
                 Jdot=(self.selector.jacobian(self.model,qr)-self.selector.jacobian(self.model,ql))/interval
                 derivative=J@acc+Jdot@vel
@@ -219,15 +279,20 @@ class CartesianPlanner:
                 tcppeaks=np.maximum(tcppeaks,[np.linalg.norm(twist[:3]),np.linalg.norm(twist[3:]),np.linalg.norm(derivative[:3]),np.linalg.norm(derivative[3:])])
                 nodes.append(dict(time_s=t,q_rad=angles.tolist(),position_error_m=pe,orientation_error_rad=re,
                     minimum_distance_lower_bound_m=collision['minimum_distance_lower_bound_m']))
-        qv=[evaluate(co,dt,k*dt) for k in range(len(q))]
-        return dict(time_s=[k*dt for k in range(len(q))],q_rad=[x[0].tolist() for x in qv],
+        if clearance_gap is not None:
+            self.certification_log.append(dict(stage='continuous_clearance',passed=False,**clearance_gap))
+            raise ContractError(3001,'Insufficient clearance for continuous motion bound')
+        sample_times=sorted(set([float(t) for t in times]+[k*c['sample_period_s'] for k in range(math.ceil(T/c['sample_period_s'])) if k*c['sample_period_s']<T]))
+        qv=[at(t) for t in sample_times]
+        data=dict(time_s=sample_times,q_rad=[x[0].tolist() for x in qv],
             qd_rad_s=[x[1].tolist() for x in qv],qdd_rad_s2=[x[2].tolist() for x in qv],coefficients_rad=co.tolist(),
-            segment_times_s=[k*dt for k in range(len(q))],continuity='C2',joint_check=extrema,
+            segment_times_s=times.tolist(),continuity='C1',joint_check=extrema,
             collision_checked=True,cartesian_limits_checked=True,continuous_tcp_proof=True,tcp_continuous_bounds=tcp_bounds,tcp_joint_radius_bounds_m=radii.tolist(),
             continuous_collision_proof=True,
             collision_motion_bound_m=max_motion_bound,certified_minimum_distance_lower_bound_m=min_clearance_certificate,
             validation_nodes=nodes,minimum_distance_lower_bound_m=minimum,maximum_position_error_m=maxp if target_at is not None else None,
             maximum_orientation_error_rad=maxr if target_at is not None else None,tcp_sampled_peaks=tcppeaks.tolist(),scene=scene.metadata(),effective_limits=self.limits.as_dict())
+        return seal(data, self, scene)
 
     def plan(self,start,goal,q_seed,scene,method='line',via=None,orientation='slerp_shortest',duration_s=4.0):
         """固定周期生成直线/圆弧节点，逐节点连续选解后整体验收。
@@ -269,6 +334,7 @@ class CartesianPlanner:
             data=self.certify(q,scene,lambda t:path.at(progress(t,T)))
             data.update(path=path.metadata(),sample_period_s=dt,actual_duration_s=T,ik_nodes=records)
             return dict(code=0,message='OK',data=data,next_state=state,details=dict(requested_duration_s=duration_s))
-        except (ContractError,ValueError,TypeError,KeyError,ArithmeticError,np.linalg.LinAlgError) as exc:
-            return dict(code=getattr(exc,'code',1004 if isinstance(exc,KeyError) else 1001),message=str(exc),data=None,next_state=None,
-                details=dict(ik_nodes=records,last_ik_candidate_state=state,retained_input_q_rad=list(q_seed),stop_segment=True,replan_required=True))
+        except (ContractError,OSError,ImportError,ValueError,TypeError,KeyError,ArithmeticError,np.linalg.LinAlgError) as exc:
+            return dict(code=getattr(exc,'code',1004 if isinstance(exc,(KeyError,OSError,ImportError)) else 1001),message=str(exc),data=None,next_state=None,
+                details=dict(ik_nodes=records,last_ik_candidate_state=state,retained_input_q_rad=list(q_seed),stop_segment=True,replan_required=True,
+                    failure_log=getattr(exc,'certification_log',[dict(message=str(exc))])))
