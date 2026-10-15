@@ -21,6 +21,8 @@ results/pid-feedforward-*/*-r*.csv
 results/pid-feedforward-*/*-comparison.svg
 results/control-stress-*/*-r*.csv
 results/control-stress-*/*-recovery.svg
+results/six-axis-integration/*.csv
+results/six-axis-integration/*-events.json
 *.log
 *.tmp
 
