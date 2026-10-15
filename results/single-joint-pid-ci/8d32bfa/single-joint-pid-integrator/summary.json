@@ -1,0 +1,37 @@
+{
+  "statistics_version": 1,
+  "suite": "single_joint_pid",
+  "utc": "2026-10-15T09:38:10.052290+00:00",
+  "results": [
+    {
+      "test_id": "single_joint_pid",
+      "command": [
+        "/opt/hostedtoolcache/Python/3.11.9/x64/bin/python",
+        "/home/runner/work/six-axis-robot-internship/six-axis-robot-internship/scripts/verify_single_joint_pid.py",
+        "--library",
+        "/home/runner/work/six-axis-robot-internship/six-axis-robot-internship/build/librobot_control.so",
+        "--output",
+        "/home/runner/work/six-axis-robot-internship/six-axis-robot-internship/results/single-joint-pid-integrator/single_joint_pid"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.11395940100000246,
+      "actual_wait_s": 0.11395940100000246,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "single_joint_pid/report.json",
+      "elapsed_s": 0.11443131999999423
+    }
+  ],
+  "metrics_sha256": "5b17aceb037b24fa1a1cbf2a0b768b0dc6e5cd038e3543cef74014fddfda97af",
+  "commit": "8d32bfa87738793128c7ba4c939f7deee0b6af7e",
+  "working_tree_dirty": true,
+  "status": "passed",
+  "scope_note": "Available checks do not imply completion of unimplemented algorithm or user desktop acceptance.",
+  "process_timeout_count": 0,
+  "suite_elapsed_s": 0.17916795899999727
+}

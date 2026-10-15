@@ -1,0 +1,48 @@
+{
+  "subject_commit": "8d32bfa87738793128c7ba4c939f7deee0b6af7e",
+  "source_commit": "246737cafedfb84dc64f4a6bf3729fd2c54f7027",
+  "previous_main": "61eb06bcb60f90cd274110b5eabc3613bad1038f",
+  "workflows": [
+    {
+      "name": "Single joint PID",
+      "run_id": 38714341882,
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 116353235883,
+          "name": "pid",
+          "conclusion": "success"
+        }
+      ],
+      "url": "https://github.com/CJ0817/six-axis-robot-internship/actions/runs/38714341882"
+    },
+    {
+      "name": "Environment verification",
+      "run_id": 38714342025,
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 116353236113,
+          "name": "environment",
+          "conclusion": "success"
+        },
+        {
+          "id": 116353236625,
+          "name": "robotics-toolbox-baseline",
+          "conclusion": "success"
+        }
+      ],
+      "url": "https://github.com/CJ0817/six-axis-robot-internship/actions/runs/38714342025"
+    }
+  ],
+  "artifact": {
+    "id": 11962185845,
+    "sha256": "8c8a9cd4b1133aae3dc35029102aeb50d9fa85752eb293109932152f92e2b404",
+    "verified_csv_count": 6,
+    "archived_generated_files": 16,
+    "inherited_windows_validation_excluded": true
+  },
+  "note": "This archives the successful source-parent runs; the evidence-only child commit receives its own CI and must be checked separately."
+}
