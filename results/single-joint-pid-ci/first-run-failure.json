@@ -1,0 +1,14 @@
+{
+  "commit": "246737cafedfb84dc64f4a6bf3729fd2c54f7027",
+  "run_id": 38714103555,
+  "job_id": 116352448284,
+  "workflow": "Single joint PID",
+  "status": "failed",
+  "strict_c11_compile": "passed",
+  "integrator_suite": "passed",
+  "pybullet": "failed_before_simulation",
+  "error": "ModuleNotFoundError: No module named 'numpy'; ImportError: numpy._core.multiarray failed to import",
+  "cause": "Dedicated workflow installed pybullet only; numpy was not declared by its wheel and had to be installed explicitly.",
+  "fix": "Install numpy==1.26.4 alongside pybullet==3.2.7, matching requirements.lock. Keep algorithm parameters and functional thresholds unchanged.",
+  "run_url": "https://github.com/CJ0817/six-axis-robot-internship/actions/runs/38714103555"
+}
