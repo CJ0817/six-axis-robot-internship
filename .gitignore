@@ -23,6 +23,8 @@ results/control-stress-*/*-r*.csv
 results/control-stress-*/*-recovery.svg
 results/six-axis-integration/*.csv
 results/six-axis-integration/*-events.json
+results/six-axis-cycle-fix/*.csv
+results/six-axis-cycle-fix/*-events.json
 *.log
 *.tmp
 

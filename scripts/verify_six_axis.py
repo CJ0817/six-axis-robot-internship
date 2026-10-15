@@ -16,13 +16,14 @@ sys.path.insert(0, str(ROOT/'src'))
 from adapters.c_kinematics import ContractError
 from planning.cartesian import CartesianPlanner
 from planning.collision import StaticScene
-from control.six_axis import SixAxisExecutor, TickClock, interpolate
+from control.six_axis import SixAxisExecutor, TickClock, interpolate, load_execution_config
 
 
 class SixAxisPlant:
     """Independent plant client; collision certification can never teleport it."""
     def __init__(self, config, profile, fault=None):
         self.config, self.fault, self.tick = config, fault, 0
+        self.dt_s = config['dt_s']
         self.commands, self.stopped = 0, False
         self.client = p.connect(p.DIRECT)
         try:
@@ -109,14 +110,15 @@ def main():
     args = parser.parse_args(); out = args.output; out.mkdir(parents=True, exist_ok=True)
     config_path = ROOT/'config/six-axis-execution.v1.json'
     report = dict(usage='simulation_only', engine='UR5 / PyBullet '+version('pybullet'),
-        clock='integer control tick; 0.01 s; 4 physics substeps; simulation time, not wall deadline',
+        clock='one configured planning/IK/interpolation/control/feedback period; integer simulation tick, not wall deadline',
         control='six C position PID outer loops + qd feedforward -> bounded velocity -> PyBullet velocity inner servos',
         trials=[], passed=False)
     scene = None
     try:
-        config = json.loads(config_path.read_text())
+        config = load_execution_config(config_path)
         report['parameters'] = config
-        planner = CartesianPlanner(args.library, args.planning_library); planner.setup()
+        planner = CartesianPlanner(args.library, args.planning_library,
+                                   config_path=config['planning_config_path']); planner.setup()
         scene = StaticScene(json.loads((ROOT/'scenes/static-apf.v1.json').read_text()), planner.profile)
         start = planner.selector._fk(planner.model, config['initial_q_rad'])
         goal = start.copy(); goal[:3, 3] += config['goal_translation_m']
@@ -134,16 +136,27 @@ def main():
             joint_excursion_rad=np.ptp(np.array(data['q_rad']), axis=0).tolist(),
             continuous_collision_proof=data['continuous_collision_proof'],
             continuous_tcp_proof=data['continuous_tcp_proof'])
+        report['cycle_consistency'] = dict(planning_s=planner.config['sample_period_s'],
+            ik_s=planner.selector.config.dt_s, interpolation_s=config['dt_s'],
+            control_s=config['pid']['dt_s'], feedback_s=config['dt_s'])
         cases = [('normal-r'+str(i+1), 0) for i in range(config['repeats'])]
         cases += [(n, 1006) for n in ('duplicate_tick','skipped_tick','reversed_tick','stale_feedback','wrong_feedback_time')]
         cases += [(n, 4001) for n in ('nonfinite_feedback','missing_feedback','feedback_overspeed','tracking_error','reference_jump','controller_invalid','controller_jump')]
         cases += [('collision_feedback',3003), ('uncertified',3001), ('tampered',3001)]
+        cases += [('cycle_mismatch',1006), ('feedback_cycle_mismatch',1006)]
         for name, expected in cases:
             plant = SixAxisPlant(config, planner.profile, name)
             try:
                 delta = {'duplicate_tick':-1, 'skipped_tick':1, 'reversed_tick':-2}.get(name)
                 clock = FaultClock(config['dt_s'], delta) if delta is not None else TickClock(config['dt_s'])
-                executor = SixAxisExecutor(args.control_library, config, plant, scene, planner.profile, clock)
+                execution_config = copy.deepcopy(config)
+                if name == 'cycle_mismatch':
+                    execution_config['dt_s'] /= 2
+                    execution_config['pid']['dt_s'] = execution_config['dt_s']
+                    plant.dt_s = execution_config['dt_s']
+                    clock = TickClock(execution_config['dt_s'])
+                if name == 'feedback_cycle_mismatch': plant.dt_s /= 2
+                executor = SixAxisExecutor(args.control_library, execution_config, plant, scene, planner.profile, clock)
                 if name == 'collision_feedback':
                     class CollisionFault:
                         def metadata(self): return scene.metadata()
@@ -155,7 +168,7 @@ def main():
                 if name == 'reference_jump':
                     def jump(d,t):
                         value = interpolate(d,t)
-                        if abs(t-.05)<1e-10: value[0][0] += .02
+                        if abs(t-5*config['dt_s'])<1e-10: value[0][0] += .02
                         return value
                     executor.sampler = jump
                 if name.startswith('controller_'):
@@ -177,8 +190,22 @@ def main():
                     message=result['message'], sample_count=len(executor.rows), motion_commands=plant.commands,
                     stopped=plant.stopped, events=executor.events)
                 if expected:
-                    success &= bool(executor.events) and plant.commands == (0 if expected==3001 else 5)
+                    preflight = name in ('uncertified','tampered','cycle_mismatch','feedback_cycle_mismatch')
+                    success &= bool(executor.events) and plant.commands == (0 if preflight else 5)
                     success &= expected==3001 or plant.stopped
+                    event = executor.events[0]
+                    if name == 'controller_invalid':
+                        success &= event['observed_command'][0] == {'nonfinite':'NaN'}
+                        success &= event['raw_control_outputs'][0]['data']['output'] == {'nonfinite':'NaN'}
+                        success &= event['validated_command'] is None and event['previous_sample']['tick']==4
+                    if name in ('duplicate_tick','skipped_tick','reversed_tick'):
+                        success &= all(event[k] is None for k in ('observed_feedback','observed_reference',
+                            'raw_control_outputs','observed_command','validated_command'))
+                        success &= event['previous_sample']['tick']==4
+                    if preflight:
+                        success &= event['previous_sample'] is None
+                        success &= all(event[k] is None for k in ('observed_clock','observed_feedback',
+                            'observed_reference','raw_control_outputs','observed_command','validated_command'))
                 else:
                     rows=executor.rows
                     q=np.array([r['q_rad'] for r in rows]); ref=np.array([r['reference_rad'] for r in rows])
@@ -199,7 +226,7 @@ def main():
                 trial['passed'] = bool(success)
                 report['trials'].append(trial)
                 write_trace(out/(name+'.csv'), executor.rows)
-                (out/(name+'-events.json')).write_text(json.dumps(executor.events,indent=2)+'\n')
+                (out/(name+'-events.json')).write_text(json.dumps(executor.events,indent=2,allow_nan=False)+'\n')
                 print(name, result['code'], success, flush=True)
             finally: plant.close()
         try:
@@ -214,7 +241,7 @@ def main():
     finally:
         if scene: scene.close()
         report['source_sha256'] = {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
-            for path in [config_path, Path(__file__).resolve(), ROOT/'src/control/six_axis.py',
+            for path in [config_path, ROOT/'config/cartesian-planning.v1.json', Path(__file__).resolve(), ROOT/'src/control/six_axis.py',
                          args.library, args.planning_library, args.control_library] if path.is_file()}
         (out/'report.json').write_text(json.dumps(report, indent=2, allow_nan=False)+'\n')
     return 0 if report['passed'] else 1

@@ -1,14 +1,14 @@
 {
   "version": "1.0.0",
   "usage": "simulation_only",
-  "dt_s": 0.01,
+  "planning_config": "cartesian-planning.v1.json",
   "hold_s": 2.0,
   "speed_limit_rad_s": 0.05,
   "acceleration_limit_rad_s2": 0.5,
   "feedback_speed_limit_rad_s": 0.06,
   "tracking_error_limit_rad": 0.03,
   "pid": {
-    "dt_s": 0.01, "kp": 4.0, "ki": 0.2, "kd": 0.0,
+    "kp": 4.0, "ki": 0.2, "kd": 0.0,
     "integral_min": -0.01, "integral_max": 0.01,
     "output_min": -0.05, "output_max": 0.05
   },

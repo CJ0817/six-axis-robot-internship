@@ -3,12 +3,80 @@
 Outer C PID produces rad/s with reference velocity feedforward. The plant owns
 the inner velocity servo. This module is not a hardware or real-time driver.
 """
+import copy
+import json
 import math
+from pathlib import Path
 import time
 import numpy as np
 from adapters.c_kinematics import ContractError
 from planning.execution import execute_trajectory, failure
 from control.pid import FeedforwardPID
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def load_execution_config(path=ROOT/'config/six-axis-execution.v1.json',
+                          planning_path=None):
+    """Resolve the planner's single period into control, feedback and PID config.
+
+    Missing files return 1004; independently supplied conflicting periods return
+    1006. The planner must use the returned planning_config_path as well.
+    """
+    from planning.cartesian import configuration
+    try:
+        config = json.loads(Path(path).read_text())
+        if planning_path is None:
+            planning_path = Path(path).resolve().parent/config['planning_config']
+        period = configuration(planning_path)['sample_period_s']
+        pid = config['pid']
+    except (OSError, KeyError) as exc:
+        raise ContractError(1004, 'Missing execution/cycle configuration') from exc
+    for value in (config.get('dt_s', period), pid.get('dt_s', period)):
+        if type(value) not in (int, float) or value != period:
+            raise ContractError(1006, 'Execution/PID period differs from planning/IK period')
+    config['dt_s'] = pid['dt_s'] = period
+    config['planning_config_path'] = str(Path(planning_path).resolve())
+    return config
+
+
+def check_cycle(data, dt):
+    """Reject unequal certified planning/IK, interpolation and execution periods."""
+    certificate_period = data.get('certification', {}).get('sample_period_s')
+    for period in (data.get('sample_period_s', certificate_period), certificate_period):
+        if type(period) not in (int, float) or period != dt:
+            raise ContractError(1006, 'Certified planning/IK period differs from execution period')
+    times = np.asarray(data['segment_times_s'], float)
+    samples = np.asarray(data['time_s'], float)
+    for grid in (times, samples):
+        if grid.ndim != 1 or len(grid) < 2 or not np.all(np.isfinite(grid)) or not np.allclose(
+                grid, np.arange(len(grid))*dt, atol=1e-10, rtol=0):
+            raise ContractError(1006, 'Planning/interpolation nodes do not follow the execution cycle')
+    if len(times) != len(samples):
+        raise ContractError(1006, 'Planning/interpolation node counts differ')
+    if 'ik_nodes' in data:
+        nodes = data['ik_nodes']
+        if len(nodes) != len(samples)-1 or any(
+                node['node_index'] != i or not math.isfinite(node['time_s']) or
+                abs(node['time_s']-i*dt) > 1e-10 for i, node in enumerate(nodes, 1)):
+            raise ContractError(1006, 'IK nodes do not follow the execution cycle')
+
+
+def snapshot(value):
+    """Copy observations into strict JSON; preserve invalid numbers explicitly."""
+    if isinstance(value, np.ndarray): return snapshot(value.tolist())
+    if isinstance(value, np.generic): return snapshot(value.item())
+    if isinstance(value, float) and not math.isfinite(value):
+        return {'nonfinite': 'NaN' if math.isnan(value) else ('+Infinity' if value > 0 else '-Infinity')}
+    if isinstance(value, dict): return {k: snapshot(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)): return [snapshot(v) for v in value]
+    return copy.deepcopy(value)
+
+
+def empty_observations():
+    """No observation from the preceding tick may appear as current data."""
+    return dict(observed_clock=None, observed_feedback=None, observed_reference=None,
+                raw_control_outputs=None, observed_command=None, validated_command=None)
 
 
 class TickClock:
@@ -78,26 +146,36 @@ class SixAxisExecutor:
         dispatched = execute_trajectory(result, self.scene, self._consume)
         if dispatched['code'] and not self.events:
             self.events.append(dict(stage='execution_gate', code=dispatched['code'], tick=0,
-                                    message=dispatched['message']))
+                                    message=dispatched['message'], previous_sample=None,
+                                    **empty_observations()))
         # Neither success nor failure returns executable trajectory data.
         return dispatched
 
     def _consume(self, data):
         dt = self.config['dt_s']
-        total = data['segment_times_s'][-1] + self.config['hold_s']
-        if abs(total/dt-round(total/dt)) > 1e-8:
-            raise ContractError(1006, 'Trajectory end must align with control clock')
         previous_q = previous_v = previous_command = None
-        stage, tick = 'clock', 0
+        previous_sample = None
+        observed = empty_observations()
+        stage, tick = 'cycle_consistency', 0
         try:
+            check_cycle(data, dt)
+            if self.clock.dt != dt or self.plant.dt_s != dt or any(
+                    controller.config.dt_s != dt for controller in self.controllers):
+                raise ContractError(1006, 'Clock/plant feedback/PID period differs from certified cycle')
+            total = data['segment_times_s'][-1] + self.config['hold_s']
+            if abs(total/dt-round(total/dt)) > 1e-8:
+                raise ContractError(1006, 'Trajectory end must align with control clock')
             for tick in range(round(total/dt)+1):
+                observed = empty_observations()
                 wall = time.perf_counter()
                 stage = 'clock'
                 actual_tick, t = self.clock.stamp()
-                if actual_tick != tick or abs(t-tick*dt) > 1e-12:
+                observed['observed_clock'] = dict(tick=actual_tick, time_s=t)
+                if actual_tick != tick or not math.isfinite(t) or abs(t-tick*dt) > 1e-12:
                     raise ContractError(1006, 'Duplicate/skipped/reversed control tick')
                 stage = 'feedback'
                 feedback = self.plant.read()
+                observed['observed_feedback'] = snapshot(feedback)
                 if feedback['tick'] != tick or abs(feedback['time_s']-t) > 1e-12 or not math.isfinite(feedback['time_s']):
                     raise ContractError(1006, 'Feedback sequence/time is stale or inconsistent')
                 q = self.vector(feedback['q_rad'], 'feedback position')
@@ -107,7 +185,9 @@ class SixAxisExecutor:
                 if np.max(abs(v)) > self.config['feedback_speed_limit_rad_s']:
                     raise ContractError(4001, 'Feedback speed exceeds low-speed bound')
                 stage = 'interpolation'
-                ref, vel, acc = [self.vector(x, 'reference') for x in self.sampler(data, t)]
+                references = self.sampler(data, t)
+                observed['observed_reference'] = snapshot(references)
+                ref, vel, acc = [self.vector(x, 'reference') for x in references]
                 if np.max(abs(vel)) > self.config['speed_limit_rad_s'] or np.max(abs(acc)) > self.config['acceleration_limit_rad_s2']:
                     raise ContractError(3002, 'Reference exceeds low-speed execution envelope')
                 if previous_q is not None and (np.max(abs(ref-previous_q)) > self.config['speed_limit_rad_s']*dt+1e-8 or np.max(abs(vel-previous_v)) > self.config['acceleration_limit_rad_s2']*dt+1e-8):
@@ -119,11 +199,18 @@ class SixAxisExecutor:
                 if not collision['passed']:
                     raise ContractError(3003, 'Feedback whole-arm/self collision')
                 stage = 'control'
-                outputs = [p.step(float(r), float(a), float(vr), float(ar))
-                           for p, r, a, vr, ar in zip(self.controllers, ref, q, vel, acc)]
+                outputs = [None]*6
+                raw_command = [None]*6
+                observed['raw_control_outputs'] = outputs
+                observed['observed_command'] = raw_command
+                for axis, (p, r, a, vr, ar) in enumerate(zip(self.controllers, ref, q, vel, acc)):
+                    outputs[axis] = p.step(float(r), float(a), float(vr), float(ar))
+                    value = outputs[axis].get('data')
+                    raw_command[axis] = value.get('output') if isinstance(value, dict) else None
                 if any(x['code'] for x in outputs):
                     raise ContractError(4001, 'C controller rejected feedback/reference')
-                command = self.vector([x['data']['output'] for x in outputs], 'controller output')
+                command = self.vector(raw_command, 'controller output')
+                observed['validated_command'] = command.tolist()
                 if np.max(abs(command)) > self.config['speed_limit_rad_s']+1e-12:
                     raise ContractError(4001, 'Controller output exceeds bound')
                 if previous_command is not None and np.max(abs(command-previous_command)) > self.config['acceleration_limit_rad_s2']*dt+1e-8:
@@ -141,13 +228,11 @@ class SixAxisExecutor:
                     self.clock.advance()
                 row['processing_wall_s'] = time.perf_counter()-wall
                 previous_q, previous_v, previous_command = ref, vel, command
+                previous_sample = snapshot(dict(tick=tick, time_s=t, **observed))
         except (ContractError, KeyError, TypeError, ValueError, ArithmeticError, RuntimeError) as exc:
             code = getattr(exc, 'code', 4001)
             self.events.append(dict(stage=stage, code=code, tick=tick, time_s=tick*dt, message=str(exc),
-                observed_clock=repr(locals().get('actual_tick'))+','+repr(locals().get('t')),
-                observed_feedback=repr(locals().get('feedback')),
-                observed_reference=repr(locals().get('ref')),
-                observed_command=repr(locals().get('command'))))
+                previous_sample=previous_sample, **snapshot(observed)))
             raise ContractError(code, str(exc)) from exc
         finally:
             # Stop changes the servo target but never advances physical time.

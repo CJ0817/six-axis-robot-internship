@@ -26,9 +26,9 @@ jobs:
       - name: Clock and nonuniform interpolation regressions
         run: python -m unittest discover -s tests -p test_six_axis.py -v
       - name: Fixed low-speed six-axis trajectory and injected faults
-        run: python scripts/verify_six_axis.py
+        run: python scripts/verify_six_axis.py --output results/six-axis-cycle-fix
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: six-axis-integration-evidence
-          path: results/six-axis-integration/
+          path: results/six-axis-cycle-fix/
