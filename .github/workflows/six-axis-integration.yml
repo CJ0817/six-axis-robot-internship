@@ -31,4 +31,7 @@ jobs:
         if: always()
         with:
           name: six-axis-integration-evidence
-          path: results/six-axis-cycle-fix/
+          path: |
+            results/six-axis-cycle-fix/
+            !results/six-axis-cycle-fix/raw-evidence.zip
+            !results/six-axis-cycle-fix/evidence-manifest.json

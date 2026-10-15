@@ -1,0 +1,3241 @@
+{
+  "usage": "simulation_only",
+  "engine": "UR5 / PyBullet 3.2.7",
+  "clock": "one configured planning/IK/interpolation/control/feedback period; integer simulation tick, not wall deadline",
+  "control": "six C position PID outer loops + qd feedforward -> bounded velocity -> PyBullet velocity inner servos",
+  "trials": [
+    {
+      "name": "normal-r1",
+      "expected_code": 0,
+      "actual_code": 0,
+      "message": "Certified trajectory dispatched",
+      "sample_count": 401,
+      "motion_commands": 400,
+      "stopped": true,
+      "events": [],
+      "rmse_rad": [
+        2.1255659538757834e-06,
+        1.1720712107115633e-05,
+        5.707842123613501e-06,
+        0.00010472282071857033,
+        2.8743478220149148e-06,
+        4.3224828563799045e-05
+      ],
+      "final_error_rad": [
+        -1.6359242580588074e-06,
+        -7.39596952259447e-06,
+        1.1853756864965703e-07,
+        -8.137236624827793e-05,
+        -1.9293646658091745e-06,
+        3.359623474533113e-05
+      ],
+      "actual_excursion_rad": [
+        0.001988029447244577,
+        0.026398948892138785,
+        0.023414135319779206,
+        0.007277186809176106,
+        0.006074538012143971,
+        0.018883268555303423
+      ],
+      "peak_actual_velocity_rad_s": [
+        0.0006222781726330723,
+        0.008259691701455948,
+        0.00732496816376671,
+        0.0022853102507946754,
+        0.0019008326891966631,
+        0.0059141359912043175
+      ],
+      "peak_command_velocity_rad_s": [
+        0.000632376178894881,
+        0.008306389363843225,
+        0.007324968163766706,
+        0.0028029261023933974,
+        0.0019126874382464991,
+        0.006124983036689334
+      ],
+      "peak_command_delta_rad_s": [
+        6.4444062130668e-06,
+        8.528758549432433e-05,
+        7.64803369261392e-05,
+        4.452443597854927e-05,
+        1.9690539133643704e-05,
+        6.100930974913205e-05
+      ],
+      "peak_reference_delta_rad": [
+        1.2428404619291289e-05,
+        0.00016499314665452403,
+        0.00014633881036996144,
+        4.543895834707712e-05,
+        3.797067272315324e-05,
+        0.0001180702170081871
+      ],
+      "minimum_clearance_m": 0.009467370136161252,
+      "wall_processing_peak_s": 0.0012529950000015333,
+      "wall_processing_over_period_count": 0,
+      "timing_error_count": 0,
+      "command_jump_count": 0,
+      "control_anomaly_count": 0,
+      "passed": true
+    },
+    {
+      "name": "normal-r2",
+      "expected_code": 0,
+      "actual_code": 0,
+      "message": "Certified trajectory dispatched",
+      "sample_count": 401,
+      "motion_commands": 400,
+      "stopped": true,
+      "events": [],
+      "rmse_rad": [
+        2.1255659538757834e-06,
+        1.1720712107115633e-05,
+        5.707842123613501e-06,
+        0.00010472282071857033,
+        2.8743478220149148e-06,
+        4.3224828563799045e-05
+      ],
+      "final_error_rad": [
+        -1.6359242580588074e-06,
+        -7.39596952259447e-06,
+        1.1853756864965703e-07,
+        -8.137236624827793e-05,
+        -1.9293646658091745e-06,
+        3.359623474533113e-05
+      ],
+      "actual_excursion_rad": [
+        0.001988029447244577,
+        0.026398948892138785,
+        0.023414135319779206,
+        0.007277186809176106,
+        0.006074538012143971,
+        0.018883268555303423
+      ],
+      "peak_actual_velocity_rad_s": [
+        0.0006222781726330723,
+        0.008259691701455948,
+        0.00732496816376671,
+        0.0022853102507946754,
+        0.0019008326891966631,
+        0.0059141359912043175
+      ],
+      "peak_command_velocity_rad_s": [
+        0.000632376178894881,
+        0.008306389363843225,
+        0.007324968163766706,
+        0.0028029261023933974,
+        0.0019126874382464991,
+        0.006124983036689334
+      ],
+      "peak_command_delta_rad_s": [
+        6.4444062130668e-06,
+        8.528758549432433e-05,
+        7.64803369261392e-05,
+        4.452443597854927e-05,
+        1.9690539133643704e-05,
+        6.100930974913205e-05
+      ],
+      "peak_reference_delta_rad": [
+        1.2428404619291289e-05,
+        0.00016499314665452403,
+        0.00014633881036996144,
+        4.543895834707712e-05,
+        3.797067272315324e-05,
+        0.0001180702170081871
+      ],
+      "minimum_clearance_m": 0.009467370136161252,
+      "wall_processing_peak_s": 0.0013931519999985653,
+      "wall_processing_over_period_count": 0,
+      "timing_error_count": 0,
+      "command_jump_count": 0,
+      "control_anomaly_count": 0,
+      "passed": true
+    },
+    {
+      "name": "duplicate_tick",
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "message": "Duplicate/skipped/reversed control tick",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "clock",
+          "code": 1006,
+          "tick": 5,
+          "time_s": 0.1,
+          "message": "Duplicate/skipped/reversed control tick",
+          "previous_sample": {
+            "tick": 4,
+            "time_s": 0.08,
+            "observed_clock": {
+              "tick": 4,
+              "time_s": 0.08
+            },
+            "observed_feedback": {
+              "tick": 4,
+              "time_s": 0.08,
+              "q_rad": [
+                0.30000071646252796,
+                -1.1999968943844288,
+                1.100000402646764,
+                -1.0999612050470307,
+                1.0000007790630552,
+                0.19998451233803702
+              ],
+              "qd_rad_s": [
+                7.204066101855998e-06,
+                2.513467534435293e-05,
+                1.2511792891634066e-05,
+                0.00042340637026334893,
+                6.481535932266469e-06,
+                -0.00016371330364385941
+              ]
+            },
+            "observed_reference": [
+              [
+                0.29999995436063676,
+                -1.2000006175625693,
+                1.1000005574028446,
+                -1.1000001757046087,
+                0.9999998571869769,
+                0.2000004365413674
+              ],
+              [
+                -1.7334676694069624e-06,
+                -2.3456157838275257e-05,
+                2.117116941757757e-05,
+                -6.673575958515697e-06,
+                -5.424299467926551e-06,
+                1.6580647415470603e-05
+              ],
+              [
+                -4.185390395372577e-05,
+                -0.000566338847485248,
+                0.0005111679705904757,
+                -0.0001611301442272505,
+                -0.0001309673239302533,
+                0.0004003330517435287
+              ]
+            ],
+            "raw_control_outputs": [
+              {
+                "code": 0,
+                "data": {
+                  "error": -7.621018912051802e-07,
+                  "integral": -7.898754762925009e-09,
+                  "feedback_raw": -3.056306319583646e-06,
+                  "velocity_feedforward": -1.7334676694069624e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -4.789773988990608e-06,
+                  "output": -4.789773988990608e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.7231781404578612e-06,
+                  "integral": -3.824601004875917e-08,
+                  "feedback_raw": -1.4930958571880207e-05,
+                  "velocity_feedforward": -2.3456157838275257e-05,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -3.8387116410155465e-05,
+                  "output": -3.8387116410155465e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.547560806169912e-07,
+                  "integral": 1.1280483738218549e-09,
+                  "feedback_raw": 6.201523708417867e-07,
+                  "velocity_feedforward": 2.117116941757757e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 2.1791321788419358e-05,
+                  "output": 2.1791321788419358e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.897065757807461e-05,
+                  "integral": -4.0578245635192195e-07,
+                  "feedback_raw": -0.00015628841276865035,
+                  "velocity_feedforward": -6.673575958515697e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -0.00016296198872716605,
+                  "output": -0.00016296198872716605,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -9.218760782525592e-07,
+                  "integral": -9.478514056748821e-09,
+                  "feedback_raw": -3.6969828270669855e-06,
+                  "velocity_feedforward": -5.424299467926551e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -9.121282294993536e-06,
+                  "output": -9.121282294993536e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.5924203330380804e-05,
+                  "integral": 1.6549428093004524e-07,
+                  "feedback_raw": 6.386230760245327e-05,
+                  "velocity_feedforward": 1.6580647415470603e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 8.044295501792387e-05,
+                  "output": 8.044295501792387e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              }
+            ],
+            "observed_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ],
+            "validated_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ]
+          },
+          "observed_clock": {
+            "tick": 4,
+            "time_s": 0.08
+          },
+          "observed_feedback": null,
+          "observed_reference": null,
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "skipped_tick",
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "message": "Duplicate/skipped/reversed control tick",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "clock",
+          "code": 1006,
+          "tick": 5,
+          "time_s": 0.1,
+          "message": "Duplicate/skipped/reversed control tick",
+          "previous_sample": {
+            "tick": 4,
+            "time_s": 0.08,
+            "observed_clock": {
+              "tick": 4,
+              "time_s": 0.08
+            },
+            "observed_feedback": {
+              "tick": 4,
+              "time_s": 0.08,
+              "q_rad": [
+                0.30000071646252796,
+                -1.1999968943844288,
+                1.100000402646764,
+                -1.0999612050470307,
+                1.0000007790630552,
+                0.19998451233803702
+              ],
+              "qd_rad_s": [
+                7.204066101855998e-06,
+                2.513467534435293e-05,
+                1.2511792891634066e-05,
+                0.00042340637026334893,
+                6.481535932266469e-06,
+                -0.00016371330364385941
+              ]
+            },
+            "observed_reference": [
+              [
+                0.29999995436063676,
+                -1.2000006175625693,
+                1.1000005574028446,
+                -1.1000001757046087,
+                0.9999998571869769,
+                0.2000004365413674
+              ],
+              [
+                -1.7334676694069624e-06,
+                -2.3456157838275257e-05,
+                2.117116941757757e-05,
+                -6.673575958515697e-06,
+                -5.424299467926551e-06,
+                1.6580647415470603e-05
+              ],
+              [
+                -4.185390395372577e-05,
+                -0.000566338847485248,
+                0.0005111679705904757,
+                -0.0001611301442272505,
+                -0.0001309673239302533,
+                0.0004003330517435287
+              ]
+            ],
+            "raw_control_outputs": [
+              {
+                "code": 0,
+                "data": {
+                  "error": -7.621018912051802e-07,
+                  "integral": -7.898754762925009e-09,
+                  "feedback_raw": -3.056306319583646e-06,
+                  "velocity_feedforward": -1.7334676694069624e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -4.789773988990608e-06,
+                  "output": -4.789773988990608e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.7231781404578612e-06,
+                  "integral": -3.824601004875917e-08,
+                  "feedback_raw": -1.4930958571880207e-05,
+                  "velocity_feedforward": -2.3456157838275257e-05,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -3.8387116410155465e-05,
+                  "output": -3.8387116410155465e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.547560806169912e-07,
+                  "integral": 1.1280483738218549e-09,
+                  "feedback_raw": 6.201523708417867e-07,
+                  "velocity_feedforward": 2.117116941757757e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 2.1791321788419358e-05,
+                  "output": 2.1791321788419358e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.897065757807461e-05,
+                  "integral": -4.0578245635192195e-07,
+                  "feedback_raw": -0.00015628841276865035,
+                  "velocity_feedforward": -6.673575958515697e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -0.00016296198872716605,
+                  "output": -0.00016296198872716605,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -9.218760782525592e-07,
+                  "integral": -9.478514056748821e-09,
+                  "feedback_raw": -3.6969828270669855e-06,
+                  "velocity_feedforward": -5.424299467926551e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -9.121282294993536e-06,
+                  "output": -9.121282294993536e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.5924203330380804e-05,
+                  "integral": 1.6549428093004524e-07,
+                  "feedback_raw": 6.386230760245327e-05,
+                  "velocity_feedforward": 1.6580647415470603e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 8.044295501792387e-05,
+                  "output": 8.044295501792387e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              }
+            ],
+            "observed_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ],
+            "validated_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ]
+          },
+          "observed_clock": {
+            "tick": 6,
+            "time_s": 0.12
+          },
+          "observed_feedback": null,
+          "observed_reference": null,
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "reversed_tick",
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "message": "Duplicate/skipped/reversed control tick",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "clock",
+          "code": 1006,
+          "tick": 5,
+          "time_s": 0.1,
+          "message": "Duplicate/skipped/reversed control tick",
+          "previous_sample": {
+            "tick": 4,
+            "time_s": 0.08,
+            "observed_clock": {
+              "tick": 4,
+              "time_s": 0.08
+            },
+            "observed_feedback": {
+              "tick": 4,
+              "time_s": 0.08,
+              "q_rad": [
+                0.30000071646252796,
+                -1.1999968943844288,
+                1.100000402646764,
+                -1.0999612050470307,
+                1.0000007790630552,
+                0.19998451233803702
+              ],
+              "qd_rad_s": [
+                7.204066101855998e-06,
+                2.513467534435293e-05,
+                1.2511792891634066e-05,
+                0.00042340637026334893,
+                6.481535932266469e-06,
+                -0.00016371330364385941
+              ]
+            },
+            "observed_reference": [
+              [
+                0.29999995436063676,
+                -1.2000006175625693,
+                1.1000005574028446,
+                -1.1000001757046087,
+                0.9999998571869769,
+                0.2000004365413674
+              ],
+              [
+                -1.7334676694069624e-06,
+                -2.3456157838275257e-05,
+                2.117116941757757e-05,
+                -6.673575958515697e-06,
+                -5.424299467926551e-06,
+                1.6580647415470603e-05
+              ],
+              [
+                -4.185390395372577e-05,
+                -0.000566338847485248,
+                0.0005111679705904757,
+                -0.0001611301442272505,
+                -0.0001309673239302533,
+                0.0004003330517435287
+              ]
+            ],
+            "raw_control_outputs": [
+              {
+                "code": 0,
+                "data": {
+                  "error": -7.621018912051802e-07,
+                  "integral": -7.898754762925009e-09,
+                  "feedback_raw": -3.056306319583646e-06,
+                  "velocity_feedforward": -1.7334676694069624e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -4.789773988990608e-06,
+                  "output": -4.789773988990608e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.7231781404578612e-06,
+                  "integral": -3.824601004875917e-08,
+                  "feedback_raw": -1.4930958571880207e-05,
+                  "velocity_feedforward": -2.3456157838275257e-05,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -3.8387116410155465e-05,
+                  "output": -3.8387116410155465e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.547560806169912e-07,
+                  "integral": 1.1280483738218549e-09,
+                  "feedback_raw": 6.201523708417867e-07,
+                  "velocity_feedforward": 2.117116941757757e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 2.1791321788419358e-05,
+                  "output": 2.1791321788419358e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.897065757807461e-05,
+                  "integral": -4.0578245635192195e-07,
+                  "feedback_raw": -0.00015628841276865035,
+                  "velocity_feedforward": -6.673575958515697e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -0.00016296198872716605,
+                  "output": -0.00016296198872716605,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -9.218760782525592e-07,
+                  "integral": -9.478514056748821e-09,
+                  "feedback_raw": -3.6969828270669855e-06,
+                  "velocity_feedforward": -5.424299467926551e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -9.121282294993536e-06,
+                  "output": -9.121282294993536e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.5924203330380804e-05,
+                  "integral": 1.6549428093004524e-07,
+                  "feedback_raw": 6.386230760245327e-05,
+                  "velocity_feedforward": 1.6580647415470603e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 8.044295501792387e-05,
+                  "output": 8.044295501792387e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              }
+            ],
+            "observed_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ],
+            "validated_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ]
+          },
+          "observed_clock": {
+            "tick": 3,
+            "time_s": 0.06
+          },
+          "observed_feedback": null,
+          "observed_reference": null,
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "stale_feedback",
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "message": "Feedback sequence/time is stale or inconsistent",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "feedback",
+          "code": 1006,
+          "tick": 5,
+          "time_s": 0.1,
+          "message": "Feedback sequence/time is stale or inconsistent",
+          "previous_sample": {
+            "tick": 4,
+            "time_s": 0.08,
+            "observed_clock": {
+              "tick": 4,
+              "time_s": 0.08
+            },
+            "observed_feedback": {
+              "tick": 4,
+              "time_s": 0.08,
+              "q_rad": [
+                0.30000071646252796,
+                -1.1999968943844288,
+                1.100000402646764,
+                -1.0999612050470307,
+                1.0000007790630552,
+                0.19998451233803702
+              ],
+              "qd_rad_s": [
+                7.204066101855998e-06,
+                2.513467534435293e-05,
+                1.2511792891634066e-05,
+                0.00042340637026334893,
+                6.481535932266469e-06,
+                -0.00016371330364385941
+              ]
+            },
+            "observed_reference": [
+              [
+                0.29999995436063676,
+                -1.2000006175625693,
+                1.1000005574028446,
+                -1.1000001757046087,
+                0.9999998571869769,
+                0.2000004365413674
+              ],
+              [
+                -1.7334676694069624e-06,
+                -2.3456157838275257e-05,
+                2.117116941757757e-05,
+                -6.673575958515697e-06,
+                -5.424299467926551e-06,
+                1.6580647415470603e-05
+              ],
+              [
+                -4.185390395372577e-05,
+                -0.000566338847485248,
+                0.0005111679705904757,
+                -0.0001611301442272505,
+                -0.0001309673239302533,
+                0.0004003330517435287
+              ]
+            ],
+            "raw_control_outputs": [
+              {
+                "code": 0,
+                "data": {
+                  "error": -7.621018912051802e-07,
+                  "integral": -7.898754762925009e-09,
+                  "feedback_raw": -3.056306319583646e-06,
+                  "velocity_feedforward": -1.7334676694069624e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -4.789773988990608e-06,
+                  "output": -4.789773988990608e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.7231781404578612e-06,
+                  "integral": -3.824601004875917e-08,
+                  "feedback_raw": -1.4930958571880207e-05,
+                  "velocity_feedforward": -2.3456157838275257e-05,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -3.8387116410155465e-05,
+                  "output": -3.8387116410155465e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.547560806169912e-07,
+                  "integral": 1.1280483738218549e-09,
+                  "feedback_raw": 6.201523708417867e-07,
+                  "velocity_feedforward": 2.117116941757757e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 2.1791321788419358e-05,
+                  "output": 2.1791321788419358e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.897065757807461e-05,
+                  "integral": -4.0578245635192195e-07,
+                  "feedback_raw": -0.00015628841276865035,
+                  "velocity_feedforward": -6.673575958515697e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -0.00016296198872716605,
+                  "output": -0.00016296198872716605,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -9.218760782525592e-07,
+                  "integral": -9.478514056748821e-09,
+                  "feedback_raw": -3.6969828270669855e-06,
+                  "velocity_feedforward": -5.424299467926551e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -9.121282294993536e-06,
+                  "output": -9.121282294993536e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.5924203330380804e-05,
+                  "integral": 1.6549428093004524e-07,
+                  "feedback_raw": 6.386230760245327e-05,
+                  "velocity_feedforward": 1.6580647415470603e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 8.044295501792387e-05,
+                  "output": 8.044295501792387e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              }
+            ],
+            "observed_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ],
+            "validated_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ]
+          },
+          "observed_clock": {
+            "tick": 5,
+            "time_s": 0.1
+          },
+          "observed_feedback": {
+            "tick": 4,
+            "time_s": 0.1,
+            "q_rad": [
+              0.30000083212842593,
+              -1.1999966599623648,
+              1.1000008384731994,
+              -1.0999534819798196,
+              1.0000008455842047,
+              0.19998166217632718
+            ],
+            "qd_rad_s": [
+              5.783022266174671e-06,
+              1.1719812098451299e-05,
+              2.1791321788436346e-05,
+              0.0003861391686763582,
+              3.3258425682532178e-06,
+              -0.00014250233869821105
+            ]
+          },
+          "observed_reference": null,
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "wrong_feedback_time",
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "message": "Feedback sequence/time is stale or inconsistent",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "feedback",
+          "code": 1006,
+          "tick": 5,
+          "time_s": 0.1,
+          "message": "Feedback sequence/time is stale or inconsistent",
+          "previous_sample": {
+            "tick": 4,
+            "time_s": 0.08,
+            "observed_clock": {
+              "tick": 4,
+              "time_s": 0.08
+            },
+            "observed_feedback": {
+              "tick": 4,
+              "time_s": 0.08,
+              "q_rad": [
+                0.30000071646252796,
+                -1.1999968943844288,
+                1.100000402646764,
+                -1.0999612050470307,
+                1.0000007790630552,
+                0.19998451233803702
+              ],
+              "qd_rad_s": [
+                7.204066101855998e-06,
+                2.513467534435293e-05,
+                1.2511792891634066e-05,
+                0.00042340637026334893,
+                6.481535932266469e-06,
+                -0.00016371330364385941
+              ]
+            },
+            "observed_reference": [
+              [
+                0.29999995436063676,
+                -1.2000006175625693,
+                1.1000005574028446,
+                -1.1000001757046087,
+                0.9999998571869769,
+                0.2000004365413674
+              ],
+              [
+                -1.7334676694069624e-06,
+                -2.3456157838275257e-05,
+                2.117116941757757e-05,
+                -6.673575958515697e-06,
+                -5.424299467926551e-06,
+                1.6580647415470603e-05
+              ],
+              [
+                -4.185390395372577e-05,
+                -0.000566338847485248,
+                0.0005111679705904757,
+                -0.0001611301442272505,
+                -0.0001309673239302533,
+                0.0004003330517435287
+              ]
+            ],
+            "raw_control_outputs": [
+              {
+                "code": 0,
+                "data": {
+                  "error": -7.621018912051802e-07,
+                  "integral": -7.898754762925009e-09,
+                  "feedback_raw": -3.056306319583646e-06,
+                  "velocity_feedforward": -1.7334676694069624e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -4.789773988990608e-06,
+                  "output": -4.789773988990608e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.7231781404578612e-06,
+                  "integral": -3.824601004875917e-08,
+                  "feedback_raw": -1.4930958571880207e-05,
+                  "velocity_feedforward": -2.3456157838275257e-05,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -3.8387116410155465e-05,
+                  "output": -3.8387116410155465e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.547560806169912e-07,
+                  "integral": 1.1280483738218549e-09,
+                  "feedback_raw": 6.201523708417867e-07,
+                  "velocity_feedforward": 2.117116941757757e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 2.1791321788419358e-05,
+                  "output": 2.1791321788419358e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.897065757807461e-05,
+                  "integral": -4.0578245635192195e-07,
+                  "feedback_raw": -0.00015628841276865035,
+                  "velocity_feedforward": -6.673575958515697e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -0.00016296198872716605,
+                  "output": -0.00016296198872716605,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -9.218760782525592e-07,
+                  "integral": -9.478514056748821e-09,
+                  "feedback_raw": -3.6969828270669855e-06,
+                  "velocity_feedforward": -5.424299467926551e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -9.121282294993536e-06,
+                  "output": -9.121282294993536e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.5924203330380804e-05,
+                  "integral": 1.6549428093004524e-07,
+                  "feedback_raw": 6.386230760245327e-05,
+                  "velocity_feedforward": 1.6580647415470603e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 8.044295501792387e-05,
+                  "output": 8.044295501792387e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              }
+            ],
+            "observed_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ],
+            "validated_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ]
+          },
+          "observed_clock": {
+            "tick": 5,
+            "time_s": 0.1
+          },
+          "observed_feedback": {
+            "tick": 5,
+            "time_s": 0.10300000000000001,
+            "q_rad": [
+              0.30000083212842593,
+              -1.1999966599623648,
+              1.1000008384731994,
+              -1.0999534819798196,
+              1.0000008455842047,
+              0.19998166217632718
+            ],
+            "qd_rad_s": [
+              5.783022266174671e-06,
+              1.1719812098451299e-05,
+              2.1791321788436346e-05,
+              0.0003861391686763582,
+              3.3258425682532178e-06,
+              -0.00014250233869821105
+            ]
+          },
+          "observed_reference": null,
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "nonfinite_feedback",
+      "expected_code": 4001,
+      "actual_code": 4001,
+      "message": "Invalid six-axis feedback position",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "feedback",
+          "code": 4001,
+          "tick": 5,
+          "time_s": 0.1,
+          "message": "Invalid six-axis feedback position",
+          "previous_sample": {
+            "tick": 4,
+            "time_s": 0.08,
+            "observed_clock": {
+              "tick": 4,
+              "time_s": 0.08
+            },
+            "observed_feedback": {
+              "tick": 4,
+              "time_s": 0.08,
+              "q_rad": [
+                0.30000071646252796,
+                -1.1999968943844288,
+                1.100000402646764,
+                -1.0999612050470307,
+                1.0000007790630552,
+                0.19998451233803702
+              ],
+              "qd_rad_s": [
+                7.204066101855998e-06,
+                2.513467534435293e-05,
+                1.2511792891634066e-05,
+                0.00042340637026334893,
+                6.481535932266469e-06,
+                -0.00016371330364385941
+              ]
+            },
+            "observed_reference": [
+              [
+                0.29999995436063676,
+                -1.2000006175625693,
+                1.1000005574028446,
+                -1.1000001757046087,
+                0.9999998571869769,
+                0.2000004365413674
+              ],
+              [
+                -1.7334676694069624e-06,
+                -2.3456157838275257e-05,
+                2.117116941757757e-05,
+                -6.673575958515697e-06,
+                -5.424299467926551e-06,
+                1.6580647415470603e-05
+              ],
+              [
+                -4.185390395372577e-05,
+                -0.000566338847485248,
+                0.0005111679705904757,
+                -0.0001611301442272505,
+                -0.0001309673239302533,
+                0.0004003330517435287
+              ]
+            ],
+            "raw_control_outputs": [
+              {
+                "code": 0,
+                "data": {
+                  "error": -7.621018912051802e-07,
+                  "integral": -7.898754762925009e-09,
+                  "feedback_raw": -3.056306319583646e-06,
+                  "velocity_feedforward": -1.7334676694069624e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -4.789773988990608e-06,
+                  "output": -4.789773988990608e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.7231781404578612e-06,
+                  "integral": -3.824601004875917e-08,
+                  "feedback_raw": -1.4930958571880207e-05,
+                  "velocity_feedforward": -2.3456157838275257e-05,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -3.8387116410155465e-05,
+                  "output": -3.8387116410155465e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.547560806169912e-07,
+                  "integral": 1.1280483738218549e-09,
+                  "feedback_raw": 6.201523708417867e-07,
+                  "velocity_feedforward": 2.117116941757757e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 2.1791321788419358e-05,
+                  "output": 2.1791321788419358e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.897065757807461e-05,
+                  "integral": -4.0578245635192195e-07,
+                  "feedback_raw": -0.00015628841276865035,
+                  "velocity_feedforward": -6.673575958515697e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -0.00016296198872716605,
+                  "output": -0.00016296198872716605,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -9.218760782525592e-07,
+                  "integral": -9.478514056748821e-09,
+                  "feedback_raw": -3.6969828270669855e-06,
+                  "velocity_feedforward": -5.424299467926551e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -9.121282294993536e-06,
+                  "output": -9.121282294993536e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.5924203330380804e-05,
+                  "integral": 1.6549428093004524e-07,
+                  "feedback_raw": 6.386230760245327e-05,
+                  "velocity_feedforward": 1.6580647415470603e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 8.044295501792387e-05,
+                  "output": 8.044295501792387e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              }
+            ],
+            "observed_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ],
+            "validated_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ]
+          },
+          "observed_clock": {
+            "tick": 5,
+            "time_s": 0.1
+          },
+          "observed_feedback": {
+            "tick": 5,
+            "time_s": 0.1,
+            "q_rad": [
+              0.30000083212842593,
+              -1.1999966599623648,
+              {
+                "nonfinite": "NaN"
+              },
+              -1.0999534819798196,
+              1.0000008455842047,
+              0.19998166217632718
+            ],
+            "qd_rad_s": [
+              5.783022266174671e-06,
+              1.1719812098451299e-05,
+              2.1791321788436346e-05,
+              0.0003861391686763582,
+              3.3258425682532178e-06,
+              -0.00014250233869821105
+            ]
+          },
+          "observed_reference": null,
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "missing_feedback",
+      "expected_code": 4001,
+      "actual_code": 4001,
+      "message": "'qd_rad_s'",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "feedback",
+          "code": 4001,
+          "tick": 5,
+          "time_s": 0.1,
+          "message": "'qd_rad_s'",
+          "previous_sample": {
+            "tick": 4,
+            "time_s": 0.08,
+            "observed_clock": {
+              "tick": 4,
+              "time_s": 0.08
+            },
+            "observed_feedback": {
+              "tick": 4,
+              "time_s": 0.08,
+              "q_rad": [
+                0.30000071646252796,
+                -1.1999968943844288,
+                1.100000402646764,
+                -1.0999612050470307,
+                1.0000007790630552,
+                0.19998451233803702
+              ],
+              "qd_rad_s": [
+                7.204066101855998e-06,
+                2.513467534435293e-05,
+                1.2511792891634066e-05,
+                0.00042340637026334893,
+                6.481535932266469e-06,
+                -0.00016371330364385941
+              ]
+            },
+            "observed_reference": [
+              [
+                0.29999995436063676,
+                -1.2000006175625693,
+                1.1000005574028446,
+                -1.1000001757046087,
+                0.9999998571869769,
+                0.2000004365413674
+              ],
+              [
+                -1.7334676694069624e-06,
+                -2.3456157838275257e-05,
+                2.117116941757757e-05,
+                -6.673575958515697e-06,
+                -5.424299467926551e-06,
+                1.6580647415470603e-05
+              ],
+              [
+                -4.185390395372577e-05,
+                -0.000566338847485248,
+                0.0005111679705904757,
+                -0.0001611301442272505,
+                -0.0001309673239302533,
+                0.0004003330517435287
+              ]
+            ],
+            "raw_control_outputs": [
+              {
+                "code": 0,
+                "data": {
+                  "error": -7.621018912051802e-07,
+                  "integral": -7.898754762925009e-09,
+                  "feedback_raw": -3.056306319583646e-06,
+                  "velocity_feedforward": -1.7334676694069624e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -4.789773988990608e-06,
+                  "output": -4.789773988990608e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.7231781404578612e-06,
+                  "integral": -3.824601004875917e-08,
+                  "feedback_raw": -1.4930958571880207e-05,
+                  "velocity_feedforward": -2.3456157838275257e-05,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -3.8387116410155465e-05,
+                  "output": -3.8387116410155465e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.547560806169912e-07,
+                  "integral": 1.1280483738218549e-09,
+                  "feedback_raw": 6.201523708417867e-07,
+                  "velocity_feedforward": 2.117116941757757e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 2.1791321788419358e-05,
+                  "output": 2.1791321788419358e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.897065757807461e-05,
+                  "integral": -4.0578245635192195e-07,
+                  "feedback_raw": -0.00015628841276865035,
+                  "velocity_feedforward": -6.673575958515697e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -0.00016296198872716605,
+                  "output": -0.00016296198872716605,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -9.218760782525592e-07,
+                  "integral": -9.478514056748821e-09,
+                  "feedback_raw": -3.6969828270669855e-06,
+                  "velocity_feedforward": -5.424299467926551e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -9.121282294993536e-06,
+                  "output": -9.121282294993536e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.5924203330380804e-05,
+                  "integral": 1.6549428093004524e-07,
+                  "feedback_raw": 6.386230760245327e-05,
+                  "velocity_feedforward": 1.6580647415470603e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 8.044295501792387e-05,
+                  "output": 8.044295501792387e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              }
+            ],
+            "observed_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ],
+            "validated_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ]
+          },
+          "observed_clock": {
+            "tick": 5,
+            "time_s": 0.1
+          },
+          "observed_feedback": {
+            "tick": 5,
+            "time_s": 0.1,
+            "q_rad": [
+              0.30000083212842593,
+              -1.1999966599623648,
+              1.1000008384731994,
+              -1.0999534819798196,
+              1.0000008455842047,
+              0.19998166217632718
+            ]
+          },
+          "observed_reference": null,
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "feedback_overspeed",
+      "expected_code": 4001,
+      "actual_code": 4001,
+      "message": "Feedback speed exceeds low-speed bound",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "feedback",
+          "code": 4001,
+          "tick": 5,
+          "time_s": 0.1,
+          "message": "Feedback speed exceeds low-speed bound",
+          "previous_sample": {
+            "tick": 4,
+            "time_s": 0.08,
+            "observed_clock": {
+              "tick": 4,
+              "time_s": 0.08
+            },
+            "observed_feedback": {
+              "tick": 4,
+              "time_s": 0.08,
+              "q_rad": [
+                0.30000071646252796,
+                -1.1999968943844288,
+                1.100000402646764,
+                -1.0999612050470307,
+                1.0000007790630552,
+                0.19998451233803702
+              ],
+              "qd_rad_s": [
+                7.204066101855998e-06,
+                2.513467534435293e-05,
+                1.2511792891634066e-05,
+                0.00042340637026334893,
+                6.481535932266469e-06,
+                -0.00016371330364385941
+              ]
+            },
+            "observed_reference": [
+              [
+                0.29999995436063676,
+                -1.2000006175625693,
+                1.1000005574028446,
+                -1.1000001757046087,
+                0.9999998571869769,
+                0.2000004365413674
+              ],
+              [
+                -1.7334676694069624e-06,
+                -2.3456157838275257e-05,
+                2.117116941757757e-05,
+                -6.673575958515697e-06,
+                -5.424299467926551e-06,
+                1.6580647415470603e-05
+              ],
+              [
+                -4.185390395372577e-05,
+                -0.000566338847485248,
+                0.0005111679705904757,
+                -0.0001611301442272505,
+                -0.0001309673239302533,
+                0.0004003330517435287
+              ]
+            ],
+            "raw_control_outputs": [
+              {
+                "code": 0,
+                "data": {
+                  "error": -7.621018912051802e-07,
+                  "integral": -7.898754762925009e-09,
+                  "feedback_raw": -3.056306319583646e-06,
+                  "velocity_feedforward": -1.7334676694069624e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -4.789773988990608e-06,
+                  "output": -4.789773988990608e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.7231781404578612e-06,
+                  "integral": -3.824601004875917e-08,
+                  "feedback_raw": -1.4930958571880207e-05,
+                  "velocity_feedforward": -2.3456157838275257e-05,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -3.8387116410155465e-05,
+                  "output": -3.8387116410155465e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.547560806169912e-07,
+                  "integral": 1.1280483738218549e-09,
+                  "feedback_raw": 6.201523708417867e-07,
+                  "velocity_feedforward": 2.117116941757757e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 2.1791321788419358e-05,
+                  "output": 2.1791321788419358e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.897065757807461e-05,
+                  "integral": -4.0578245635192195e-07,
+                  "feedback_raw": -0.00015628841276865035,
+                  "velocity_feedforward": -6.673575958515697e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -0.00016296198872716605,
+                  "output": -0.00016296198872716605,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -9.218760782525592e-07,
+                  "integral": -9.478514056748821e-09,
+                  "feedback_raw": -3.6969828270669855e-06,
+                  "velocity_feedforward": -5.424299467926551e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -9.121282294993536e-06,
+                  "output": -9.121282294993536e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.5924203330380804e-05,
+                  "integral": 1.6549428093004524e-07,
+                  "feedback_raw": 6.386230760245327e-05,
+                  "velocity_feedforward": 1.6580647415470603e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 8.044295501792387e-05,
+                  "output": 8.044295501792387e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              }
+            ],
+            "observed_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ],
+            "validated_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ]
+          },
+          "observed_clock": {
+            "tick": 5,
+            "time_s": 0.1
+          },
+          "observed_feedback": {
+            "tick": 5,
+            "time_s": 0.1,
+            "q_rad": [
+              0.30000083212842593,
+              -1.1999966599623648,
+              1.1000008384731994,
+              -1.0999534819798196,
+              1.0000008455842047,
+              0.19998166217632718
+            ],
+            "qd_rad_s": [
+              5.783022266174671e-06,
+              1.1719812098451299e-05,
+              2.1791321788436346e-05,
+              0.2,
+              3.3258425682532178e-06,
+              -0.00014250233869821105
+            ]
+          },
+          "observed_reference": null,
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "tracking_error",
+      "expected_code": 4001,
+      "actual_code": 4001,
+      "message": "Tracking error exceeds bound",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "interpolation",
+          "code": 4001,
+          "tick": 5,
+          "time_s": 0.1,
+          "message": "Tracking error exceeds bound",
+          "previous_sample": {
+            "tick": 4,
+            "time_s": 0.08,
+            "observed_clock": {
+              "tick": 4,
+              "time_s": 0.08
+            },
+            "observed_feedback": {
+              "tick": 4,
+              "time_s": 0.08,
+              "q_rad": [
+                0.30000071646252796,
+                -1.1999968943844288,
+                1.100000402646764,
+                -1.0999612050470307,
+                1.0000007790630552,
+                0.19998451233803702
+              ],
+              "qd_rad_s": [
+                7.204066101855998e-06,
+                2.513467534435293e-05,
+                1.2511792891634066e-05,
+                0.00042340637026334893,
+                6.481535932266469e-06,
+                -0.00016371330364385941
+              ]
+            },
+            "observed_reference": [
+              [
+                0.29999995436063676,
+                -1.2000006175625693,
+                1.1000005574028446,
+                -1.1000001757046087,
+                0.9999998571869769,
+                0.2000004365413674
+              ],
+              [
+                -1.7334676694069624e-06,
+                -2.3456157838275257e-05,
+                2.117116941757757e-05,
+                -6.673575958515697e-06,
+                -5.424299467926551e-06,
+                1.6580647415470603e-05
+              ],
+              [
+                -4.185390395372577e-05,
+                -0.000566338847485248,
+                0.0005111679705904757,
+                -0.0001611301442272505,
+                -0.0001309673239302533,
+                0.0004003330517435287
+              ]
+            ],
+            "raw_control_outputs": [
+              {
+                "code": 0,
+                "data": {
+                  "error": -7.621018912051802e-07,
+                  "integral": -7.898754762925009e-09,
+                  "feedback_raw": -3.056306319583646e-06,
+                  "velocity_feedforward": -1.7334676694069624e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -4.789773988990608e-06,
+                  "output": -4.789773988990608e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.7231781404578612e-06,
+                  "integral": -3.824601004875917e-08,
+                  "feedback_raw": -1.4930958571880207e-05,
+                  "velocity_feedforward": -2.3456157838275257e-05,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -3.8387116410155465e-05,
+                  "output": -3.8387116410155465e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.547560806169912e-07,
+                  "integral": 1.1280483738218549e-09,
+                  "feedback_raw": 6.201523708417867e-07,
+                  "velocity_feedforward": 2.117116941757757e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 2.1791321788419358e-05,
+                  "output": 2.1791321788419358e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.897065757807461e-05,
+                  "integral": -4.0578245635192195e-07,
+                  "feedback_raw": -0.00015628841276865035,
+                  "velocity_feedforward": -6.673575958515697e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -0.00016296198872716605,
+                  "output": -0.00016296198872716605,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -9.218760782525592e-07,
+                  "integral": -9.478514056748821e-09,
+                  "feedback_raw": -3.6969828270669855e-06,
+                  "velocity_feedforward": -5.424299467926551e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -9.121282294993536e-06,
+                  "output": -9.121282294993536e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.5924203330380804e-05,
+                  "integral": 1.6549428093004524e-07,
+                  "feedback_raw": 6.386230760245327e-05,
+                  "velocity_feedforward": 1.6580647415470603e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 8.044295501792387e-05,
+                  "output": 8.044295501792387e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              }
+            ],
+            "observed_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ],
+            "validated_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ]
+          },
+          "observed_clock": {
+            "tick": 5,
+            "time_s": 0.1
+          },
+          "observed_feedback": {
+            "tick": 5,
+            "time_s": 0.1,
+            "q_rad": [
+              0.40000083212842596,
+              -1.1999966599623648,
+              1.1000008384731994,
+              -1.0999534819798196,
+              1.0000008455842047,
+              0.19998166217632718
+            ],
+            "qd_rad_s": [
+              5.783022266174671e-06,
+              1.1719812098451299e-05,
+              2.1791321788436346e-05,
+              0.0003861391686763582,
+              3.3258425682532178e-06,
+              -0.00014250233869821105
+            ]
+          },
+          "observed_reference": [
+            [
+              0.29999991130988224,
+              -1.2000012000972538,
+              1.10000108318962,
+              -1.1000003414430815,
+              0.9999997224742759,
+              0.2000008483225238
+            ],
+            [
+              -2.6710737233148775e-06,
+              -3.61432018092245e-05,
+              3.262227494249538e-05,
+              -1.0283186235859892e-05,
+              -8.358210668024672e-06,
+              2.5548857165297325e-05
+            ],
+            [
+              -5.1800864084294905e-05,
+              -0.0007009328484297591,
+              0.0006326489596086844,
+              -0.00019942297202479886,
+              -0.00016209244738107936,
+              0.0004954754443016468
+            ]
+          ],
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "reference_jump",
+      "expected_code": 4001,
+      "actual_code": 4001,
+      "message": "Reference command discontinuity",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "interpolation",
+          "code": 4001,
+          "tick": 5,
+          "time_s": 0.1,
+          "message": "Reference command discontinuity",
+          "previous_sample": {
+            "tick": 4,
+            "time_s": 0.08,
+            "observed_clock": {
+              "tick": 4,
+              "time_s": 0.08
+            },
+            "observed_feedback": {
+              "tick": 4,
+              "time_s": 0.08,
+              "q_rad": [
+                0.30000071646252796,
+                -1.1999968943844288,
+                1.100000402646764,
+                -1.0999612050470307,
+                1.0000007790630552,
+                0.19998451233803702
+              ],
+              "qd_rad_s": [
+                7.204066101855998e-06,
+                2.513467534435293e-05,
+                1.2511792891634066e-05,
+                0.00042340637026334893,
+                6.481535932266469e-06,
+                -0.00016371330364385941
+              ]
+            },
+            "observed_reference": [
+              [
+                0.29999995436063676,
+                -1.2000006175625693,
+                1.1000005574028446,
+                -1.1000001757046087,
+                0.9999998571869769,
+                0.2000004365413674
+              ],
+              [
+                -1.7334676694069624e-06,
+                -2.3456157838275257e-05,
+                2.117116941757757e-05,
+                -6.673575958515697e-06,
+                -5.424299467926551e-06,
+                1.6580647415470603e-05
+              ],
+              [
+                -4.185390395372577e-05,
+                -0.000566338847485248,
+                0.0005111679705904757,
+                -0.0001611301442272505,
+                -0.0001309673239302533,
+                0.0004003330517435287
+              ]
+            ],
+            "raw_control_outputs": [
+              {
+                "code": 0,
+                "data": {
+                  "error": -7.621018912051802e-07,
+                  "integral": -7.898754762925009e-09,
+                  "feedback_raw": -3.056306319583646e-06,
+                  "velocity_feedforward": -1.7334676694069624e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -4.789773988990608e-06,
+                  "output": -4.789773988990608e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.7231781404578612e-06,
+                  "integral": -3.824601004875917e-08,
+                  "feedback_raw": -1.4930958571880207e-05,
+                  "velocity_feedforward": -2.3456157838275257e-05,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -3.8387116410155465e-05,
+                  "output": -3.8387116410155465e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.547560806169912e-07,
+                  "integral": 1.1280483738218549e-09,
+                  "feedback_raw": 6.201523708417867e-07,
+                  "velocity_feedforward": 2.117116941757757e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 2.1791321788419358e-05,
+                  "output": 2.1791321788419358e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.897065757807461e-05,
+                  "integral": -4.0578245635192195e-07,
+                  "feedback_raw": -0.00015628841276865035,
+                  "velocity_feedforward": -6.673575958515697e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -0.00016296198872716605,
+                  "output": -0.00016296198872716605,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -9.218760782525592e-07,
+                  "integral": -9.478514056748821e-09,
+                  "feedback_raw": -3.6969828270669855e-06,
+                  "velocity_feedforward": -5.424299467926551e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -9.121282294993536e-06,
+                  "output": -9.121282294993536e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.5924203330380804e-05,
+                  "integral": 1.6549428093004524e-07,
+                  "feedback_raw": 6.386230760245327e-05,
+                  "velocity_feedforward": 1.6580647415470603e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 8.044295501792387e-05,
+                  "output": 8.044295501792387e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              }
+            ],
+            "observed_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ],
+            "validated_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ]
+          },
+          "observed_clock": {
+            "tick": 5,
+            "time_s": 0.1
+          },
+          "observed_feedback": {
+            "tick": 5,
+            "time_s": 0.1,
+            "q_rad": [
+              0.30000083212842593,
+              -1.1999966599623648,
+              1.1000008384731994,
+              -1.0999534819798196,
+              1.0000008455842047,
+              0.19998166217632718
+            ],
+            "qd_rad_s": [
+              5.783022266174671e-06,
+              1.1719812098451299e-05,
+              2.1791321788436346e-05,
+              0.0003861391686763582,
+              3.3258425682532178e-06,
+              -0.00014250233869821105
+            ]
+          },
+          "observed_reference": [
+            [
+              0.31999991130988226,
+              -1.2000012000972538,
+              1.10000108318962,
+              -1.1000003414430815,
+              0.9999997224742759,
+              0.2000008483225238
+            ],
+            [
+              -2.6710737233148775e-06,
+              -3.61432018092245e-05,
+              3.262227494249538e-05,
+              -1.0283186235859892e-05,
+              -8.358210668024672e-06,
+              2.5548857165297325e-05
+            ],
+            [
+              -5.1800864084294905e-05,
+              -0.0007009328484297591,
+              0.0006326489596086844,
+              -0.00019942297202479886,
+              -0.00016209244738107936,
+              0.0004954754443016468
+            ]
+          ],
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "controller_invalid",
+      "expected_code": 4001,
+      "actual_code": 4001,
+      "message": "Invalid six-axis controller output",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "control",
+          "code": 4001,
+          "tick": 5,
+          "time_s": 0.1,
+          "message": "Invalid six-axis controller output",
+          "previous_sample": {
+            "tick": 4,
+            "time_s": 0.08,
+            "observed_clock": {
+              "tick": 4,
+              "time_s": 0.08
+            },
+            "observed_feedback": {
+              "tick": 4,
+              "time_s": 0.08,
+              "q_rad": [
+                0.30000071646252796,
+                -1.1999968943844288,
+                1.100000402646764,
+                -1.0999612050470307,
+                1.0000007790630552,
+                0.19998451233803702
+              ],
+              "qd_rad_s": [
+                7.204066101855998e-06,
+                2.513467534435293e-05,
+                1.2511792891634066e-05,
+                0.00042340637026334893,
+                6.481535932266469e-06,
+                -0.00016371330364385941
+              ]
+            },
+            "observed_reference": [
+              [
+                0.29999995436063676,
+                -1.2000006175625693,
+                1.1000005574028446,
+                -1.1000001757046087,
+                0.9999998571869769,
+                0.2000004365413674
+              ],
+              [
+                -1.7334676694069624e-06,
+                -2.3456157838275257e-05,
+                2.117116941757757e-05,
+                -6.673575958515697e-06,
+                -5.424299467926551e-06,
+                1.6580647415470603e-05
+              ],
+              [
+                -4.185390395372577e-05,
+                -0.000566338847485248,
+                0.0005111679705904757,
+                -0.0001611301442272505,
+                -0.0001309673239302533,
+                0.0004003330517435287
+              ]
+            ],
+            "raw_control_outputs": [
+              {
+                "code": 0,
+                "data": {
+                  "error": -7.621018912051802e-07,
+                  "integral": -7.898754762925009e-09,
+                  "feedback_raw": -3.056306319583646e-06,
+                  "velocity_feedforward": -1.7334676694069624e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -4.789773988990608e-06,
+                  "output": -4.789773988990608e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.7231781404578612e-06,
+                  "integral": -3.824601004875917e-08,
+                  "feedback_raw": -1.4930958571880207e-05,
+                  "velocity_feedforward": -2.3456157838275257e-05,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -3.8387116410155465e-05,
+                  "output": -3.8387116410155465e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.547560806169912e-07,
+                  "integral": 1.1280483738218549e-09,
+                  "feedback_raw": 6.201523708417867e-07,
+                  "velocity_feedforward": 2.117116941757757e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 2.1791321788419358e-05,
+                  "output": 2.1791321788419358e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.897065757807461e-05,
+                  "integral": -4.0578245635192195e-07,
+                  "feedback_raw": -0.00015628841276865035,
+                  "velocity_feedforward": -6.673575958515697e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -0.00016296198872716605,
+                  "output": -0.00016296198872716605,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -9.218760782525592e-07,
+                  "integral": -9.478514056748821e-09,
+                  "feedback_raw": -3.6969828270669855e-06,
+                  "velocity_feedforward": -5.424299467926551e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -9.121282294993536e-06,
+                  "output": -9.121282294993536e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.5924203330380804e-05,
+                  "integral": 1.6549428093004524e-07,
+                  "feedback_raw": 6.386230760245327e-05,
+                  "velocity_feedforward": 1.6580647415470603e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 8.044295501792387e-05,
+                  "output": 8.044295501792387e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              }
+            ],
+            "observed_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ],
+            "validated_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ]
+          },
+          "observed_clock": {
+            "tick": 5,
+            "time_s": 0.1
+          },
+          "observed_feedback": {
+            "tick": 5,
+            "time_s": 0.1,
+            "q_rad": [
+              0.30000083212842593,
+              -1.1999966599623648,
+              1.1000008384731994,
+              -1.0999534819798196,
+              1.0000008455842047,
+              0.19998166217632718
+            ],
+            "qd_rad_s": [
+              5.783022266174671e-06,
+              1.1719812098451299e-05,
+              2.1791321788436346e-05,
+              0.0003861391686763582,
+              3.3258425682532178e-06,
+              -0.00014250233869821105
+            ]
+          },
+          "observed_reference": [
+            [
+              0.29999991130988224,
+              -1.2000012000972538,
+              1.10000108318962,
+              -1.1000003414430815,
+              0.9999997224742759,
+              0.2000008483225238
+            ],
+            [
+              -2.6710737233148775e-06,
+              -3.61432018092245e-05,
+              3.262227494249538e-05,
+              -1.0283186235859892e-05,
+              -8.358210668024672e-06,
+              2.5548857165297325e-05
+            ],
+            [
+              -5.1800864084294905e-05,
+              -0.0007009328484297591,
+              0.0006326489596086844,
+              -0.00019942297202479886,
+              -0.00016209244738107936,
+              0.0004954754443016468
+            ]
+          ],
+          "raw_control_outputs": [
+            {
+              "code": 0,
+              "data": {
+                "error": -9.208185436926364e-07,
+                "integral": -1.1582028937695554e-08,
+                "feedback_raw": -3.694856203708241e-06,
+                "velocity_feedforward": -2.6710737233148775e-06,
+                "acceleration_feedforward": -0.0,
+                "total_raw": -6.365929927023119e-06,
+                "output": {
+                  "nonfinite": "NaN"
+                },
+                "integral_limited": 0,
+                "output_limited": 0
+              }
+            },
+            {
+              "code": 0,
+              "data": {
+                "error": -4.54013488893068e-06,
+                "integral": -5.640654960448189e-08,
+                "feedback_raw": -1.8216946105327203e-05,
+                "velocity_feedforward": -3.61432018092245e-05,
+                "acceleration_feedforward": -0.0,
+                "total_raw": -5.43601479145517e-05,
+                "output": -5.43601479145517e-05,
+                "integral_limited": 0,
+                "output_limited": 0
+              }
+            },
+            {
+              "code": 0,
+              "data": {
+                "error": 2.4471642068313315e-07,
+                "integral": 2.1069140565543874e-09,
+                "feedback_raw": 9.80972596789087e-07,
+                "velocity_feedforward": 3.262227494249538e-05,
+                "acceleration_feedforward": 0.0,
+                "total_raw": 3.3603247539284463e-05,
+                "output": 3.3603247539284463e-05,
+                "integral_limited": 0,
+                "output_limited": 0
+              }
+            },
+            {
+              "code": 0,
+              "data": {
+                "error": -4.6859463261883505e-05,
+                "integral": -5.932203093994559e-07,
+                "feedback_raw": -0.00018803107335693347,
+                "velocity_feedforward": -1.0283186235859892e-05,
+                "acceleration_feedforward": -0.0,
+                "total_raw": -0.00019831425959279336,
+                "output": -0.00019831425959279336,
+                "integral_limited": 0,
+                "output_limited": 0
+              }
+            },
+            {
+              "code": 0,
+              "data": {
+                "error": -1.1231099287245527e-06,
+                "integral": -1.3970953771647033e-08,
+                "feedback_raw": -4.506410668669858e-06,
+                "velocity_feedforward": -8.358210668024672e-06,
+                "acceleration_feedforward": -0.0,
+                "total_raw": -1.2864621336694529e-05,
+                "output": -1.2864621336694529e-05,
+                "integral_limited": 0,
+                "output_limited": 0
+              }
+            },
+            {
+              "code": 0,
+              "data": {
+                "error": 1.918614619661474e-05,
+                "integral": 2.422388657165042e-07,
+                "feedback_raw": 7.698682365217547e-05,
+                "velocity_feedforward": 2.5548857165297325e-05,
+                "acceleration_feedforward": 0.0,
+                "total_raw": 0.0001025356808174728,
+                "output": 0.0001025356808174728,
+                "integral_limited": 0,
+                "output_limited": 0
+              }
+            }
+          ],
+          "observed_command": [
+            {
+              "nonfinite": "NaN"
+            },
+            -5.43601479145517e-05,
+            3.3603247539284463e-05,
+            -0.00019831425959279336,
+            -1.2864621336694529e-05,
+            0.0001025356808174728
+          ],
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "controller_jump",
+      "expected_code": 4001,
+      "actual_code": 4001,
+      "message": "Velocity command discontinuity",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "control",
+          "code": 4001,
+          "tick": 5,
+          "time_s": 0.1,
+          "message": "Velocity command discontinuity",
+          "previous_sample": {
+            "tick": 4,
+            "time_s": 0.08,
+            "observed_clock": {
+              "tick": 4,
+              "time_s": 0.08
+            },
+            "observed_feedback": {
+              "tick": 4,
+              "time_s": 0.08,
+              "q_rad": [
+                0.30000071646252796,
+                -1.1999968943844288,
+                1.100000402646764,
+                -1.0999612050470307,
+                1.0000007790630552,
+                0.19998451233803702
+              ],
+              "qd_rad_s": [
+                7.204066101855998e-06,
+                2.513467534435293e-05,
+                1.2511792891634066e-05,
+                0.00042340637026334893,
+                6.481535932266469e-06,
+                -0.00016371330364385941
+              ]
+            },
+            "observed_reference": [
+              [
+                0.29999995436063676,
+                -1.2000006175625693,
+                1.1000005574028446,
+                -1.1000001757046087,
+                0.9999998571869769,
+                0.2000004365413674
+              ],
+              [
+                -1.7334676694069624e-06,
+                -2.3456157838275257e-05,
+                2.117116941757757e-05,
+                -6.673575958515697e-06,
+                -5.424299467926551e-06,
+                1.6580647415470603e-05
+              ],
+              [
+                -4.185390395372577e-05,
+                -0.000566338847485248,
+                0.0005111679705904757,
+                -0.0001611301442272505,
+                -0.0001309673239302533,
+                0.0004003330517435287
+              ]
+            ],
+            "raw_control_outputs": [
+              {
+                "code": 0,
+                "data": {
+                  "error": -7.621018912051802e-07,
+                  "integral": -7.898754762925009e-09,
+                  "feedback_raw": -3.056306319583646e-06,
+                  "velocity_feedforward": -1.7334676694069624e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -4.789773988990608e-06,
+                  "output": -4.789773988990608e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.7231781404578612e-06,
+                  "integral": -3.824601004875917e-08,
+                  "feedback_raw": -1.4930958571880207e-05,
+                  "velocity_feedforward": -2.3456157838275257e-05,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -3.8387116410155465e-05,
+                  "output": -3.8387116410155465e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.547560806169912e-07,
+                  "integral": 1.1280483738218549e-09,
+                  "feedback_raw": 6.201523708417867e-07,
+                  "velocity_feedforward": 2.117116941757757e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 2.1791321788419358e-05,
+                  "output": 2.1791321788419358e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.897065757807461e-05,
+                  "integral": -4.0578245635192195e-07,
+                  "feedback_raw": -0.00015628841276865035,
+                  "velocity_feedforward": -6.673575958515697e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -0.00016296198872716605,
+                  "output": -0.00016296198872716605,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -9.218760782525592e-07,
+                  "integral": -9.478514056748821e-09,
+                  "feedback_raw": -3.6969828270669855e-06,
+                  "velocity_feedforward": -5.424299467926551e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -9.121282294993536e-06,
+                  "output": -9.121282294993536e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.5924203330380804e-05,
+                  "integral": 1.6549428093004524e-07,
+                  "feedback_raw": 6.386230760245327e-05,
+                  "velocity_feedforward": 1.6580647415470603e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 8.044295501792387e-05,
+                  "output": 8.044295501792387e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              }
+            ],
+            "observed_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ],
+            "validated_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ]
+          },
+          "observed_clock": {
+            "tick": 5,
+            "time_s": 0.1
+          },
+          "observed_feedback": {
+            "tick": 5,
+            "time_s": 0.1,
+            "q_rad": [
+              0.30000083212842593,
+              -1.1999966599623648,
+              1.1000008384731994,
+              -1.0999534819798196,
+              1.0000008455842047,
+              0.19998166217632718
+            ],
+            "qd_rad_s": [
+              5.783022266174671e-06,
+              1.1719812098451299e-05,
+              2.1791321788436346e-05,
+              0.0003861391686763582,
+              3.3258425682532178e-06,
+              -0.00014250233869821105
+            ]
+          },
+          "observed_reference": [
+            [
+              0.29999991130988224,
+              -1.2000012000972538,
+              1.10000108318962,
+              -1.1000003414430815,
+              0.9999997224742759,
+              0.2000008483225238
+            ],
+            [
+              -2.6710737233148775e-06,
+              -3.61432018092245e-05,
+              3.262227494249538e-05,
+              -1.0283186235859892e-05,
+              -8.358210668024672e-06,
+              2.5548857165297325e-05
+            ],
+            [
+              -5.1800864084294905e-05,
+              -0.0007009328484297591,
+              0.0006326489596086844,
+              -0.00019942297202479886,
+              -0.00016209244738107936,
+              0.0004954754443016468
+            ]
+          ],
+          "raw_control_outputs": [
+            {
+              "code": 0,
+              "data": {
+                "error": -9.208185436926364e-07,
+                "integral": -1.1582028937695554e-08,
+                "feedback_raw": -3.694856203708241e-06,
+                "velocity_feedforward": -2.6710737233148775e-06,
+                "acceleration_feedforward": -0.0,
+                "total_raw": -6.365929927023119e-06,
+                "output": 0.03,
+                "integral_limited": 0,
+                "output_limited": 0
+              }
+            },
+            {
+              "code": 0,
+              "data": {
+                "error": -4.54013488893068e-06,
+                "integral": -5.640654960448189e-08,
+                "feedback_raw": -1.8216946105327203e-05,
+                "velocity_feedforward": -3.61432018092245e-05,
+                "acceleration_feedforward": -0.0,
+                "total_raw": -5.43601479145517e-05,
+                "output": -5.43601479145517e-05,
+                "integral_limited": 0,
+                "output_limited": 0
+              }
+            },
+            {
+              "code": 0,
+              "data": {
+                "error": 2.4471642068313315e-07,
+                "integral": 2.1069140565543874e-09,
+                "feedback_raw": 9.80972596789087e-07,
+                "velocity_feedforward": 3.262227494249538e-05,
+                "acceleration_feedforward": 0.0,
+                "total_raw": 3.3603247539284463e-05,
+                "output": 3.3603247539284463e-05,
+                "integral_limited": 0,
+                "output_limited": 0
+              }
+            },
+            {
+              "code": 0,
+              "data": {
+                "error": -4.6859463261883505e-05,
+                "integral": -5.932203093994559e-07,
+                "feedback_raw": -0.00018803107335693347,
+                "velocity_feedforward": -1.0283186235859892e-05,
+                "acceleration_feedforward": -0.0,
+                "total_raw": -0.00019831425959279336,
+                "output": -0.00019831425959279336,
+                "integral_limited": 0,
+                "output_limited": 0
+              }
+            },
+            {
+              "code": 0,
+              "data": {
+                "error": -1.1231099287245527e-06,
+                "integral": -1.3970953771647033e-08,
+                "feedback_raw": -4.506410668669858e-06,
+                "velocity_feedforward": -8.358210668024672e-06,
+                "acceleration_feedforward": -0.0,
+                "total_raw": -1.2864621336694529e-05,
+                "output": -1.2864621336694529e-05,
+                "integral_limited": 0,
+                "output_limited": 0
+              }
+            },
+            {
+              "code": 0,
+              "data": {
+                "error": 1.918614619661474e-05,
+                "integral": 2.422388657165042e-07,
+                "feedback_raw": 7.698682365217547e-05,
+                "velocity_feedforward": 2.5548857165297325e-05,
+                "acceleration_feedforward": 0.0,
+                "total_raw": 0.0001025356808174728,
+                "output": 0.0001025356808174728,
+                "integral_limited": 0,
+                "output_limited": 0
+              }
+            }
+          ],
+          "observed_command": [
+            0.03,
+            -5.43601479145517e-05,
+            3.3603247539284463e-05,
+            -0.00019831425959279336,
+            -1.2864621336694529e-05,
+            0.0001025356808174728
+          ],
+          "validated_command": [
+            0.03,
+            -5.43601479145517e-05,
+            3.3603247539284463e-05,
+            -0.00019831425959279336,
+            -1.2864621336694529e-05,
+            0.0001025356808174728
+          ]
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "collision_feedback",
+      "expected_code": 3003,
+      "actual_code": 3003,
+      "message": "Feedback whole-arm/self collision",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "collision_feedback",
+          "code": 3003,
+          "tick": 5,
+          "time_s": 0.1,
+          "message": "Feedback whole-arm/self collision",
+          "previous_sample": {
+            "tick": 4,
+            "time_s": 0.08,
+            "observed_clock": {
+              "tick": 4,
+              "time_s": 0.08
+            },
+            "observed_feedback": {
+              "tick": 4,
+              "time_s": 0.08,
+              "q_rad": [
+                0.30000071646252796,
+                -1.1999968943844288,
+                1.100000402646764,
+                -1.0999612050470307,
+                1.0000007790630552,
+                0.19998451233803702
+              ],
+              "qd_rad_s": [
+                7.204066101855998e-06,
+                2.513467534435293e-05,
+                1.2511792891634066e-05,
+                0.00042340637026334893,
+                6.481535932266469e-06,
+                -0.00016371330364385941
+              ]
+            },
+            "observed_reference": [
+              [
+                0.29999995436063676,
+                -1.2000006175625693,
+                1.1000005574028446,
+                -1.1000001757046087,
+                0.9999998571869769,
+                0.2000004365413674
+              ],
+              [
+                -1.7334676694069624e-06,
+                -2.3456157838275257e-05,
+                2.117116941757757e-05,
+                -6.673575958515697e-06,
+                -5.424299467926551e-06,
+                1.6580647415470603e-05
+              ],
+              [
+                -4.185390395372577e-05,
+                -0.000566338847485248,
+                0.0005111679705904757,
+                -0.0001611301442272505,
+                -0.0001309673239302533,
+                0.0004003330517435287
+              ]
+            ],
+            "raw_control_outputs": [
+              {
+                "code": 0,
+                "data": {
+                  "error": -7.621018912051802e-07,
+                  "integral": -7.898754762925009e-09,
+                  "feedback_raw": -3.056306319583646e-06,
+                  "velocity_feedforward": -1.7334676694069624e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -4.789773988990608e-06,
+                  "output": -4.789773988990608e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.7231781404578612e-06,
+                  "integral": -3.824601004875917e-08,
+                  "feedback_raw": -1.4930958571880207e-05,
+                  "velocity_feedforward": -2.3456157838275257e-05,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -3.8387116410155465e-05,
+                  "output": -3.8387116410155465e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.547560806169912e-07,
+                  "integral": 1.1280483738218549e-09,
+                  "feedback_raw": 6.201523708417867e-07,
+                  "velocity_feedforward": 2.117116941757757e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 2.1791321788419358e-05,
+                  "output": 2.1791321788419358e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -3.897065757807461e-05,
+                  "integral": -4.0578245635192195e-07,
+                  "feedback_raw": -0.00015628841276865035,
+                  "velocity_feedforward": -6.673575958515697e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -0.00016296198872716605,
+                  "output": -0.00016296198872716605,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": -9.218760782525592e-07,
+                  "integral": -9.478514056748821e-09,
+                  "feedback_raw": -3.6969828270669855e-06,
+                  "velocity_feedforward": -5.424299467926551e-06,
+                  "acceleration_feedforward": -0.0,
+                  "total_raw": -9.121282294993536e-06,
+                  "output": -9.121282294993536e-06,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              },
+              {
+                "code": 0,
+                "data": {
+                  "error": 1.5924203330380804e-05,
+                  "integral": 1.6549428093004524e-07,
+                  "feedback_raw": 6.386230760245327e-05,
+                  "velocity_feedforward": 1.6580647415470603e-05,
+                  "acceleration_feedforward": 0.0,
+                  "total_raw": 8.044295501792387e-05,
+                  "output": 8.044295501792387e-05,
+                  "integral_limited": 0,
+                  "output_limited": 0
+                }
+              }
+            ],
+            "observed_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ],
+            "validated_command": [
+              -4.789773988990608e-06,
+              -3.8387116410155465e-05,
+              2.1791321788419358e-05,
+              -0.00016296198872716605,
+              -9.121282294993536e-06,
+              8.044295501792387e-05
+            ]
+          },
+          "observed_clock": {
+            "tick": 5,
+            "time_s": 0.1
+          },
+          "observed_feedback": {
+            "tick": 5,
+            "time_s": 0.1,
+            "q_rad": [
+              0.30000083212842593,
+              -1.1999966599623648,
+              1.1000008384731994,
+              -1.0999534819798196,
+              1.0000008455842047,
+              0.19998166217632718
+            ],
+            "qd_rad_s": [
+              5.783022266174671e-06,
+              1.1719812098451299e-05,
+              2.1791321788436346e-05,
+              0.0003861391686763582,
+              3.3258425682532178e-06,
+              -0.00014250233869821105
+            ]
+          },
+          "observed_reference": [
+            [
+              0.29999991130988224,
+              -1.2000012000972538,
+              1.10000108318962,
+              -1.1000003414430815,
+              0.9999997224742759,
+              0.2000008483225238
+            ],
+            [
+              -2.6710737233148775e-06,
+              -3.61432018092245e-05,
+              3.262227494249538e-05,
+              -1.0283186235859892e-05,
+              -8.358210668024672e-06,
+              2.5548857165297325e-05
+            ],
+            [
+              -5.1800864084294905e-05,
+              -0.0007009328484297591,
+              0.0006326489596086844,
+              -0.00019942297202479886,
+              -0.00016209244738107936,
+              0.0004954754443016468
+            ]
+          ],
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "uncertified",
+      "expected_code": 3001,
+      "actual_code": 3001,
+      "message": "Candidate/uncertified trajectory cannot execute",
+      "sample_count": 0,
+      "motion_commands": 0,
+      "stopped": false,
+      "events": [
+        {
+          "stage": "execution_gate",
+          "code": 3001,
+          "tick": 0,
+          "message": "Candidate/uncertified trajectory cannot execute",
+          "previous_sample": null,
+          "observed_clock": null,
+          "observed_feedback": null,
+          "observed_reference": null,
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "tampered",
+      "expected_code": 3001,
+      "actual_code": 3001,
+      "message": "Trajectory/certificate was modified or needs recertification",
+      "sample_count": 0,
+      "motion_commands": 0,
+      "stopped": false,
+      "events": [
+        {
+          "stage": "execution_gate",
+          "code": 3001,
+          "tick": 0,
+          "message": "Trajectory/certificate was modified or needs recertification",
+          "previous_sample": null,
+          "observed_clock": null,
+          "observed_feedback": null,
+          "observed_reference": null,
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "cycle_mismatch",
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "message": "Certified planning/IK period differs from execution period",
+      "sample_count": 0,
+      "motion_commands": 0,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "cycle_consistency",
+          "code": 1006,
+          "tick": 0,
+          "time_s": 0.0,
+          "message": "Certified planning/IK period differs from execution period",
+          "previous_sample": null,
+          "observed_clock": null,
+          "observed_feedback": null,
+          "observed_reference": null,
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "feedback_cycle_mismatch",
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "message": "Clock/plant feedback/PID period differs from certified cycle",
+      "sample_count": 0,
+      "motion_commands": 0,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "cycle_consistency",
+          "code": 1006,
+          "tick": 0,
+          "time_s": 0.0,
+          "message": "Clock/plant feedback/PID period differs from certified cycle",
+          "previous_sample": null,
+          "observed_clock": null,
+          "observed_feedback": null,
+          "observed_reference": null,
+          "raw_control_outputs": null,
+          "observed_command": null,
+          "validated_command": null
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "parameters": {
+    "version": "1.0.0",
+    "usage": "simulation_only",
+    "planning_config": "cartesian-planning.v1.json",
+    "hold_s": 2.0,
+    "speed_limit_rad_s": 0.05,
+    "acceleration_limit_rad_s2": 0.5,
+    "feedback_speed_limit_rad_s": 0.06,
+    "tracking_error_limit_rad": 0.03,
+    "pid": {
+      "kp": 4.0,
+      "ki": 0.2,
+      "kd": 0.0,
+      "integral_min": -0.01,
+      "integral_max": 0.01,
+      "output_min": -0.05,
+      "output_max": 0.05,
+      "dt_s": 0.02
+    },
+    "physics_substeps": 4,
+    "gravity_m_s2": [
+      0,
+      0,
+      -9.81
+    ],
+    "motor_forces_nm": [
+      150,
+      150,
+      150,
+      28,
+      28,
+      28
+    ],
+    "initial_q_rad": [
+      0.3,
+      -1.2,
+      1.1,
+      -1.1,
+      1.0,
+      0.2
+    ],
+    "goal_translation_m": [
+      0.01,
+      0.004,
+      0.006
+    ],
+    "goal_world_z_rotation_rad": 0.015,
+    "trajectory_duration_s": 6.0,
+    "repeats": 2,
+    "dt_s": 0.02,
+    "planning_config_path": "/home/runner/work/six-axis-robot-internship/six-axis-robot-internship/config/cartesian-planning.v1.json"
+  },
+  "planning": {
+    "code": 0,
+    "status": "certified",
+    "trajectory_sha256": "f80b05a9dee830c79d40558a98af6e679b17ac4d29fcd95086ca97e8a5b79ca5",
+    "ik_nodes": 300,
+    "ik_failed": 0,
+    "sample_period_s": 0.02,
+    "duration_s": 6.0,
+    "joint_excursion_rad": [
+      0.0019885430887656708,
+      0.026399583970581064,
+      0.023410571654566947,
+      0.00726649046268113,
+      0.006074864293963866,
+      0.018891281727011877
+    ],
+    "continuous_collision_proof": true,
+    "continuous_tcp_proof": true
+  },
+  "cycle_consistency": {
+    "planning_s": 0.02,
+    "ik_s": 0.02,
+    "interpolation_s": 0.02,
+    "control_s": 0.02,
+    "feedback_s": 0.02
+  },
+  "missing_config_rejected": true,
+  "source_sha256": {
+    "config/six-axis-execution.v1.json": "8e2e984ab8dc1cb226af74ecbe587c249fc417890891e6f7ab3f098bc5633126",
+    "config/cartesian-planning.v1.json": "35c6835f055cc89119f58b604b7139f77884d27898f82464b635ada3707a7ab5",
+    "scripts/verify_six_axis.py": "1f0e6a24ba1089a3d90dd3f6517a4444f0daa0a26e657739ba2bc79ff0ff28e5",
+    "src/control/six_axis.py": "b7485b69837267f9666208d1b146f82459761b753d8aa770da6f04bdeaf7915c",
+    "build/librobot_contract.so": "1431e9211306c8650ff10400d44f0462555672f0fd2d272b6c6147414c8b24cf",
+    "build/librobot_planning.so": "5e9b644a04c8e6016fc591c20bb4a28394960c434e30bb23b255c5f0440a7a1e",
+    "build/librobot_control.so": "55d4140e1df296cd47bff14dca0e339cb2a129f7f70a37c729ae3a8336a80bf0"
+  }
+}
