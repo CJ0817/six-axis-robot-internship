@@ -19,6 +19,8 @@ slprj/
 build/
 results/pid-feedforward-*/*-r*.csv
 results/pid-feedforward-*/*-comparison.svg
+results/control-stress-*/*-r*.csv
+results/control-stress-*/*-recovery.svg
 *.log
 *.tmp
 

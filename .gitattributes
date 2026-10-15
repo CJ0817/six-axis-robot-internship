@@ -7,3 +7,4 @@
 # PID evidence hashes refer to exact recorded bytes, including CSV newlines.
 results/single-joint-pid-*/** -text
 results/pid-feedforward-*/** -text
+results/control-stress-*/** -text

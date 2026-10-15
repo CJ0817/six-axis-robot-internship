@@ -38,6 +38,12 @@ jobs:
       - name: Matched UR5 load tracking and disturbance trials
         if: always()
         run: python scripts/verify_pid_feedforward.py --library build/librobot_control.so --plant pybullet --output results/pid-feedforward-pybullet
+      - name: Explicit oscillation criterion regressions
+        if: always()
+        run: python -m unittest discover -s tests -p 'test_control_diagnostics.py' -v
+      - name: UR5 physical saturation release and oscillation records
+        if: always()
+        run: python scripts/verify_control_stress.py --library build/librobot_control.so --output results/control-stress-pybullet
       - name: Save raw traces and reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -48,3 +54,4 @@ jobs:
             results/single-joint-pid-pybullet/
             results/pid-feedforward-second-order/
             results/pid-feedforward-pybullet/
+            results/control-stress-pybullet/
