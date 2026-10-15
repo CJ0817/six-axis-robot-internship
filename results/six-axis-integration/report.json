@@ -1,0 +1,568 @@
+{
+  "usage": "simulation_only",
+  "engine": "UR5 / PyBullet 3.2.7",
+  "clock": "integer control tick; 0.01 s; 4 physics substeps; simulation time, not wall deadline",
+  "control": "six C position PID outer loops + qd feedforward -> bounded velocity -> PyBullet velocity inner servos",
+  "trials": [
+    {
+      "name": "normal-r1",
+      "expected_code": 0,
+      "actual_code": 0,
+      "message": "Certified trajectory dispatched",
+      "sample_count": 801,
+      "motion_commands": 800,
+      "stopped": true,
+      "events": [],
+      "rmse_rad": [
+        2.062485218725683e-06,
+        1.0078251874969257e-05,
+        2.8532748142040225e-06,
+        0.00010408157229769371,
+        2.5283441307100523e-06,
+        4.269120936421132e-05
+      ],
+      "final_error_rad": [
+        -1.6359409405475311e-06,
+        -7.352591140152853e-06,
+        5.926982149517812e-08,
+        -8.161326171252092e-05,
+        -1.919920021853372e-06,
+        3.3654153991924396e-05
+      ],
+      "actual_excursion_rad": [
+        0.001987828056206009,
+        0.026396529578639694,
+        0.023412257316032026,
+        0.007274171469804136,
+        0.006073981051164301,
+        0.01888202253306609
+      ],
+      "peak_actual_velocity_rad_s": [
+        0.0006219563504067647,
+        0.008255374292858197,
+        0.007321085685636081,
+        0.0022833986671082288,
+        0.0018998335733233142,
+        0.005910778911790159
+      ],
+      "peak_command_velocity_rad_s": [
+        0.0006319865451175866,
+        0.00830175242349939,
+        0.007321085685636078,
+        0.002797410663091656,
+        0.0019116137212973503,
+        0.006120206747914014
+      ],
+      "peak_command_delta_rad_s": [
+        3.2187980043580505e-06,
+        4.259206395059107e-05,
+        3.8192052085842844e-05,
+        2.1712579188188253e-05,
+        9.833564924271315e-06,
+        3.0471472284417534e-05
+      ],
+      "peak_reference_delta_rad": [
+        6.214300852847021e-06,
+        8.249664367632192e-05,
+        7.317016464147841e-05,
+        2.2719821660466266e-05,
+        1.8985624139489232e-05,
+        5.9035432863452364e-05
+      ],
+      "minimum_clearance_m": 0.009467378799046777,
+      "wall_processing_peak_s": 0.0018437159999962205,
+      "wall_processing_over_period_count": 0,
+      "timing_error_count": 0,
+      "command_jump_count": 0,
+      "control_anomaly_count": 0,
+      "passed": true
+    },
+    {
+      "name": "normal-r2",
+      "expected_code": 0,
+      "actual_code": 0,
+      "message": "Certified trajectory dispatched",
+      "sample_count": 801,
+      "motion_commands": 800,
+      "stopped": true,
+      "events": [],
+      "rmse_rad": [
+        2.062485218725683e-06,
+        1.0078251874969257e-05,
+        2.8532748142040225e-06,
+        0.00010408157229769371,
+        2.5283441307100523e-06,
+        4.269120936421132e-05
+      ],
+      "final_error_rad": [
+        -1.6359409405475311e-06,
+        -7.352591140152853e-06,
+        5.926982149517812e-08,
+        -8.161326171252092e-05,
+        -1.919920021853372e-06,
+        3.3654153991924396e-05
+      ],
+      "actual_excursion_rad": [
+        0.001987828056206009,
+        0.026396529578639694,
+        0.023412257316032026,
+        0.007274171469804136,
+        0.006073981051164301,
+        0.01888202253306609
+      ],
+      "peak_actual_velocity_rad_s": [
+        0.0006219563504067647,
+        0.008255374292858197,
+        0.007321085685636081,
+        0.0022833986671082288,
+        0.0018998335733233142,
+        0.005910778911790159
+      ],
+      "peak_command_velocity_rad_s": [
+        0.0006319865451175866,
+        0.00830175242349939,
+        0.007321085685636078,
+        0.002797410663091656,
+        0.0019116137212973503,
+        0.006120206747914014
+      ],
+      "peak_command_delta_rad_s": [
+        3.2187980043580505e-06,
+        4.259206395059107e-05,
+        3.8192052085842844e-05,
+        2.1712579188188253e-05,
+        9.833564924271315e-06,
+        3.0471472284417534e-05
+      ],
+      "peak_reference_delta_rad": [
+        6.214300852847021e-06,
+        8.249664367632192e-05,
+        7.317016464147841e-05,
+        2.2719821660466266e-05,
+        1.8985624139489232e-05,
+        5.9035432863452364e-05
+      ],
+      "minimum_clearance_m": 0.009467378799046777,
+      "wall_processing_peak_s": 0.0013840199999961555,
+      "wall_processing_over_period_count": 0,
+      "timing_error_count": 0,
+      "command_jump_count": 0,
+      "control_anomaly_count": 0,
+      "passed": true
+    },
+    {
+      "name": "duplicate_tick",
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "message": "Duplicate/skipped/reversed control tick",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "clock",
+          "code": 1006,
+          "tick": 5,
+          "time_s": 0.05,
+          "message": "Duplicate/skipped/reversed control tick",
+          "observed_clock": "4,0.04",
+          "observed_feedback": "{'tick': 4, 'time_s': 0.04, 'q_rad': [0.3000003889441732, -1.1999981895592278, 1.1000000456328878, -1.099979620428885, 1.0000004505560505, 0.19999175541420877], 'qd_rad_s': [9.010884155820874e-06, 4.0823259891731994e-05, 2.613381129223935e-06, 0.000478271939950356, 1.0189896772065318e-05, -0.00019247502155678685]}",
+          "observed_reference": "array([ 0.29999999, -1.20000008,  1.10000007, -1.10000002,  0.99999998,\n        0.20000006])",
+          "observed_command": "array([-2.04652397e-06, -1.38646286e-05,  5.78660102e-06, -8.35039186e-05,\n       -3.33394259e-06,  3.76954321e-05])"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "skipped_tick",
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "message": "Duplicate/skipped/reversed control tick",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "clock",
+          "code": 1006,
+          "tick": 5,
+          "time_s": 0.05,
+          "message": "Duplicate/skipped/reversed control tick",
+          "observed_clock": "6,0.06",
+          "observed_feedback": "{'tick': 4, 'time_s': 0.04, 'q_rad': [0.3000003889441732, -1.1999981895592278, 1.1000000456328878, -1.099979620428885, 1.0000004505560505, 0.19999175541420877], 'qd_rad_s': [9.010884155820874e-06, 4.0823259891731994e-05, 2.613381129223935e-06, 0.000478271939950356, 1.0189896772065318e-05, -0.00019247502155678685]}",
+          "observed_reference": "array([ 0.29999999, -1.20000008,  1.10000007, -1.10000002,  0.99999998,\n        0.20000006])",
+          "observed_command": "array([-2.04652397e-06, -1.38646286e-05,  5.78660102e-06, -8.35039186e-05,\n       -3.33394259e-06,  3.76954321e-05])"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "reversed_tick",
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "message": "Duplicate/skipped/reversed control tick",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "clock",
+          "code": 1006,
+          "tick": 5,
+          "time_s": 0.05,
+          "message": "Duplicate/skipped/reversed control tick",
+          "observed_clock": "3,0.03",
+          "observed_feedback": "{'tick': 4, 'time_s': 0.04, 'q_rad': [0.3000003889441732, -1.1999981895592278, 1.1000000456328878, -1.099979620428885, 1.0000004505560505, 0.19999175541420877], 'qd_rad_s': [9.010884155820874e-06, 4.0823259891731994e-05, 2.613381129223935e-06, 0.000478271939950356, 1.0189896772065318e-05, -0.00019247502155678685]}",
+          "observed_reference": "array([ 0.29999999, -1.20000008,  1.10000007, -1.10000002,  0.99999998,\n        0.20000006])",
+          "observed_command": "array([-2.04652397e-06, -1.38646286e-05,  5.78660102e-06, -8.35039186e-05,\n       -3.33394259e-06,  3.76954321e-05])"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "stale_feedback",
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "message": "Feedback sequence/time is stale or inconsistent",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "feedback",
+          "code": 1006,
+          "tick": 5,
+          "time_s": 0.05,
+          "message": "Feedback sequence/time is stale or inconsistent",
+          "observed_clock": "5,0.05",
+          "observed_feedback": "{'tick': 4, 'time_s': 0.05, 'q_rad': [0.3000004727598881, -1.1999978339946302, 1.1000001034988975, -1.0999750396090837, 1.000000539976264, 0.1999899334294333], 'qd_rad_s': [8.381309949226454e-06, 3.5555228534793135e-05, 5.7866010190962824e-06, 0.0004580684313631664, 8.941774932417004e-06, -0.00018219297697825553]}",
+          "observed_reference": "array([ 0.29999999, -1.20000008,  1.10000007, -1.10000002,  0.99999998,\n        0.20000006])",
+          "observed_command": "array([-2.04652397e-06, -1.38646286e-05,  5.78660102e-06, -8.35039186e-05,\n       -3.33394259e-06,  3.76954321e-05])"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "wrong_feedback_time",
+      "expected_code": 1006,
+      "actual_code": 1006,
+      "message": "Feedback sequence/time is stale or inconsistent",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "feedback",
+          "code": 1006,
+          "tick": 5,
+          "time_s": 0.05,
+          "message": "Feedback sequence/time is stale or inconsistent",
+          "observed_clock": "5,0.05",
+          "observed_feedback": "{'tick': 5, 'time_s': 0.053000000000000005, 'q_rad': [0.3000004727598881, -1.1999978339946302, 1.1000001034988975, -1.0999750396090837, 1.000000539976264, 0.1999899334294333], 'qd_rad_s': [8.381309949226454e-06, 3.5555228534793135e-05, 5.7866010190962824e-06, 0.0004580684313631664, 8.941774932417004e-06, -0.00018219297697825553]}",
+          "observed_reference": "array([ 0.29999999, -1.20000008,  1.10000007, -1.10000002,  0.99999998,\n        0.20000006])",
+          "observed_command": "array([-2.04652397e-06, -1.38646286e-05,  5.78660102e-06, -8.35039186e-05,\n       -3.33394259e-06,  3.76954321e-05])"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "nonfinite_feedback",
+      "expected_code": 4001,
+      "actual_code": 4001,
+      "message": "Invalid six-axis feedback position",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "feedback",
+          "code": 4001,
+          "tick": 5,
+          "time_s": 0.05,
+          "message": "Invalid six-axis feedback position",
+          "observed_clock": "5,0.05",
+          "observed_feedback": "{'tick': 5, 'time_s': 0.05, 'q_rad': [0.3000004727598881, -1.1999978339946302, nan, -1.0999750396090837, 1.000000539976264, 0.1999899334294333], 'qd_rad_s': [8.381309949226454e-06, 3.5555228534793135e-05, 5.7866010190962824e-06, 0.0004580684313631664, 8.941774932417004e-06, -0.00018219297697825553]}",
+          "observed_reference": "array([ 0.29999999, -1.20000008,  1.10000007, -1.10000002,  0.99999998,\n        0.20000006])",
+          "observed_command": "array([-2.04652397e-06, -1.38646286e-05,  5.78660102e-06, -8.35039186e-05,\n       -3.33394259e-06,  3.76954321e-05])"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "missing_feedback",
+      "expected_code": 4001,
+      "actual_code": 4001,
+      "message": "'qd_rad_s'",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "feedback",
+          "code": 4001,
+          "tick": 5,
+          "time_s": 0.05,
+          "message": "'qd_rad_s'",
+          "observed_clock": "5,0.05",
+          "observed_feedback": "{'tick': 5, 'time_s': 0.05, 'q_rad': [0.3000004727598881, -1.1999978339946302, 1.1000001034988975, -1.0999750396090837, 1.000000539976264, 0.1999899334294333]}",
+          "observed_reference": "array([ 0.29999999, -1.20000008,  1.10000007, -1.10000002,  0.99999998,\n        0.20000006])",
+          "observed_command": "array([-2.04652397e-06, -1.38646286e-05,  5.78660102e-06, -8.35039186e-05,\n       -3.33394259e-06,  3.76954321e-05])"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "feedback_overspeed",
+      "expected_code": 4001,
+      "actual_code": 4001,
+      "message": "Feedback speed exceeds low-speed bound",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "feedback",
+          "code": 4001,
+          "tick": 5,
+          "time_s": 0.05,
+          "message": "Feedback speed exceeds low-speed bound",
+          "observed_clock": "5,0.05",
+          "observed_feedback": "{'tick': 5, 'time_s': 0.05, 'q_rad': [0.3000004727598881, -1.1999978339946302, 1.1000001034988975, -1.0999750396090837, 1.000000539976264, 0.1999899334294333], 'qd_rad_s': [8.381309949226454e-06, 3.5555228534793135e-05, 5.7866010190962824e-06, 0.2, 8.941774932417004e-06, -0.00018219297697825553]}",
+          "observed_reference": "array([ 0.29999999, -1.20000008,  1.10000007, -1.10000002,  0.99999998,\n        0.20000006])",
+          "observed_command": "array([-2.04652397e-06, -1.38646286e-05,  5.78660102e-06, -8.35039186e-05,\n       -3.33394259e-06,  3.76954321e-05])"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "tracking_error",
+      "expected_code": 4001,
+      "actual_code": 4001,
+      "message": "Tracking error exceeds bound",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "interpolation",
+          "code": 4001,
+          "tick": 5,
+          "time_s": 0.05,
+          "message": "Tracking error exceeds bound",
+          "observed_clock": "5,0.05",
+          "observed_feedback": "{'tick': 5, 'time_s': 0.05, 'q_rad': [0.40000047275988815, -1.1999978339946302, 1.1000001034988975, -1.0999750396090837, 1.000000539976264, 0.1999899334294333], 'qd_rad_s': [8.381309949226454e-06, 3.5555228534793135e-05, 5.7866010190962824e-06, 0.0004580684313631664, 8.941774932417004e-06, -0.00018219297697825553]}",
+          "observed_reference": "array([ 0.29999999, -1.20000015,  1.10000014, -1.10000004,  0.99999996,\n        0.20000011])",
+          "observed_command": "array([-2.04652397e-06, -1.38646286e-05,  5.78660102e-06, -8.35039186e-05,\n       -3.33394259e-06,  3.76954321e-05])"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "reference_jump",
+      "expected_code": 4001,
+      "actual_code": 4001,
+      "message": "Reference command discontinuity",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "interpolation",
+          "code": 4001,
+          "tick": 5,
+          "time_s": 0.05,
+          "message": "Reference command discontinuity",
+          "observed_clock": "5,0.05",
+          "observed_feedback": "{'tick': 5, 'time_s': 0.05, 'q_rad': [0.3000004727598881, -1.1999978339946302, 1.1000001034988975, -1.0999750396090837, 1.000000539976264, 0.1999899334294333], 'qd_rad_s': [8.381309949226454e-06, 3.5555228534793135e-05, 5.7866010190962824e-06, 0.0004580684313631664, 8.941774932417004e-06, -0.00018219297697825553]}",
+          "observed_reference": "array([ 0.31999999, -1.20000015,  1.10000014, -1.10000004,  0.99999996,\n        0.20000011])",
+          "observed_command": "array([-2.04652397e-06, -1.38646286e-05,  5.78660102e-06, -8.35039186e-05,\n       -3.33394259e-06,  3.76954321e-05])"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "controller_invalid",
+      "expected_code": 4001,
+      "actual_code": 4001,
+      "message": "Invalid six-axis controller output",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "control",
+          "code": 4001,
+          "tick": 5,
+          "time_s": 0.05,
+          "message": "Invalid six-axis controller output",
+          "observed_clock": "5,0.05",
+          "observed_feedback": "{'tick': 5, 'time_s': 0.05, 'q_rad': [0.3000004727598881, -1.1999978339946302, 1.1000001034988975, -1.0999750396090837, 1.000000539976264, 0.1999899334294333], 'qd_rad_s': [8.381309949226454e-06, 3.5555228534793135e-05, 5.7866010190962824e-06, 0.0004580684313631664, 8.941774932417004e-06, -0.00018219297697825553]}",
+          "observed_reference": "array([ 0.29999999, -1.20000015,  1.10000014, -1.10000004,  0.99999996,\n        0.20000011])",
+          "observed_command": "array([-2.04652397e-06, -1.38646286e-05,  5.78660102e-06, -8.35039186e-05,\n       -3.33394259e-06,  3.76954321e-05])"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "controller_jump",
+      "expected_code": 4001,
+      "actual_code": 4001,
+      "message": "Velocity command discontinuity",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "control",
+          "code": 4001,
+          "tick": 5,
+          "time_s": 0.05,
+          "message": "Velocity command discontinuity",
+          "observed_clock": "5,0.05",
+          "observed_feedback": "{'tick': 5, 'time_s': 0.05, 'q_rad': [0.3000004727598881, -1.1999978339946302, 1.1000001034988975, -1.0999750396090837, 1.000000539976264, 0.1999899334294333], 'qd_rad_s': [8.381309949226454e-06, 3.5555228534793135e-05, 5.7866010190962824e-06, 0.0004580684313631664, 8.941774932417004e-06, -0.00018219297697825553]}",
+          "observed_reference": "array([ 0.29999999, -1.20000015,  1.10000014, -1.10000004,  0.99999996,\n        0.20000011])",
+          "observed_command": "array([ 3.00000000e-02, -1.79533528e-05,  7.95773379e-06, -1.02634531e-04,\n       -4.30832916e-06,  4.68853075e-05])"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "collision_feedback",
+      "expected_code": 3003,
+      "actual_code": 3003,
+      "message": "Feedback whole-arm/self collision",
+      "sample_count": 5,
+      "motion_commands": 5,
+      "stopped": true,
+      "events": [
+        {
+          "stage": "collision_feedback",
+          "code": 3003,
+          "tick": 5,
+          "time_s": 0.05,
+          "message": "Feedback whole-arm/self collision",
+          "observed_clock": "5,0.05",
+          "observed_feedback": "{'tick': 5, 'time_s': 0.05, 'q_rad': [0.3000004727598881, -1.1999978339946302, 1.1000001034988975, -1.0999750396090837, 1.000000539976264, 0.1999899334294333], 'qd_rad_s': [8.381309949226454e-06, 3.5555228534793135e-05, 5.7866010190962824e-06, 0.0004580684313631664, 8.941774932417004e-06, -0.00018219297697825553]}",
+          "observed_reference": "array([ 0.29999999, -1.20000015,  1.10000014, -1.10000004,  0.99999996,\n        0.20000011])",
+          "observed_command": "array([-2.04652397e-06, -1.38646286e-05,  5.78660102e-06, -8.35039186e-05,\n       -3.33394259e-06,  3.76954321e-05])"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "uncertified",
+      "expected_code": 3001,
+      "actual_code": 3001,
+      "message": "Candidate/uncertified trajectory cannot execute",
+      "sample_count": 0,
+      "motion_commands": 0,
+      "stopped": false,
+      "events": [
+        {
+          "stage": "execution_gate",
+          "code": 3001,
+          "tick": 0,
+          "message": "Candidate/uncertified trajectory cannot execute"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "tampered",
+      "expected_code": 3001,
+      "actual_code": 3001,
+      "message": "Trajectory/certificate was modified or needs recertification",
+      "sample_count": 0,
+      "motion_commands": 0,
+      "stopped": false,
+      "events": [
+        {
+          "stage": "execution_gate",
+          "code": 3001,
+          "tick": 0,
+          "message": "Trajectory/certificate was modified or needs recertification"
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "parameters": {
+    "version": "1.0.0",
+    "usage": "simulation_only",
+    "dt_s": 0.01,
+    "hold_s": 2.0,
+    "speed_limit_rad_s": 0.05,
+    "acceleration_limit_rad_s2": 0.5,
+    "feedback_speed_limit_rad_s": 0.06,
+    "tracking_error_limit_rad": 0.03,
+    "pid": {
+      "dt_s": 0.01,
+      "kp": 4.0,
+      "ki": 0.2,
+      "kd": 0.0,
+      "integral_min": -0.01,
+      "integral_max": 0.01,
+      "output_min": -0.05,
+      "output_max": 0.05
+    },
+    "physics_substeps": 4,
+    "gravity_m_s2": [
+      0,
+      0,
+      -9.81
+    ],
+    "motor_forces_nm": [
+      150,
+      150,
+      150,
+      28,
+      28,
+      28
+    ],
+    "initial_q_rad": [
+      0.3,
+      -1.2,
+      1.1,
+      -1.1,
+      1.0,
+      0.2
+    ],
+    "goal_translation_m": [
+      0.01,
+      0.004,
+      0.006
+    ],
+    "goal_world_z_rotation_rad": 0.015,
+    "trajectory_duration_s": 6.0,
+    "repeats": 2
+  },
+  "planning": {
+    "code": 0,
+    "status": "certified",
+    "trajectory_sha256": "f80b05a9dee830c79d40558a98af6e679b17ac4d29fcd95086ca97e8a5b79ca5",
+    "ik_nodes": 300,
+    "ik_failed": 0,
+    "sample_period_s": 0.02,
+    "duration_s": 6.0,
+    "joint_excursion_rad": [
+      0.0019885430887656708,
+      0.026399583970581064,
+      0.023410571654566947,
+      0.00726649046268113,
+      0.006074864293963866,
+      0.018891281727011877
+    ],
+    "continuous_collision_proof": true,
+    "continuous_tcp_proof": true
+  },
+  "missing_config_rejected": true,
+  "source_sha256": {
+    "config/six-axis-execution.v1.json": "44828e48b4fc05f377df20081c4b3e489be5e26f79151039faddb2fd8979f28c",
+    "scripts/verify_six_axis.py": "a428e70ac7324b2e4dd315a3665b6d94c54c5e3087273d18b2638faef367ed50",
+    "src/control/six_axis.py": "4612a1ca57fb989f25af76dcd6d29c445f2941d00ef95c2b73a020e4634dad4a",
+    "build/librobot_contract.so": "1431e9211306c8650ff10400d44f0462555672f0fd2d272b6c6147414c8b24cf",
+    "build/librobot_planning.so": "5e9b644a04c8e6016fc591c20bb4a28394960c434e30bb23b255c5f0440a7a1e",
+    "build/librobot_control.so": "55d4140e1df296cd47bff14dca0e339cb2a129f7f70a37c729ae3a8336a80bf0"
+  }
+}

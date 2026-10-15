@@ -8,3 +8,4 @@
 results/single-joint-pid-*/** -text
 results/pid-feedforward-*/** -text
 results/control-stress-*/** -text
+results/six-axis-integration/** -text
