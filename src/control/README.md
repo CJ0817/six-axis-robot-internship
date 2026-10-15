@@ -1,5 +1,7 @@
 # control
 
-负责单点参考跟踪与状态检查；依赖 common，返回带模式命令，不执行路径规划或设备 I/O。
+独立 C11 单关节增量式 PID：`pid.c`、公开头文件 `include/robot_control.h`、Python ctypes入口 `pid.py`。
 
-接口和数据契约见 [工程约定](../../docs/engineering-contract.md)。目录目前为实现入口，尚未包含算法。
+用途、参数、返回值和状态历史见头文件及方法注释；算法、配置、试验范围和复现命令见 [单关节PID](../../docs/single-joint-pid.md)。
+
+本模块无设备I/O、不规划路径。完整六轴控制状态机、前馈、扰动恢复和实时调度仍待后续任务。

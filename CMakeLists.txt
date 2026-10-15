@@ -63,3 +63,13 @@ add_test(NAME guided_apf_smoothing_retiming
           --library "$<TARGET_FILE:robot_contract>" --planning-library "$<TARGET_FILE:robot_planning>"
           --output "${CMAKE_CURRENT_BINARY_DIR}/guided-apf")
 set_tests_properties(guided_apf_smoothing_retiming PROPERTIES TIMEOUT 120)
+
+# Independent control ABI; frozen kinematics structures/symbols remain unchanged.
+add_library(robot_control SHARED src/control/pid.c)
+target_include_directories(robot_control PUBLIC include)
+target_compile_options(robot_control PRIVATE -Wall -Wextra -Werror -pedantic)
+target_link_libraries(robot_control PRIVATE m)
+add_test(NAME single_joint_pid
+  COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_single_joint_pid.py"
+          --library "$<TARGET_FILE:robot_control>" --output "${CMAKE_CURRENT_BINARY_DIR}/single-joint-pid")
+set_tests_properties(single_joint_pid PROPERTIES TIMEOUT 120)

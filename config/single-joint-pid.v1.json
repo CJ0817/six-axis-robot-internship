@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "scope": "simulation_only_single_joint_no_feedforward",
+  "joint": "J1",
+  "dt_s": 0.01,
+  "duration_s": 8.0,
+  "integrator": {
+    "plant": "q[k+1]=q[k]+dt*u[k]",
+    "output_unit": "rad/s",
+    "pid": {"dt_s": 0.01, "kp": 8.0, "ki": 4.0, "kd": 0.02, "integral_min": -0.3, "integral_max": 0.3, "output_min": -1.0, "output_max": 1.0}
+  },
+  "pybullet": {
+    "output_unit": "N m",
+    "gravity_m_s2": [0.0, 0.0, 0.0],
+    "physics_substeps": 4,
+    "other_joint_force_nm": 200.0,
+    "pid": {"dt_s": 0.01, "kp": 80.0, "ki": 15.0, "kd": 12.0, "integral_min": -3.0, "integral_max": 3.0, "output_min": -12.0, "output_max": 12.0}
+  },
+  "cases": {
+    "step": {"initial_rad": 0.0, "target_rad": 0.2, "start_s": 0.5},
+    "sine": {"initial_rad": 0.0, "amplitude_rad": 0.1, "frequency_hz": 0.2, "stop_s": 5.0},
+    "hold": {"initial_rad": 0.1, "target_rad": 0.15}
+  },
+  "functional_gates": {"maximum_abs_position_rad": 1.0, "final_error_rad": 0.02},
+  "note": "Functional baseline gates only. CTRL-01 20-trajectory acceptance, CTRL-02 feedforward/disturbance, safety state machine and wall-clock timing remain pending."
+}

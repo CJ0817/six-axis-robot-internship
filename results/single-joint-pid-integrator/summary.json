@@ -1,0 +1,36 @@
+{
+  "statistics_version": 1,
+  "suite": "single_joint_pid",
+  "utc": "2026-10-15T09:26:30.248127+00:00",
+  "results": [
+    {
+      "test_id": "single_joint_pid",
+      "command": [
+        "C:\\Users\\ken_j\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\ken_j\\.codex\\.chatgpt-projects\\g-p-6aa388744dc88191a2339ac20f7ba523\\six-axis-robot-internship\\scripts\\verify_single_joint_pid.py",
+        "--library",
+        "C:\\Users\\ken_j\\.codex\\.chatgpt-projects\\g-p-6aa388744dc88191a2339ac20f7ba523\\six-axis-robot-internship\\build\\robot_control.dll",
+        "--output",
+        "C:\\Users\\ken_j\\.codex\\.chatgpt-projects\\g-p-6aa388744dc88191a2339ac20f7ba523\\six-axis-robot-internship\\results\\single-joint-pid-integrator\\single_joint_pid"
+      ],
+      "status": "passed",
+      "timeout_budget_s": 120,
+      "timed_out": false,
+      "timeout_count": 0,
+      "process_wall_s": 0.4530000000004293,
+      "actual_wait_s": 0.4530000000004293,
+      "c_function_ms": null,
+      "python_to_c_ms": null,
+      "function_timing_status": "not_measured",
+      "exit_code": 0,
+      "report": "single_joint_pid\\report.json",
+      "elapsed_s": 0.48400000000037835
+    }
+  ],
+  "metrics_sha256": "5b17aceb037b24fa1a1cbf2a0b768b0dc6e5cd038e3543cef74014fddfda97af",
+  "commit": null,
+  "status": "passed",
+  "scope_note": "Available checks do not imply completion of unimplemented algorithm or user desktop acceptance.",
+  "process_timeout_count": 0,
+  "suite_elapsed_s": 0.5160000000005311
+}

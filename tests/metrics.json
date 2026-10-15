@@ -204,7 +204,7 @@
       "unit": "rad",
       "stage": "第4周",
       "availability": "pending",
-      "pending_reason": "自研控制器未实现；该基线不能代替PyBullet PID/前馈验收",
+      "pending_reason": "单关节PID已有功能基线；Kp=4/s的20条轨迹正式验收未执行",
       "basis": "engineering-contract.md §9"
     },
     {
@@ -216,7 +216,7 @@
       "unit": "rad; %; s",
       "stage": "第4周",
       "availability": "pending",
-      "pending_reason": "PID、前馈及物理实验配置未实现",
+      "pending_reason": "单关节增量PID及三类基线已接入；前馈开关及扰动恢复和正式性能验收仍未完成",
       "basis": "任务书第4阶段；待定项不自动合格"
     },
     {
@@ -362,6 +362,18 @@
       "availability": "implemented",
       "pending_reason": "",
       "basis": "docs/cartesian-and-static-apf.md; RRT/PRM改善率和正式性能仍未验收"
+    },
+    {
+      "id": "CTRL-PID",
+      "name": "单关节增量PID功能基线",
+      "test_id": "single_joint_pid",
+      "conditions": "独立C11；200点位置式等价对照；限幅/复位/异常状态；阶跃/正弦/定点各800点dt=0.01s；物理UR5另行执行",
+      "threshold": "接口回归全通过；有限数据完整；积分/输出不越界；位置绝对值≤1rad；末值误差≤0.02rad；不替代CTRL-01/02/03/04",
+      "unit": "rad; rad/s; N m; code",
+      "stage": "第4周",
+      "availability": "implemented",
+      "pending_reason": "",
+      "basis": "docs/single-joint-pid.md; config/single-joint-pid.v1.json"
     }
   ],
   "notes": [

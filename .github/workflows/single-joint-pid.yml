@@ -1,0 +1,38 @@
+name: Single joint PID
+on:
+  push:
+    branches: [main, 'codex/single-joint-pid*']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pid:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.9'
+      - name: Install simulation and plot dependencies
+        run: python -m pip install pybullet==3.2.7
+      - name: Compile strict C11 independent control library
+        run: |
+          mkdir -p build
+          gcc -std=c11 -O2 -Wall -Wextra -Werror -pedantic -fPIC -shared -Iinclude src/control/pid.c -lm -o build/librobot_control.so
+      - name: Contract regression and integrator baselines
+        run: python scripts/run_tests.py --suite single_joint_pid --smoke-python "$(which python)" --output results/single-joint-pid-integrator
+      - name: UR5 J1 torque baselines
+        if: always()
+        run: python scripts/verify_single_joint_pid.py --library build/librobot_control.so --plant pybullet --output results/single-joint-pid-pybullet
+      - name: Test runner regressions
+        run: python -m unittest discover -s tests -p 'test_runner.py' -v
+      - name: Save raw traces and reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: single-joint-pid-evidence
+          path: |
+            results/single-joint-pid-integrator/
+            results/single-joint-pid-pybullet/

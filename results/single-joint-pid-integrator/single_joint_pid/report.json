@@ -1,0 +1,1053 @@
+{
+  "status": "passed",
+  "plant": "integrator",
+  "cases": [
+    {
+      "case": "step",
+      "status": "passed",
+      "statistics": {
+        "sample_count": 800,
+        "rmse_rad": 0.01992771374090687,
+        "max_abs_error_rad": 0.2,
+        "final_error_rad": -0.000178566733351454,
+        "last_second_mean_error_rad": -0.00023550298887036497,
+        "overshoot_percent": 2.937432476855531,
+        "rise_10_90_s": 0.25,
+        "settling_time_s": 1.6799999999999997,
+        "settling_band_rad": 0.004,
+        "output_limited_count": 8,
+        "integral_limited_count": 8
+      },
+      "csv_sha256": "4948a5e057b5e696c8aa0aa32fffa37e4347dab96b4243b138f0a5083d90f76f"
+    },
+    {
+      "case": "sine",
+      "status": "passed",
+      "statistics": {
+        "sample_count": 800,
+        "rmse_rad": 0.00835371902852922,
+        "max_abs_error_rad": 0.015471635086892307,
+        "final_error_rad": -0.0005216517665759593,
+        "last_second_mean_error_rad": -0.0006879805965464518,
+        "overshoot_percent": null,
+        "rise_10_90_s": null,
+        "settling_time_s": 1.7800000000000002,
+        "settling_band_rad": 0.001,
+        "output_limited_count": 0,
+        "integral_limited_count": 0
+      },
+      "csv_sha256": "14756aff684eade84e5bf34de98eb128bf2e67cbff2bd8f47f8a65e1a685e4c6"
+    },
+    {
+      "case": "hold",
+      "status": "passed",
+      "statistics": {
+        "sample_count": 800,
+        "rmse_rad": 0.004467990659889953,
+        "max_abs_error_rad": 0.04999999999999999,
+        "final_error_rad": -5.3388850002694666e-05,
+        "last_second_mean_error_rad": -7.041196034672376e-05,
+        "overshoot_percent": 4.7919381009847175,
+        "rise_10_90_s": 0.24,
+        "settling_time_s": 2.52,
+        "settling_band_rad": 0.001,
+        "output_limited_count": 0,
+        "integral_limited_count": 0
+      },
+      "csv_sha256": "1429405a480ae5f480e74609da8f86c17d51d5cb72050b4fc83e07c9f27a3b28"
+    }
+  ],
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "scope": "Single joint functional baseline; not full CTRL-01/02/03/04 acceptance",
+  "config": {
+    "version": "1.0.0",
+    "scope": "simulation_only_single_joint_no_feedforward",
+    "joint": "J1",
+    "dt_s": 0.01,
+    "duration_s": 8.0,
+    "integrator": {
+      "plant": "q[k+1]=q[k]+dt*u[k]",
+      "output_unit": "rad/s",
+      "pid": {
+        "dt_s": 0.01,
+        "kp": 8.0,
+        "ki": 4.0,
+        "kd": 0.02,
+        "integral_min": -0.3,
+        "integral_max": 0.3,
+        "output_min": -1.0,
+        "output_max": 1.0
+      }
+    },
+    "pybullet": {
+      "output_unit": "N m",
+      "gravity_m_s2": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "physics_substeps": 4,
+      "other_joint_force_nm": 200.0,
+      "pid": {
+        "dt_s": 0.01,
+        "kp": 80.0,
+        "ki": 15.0,
+        "kd": 12.0,
+        "integral_min": -3.0,
+        "integral_max": 3.0,
+        "output_min": -12.0,
+        "output_max": 12.0
+      }
+    },
+    "cases": {
+      "step": {
+        "initial_rad": 0.0,
+        "target_rad": 0.2,
+        "start_s": 0.5
+      },
+      "sine": {
+        "initial_rad": 0.0,
+        "amplitude_rad": 0.1,
+        "frequency_hz": 0.2,
+        "stop_s": 5.0
+      },
+      "hold": {
+        "initial_rad": 0.1,
+        "target_rad": 0.15
+      }
+    },
+    "functional_gates": {
+      "maximum_abs_position_rad": 1.0,
+      "final_error_rad": 0.02
+    },
+    "note": "Functional baseline gates only. CTRL-01 20-trajectory acceptance, CTRL-02 feedforward/disturbance, safety state machine and wall-clock timing remain pending."
+  },
+  "config_sha256": "940f7d1dd948e2e753ea8acad899357491044f84176f9173beec8b89e14f688b",
+  "library_sha256": "1d933ff10aa85d56abd3a6c83c9d5a7e2d85c8d0b9fc4fbb6baf23c0b4eba7c3",
+  "source_sha256": "9d51ce8478046995ddbd426784702da8bc09ea58b85f36cc21ae0ef4021fb1c3",
+  "contracts": [
+    {
+      "name": "positional_equivalence_0",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_1",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_2",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_3",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_4",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_5",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_6",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_7",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_8",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_9",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_10",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_11",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_12",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_13",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_14",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_15",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_16",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_17",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_18",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_19",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_20",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_21",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_22",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_23",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_24",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_25",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_26",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_27",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_28",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_29",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_30",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_31",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_32",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_33",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_34",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_35",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_36",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_37",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_38",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_39",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_40",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_41",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_42",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_43",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_44",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_45",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_46",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_47",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_48",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_49",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_50",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_51",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_52",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_53",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_54",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_55",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_56",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_57",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_58",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_59",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_60",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_61",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_62",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_63",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_64",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_65",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_66",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_67",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_68",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_69",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_70",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_71",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_72",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_73",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_74",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_75",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_76",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_77",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_78",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_79",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_80",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_81",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_82",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_83",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_84",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_85",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_86",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_87",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_88",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_89",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_90",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_91",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_92",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_93",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_94",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_95",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_96",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_97",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_98",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_99",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_100",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_101",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_102",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_103",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_104",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_105",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_106",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_107",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_108",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_109",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_110",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_111",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_112",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_113",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_114",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_115",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_116",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_117",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_118",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_119",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_120",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_121",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_122",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_123",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_124",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_125",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_126",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_127",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_128",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_129",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_130",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_131",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_132",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_133",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_134",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_135",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_136",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_137",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_138",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_139",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_140",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_141",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_142",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_143",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_144",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_145",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_146",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_147",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_148",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_149",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_150",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_151",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_152",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_153",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_154",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_155",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_156",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_157",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_158",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_159",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_160",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_161",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_162",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_163",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_164",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_165",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_166",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_167",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_168",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_169",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_170",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_171",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_172",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_173",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_174",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_175",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_176",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_177",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_178",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_179",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_180",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_181",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_182",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_183",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_184",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_185",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_186",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_187",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_188",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_189",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_190",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_191",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_192",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_193",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_194",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_195",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_196",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_197",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_198",
+      "passed": true
+    },
+    {
+      "name": "positional_equivalence_199",
+      "passed": true
+    },
+    {
+      "name": "integral_clamp_1",
+      "passed": true
+    },
+    {
+      "name": "integral_clamp_-1",
+      "passed": true
+    },
+    {
+      "name": "saturation_antiwindup_1",
+      "passed": true
+    },
+    {
+      "name": "saturation_release_1",
+      "passed": true
+    },
+    {
+      "name": "saturation_antiwindup_-1",
+      "passed": true
+    },
+    {
+      "name": "saturation_release_-1",
+      "passed": true
+    },
+    {
+      "name": "reset_success",
+      "passed": true
+    },
+    {
+      "name": "reset_all_history",
+      "passed": true
+    },
+    {
+      "name": "repeat_after_reset",
+      "passed": true
+    },
+    {
+      "name": "invalid_nan",
+      "passed": true
+    },
+    {
+      "name": "invalid_inf",
+      "passed": true
+    },
+    {
+      "name": "invalid_overflow",
+      "passed": true
+    },
+    {
+      "name": "invalid_bool",
+      "passed": true
+    },
+    {
+      "name": "invalid_string",
+      "passed": true
+    },
+    {
+      "name": "bad_config_dt_s0",
+      "passed": true
+    },
+    {
+      "name": "bad_config_dt_sinf",
+      "passed": true
+    },
+    {
+      "name": "bad_config_kp-1",
+      "passed": true
+    },
+    {
+      "name": "bad_config_kinan",
+      "passed": true
+    },
+    {
+      "name": "bad_config_kd-1",
+      "passed": true
+    },
+    {
+      "name": "bad_config_integral_min1",
+      "passed": true
+    },
+    {
+      "name": "bad_config_output_max-2",
+      "passed": true
+    },
+    {
+      "name": "null_state",
+      "passed": true
+    },
+    {
+      "name": "null_result",
+      "passed": true
+    },
+    {
+      "name": "null_reset_config",
+      "passed": true
+    },
+    {
+      "name": "null_reset_state",
+      "passed": true
+    },
+    {
+      "name": "uninitialized",
+      "passed": true
+    },
+    {
+      "name": "nan_history",
+      "passed": true
+    },
+    {
+      "name": "integral_outside",
+      "passed": true
+    },
+    {
+      "name": "output_outside",
+      "passed": true
+    },
+    {
+      "name": "invalid_direct_c_output_untouched",
+      "passed": true
+    }
+  ]
+}

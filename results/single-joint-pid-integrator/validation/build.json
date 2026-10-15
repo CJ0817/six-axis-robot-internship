@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "compiler": "Zig cc / Clang",
+  "zig_version": "0.13.0",
+  "command": "zig cc -std=c11 -O2 -Wall -Wextra -Werror -pedantic -shared -Iinclude src/control/pid.c -o build/robot_control.dll",
+  "platform": "win32",
+  "arch": "x64",
+  "upstream_commit": "61eb06bcb60f90cd274110b5eabc3613bad1038f",
+  "scope": "Windows native C compile and functional simulation only; no wall-clock performance acceptance",
+  "pybullet_status": "not_run",
+  "pybullet_reason": "No installed locked Linux Python 3.11.9 / PyBullet 3.2.7 environment; remote upload and CI blocked by auto-review"
+}
