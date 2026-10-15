@@ -1,0 +1,36 @@
+{
+  "tested_commit": "f60efc4a2c40c10490094b837db2cd6a253ed375",
+  "run_id": 38723159909,
+  "run_url": "https://github.com/CJ0817/six-axis-robot-internship/actions/runs/38723159909",
+  "conclusion": "success",
+  "artifact_id": 11966523150,
+  "artifact_name": "trajectory-certification-evidence",
+  "artifact_sha256": "b7559ce18bf88d5cb71ee74043be1bc939901ce6980df3713faeac47b9a0a16a",
+  "artifact_url": "https://github.com/CJ0817/six-axis-robot-internship/actions/runs/38723159909/artifacts/11966523150",
+  "suites": [
+    {
+      "suite": "trajectory-certification",
+      "status": "passed",
+      "passed": 37,
+      "expected": 37
+    },
+    {
+      "suite": "joint-candidate-regression",
+      "status": "passed",
+      "passed": 97,
+      "expected": 97
+    },
+    {
+      "suite": "cartesian-certification-regression",
+      "status": "passed",
+      "passed": 35,
+      "expected": 35
+    },
+    {
+      "suite": "guided-certification-regression",
+      "status": "passed",
+      "passed": 50,
+      "expected": 50
+    }
+  ]
+}

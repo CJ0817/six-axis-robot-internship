@@ -1,0 +1,211 @@
+{
+  "status": "passed",
+  "passed_count": 37,
+  "expected_count": 37,
+  "cases": [
+    {
+      "id": "candidate-explicitly-nonexecutable",
+      "passed": true
+    },
+    {
+      "id": "candidate-execution-rejected",
+      "passed": true,
+      "expected_code": 3001,
+      "actual_code": 3001
+    },
+    {
+      "id": "cubic-fully-certified",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0
+    },
+    {
+      "id": "cubic-execution-accepted",
+      "passed": true
+    },
+    {
+      "id": "cubic-original-polynomial-preserved",
+      "passed": true
+    },
+    {
+      "id": "quintic-fully-certified",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0
+    },
+    {
+      "id": "quintic-execution-accepted",
+      "passed": true
+    },
+    {
+      "id": "quintic-original-polynomial-preserved",
+      "passed": true
+    },
+    {
+      "id": "trapezoidal-fully-certified",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0
+    },
+    {
+      "id": "trapezoidal-execution-accepted",
+      "passed": true
+    },
+    {
+      "id": "trapezoidal-original-polynomial-preserved",
+      "passed": true
+    },
+    {
+      "id": "tampered-q_rad",
+      "passed": true,
+      "expected_code": 3001,
+      "actual_code": 3001
+    },
+    {
+      "id": "tampered-qd_rad_s",
+      "passed": true,
+      "expected_code": 3001,
+      "actual_code": 3001
+    },
+    {
+      "id": "tampered-qdd_rad_s2",
+      "passed": true,
+      "expected_code": 3001,
+      "actual_code": 3001
+    },
+    {
+      "id": "tampered-coefficients_rad",
+      "passed": true,
+      "expected_code": 3001,
+      "actual_code": 3001
+    },
+    {
+      "id": "tampered-segment_times_s",
+      "passed": true,
+      "expected_code": 3001,
+      "actual_code": 3001
+    },
+    {
+      "id": "forged-flags-rejected",
+      "passed": true,
+      "expected_code": 3001,
+      "actual_code": 3001
+    },
+    {
+      "id": "joint-rate-strict",
+      "passed": true,
+      "expected_code": 3002,
+      "actual_code": 3002
+    },
+    {
+      "id": "joint-position",
+      "passed": true,
+      "expected_code": 3002,
+      "actual_code": 3002
+    },
+    {
+      "id": "missing-scene",
+      "passed": true,
+      "expected_code": 1004,
+      "actual_code": 1004
+    },
+    {
+      "id": "missing-limits",
+      "passed": true,
+      "expected_code": 1004,
+      "actual_code": 1004
+    },
+    {
+      "id": "missing-certification-settings",
+      "passed": true,
+      "expected_code": 1004,
+      "actual_code": 1004
+    },
+    {
+      "id": "tcp-linear_velocity_m_s",
+      "passed": true,
+      "expected_code": 3002,
+      "actual_code": 3002
+    },
+    {
+      "id": "tcp-angular_velocity_rad_s",
+      "passed": true,
+      "expected_code": 3002,
+      "actual_code": 3002
+    },
+    {
+      "id": "tcp-linear_acceleration_m_s2",
+      "passed": true,
+      "expected_code": 3002,
+      "actual_code": 3002
+    },
+    {
+      "id": "tcp-angular_acceleration_rad_s2",
+      "passed": true,
+      "expected_code": 3002,
+      "actual_code": 3002
+    },
+    {
+      "id": "tcp-strict-before-stretch",
+      "passed": true,
+      "expected_code": 3002,
+      "actual_code": 3002
+    },
+    {
+      "id": "tcp-stretch-recertified",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0
+    },
+    {
+      "id": "stretch-has-failure-and-new-certification",
+      "passed": true
+    },
+    {
+      "id": "configuration-changed-after-certification",
+      "passed": true,
+      "expected_code": 3001,
+      "actual_code": 3001
+    },
+    {
+      "id": "configuration-deleted-after-certification",
+      "passed": true,
+      "expected_code": 1004,
+      "actual_code": 1004
+    },
+    {
+      "id": "clearance-proof-fails-closed",
+      "passed": true,
+      "expected_code": 3001,
+      "actual_code": 3001
+    },
+    {
+      "id": "whole-arm-collision",
+      "passed": true,
+      "expected_code": 3003,
+      "actual_code": 3003
+    },
+    {
+      "id": "self-collision",
+      "passed": true,
+      "expected_code": 3003,
+      "actual_code": 3003
+    },
+    {
+      "id": "safe-endpoints-colliding-interior",
+      "passed": true,
+      "expected_code": 3003,
+      "actual_code": 3003
+    },
+    {
+      "id": "interior-fixture-endpoints-safe",
+      "passed": true
+    },
+    {
+      "id": "scene-changed",
+      "passed": true,
+      "expected_code": 3001,
+      "actual_code": 3001
+    }
+  ]
+}

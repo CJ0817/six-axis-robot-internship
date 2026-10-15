@@ -1,0 +1,1590 @@
+{
+  "status": "passed",
+  "passed_count": 35,
+  "expected_count": 35,
+  "groups": {
+    "valid_trajectories": {
+      "total": 3,
+      "passed": 3
+    },
+    "expected_negative_requests": {
+      "total": 11,
+      "passed": 11
+    },
+    "note": "Expected-check pass count includes deliberate negative requests; these are not successful trajectories"
+  },
+  "environment": {
+    "python": "3.11.9",
+    "numpy": "1.26.4",
+    "pybullet": "3.2.7",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39"
+  },
+  "sources_sha256": {
+    "src/planning/cartesian.c": "77eba086a3cdcca439aad12de6f2446e5e40f193accfbd0472afd21d307fee7a",
+    "src/planning/cartesian.py": "07b8358dd30f23062c7451a93876b6f3d2bdaf3cc764aee50658603181f271d1",
+    "src/planning/collision.py": "fa0f83c36724ae3a43c2a0a8be04761f31fc818fea2a121ae6d0b343f47df083",
+    "src/planning/apf.py": "07392bae63633104c57f87238ded4716a20db179322505b3fc5d4fb8f7299eb6",
+    "include/robot_planning.h": "b8d14031a46b068cab9e0be05ec84cbbe61026b6552d37132aa1d493f89483bf",
+    "scripts/verify_cartesian_planning.py": "cd472ac0b2a84ebd1beeebb54e1f1f7c684fa14f89a6b1ecad043fe13653594a",
+    "config/cartesian-planning.v1.json": "35c6835f055cc89119f58b604b7139f77884d27898f82464b635ada3707a7ab5",
+    "scenes/static-apf.v1.json": "afe3e7289f6b8a4af4631b3c60beaeaf834357a734d5aeefe9e1ee57547d4f9b",
+    "requirements.lock": "35fc63a8ea9f56dbdf101f4ea18a3164bd37c77e85a23e43a91427ac3d2e0652",
+    "scripts/verify_joint_planning.py": "2b2f8963a8853367a3d63a8e8e6e584b7a7f8ed848c5f4ab5eecafab66a55330"
+  },
+  "libraries_sha256": {
+    "librobot_contract.so": "1431e9211306c8650ff10400d44f0462555672f0fd2d272b6c6147414c8b24cf",
+    "librobot_planning.so": "5e9b644a04c8e6016fc591c20bb4a28394960c434e30bb23b255c5f0440a7a1e"
+  },
+  "effective_limits": {
+    "version": "1.0.0",
+    "config_sha256": "c4540f40e3e69d938603399d66499c92b33f36de5509460cc4b254798c212653",
+    "model_sha256": "a33abb6bd1b206eade01f19e3581f56bb7e53c1e9a058111a779c3b39666316e",
+    "velocity_scale": 0.5,
+    "acceleration_scale": 0.5,
+    "joint_velocity_rad_s": [
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966,
+      1.5707963267948966
+    ],
+    "joint_acceleration_rad_s2": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "linear_velocity_m_s": 0.125,
+    "angular_velocity_rad_s": 0.25,
+    "linear_acceleration_m_s2": 0.25,
+    "angular_acceleration_rad_s2": 0.5,
+    "tcp_frame": "tool0",
+    "tcp_point": "tool0_origin",
+    "expression_frame": "base",
+    "limit_metric": "euclidean_norm"
+  },
+  "algorithm_configuration": {
+    "version": "1.0.0",
+    "usage": "simulation_only",
+    "sample_period_s": 0.02,
+    "maximum_duration_s": 30.0,
+    "maximum_nodes": 2001,
+    "collision_subdivisions": 2,
+    "collision_max_joint_step_rad": 0.01,
+    "position_tolerance_m": 0.001,
+    "orientation_tolerance_rad": 0.001,
+    "derivative_step_s": 0.0001,
+    "ik_position_tolerance_m": 1e-05,
+    "ik_orientation_tolerance_rad": 0.0001,
+    "ik_timeout_s": 0.5,
+    "apf": {
+      "attraction_gain": 1.0,
+      "repulsion_gain": 2e-06,
+      "influence_distance_m": 0.12,
+      "gradient_step_rad": 0.0001,
+      "maximum_step_rad": 0.02,
+      "goal_tolerance_rad": 0.002,
+      "maximum_iterations": 160,
+      "line_search_steps": 12
+    }
+  },
+  "scene": {
+    "scene_id": "ur5-static-apf-v1",
+    "revision": "2026-10-11",
+    "T_world_base": [
+      [
+        -1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        -1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "clearance_m": 0.003,
+    "query_distance_m": 0.25,
+    "obstacles": [
+      {
+        "id": "static-sphere",
+        "kind": "sphere",
+        "position_m": [
+          0.72,
+          0.42,
+          0.68
+        ],
+        "radius_m": 0.035
+      },
+      {
+        "id": "static-box",
+        "kind": "box",
+        "position_m": [
+          0.0,
+          -0.6,
+          0.3
+        ],
+        "half_extents_m": [
+          0.06,
+          0.06,
+          0.06
+        ]
+      }
+    ]
+  },
+  "validation_scope": "continuous joint polynomial extrema, conservative DH TCP derivative bounds and modeled-geometry collision motion bounds; path error sampled at reported resolution; no Windows GUI",
+  "artifacts": [
+    {
+      "path": "line-success.csv",
+      "sha256": "9b34de13c1dca94d154ab5d239ade269031921e54f4a3da58fe529f59f5c529d"
+    },
+    {
+      "path": "line-success.svg",
+      "sha256": "a9923871ca0885f65752ff2977e03ed043477d7b1fc12e5629a1de816b7f2ee0"
+    },
+    {
+      "path": "line-success.json",
+      "sha256": "e3b2a9877fa4b87f341a18741dcf612de512e4f07b163d8a9e9a25ca96d2958b"
+    },
+    {
+      "path": "arc-success.csv",
+      "sha256": "90c137caf276072934bc37dd3c1339cffdecbf7ca217d3c2446876c85da9b936"
+    },
+    {
+      "path": "arc-success.svg",
+      "sha256": "daba51bbafd2cc7b5f84a17da6b214b96955293f6907bee1cfb22545ce555369"
+    },
+    {
+      "path": "arc-success.json",
+      "sha256": "7c572b7c27599c791bb277263cb0250bc1039568db7171a8a5327638cd669b77"
+    },
+    {
+      "path": "fixed-orientation-failure.json",
+      "sha256": "2288e3f57de3cbe6c298fdae7600bc316fd5e22ad7e69421895913d3ef63f3e4"
+    },
+    {
+      "path": "collinear-arc-failure.json",
+      "sha256": "0985b9ff143c0e0087345f170cd0a1e3a8b094c8b8e31bb1a207b2bebdb4a0f6"
+    },
+    {
+      "path": "ik-step-failure.json",
+      "sha256": "a4a290b8a4eaabeeaced5ec5be4f3d96309b661f527ed86ab80201628687962b"
+    },
+    {
+      "path": "geometric-unreachable-failure.json",
+      "sha256": "8169f2b1f5815a84531c6f6ddad623895f75f951e2c715fbc540b71303d4b9f2"
+    },
+    {
+      "path": "rate-failure.json",
+      "sha256": "3652eb5040f53f5ea37ce9e12f28195f6736739904b62a3edc492d552241657b"
+    },
+    {
+      "path": "apf-waypoints.json",
+      "sha256": "fa0ac118c4800ec56ab3da83ec13c8d34e178cdbdfb92b5a4a3f80cd91c83c99"
+    },
+    {
+      "path": "apf-success.csv",
+      "sha256": "43aa19152cd52ddcc88396d35b1bcb72eacaccc91be344932a684905d283e72d"
+    },
+    {
+      "path": "apf-success.svg",
+      "sha256": "ba6a532e5cf6832a6d6baa54ae9b3757db1115258ea4f07a2ec469f49b09687a"
+    },
+    {
+      "path": "apf-success.json",
+      "sha256": "23ac3218e81d29d8dc755bebd77fce1e4ba92662f652c545be04cafa4e481954"
+    },
+    {
+      "path": "blocked-upperarm-failure.json",
+      "sha256": "8814076c9eb60a5887071e20da3ff4e6cb71c8ccd4c2234568969df997ab3412"
+    },
+    {
+      "path": "blocked-line-failure.json",
+      "sha256": "8814076c9eb60a5887071e20da3ff4e6cb71c8ccd4c2234568969df997ab3412"
+    },
+    {
+      "path": "blocked-apf-failure.json",
+      "sha256": "946f9a36744fb6bb7f6d8d87ce2bd3c8b197b807c465ff25b3e82c308265f216"
+    },
+    {
+      "path": "apf-budget-failure.json",
+      "sha256": "c786b6ea563e344adaaf9f05903fe28d117570d5e1508d7b234df2d2fb261724"
+    },
+    {
+      "path": "missing-limits-failure.json",
+      "sha256": "0fba4471553498b0b93d3cea15a93fb5ea6c1f3321e46c9190740da887dfded3"
+    },
+    {
+      "path": "missing-apf-limits-failure.json",
+      "sha256": "ce63927bac00e38273436568f189ea64f18463a44990ad830e072827661fb15e"
+    },
+    {
+      "path": "paths.svg",
+      "sha256": "6b3aa0ff422880a45c4c0f700b0b69ee8dcbc4ca5bbc23e0bc2a8ea568641136"
+    }
+  ],
+  "cases": [
+    {
+      "id": "line-success",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "message": "OK",
+      "fixed_period_passed": true,
+      "node_count": 152,
+      "validation_node_count": 303,
+      "endpoint_speed_max_rad_s": 1.0587911840678745e-20,
+      "endpoint_acceleration_max_rad_s2": 3.705769144237557e-18,
+      "maximum_join_jumps": [
+        0.0,
+        2.710505431213761e-20,
+        4.9873299934333204e-18
+      ],
+      "minimum_distance_lower_bound_m": 0.009412706813731632,
+      "tcp_sampled_peaks": [
+        0.013884292893206909,
+        3.577479432487126e-09,
+        0.014151261996294745,
+        2.8086329197943172e-08
+      ],
+      "maximum_position_error_m": 8.335006635629341e-09,
+      "maximum_orientation_error_rad": 4.90833890294496e-13,
+      "certified_minimum_distance_lower_bound_m": 0.008228154296287139,
+      "collision_motion_bound_m": 0.0012536889610677072,
+      "tcp_continuous_bounds": [
+        0.05466718026496069,
+        0.07246174527654906,
+        0.06485389160355831,
+        0.08107818724353005
+      ]
+    },
+    {
+      "id": "arc-success",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "message": "OK",
+      "fixed_period_passed": true,
+      "node_count": 151,
+      "validation_node_count": 301,
+      "endpoint_speed_max_rad_s": 1.5881867761018116e-20,
+      "endpoint_acceleration_max_rad_s2": 2.117582368135747e-18,
+      "maximum_join_jumps": [
+        0.0,
+        1.3552527156068805e-19,
+        2.168404344971009e-17
+      ],
+      "minimum_distance_lower_bound_m": 0.009416039594909375,
+      "tcp_sampled_peaks": [
+        0.015139911737370091,
+        0.02500038391235089,
+        0.015786952201672772,
+        0.025655758524146564
+      ],
+      "maximum_position_error_m": 9.208642319161591e-09,
+      "maximum_orientation_error_rad": 1.5206794156099906e-08,
+      "certified_minimum_distance_lower_bound_m": 0.007611048463214195,
+      "collision_motion_bound_m": 0.0019026242673271087,
+      "tcp_continuous_bounds": [
+        0.07487266795600012,
+        0.12075711777790595,
+        0.12004061302375399,
+        0.1801036108872647
+      ]
+    },
+    {
+      "id": "urdf-c-fk-frame-alignment",
+      "passed": true,
+      "details": {
+        "matrix_max_error": 3.455811359298622e-08
+      }
+    },
+    {
+      "id": "arc-start-goal-via",
+      "passed": true,
+      "details": {
+        "method": "arc",
+        "orientation": "slerp_shortest",
+        "orientation_angle_rad": 0.03999999999998,
+        "length_m": 0.024222446819199453,
+        "origin_m": [
+          -0.5728365035816526,
+          -0.35471617307915093,
+          0.5596846684077968
+        ],
+        "plane_u": [
+          -0.5673758865248231,
+          0.7730496453900706,
+          -0.28368794326241153
+        ],
+        "plane_v": [
+          0.6914366228297218,
+          0.6343455255318555,
+          0.3457183114148609
+        ],
+        "radius_m": 0.017625000000000005,
+        "sweep_rad": 1.3743232237843657,
+        "via_progress": 0.5
+      }
+    },
+    {
+      "id": "arc-radius-slerp-orthogonality",
+      "passed": true,
+      "details": {
+        "radius_max_error_m": 3.469446951953614e-17,
+        "rotation_matrix_max_error": 6.661338147750939e-16
+      }
+    },
+    {
+      "id": "quaternion-sign-equivalence",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "id": "orientation-angle-0.0",
+      "passed": true,
+      "details": {
+        "endpoint_matrix_error": 1.1102230246251565e-16,
+        "angle_rad": 0.0
+      }
+    },
+    {
+      "id": "orientation-angle-1e-10",
+      "passed": true,
+      "details": {
+        "endpoint_matrix_error": 2.7755575615628914e-16,
+        "angle_rad": 2.9802322387695312e-08
+      }
+    },
+    {
+      "id": "orientation-angle-3.141592652589793",
+      "passed": true,
+      "details": {
+        "endpoint_matrix_error": 1.1102230246251565e-16,
+        "angle_rad": 3.141592652589793
+      }
+    },
+    {
+      "id": "orientation-angle-3.141592653589793",
+      "passed": true,
+      "details": {
+        "endpoint_matrix_error": 1.1102230246251565e-16,
+        "angle_rad": 3.141592653589793
+      }
+    },
+    {
+      "id": "arc-major-contains-via",
+      "passed": true,
+      "details": {
+        "method": "arc",
+        "orientation": "slerp_shortest",
+        "orientation_angle_rad": 0.0,
+        "length_m": 0.4712388980384689,
+        "origin_m": [
+          1.3877787807814457e-17,
+          0.0,
+          0.0
+        ],
+        "plane_u": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "plane_v": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "radius_m": 0.09999999999999999,
+        "sweep_rad": 4.71238898038469,
+        "via_progress": 0.6666666666666666
+      }
+    },
+    {
+      "id": "arc-minor-contains-via",
+      "passed": true,
+      "details": {
+        "method": "arc",
+        "orientation": "slerp_shortest",
+        "orientation_angle_rad": 0.0,
+        "length_m": 0.15707963267948966,
+        "origin_m": [
+          -2.7755575615628914e-17,
+          -1.234217451332669e-17,
+          0.0
+        ],
+        "plane_u": [
+          1.0,
+          1.2342174513326686e-16,
+          0.0
+        ],
+        "plane_v": [
+          -1.2342174513326686e-16,
+          1.0,
+          0.0
+        ],
+        "radius_m": 0.10000000000000003,
+        "sweep_rad": 1.5707963267948961,
+        "via_progress": 0.5
+      }
+    },
+    {
+      "id": "C-position-before",
+      "passed": true,
+      "details": {
+        "code": 1001,
+        "output_untouched": true
+      }
+    },
+    {
+      "id": "C-position-after",
+      "passed": true,
+      "details": {
+        "code": 1001,
+        "output_untouched": true
+      }
+    },
+    {
+      "id": "C-position-length",
+      "passed": true,
+      "details": {
+        "code": 1001,
+        "output_untouched": true
+      }
+    },
+    {
+      "id": "fixed-orientation-failure",
+      "passed": true,
+      "expected_code": 1007,
+      "actual_code": 1007,
+      "message": "Fixed orientation endpoints differ",
+      "details": {
+        "ik_nodes": [],
+        "last_ik_candidate_state": null,
+        "retained_input_q_rad": [
+          0.3,
+          -1.2,
+          1.1,
+          -1.1,
+          1.0,
+          0.2
+        ],
+        "stop_segment": true,
+        "replan_required": true,
+        "failure_log": [
+          {
+            "message": "Fixed orientation endpoints differ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "collinear-arc-failure",
+      "passed": true,
+      "expected_code": 1001,
+      "actual_code": 1001,
+      "message": "Degenerate three-point arc",
+      "details": {
+        "ik_nodes": [],
+        "last_ik_candidate_state": null,
+        "retained_input_q_rad": [
+          0.3,
+          -1.2,
+          1.1,
+          -1.1,
+          1.0,
+          0.2
+        ],
+        "stop_segment": true,
+        "replan_required": true,
+        "failure_log": [
+          {
+            "message": "Degenerate three-point arc"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ik-step-failure",
+      "passed": true,
+      "expected_code": 2002,
+      "actual_code": 2002,
+      "message": "IK failed at node 1",
+      "details": {
+        "ik_nodes": [
+          {
+            "node_index": 1,
+            "time_s": 0.02,
+            "target_T_base_tool": [
+              [
+                0.6039222200393775,
+                0.7860997836547774,
+                -0.13162477836874814,
+                -0.5469261035816526
+              ],
+              [
+                -0.6764384868743332,
+                0.4181593108863413,
+                -0.6062786192784821,
+                -0.34109117307915093
+              ],
+              [
+                -0.42155536483108885,
+                0.4551811956319949,
+                0.7842838475482937,
+                0.5552638684077968
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "code": 2002,
+            "state_advanced": false,
+            "input_state_unchanged": true,
+            "position_error_m": null,
+            "orientation_error_rad": null,
+            "sigma_min": null,
+            "state_before": {
+              "q_rad": [
+                0.3,
+                -1.2,
+                1.1,
+                -1.1,
+                1.0,
+                0.2
+              ],
+              "step_index": 0
+            },
+            "state_after": {
+              "q_rad": [
+                0.3,
+                -1.2,
+                1.1,
+                -1.1,
+                1.0,
+                0.2
+              ],
+              "step_index": 0
+            },
+            "solver_next_state_is_null": true,
+            "solver_data_is_null": true
+          }
+        ],
+        "last_ik_candidate_state": {
+          "q_rad": [
+            0.3,
+            -1.2,
+            1.1,
+            -1.1,
+            1.0,
+            0.2
+          ],
+          "step_index": 0
+        },
+        "retained_input_q_rad": [
+          0.3,
+          -1.2,
+          1.1,
+          -1.1,
+          1.0,
+          0.2
+        ],
+        "stop_segment": true,
+        "replan_required": true,
+        "failure_log": [
+          {
+            "message": "IK failed at node 1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "geometric-unreachable-failure",
+      "passed": true,
+      "expected_code": 2001,
+      "actual_code": 2001,
+      "message": "IK failed at node 1",
+      "details": {
+        "ik_nodes": [
+          {
+            "node_index": 1,
+            "time_s": 0.02,
+            "target_T_base_tool": [
+              [
+                0.6039222200393775,
+                0.7860997836547773,
+                -0.13162477836874809,
+                4.417163496418348
+              ],
+              [
+                -0.6764384868743331,
+                0.4181593108863414,
+                -0.6062786192784821,
+                -0.34109117307915093
+              ],
+              [
+                -0.4215553648310888,
+                0.4551811956319949,
+                0.7842838475482937,
+                0.5546846684077968
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "code": 2001,
+            "state_advanced": false,
+            "input_state_unchanged": true,
+            "position_error_m": null,
+            "orientation_error_rad": null,
+            "sigma_min": null,
+            "state_before": {
+              "q_rad": [
+                0.3,
+                -1.2,
+                1.1,
+                -1.1,
+                1.0,
+                0.2
+              ],
+              "step_index": 0
+            },
+            "state_after": {
+              "q_rad": [
+                0.3,
+                -1.2,
+                1.1,
+                -1.1,
+                1.0,
+                0.2
+              ],
+              "step_index": 0
+            },
+            "solver_next_state_is_null": true,
+            "solver_data_is_null": true
+          }
+        ],
+        "last_ik_candidate_state": {
+          "q_rad": [
+            0.3,
+            -1.2,
+            1.1,
+            -1.1,
+            1.0,
+            0.2
+          ],
+          "step_index": 0
+        },
+        "retained_input_q_rad": [
+          0.3,
+          -1.2,
+          1.1,
+          -1.1,
+          1.0,
+          0.2
+        ],
+        "stop_segment": true,
+        "replan_required": true,
+        "failure_log": [
+          {
+            "message": "IK failed at node 1"
+          }
+        ],
+        "unreachable_sample_proof": {
+          "method": "norm(p_dh0_dh6) > sum(abs(a_m)+abs(d_m)) + 1e-12",
+          "conservative_reach_bound_m": 1.192509,
+          "sampled_target_distance_m": 4.464902196443942,
+          "geometrically_unreachable": true,
+          "input_seed_unchanged": true,
+          "state_retained": true
+        }
+      }
+    },
+    {
+      "id": "geometric-unreachable-state-and-proof",
+      "passed": true,
+      "details": {
+        "method": "norm(p_dh0_dh6) > sum(abs(a_m)+abs(d_m)) + 1e-12",
+        "conservative_reach_bound_m": 1.192509,
+        "sampled_target_distance_m": 4.464902196443942,
+        "geometrically_unreachable": true,
+        "input_seed_unchanged": true,
+        "state_retained": true
+      }
+    },
+    {
+      "id": "rate-failure",
+      "passed": true,
+      "expected_code": 3002,
+      "actual_code": 3002,
+      "message": "Continuous polynomial joint rates exceeded",
+      "details": {
+        "ik_nodes": [
+          {
+            "node_index": 1,
+            "time_s": 0.02,
+            "target_T_base_tool": [
+              [
+                0.6039222200393775,
+                0.7860997836547773,
+                -0.13162477836874809,
+                -0.5826653035816526
+              ],
+              [
+                -0.6764384868743331,
+                0.4181593108863414,
+                -0.6062786192784821,
+                -0.34109117307915093
+              ],
+              [
+                -0.4215553648310888,
+                0.4551811956319949,
+                0.7842838475482937,
+                0.5547702684077969
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "code": 0,
+            "state_advanced": true,
+            "input_state_unchanged": true,
+            "position_error_m": 2.2887833992611187e-16,
+            "orientation_error_rad": 5.171874522161704e-16,
+            "sigma_min": 0.16388878669663828,
+            "q_rad": [
+              0.300080007906892,
+              -1.2003786766275963,
+              1.1002978770501743,
+              -1.0998713212297702,
+              1.000028993270683,
+              0.1999113824367096
+            ],
+            "mode": "regular"
+          },
+          {
+            "node_index": 2,
+            "time_s": 0.04,
+            "target_T_base_tool": [
+              [
+                0.6039222200393775,
+                0.7860997836547774,
+                -0.13162477836874814,
+                -0.5816781035816526
+              ],
+              [
+                -0.6764384868743332,
+                0.4181593108863413,
+                -0.6062786192784821,
+                -0.34109117307915093
+              ],
+              [
+                -0.42155536483108885,
+                0.4551811956319949,
+                0.7842838475482937,
+                0.5552638684077968
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "code": 0,
+            "state_advanced": true,
+            "input_state_unchanged": true,
+            "position_error_m": 2.2887833992611187e-16,
+            "orientation_error_rad": 2.595780312703659e-16,
+            "sigma_min": 0.16408045022810874,
+            "q_rad": [
+              0.30054214881467034,
+              -1.2025602200533996,
+              1.1020097632262553,
+              -1.0991251818490237,
+              1.0001965337817769,
+              0.19939957508641767
+            ],
+            "mode": "regular"
+          },
+          {
+            "node_index": 3,
+            "time_s": 0.06,
+            "target_T_base_tool": [
+              [
+                0.6039222200393775,
+                0.7860997836547774,
+                -0.13162477836874817,
+                -0.5795749035816526
+              ],
+              [
+                -0.6764384868743332,
+                0.4181593108863413,
+                -0.6062786192784823,
+                -0.34109117307915093
+              ],
+              [
+                -0.4215553648310889,
+                0.455181195631995,
+                0.7842838475482936,
+                0.5563154684077969
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "code": 0,
+            "state_advanced": true,
+            "input_state_unchanged": true,
+            "position_error_m": 1.5700924586837752e-16,
+            "orientation_error_rad": 7.302882273812347e-17,
+            "sigma_min": 0.1644835808013292,
+            "q_rad": [
+              0.3015312189012571,
+              -1.2071963685162963,
+              1.1056241517352539,
+              -1.0975121395884155,
+              1.0005555025200588,
+              0.19830457927285514
+            ],
+            "mode": "regular"
+          },
+          {
+            "node_index": 4,
+            "time_s": 0.08,
+            "target_T_base_tool": [
+              [
+                0.6039222200393775,
+                0.7860997836547774,
+                -0.13162477836874809,
+                -0.5764877035816526
+              ],
+              [
+                -0.6764384868743332,
+                0.4181593108863414,
+                -0.6062786192784823,
+                -0.34109117307915093
+              ],
+              [
+                -0.4215553648310888,
+                0.455181195631995,
+                0.7842838475482937,
+                0.5578590684077969
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "code": 0,
+            "state_advanced": true,
+            "input_state_unchanged": true,
+            "position_error_m": 2.482534153247273e-16,
+            "orientation_error_rad": 2.2469575553725604e-16,
+            "sigma_min": 0.16506261475031364,
+            "q_rad": [
+              0.3029942049721096,
+              -1.213973216805237,
+              1.1108493696777293,
+              -1.0950870185583321,
+              1.001087470579025,
+              0.19668583774690906
+            ],
+            "mode": "regular"
+          },
+          {
+            "node_index": 5,
+            "time_s": 0.1,
+            "target_T_base_tool": [
+              [
+                0.6039222200393775,
+                0.7860997836547773,
+                -0.13162477836874809,
+                -0.5728365035816526
+              ],
+              [
+                -0.6764384868743331,
+                0.4181593108863414,
+                -0.6062786192784821,
+                -0.34109117307915093
+              ],
+              [
+                -0.4215553648310888,
+                0.4551811956319949,
+                0.7842838475482937,
+                0.5596846684077968
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "code": 0,
+            "state_advanced": true,
+            "input_state_unchanged": true,
+            "position_error_m": 3.1401849173675503e-16,
+            "orientation_error_rad": 2.691692231822825e-16,
+            "sigma_min": 0.1657281866393036,
+            "q_rad": [
+              0.30474182787420667,
+              -1.2219448822685308,
+              1.1169071252556666,
+              -1.0921314045358246,
+              1.0017244964515009,
+              0.19475360297722955
+            ],
+            "mode": "regular"
+          },
+          {
+            "node_index": 6,
+            "time_s": 0.12,
+            "target_T_base_tool": [
+              [
+                0.6039222200393775,
+                0.7860997836547774,
+                -0.13162477836874817,
+                -0.5691853035816526
+              ],
+              [
+                -0.6764384868743332,
+                0.4181593108863413,
+                -0.6062786192784823,
+                -0.34109117307915093
+              ],
+              [
+                -0.4215553648310889,
+                0.455181195631995,
+                0.7842838475482936,
+                0.5615102684077968
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "code": 0,
+            "state_advanced": true,
+            "input_state_unchanged": true,
+            "position_error_m": 4.041272810440265e-16,
+            "orientation_error_rad": 1.9795035669375687e-16,
+            "sigma_min": 0.16637322546568642,
+            "q_rad": [
+              0.3065085424163348,
+              -1.2298700349283527,
+              1.122833916942065,
+              -1.0890818776885247,
+              1.002370202625339,
+              0.19280186186996537
+            ],
+            "mode": "regular"
+          },
+          {
+            "node_index": 7,
+            "time_s": 0.14,
+            "target_T_base_tool": [
+              [
+                0.6039222200393775,
+                0.7860997836547773,
+                -0.13162477836874809,
+                -0.5660981035816526
+              ],
+              [
+                -0.6764384868743331,
+                0.4181593108863414,
+                -0.6062786192784821,
+                -0.34109117307915093
+              ],
+              [
+                -0.4215553648310888,
+                0.4551811956319949,
+                0.7842838475482937,
+                0.5630538684077968
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "code": 0,
+            "state_advanced": true,
+            "input_state_unchanged": true,
+            "position_error_m": 2.2887833992611187e-16,
+            "orientation_error_rad": 2.8969145798520785e-16,
+            "sigma_min": 0.16690284942397499,
+            "q_rad": [
+              0.3080174663759675,
+              -1.236534945698117,
+              1.1277439914523595,
+              -1.086430785136372,
+              1.0029230577192012,
+              0.19113618542432098
+            ],
+            "mode": "regular"
+          },
+          {
+            "node_index": 8,
+            "time_s": 0.16,
+            "target_T_base_tool": [
+              [
+                0.6039222200393775,
+                0.7860997836547773,
+                -0.13162477836874809,
+                -0.5639949035816526
+              ],
+              [
+                -0.6764384868743331,
+                0.4181593108863414,
+                -0.6062786192784821,
+                -0.34109117307915093
+              ],
+              [
+                -0.4215553648310888,
+                0.4551811956319949,
+                0.7842838475482937,
+                0.5641054684077969
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "code": 0,
+            "state_advanced": true,
+            "input_state_unchanged": true,
+            "position_error_m": 2.7194799110210365e-16,
+            "orientation_error_rad": 2.185360304178559e-16,
+            "sigma_min": 0.16725549133621362,
+            "q_rad": [
+              0.3090534724636662,
+              -1.2410566961699327,
+              1.131036358639883,
+              -1.0845868607805569,
+              1.0033033683100758,
+              0.18999323609089802
+            ],
+            "mode": "regular"
+          },
+          {
+            "node_index": 9,
+            "time_s": 0.18,
+            "target_T_base_tool": [
+              [
+                0.6039222200393775,
+                0.7860997836547773,
+                -0.13162477836874809,
+                -0.5630077035816526
+              ],
+              [
+                -0.6764384868743331,
+                0.4181593108863414,
+                -0.6062786192784821,
+                -0.34109117307915093
+              ],
+              [
+                -0.4215553648310888,
+                0.4551811956319949,
+                0.7842838475482937,
+                0.5645990684077968
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "code": 0,
+            "state_advanced": true,
+            "input_state_unchanged": true,
+            "position_error_m": 1.9229626863835638e-16,
+            "orientation_error_rad": 6.319423954122223e-16,
+            "sigma_min": 0.1674187508093992,
+            "q_rad": [
+              0.3095420165855377,
+              -1.243173873946228,
+              1.1325670824417506,
+              -1.0837108414293333,
+              1.003482914834813,
+              0.18945445365705166
+            ],
+            "mode": "regular"
+          },
+          {
+            "node_index": 10,
+            "time_s": 0.2,
+            "target_T_base_tool": [
+              [
+                0.6039222200393775,
+                0.7860997836547773,
+                -0.13162477836874809,
+                -0.5628365035816526
+              ],
+              [
+                -0.6764384868743331,
+                0.4181593108863414,
+                -0.6062786192784821,
+                -0.34109117307915093
+              ],
+              [
+                -0.4215553648310888,
+                0.4551811956319949,
+                0.7842838475482937,
+                0.5646846684077969
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "code": 0,
+            "state_advanced": true,
+            "input_state_unchanged": true,
+            "position_error_m": 3.3306690738754696e-16,
+            "orientation_error_rad": 6.870742335241646e-16,
+            "sigma_min": 0.167446916744965,
+            "q_rad": [
+              0.30962688761548907,
+              -1.2435406942819274,
+              1.13283159070625,
+              -1.083558240456087,
+              1.0035141194892638,
+              0.18936086768089241
+            ],
+            "mode": "regular"
+          }
+        ],
+        "last_ik_candidate_state": {
+          "q_rad": [
+            0.30962688761548907,
+            -1.2435406942819274,
+            1.13283159070625,
+            -1.083558240456087,
+            1.0035141194892638,
+            0.18936086768089241
+          ],
+          "step_index": 10
+        },
+        "retained_input_q_rad": [
+          0.3,
+          -1.2,
+          1.1,
+          -1.1,
+          1.0,
+          0.2
+        ],
+        "stop_segment": true,
+        "replan_required": true,
+        "failure_log": [
+          {
+            "stage": "rejected",
+            "code": 3002,
+            "message": "Continuous polynomial joint rates exceeded"
+          }
+        ]
+      }
+    },
+    {
+      "id": "apf-waypoints",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "message": "APF goal reached",
+      "details": {
+        "scene": {
+          "scene_id": "ur5-static-apf-v1",
+          "revision": "2026-10-11",
+          "model_profile_sha256": "4e0f64a2985ccd5d902889f652a7afb388f365dbafa2d0026e4ab850283295f7",
+          "scene_sha256": "2fc1d630bcf03143d72704d02a5d73d833e0a82bf6c1abea01b70a250dbb66da",
+          "geometry_sha256": {
+            "models/ur5/ur5.urdf": "5314d4a6212361fb3e8b45ab79bb5c8ab80f2c1dff93816764ba220f79a4f188",
+            "models/ur5/meshes/base.stl": "1b9d4941ffba8e771ca119ab1c34d2ce7e393273955e14c6f6b56b75875923af",
+            "models/ur5/meshes/forearm.stl": "8e79aa80a532494ba5320c30b40363ff63d228e3d59e2904703dca341dcba2ac",
+            "models/ur5/meshes/shoulder.stl": "1d62e23a8c3ff9e6334fb157c805e6202037bcfca65bc6a36c5c9ae866751b3b",
+            "models/ur5/meshes/upperarm.stl": "55c11ac0ad1e144f230849b2033532e8b140b2e818ea497296d08dfb88757440",
+            "models/ur5/meshes/wrist1.stl": "0a1fd12150140efdee91650dcb4c2d0443065551a9207a2d2dbde58ff1fb4eb7",
+            "models/ur5/meshes/wrist2.stl": "c1d9f7843366068cb331f3f5c43fa716d3eceeb8c80216eccbbc878905dab123",
+            "models/ur5/meshes/wrist3.stl": "cf7220397b56f1d3047be9465eea1181d471b40fc82728052e31c97588585b4b"
+          },
+          "checker": "PyBullet 3.2.7 DIRECT closestPoints, URDF collision meshes",
+          "clearance_m": 0.003,
+          "query_distance_m": 0.25,
+          "excluded_near_assembly_pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ]
+          ],
+          "checked_self_pairs": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              6
+            ]
+          ],
+          "calls": 679,
+          "motion_radius_bound_m": 1.7314230517675708,
+          "motion_bound_source": "sum URDF joint translations + max scaled binary-STL vertex/collision offset + 0.01m padding"
+        }
+      }
+    },
+    {
+      "id": "apf-repulsion-active",
+      "passed": true,
+      "details": {
+        "maximum_repulsion": 0.00013575237126475526
+      }
+    },
+    {
+      "id": "apf-success",
+      "passed": true,
+      "expected_code": 0,
+      "actual_code": 0,
+      "message": "OK",
+      "fixed_period_passed": true,
+      "node_count": 251,
+      "validation_node_count": 501,
+      "endpoint_speed_max_rad_s": 5.29395592033949e-21,
+      "endpoint_acceleration_max_rad_s2": 1.852884572118861e-18,
+      "maximum_join_jumps": [
+        0.0,
+        2.168404344971009e-19,
+        6.245004513516506e-17
+      ],
+      "minimum_distance_lower_bound_m": 0.00958975542848415,
+      "tcp_sampled_peaks": [
+        0.018252696573561215,
+        0.026761981176898843,
+        0.05619982571305401,
+        0.08230298298139674
+      ],
+      "maximum_position_error_m": null,
+      "maximum_orientation_error_rad": null,
+      "certified_minimum_distance_lower_bound_m": 0.00832381916085632,
+      "collision_motion_bound_m": 0.0012796334752977134,
+      "tcp_continuous_bounds": [
+        0.06445473946935243,
+        0.07401749782787381,
+        0.20962921525132902,
+        0.2352521742069617
+      ]
+    },
+    {
+      "id": "blocked-upperarm-failure",
+      "passed": true,
+      "expected_code": 3003,
+      "actual_code": 3003,
+      "message": "Initial configuration collides",
+      "details": {
+        "ik_nodes": [],
+        "last_ik_candidate_state": {
+          "q_rad": [
+            0.3,
+            -1.2,
+            1.1,
+            -1.1,
+            1.0,
+            0.2
+          ],
+          "step_index": 0
+        },
+        "retained_input_q_rad": [
+          0.3,
+          -1.2,
+          1.1,
+          -1.1,
+          1.0,
+          0.2
+        ],
+        "stop_segment": true,
+        "replan_required": true,
+        "failure_log": [
+          {
+            "message": "Initial configuration collides"
+          }
+        ]
+      }
+    },
+    {
+      "id": "upperarm-blocker-not-tcp",
+      "passed": true,
+      "details": {
+        "blocker_world_m": [
+          0.03275625648820424,
+          0.1541119910888223,
+          0.2873632019113335
+        ]
+      }
+    },
+    {
+      "id": "blocked-line-failure",
+      "passed": true,
+      "expected_code": 3003,
+      "actual_code": 3003,
+      "message": "Initial configuration collides",
+      "details": {
+        "ik_nodes": [],
+        "last_ik_candidate_state": {
+          "q_rad": [
+            0.3,
+            -1.2,
+            1.1,
+            -1.1,
+            1.0,
+            0.2
+          ],
+          "step_index": 0
+        },
+        "retained_input_q_rad": [
+          0.3,
+          -1.2,
+          1.1,
+          -1.1,
+          1.0,
+          0.2
+        ],
+        "stop_segment": true,
+        "replan_required": true,
+        "failure_log": [
+          {
+            "message": "Initial configuration collides"
+          }
+        ]
+      }
+    },
+    {
+      "id": "blocked-apf-failure",
+      "passed": true,
+      "expected_code": 3003,
+      "actual_code": 3003,
+      "message": "APF start/goal blocked",
+      "details": {
+        "iterations": [],
+        "last_valid_q_rad": [
+          0.3,
+          -1.2,
+          1.1,
+          -1.1,
+          1.0,
+          0.2
+        ],
+        "stop_segment": true,
+        "replan_required": true
+      }
+    },
+    {
+      "id": "apf-budget-failure",
+      "passed": true,
+      "expected_code": 3001,
+      "actual_code": 3001,
+      "message": "APF iteration budget exhausted",
+      "details": {
+        "iterations": [
+          {
+            "iteration": 0,
+            "q_rad": [
+              0.3,
+              -1.2,
+              1.1,
+              -1.1,
+              1.0,
+              0.2
+            ],
+            "potential": 0.0034357523712647583,
+            "repulsion": 0.00013575237126475526,
+            "goal_error_rad": 0.06,
+            "minimum_distance_lower_bound_m": 0.00958975542848415
+          }
+        ],
+        "last_valid_q_rad": [
+          0.3147538308347021,
+          -1.1925659096616394,
+          1.090160961078987,
+          -1.0950804805394936,
+          1.0024597597302534,
+          0.2
+        ],
+        "stop_segment": true,
+        "replan_required": true
+      }
+    },
+    {
+      "id": "missing-limits-failure",
+      "passed": true,
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "message": "Planning configuration/model unavailable",
+      "details": {
+        "ik_nodes": [],
+        "last_ik_candidate_state": null,
+        "retained_input_q_rad": [
+          0.3,
+          -1.2,
+          1.1,
+          -1.1,
+          1.0,
+          0.2
+        ],
+        "stop_segment": true,
+        "replan_required": true,
+        "failure_log": [
+          {
+            "message": "Planning configuration/model unavailable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "missing-apf-limits-failure",
+      "passed": true,
+      "expected_code": 1004,
+      "actual_code": 1004,
+      "message": "Planning configuration/model unavailable",
+      "details": {
+        "iterations": [],
+        "last_valid_q_rad": null,
+        "stop_segment": true,
+        "replan_required": true
+      }
+    },
+    {
+      "id": "seed-not-mutated",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "id": "line-success-path-error",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "id": "arc-success-path-error",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "id": "apf-success-endpoint-fk-goal",
+      "passed": true,
+      "details": {
+        "position_error_m": 0.0,
+        "orientation_error_rad": 0.0,
+        "path_error_status": "not_applicable; APF has no prescribed Cartesian path"
+      }
+    }
+  ]
+}
