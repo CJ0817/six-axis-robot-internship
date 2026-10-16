@@ -35,12 +35,13 @@ int robot_pid_reset(const robot_pid_config *c, robot_pid_state *s) {
     return ROBOT_OK;
 }
 
-int robot_pid_step(robot_pid_state *s, double reference,
-                   double actual, robot_pid_result *r) {
+/* Shared recurrence: feedforward affects saturation, never the PID accumulator. */
+static int step_total(robot_pid_state *s, double reference,
+                   double actual, double feedforward, robot_pid_result *r) {
     robot_pid_state next;
     robot_pid_result out = {0};
     const robot_pid_config *c;
-    double e, increment, tentative, di, dp, dd, raw;
+    double e, increment, tentative, di, dp, dd, raw, total;
     if (!s || !r || !isfinite(reference) || !isfinite(actual))
         return ROBOT_INVALID_ARGUMENT;
     if (s->initialized != PID_READY || validate(&s->config) ||
@@ -62,26 +63,63 @@ int robot_pid_step(robot_pid_state *s, double reference,
     out.integral_limited = out.integral != tentative;
     di = out.integral - s->integral;
     raw = s->raw_output + dp + di + dd;
-    if (!isfinite(raw)) return ROBOT_INVALID_ARGUMENT;
+    total = raw + feedforward;
+    if (!isfinite(raw) || !isfinite(total)) return ROBOT_INVALID_ARGUMENT;
     /* Conditional integration prevents accumulating further into saturation.
      * Retain the raw accumulator so clipping does not erase the P/D terms. */
-    if ((raw > c->output_max && di > 0.0) ||
-        (raw < c->output_min && di < 0.0)) {
+    if ((total > c->output_max && di > 0.0) ||
+        (total < c->output_min && di < 0.0)) {
         out.integral = s->integral;
         out.integral_limited = 1;
         raw = s->raw_output + dp + dd;
     }
-    if (!isfinite(raw)) return ROBOT_INVALID_ARGUMENT;
+    total = raw + feedforward;
+    if (!isfinite(raw) || !isfinite(total)) return ROBOT_INVALID_ARGUMENT;
     out.error = e;
     out.raw_output = raw;
-    out.output = clamp(raw, c->output_min, c->output_max);
-    out.output_limited = out.output != raw;
+    out.output = clamp(total, c->output_min, c->output_max);
+    out.output_limited = out.output != total;
     next = *s;
     next.error_2 = s->error_1;
     next.error_1 = e;
     next.integral = out.integral;
     next.raw_output = raw;
     next.output = out.output;
+    *s = next;
+    *r = out;
+    return ROBOT_OK;
+}
+
+int robot_pid_step(robot_pid_state *s, double reference,
+                   double actual, robot_pid_result *r) {
+    return step_total(s, reference, actual, 0.0, r);
+}
+
+int robot_pid_step_ff(robot_pid_state *s, double reference, double actual,
+    double reference_velocity, double reference_acceleration,
+    double kv, double ka, robot_pid_ff_result *r) {
+    robot_pid_state next;
+    robot_pid_result feedback;
+    robot_pid_ff_result out = {0};
+    double vf, af, ff;
+    int code;
+    if (!s || !r || !isfinite(reference_velocity) ||
+        !isfinite(reference_acceleration) || !isfinite(kv) || !isfinite(ka) ||
+        kv < 0.0 || ka < 0.0) return ROBOT_INVALID_ARGUMENT;
+    vf = kv * reference_velocity;
+    af = ka * reference_acceleration;
+    ff = vf + af;
+    if (!isfinite(vf) || !isfinite(af) || !isfinite(ff))
+        return ROBOT_INVALID_ARGUMENT;
+    next = *s;
+    code = step_total(&next, reference, actual, ff, &feedback);
+    if (code) return code;
+    out.error = feedback.error; out.integral = feedback.integral;
+    out.feedback_raw = feedback.raw_output;
+    out.velocity_feedforward = vf; out.acceleration_feedforward = af;
+    out.total_raw = feedback.raw_output + ff; out.output = feedback.output;
+    out.integral_limited = feedback.integral_limited;
+    out.output_limited = feedback.output_limited;
     *s = next;
     *r = out;
     return ROBOT_OK;

@@ -17,8 +17,25 @@ slprj/
 
 # Build and temporary outputs
 build/
+results/pid-feedforward-*/*-r*.csv
+results/pid-feedforward-*/*-comparison.svg
+results/control-stress-*/*-r*.csv
+results/control-stress-*/*-recovery.svg
+results/six-axis-integration/*.csv
+results/six-axis-integration/*-events.json
+results/six-axis-cycle-fix/*.csv
+results/six-axis-cycle-fix/*-events.json
 *.log
 *.tmp
+
+# Local credentials
+results/fixed-transfer/*-control.csv
+results/fixed-transfer/*-planning.json
+results/fixed-transfer/*-events.json
+results/fixed-transfer/object-feedback.csv
+results/fixed-transfer/global-commands.csv
+results/fixed-transfer/zero-targets.csv
+results/fixed-transfer/report.json
 
 # Local credentials
 .env

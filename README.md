@@ -111,3 +111,8 @@ Robotics Toolbox 使用独立、版本及哈希锁定的环境；未实现的算
 子目标引导、轨迹平滑、缩时后整臂/自碰撞及关节/TCP限值重验：[实现与同场景对照](docs/guided-apf-comparison.md)，统一入口 `scripts/run_tests.py --suite guided_apf`。
 
 单关节增量PID、积分/输出限幅、复位及阶跃/正弦/定点基线：[算法与试验](docs/single-joint-pid.md)，统一入口 `scripts/run_tests.py --suite single_joint_pid`。PyBullet J1力矩基线独立记录，完整前馈/扰动/状态机/周期验收仍待完成。
+
+
+## 固定搬运场景与独立 C 接口
+
+运行 `python examples/fixed_transfer_demo.py` 完成任务原点、理想抓取、携物避障中间点、放置及返回，保存逐拍日志与实际物理状态视频。独立 C 构建入口为 `cmake -S core -B build-core`，不依赖 Python 或 C++。完整步骤、接口例程与仿真边界见 [固定搬运协议](docs/fixed-transfer.md)，未关闭限制与修复证据见 [集成问题表](docs/integration-issues.md)。

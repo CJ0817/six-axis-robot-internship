@@ -35,6 +35,21 @@ ROBOT_CONTROL_API int robot_pid_reset(const robot_pid_config *c, robot_pid_state
  * s and r must point to separate caller-owned objects. */
 ROBOT_CONTROL_API int robot_pid_step(robot_pid_state *s, double reference,
                                     double actual, robot_pid_result *r);
+/* Additive feedforward ABI: original config/state/result layouts stay frozen. */
+typedef struct {
+    double error, integral, feedback_raw, velocity_feedforward;
+    double acceleration_feedforward, total_raw, output;
+    uint32_t integral_limited, output_limited;
+} robot_pid_ff_result;
+/* Step PID plus kv*reference_velocity + ka*reference_acceleration.
+ * Positions rad, rates rad/s and rad/s^2. Torque output requires kv in
+ * N m s/rad and ka in N m s^2/rad. Gains must be finite and nonnegative.
+ * ONE final output clamp; conditional integration sees the combined torque.
+ * raw_output in state contains feedback only, so feedforward never accumulates.
+ * Error 1001/4001 leaves BOTH state and result unchanged. No allocation or I/O. */
+ROBOT_CONTROL_API int robot_pid_step_ff(robot_pid_state *s, double reference,
+    double actual, double reference_velocity, double reference_acceleration,
+    double kv, double ka, robot_pid_ff_result *r);
 #ifdef __cplusplus
 }
 #endif

@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "base_config": "config/pid-feedforward.v1.json",
+  "description": "UR5 dynamic saturation/release plus separately labelled low-damping oscillation diagnostic",
+  "duration_s": 24.0,
+  "output_limit_nm": 1.2,
+  "minimum_clipped_interval_s": 0.1,
+  "recovery_band_rad": 0.004,
+  "recovery_dwell_s": 0.5,
+  "oscillation": {"window_s": 4.0, "minimum_peak_to_peak_rad": 0.01, "hysteresis_rad": 0.0025, "minimum_full_cycles": 2, "consecutive_windows": 2},
+  "profiles": [
+    {"id": "positive_saturation", "target_rad": 0.3, "move_duration_s": 0.25, "pulse_nm": 0.0, "pulse_start_s": 2.0, "pulse_end_s": 2.5, "diagnostic_only": false},
+    {"id": "negative_saturation", "target_rad": -0.3, "move_duration_s": 0.25, "pulse_nm": 0.0, "pulse_start_s": 2.0, "pulse_end_s": 2.5, "diagnostic_only": false},
+    {"id": "overload_pulse", "target_rad": 0.2, "move_duration_s": 0.25, "pulse_nm": 2.0, "pulse_start_s": 2.0, "pulse_end_s": 2.5, "diagnostic_only": false},
+    {"id": "low_damping_diagnostic", "target_rad": 0.3, "move_duration_s": 0.25, "pulse_nm": 0.0, "pulse_start_s": 2.0, "pulse_end_s": 2.5, "diagnostic_only": true, "pid_override": {"ki": 0.0, "kd": 0.0}}
+  ]
+}

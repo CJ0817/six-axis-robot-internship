@@ -1,5 +1,6 @@
 """Explicit ctypes binding for the independent C single-joint PID library."""
 import ctypes as C
+import math
 from pathlib import Path
 
 
@@ -61,3 +62,32 @@ class PID:
             code = 1001
         return {'code': code, 'data': None if code else {
             n: getattr(sample, n) for n, _ in Sample._fields_}}
+
+
+class FeedforwardSample(C.Structure):
+    """Additive result layout; torque components and total saturation flags."""
+    _fields_ = [(n,C.c_double) for n in ('error','integral','feedback_raw',
+        'velocity_feedforward','acceleration_feedforward','total_raw','output')] + [
+        ('integral_limited',C.c_uint32),('output_limited',C.c_uint32)]
+
+
+class FeedforwardPID(PID):
+    """Same PID/reset, plus explicit velocity and acceleration feedforward gains."""
+    def __init__(self,library,config,kv,ka):
+        """Load C library; kv/ka finite >=0, using the plant's output units."""
+        if any(type(v) not in (int,float) or not math.isfinite(v) or v<0 for v in (kv,ka)):
+            raise ValueError('Finite nonnegative feedforward gains required')
+        super().__init__(library,config)
+        self.kv,self.ka=kv,ka
+        self.lib.robot_pid_step_ff.argtypes=[C.POINTER(State)]+[C.c_double]*6+[C.POINTER(FeedforwardSample)]
+        self.lib.robot_pid_step_ff.restype=C.c_int
+
+    def step(self,reference_rad,actual_rad,reference_velocity_rad_s,reference_acceleration_rad_s2):
+        """Return total-clamped output and components; invalid input never advances."""
+        values=(reference_rad,actual_rad,reference_velocity_rad_s,reference_acceleration_rad_s2)
+        if any(type(v) not in (int,float) for v in values):
+            return {'code':1001,'data':None}
+        sample=FeedforwardSample()
+        try:code=self.lib.robot_pid_step_ff(C.byref(self.state),*values,self.kv,self.ka,C.byref(sample))
+        except (OverflowError,TypeError,ValueError):code=1001
+        return {'code':code,'data':None if code else {n:getattr(sample,n) for n,_ in sample._fields_}}
