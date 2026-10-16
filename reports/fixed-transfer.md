@@ -33,3 +33,5 @@
 接口与复现命令见 [场景及接口协议](../docs/fixed-transfer.md)，问题状态、负责人和关闭条件见 [集成问题表](../docs/integration-issues.md)。未关闭限制包括真实夹爪、料台接触、硬件停车／实时性及 Windows 冻结 ABI 支持。
 
 源码提交 7e100843cae81e2aa83b9b30af5cab9a02d6ad12；[固定搬运及独立 C Actions 通过](https://github.com/CJ0817/six-axis-robot-internship/actions/runs/38841281447)。
+
+[云端归档工作流通过](https://github.com/CJ0817/six-axis-robot-internship/actions/runs/38844260100)。完整日志包已提交到仓库，SHA256 为 `0c32857a9d32c9b6b3a488ec6f7f0a950e28cdeca192eaba254168a1c2615633`；包含首次失败记录，完整原始文件逐项校验值见清单。
