@@ -88,6 +88,8 @@ class TransferPlant(SixAxisPlant):
         self.task=task;self.out=out;self.global_clock=TickClock(self.dt_s)
         self.origin_tick=0;self.stage='origin';self.feedback=[];self.writes=[];self.constraint=None
         self.attached=False;self.last_command=np.zeros(6);self.frames=0;self.video=None
+        for link in range(-1,p.getNumJoints(self.robot,physicsClientId=self.client)):
+            p.changeVisualShape(self.robot,link,rgbaColor=[.62,.70,.78,1],physicsClientId=self.client)
         self.tool=next(i for i in range(p.getNumJoints(self.robot,physicsClientId=self.client))
                       if p.getJointInfo(self.robot,i,physicsClientId=self.client)[12].decode()=='tool0')
         self.ignored=[i for i in range(p.getNumJoints(self.robot,physicsClientId=self.client))
@@ -177,10 +179,12 @@ class TransferPlant(SixAxisPlant):
         def view(target,distance,yaw,pitch,w,h):
             camera=p.computeViewMatrixFromYawPitchRoll(list(target),distance,yaw,pitch,0,2)
             projection=p.computeProjectionMatrixFOV(48,w/h,.02,4)
-            data=p.getCameraImage(w,h,camera,projection,renderer=p.ER_TINY_RENDERER,physicsClientId=self.client)
+            data=p.getCameraImage(w,h,camera,projection,renderer=p.ER_TINY_RENDERER,
+                lightDirection=[1,-2,4],lightColor=[1,1,1],lightAmbientCoeff=.55,
+                lightDiffuseCoeff=.45,lightSpecularCoeff=.1,physicsClientId=self.client)
             return Image.fromarray(np.array(data[2],dtype=np.uint8).reshape(h,w,4)[:,:,:3])
         image=view([.25,.15,.35],1.55,55,-25,width,height)
-        image.paste(view(self.focus,.32,80,-25,300,230),(width-300,height-230))
+        image.paste(view(self.focus,.32,0,-55,300,230),(width-300,height-230))
         draw=ImageDraw.Draw(image);draw.rectangle((0,0,width,52),fill='white')
         t=self.global_clock.tick*self.dt_s if time_s is None else time_s
         draw.text((10,8),'UR5 SIMULATION | '+self.stage+' | t='+format(t,'.2f')+' s',fill='black')
