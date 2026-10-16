@@ -1,0 +1,42 @@
+name: Fixed transfer and independent C core
+on:
+  push:
+    branches: [main, 'codex/single-joint-pid*']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  transfer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Independent C-only configure build and example
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p results/fixed-transfer
+          cmake -S core -B build-core -DCMAKE_BUILD_TYPE=Release 2>&1 | tee results/fixed-transfer/core-configure.log
+          cmake --build build-core --parallel 2 2>&1 | tee results/fixed-transfer/core-build.log
+          ctest --test-dir build-core --output-on-failure 2>&1 | tee results/fixed-transfer/core-test.log
+          cmake --install build-core --prefix "$PWD/build-core/install" 2>&1 | tee results/fixed-transfer/core-install.log
+          cc -std=c11 -Wall -Wextra -Werror -pedantic -Ibuild-core/install/include examples/core_api_demo.c -Lbuild-core/install/lib -Wl,-rpath,"$PWD/build-core/install/lib" -lrobot_contract -lrobot_planning -lrobot_control -lm -o build-core/external-consumer
+          (cd /tmp && "$GITHUB_WORKSPACE/build-core/external-consumer") | tee results/fixed-transfer/core-api-example.json
+          ldd build-core/install/lib/librobot_contract.so build-core/install/lib/librobot_planning.so build-core/install/lib/librobot_control.so | tee results/fixed-transfer/core-dependencies.log
+          if grep -Ei 'python|pybullet|numpy|stdc\+\+' results/fixed-transfer/core-dependencies.log; then exit 1; fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.9'
+      - name: Install simulation and video dependencies
+        run: python -m pip install numpy==1.26.4 pybullet==3.2.7 Pillow==11.0.0 imageio-ffmpeg==0.6.0
+      - name: Fixed transfer certification feedback and demo
+        run: python examples/fixed_transfer_demo.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fixed-transfer-evidence
+          path: |
+            results/fixed-transfer/
+            !results/fixed-transfer/raw-evidence.zip
+            !results/fixed-transfer/evidence-manifest.json

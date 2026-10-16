@@ -29,6 +29,13 @@ results/six-axis-cycle-fix/*-events.json
 *.tmp
 
 # Local credentials
+results/fixed-transfer/*-control.csv
+results/fixed-transfer/*-planning.json
+results/fixed-transfer/*-events.json
+results/fixed-transfer/object-feedback.csv
+results/fixed-transfer/global-commands.csv
+
+# Local credentials
 .env
 .env.*
 !.env.example
