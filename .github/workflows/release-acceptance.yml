@@ -22,9 +22,11 @@ jobs:
       MKL_NUM_THREADS: '1'
       MPLBACKEND: Agg
       PYTHONHASHSEED: '0'
-      CLEAN_SOURCE: ${{ runner.temp }}/freeze-clean-${{ github.run_id }}-${{ github.run_attempt }}
-      FREEZE_EVIDENCE: ${{ runner.temp }}/freeze-evidence
     steps:
+      - name: Define fresh runner directories
+        run: |
+          echo "CLEAN_SOURCE=$RUNNER_TEMP/freeze-clean-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" >> "$GITHUB_ENV"
+          echo "FREEZE_EVIDENCE=$RUNNER_TEMP/freeze-evidence" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
