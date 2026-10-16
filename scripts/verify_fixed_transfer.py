@@ -211,9 +211,12 @@ def main():
     parser.add_argument('--planning-library',type=Path,default=ROOT/'build-core/librobot_planning.so')
     parser.add_argument('--control-library',type=Path,default=ROOT/'build-core/librobot_control.so')
     parser.add_argument('--output',type=Path,default=ROOT/'results/fixed-transfer')
-    args=parser.parse_args();out=args.output;out.mkdir(parents=True,exist_ok=True)
+    parser.add_argument('--cycles',type=int,default=1,help='Continuous alternate-station cycles on one plant; no resets')
+    args=parser.parse_args()
+    if not 1<=args.cycles<=10: parser.error('--cycles must be between 1 and 10')
+    out=args.output;out.mkdir(parents=True,exist_ok=True)
     report=dict(passed=False,usage='simulation_only',gripper='ideal fixed constraint; virtual static pickup/place nests',
-                stages=[],events=[])
+                stages=[],events=[],cycles=[],cycles_requested=args.cycles)
     plant=scene=None
     try:
         task=json.loads((ROOT/'config/fixed-transfer.v1.json').read_text())
@@ -241,48 +244,72 @@ def main():
                       target_payload_world_m=object_place.tolist(),origin_q_rad=task['task_origin_q_rad'])
         plant.render(key='00-origin')
         report['events'].append(dict(event='origin',global_tick=0,time_s=0))
-        targets=[('pick',np.linalg.inv(world)@pick_world),('avoidance_via',np.linalg.inv(world)@via_world),
-                 ('place',np.linalg.inv(world)@place_world),('return',home)]
-        for index,((name,target),duration) in enumerate(zip(targets,task['segment_durations_s'])):
-            plant.stage=name;plant.origin_tick=plant.global_clock.tick;plant.stopped=False
-            feedback=plant.read();q_start=feedback['q_rad']
-            start=planner.selector._fk(planner.model,q_start)
-            if name=='avoidance_via':
-                direct=planner.plan(start.tolist(),(np.linalg.inv(world)@place_world).tolist(),q_start,scene,
-                                    duration_s=duration,orientation='slerp_shortest')
-                report['direct_route_counterexample']=direct
-                if direct['code']!=3003 or direct['data'] is not None:
-                    raise AssertionError('Straight carried-payload route must collide and return 3003')
-            planned=planner.plan(start.tolist(),target.tolist(),q_start,scene,duration_s=duration,orientation='slerp_shortest')
-            (out/(name+'-planning.json')).write_text(json.dumps(planned,indent=2,allow_nan=False)+'\n')
-            if planned['code']: raise ContractError(planned['code'],name+': '+planned['message'])
-            executor=SixAxisExecutor(args.control_library,config,plant,scene,planner.profile,SegmentClock(plant.global_clock))
-            origin_tick=plant.global_clock.tick
-            result=executor.run(planned)
-            for row in executor.rows:
-                row.update(stage=name,global_tick=origin_tick+row['tick'],global_time_s=(origin_tick+row['tick'])*config['dt_s'])
-            write_trace(out/(name+'-control.csv'),executor.rows)
-            (out/(name+'-events.json')).write_text(json.dumps(executor.events,indent=2,allow_nan=False)+'\n')
-            entry=dict(stage=name,code=result['code'],start_global_tick=origin_tick,end_global_tick=plant.global_clock.tick,
-                control_samples=len(executor.rows),events=executor.events,ik_nodes=len(planned['data']['ik_nodes']),
-                continuous_collision_proof=planned['data']['continuous_collision_proof'],
-                minimum_certified_clearance_m=planned['data']['certified_minimum_distance_lower_bound_m'])
-            report['stages'].append(entry)
-            if result['code']: raise ContractError(result['code'],result['message'])
-            report['events'].append(dict(event=name+'_reached',global_tick=plant.global_clock.tick,
-                                        time_s=plant.global_clock.tick*config['dt_s']))
-            if name=='pick':
-                entry['capture_error_m']=plant.grasp();scene.attached=True
-                report['events'].append(dict(event='grasp_attached',global_tick=plant.global_clock.tick,
-                    mass_kg=task['payload_mass_kg'],capture_error_m=entry['capture_error_m']))
-            if name=='place':
-                pose=plant.release();scene.attached=False;scene.fixed_pose=pose
-                entry['placement_error_m']=float(np.linalg.norm(np.array(pose[0])-object_place))
-                if entry['placement_error_m']>task['placement_tolerance_m']: raise AssertionError('Placement error')
-                report['events'].append(dict(event='payload_released',global_tick=plant.global_clock.tick,
-                    actual_position_m=list(pose[0]),placement_error_m=entry['placement_error_m']))
-            plant.render(key=str(index+1).zfill(2)+'-'+name)
-            print(name,entry['code'],'tick',plant.global_clock.tick,flush=True)
+        previous_cycle_q=None
+        for cycle in range(args.cycles):
+            cycle_start=plant.global_clock.tick
+            initial_q=plant.read()['q_rad']
+            if previous_cycle_q is not None and np.max(abs(np.array(initial_q)-previous_cycle_q))>1e-12:
+                raise AssertionError('Plant joint state reset between cycles')
+            cycle_pick=pick_world if cycle%2==0 else place_world
+            cycle_place=place_world if cycle%2==0 else pick_world
+            object_place=cycle_place[:3,3]+cycle_place[:3,:3]@offset
+            report['target_payload_world_m']=object_place.tolist()
+            targets=[('pick',np.linalg.inv(world)@cycle_pick),('avoidance_via',np.linalg.inv(world)@via_world),
+                     ('place',np.linalg.inv(world)@cycle_place),('return',home)]
+            durations=list(task['segment_durations_s'])
+            if args.cycles>1: durations[0]=max(durations)
+            for index,((name,target),duration) in enumerate(zip(targets,durations)):
+                label=name if args.cycles==1 else 'cycle'+str(cycle+1)+'-'+name
+                plant.stage=label;plant.origin_tick=plant.global_clock.tick;plant.stopped=False
+                feedback=plant.read();q_start=feedback['q_rad']
+                start=planner.selector._fk(planner.model,q_start)
+                if name=='avoidance_via':
+                    direct=planner.plan(start.tolist(),(np.linalg.inv(world)@cycle_place).tolist(),q_start,scene,
+                                        duration_s=duration,orientation='slerp_shortest')
+                    report['direct_route_counterexample']=direct
+                    report.setdefault('direct_route_counterexamples',[]).append(dict(cycle=cycle+1,result=direct))
+                    if direct['code']!=3003 or direct['data'] is not None:
+                        raise AssertionError('Straight carried-payload route must collide and return 3003')
+                planned=planner.plan(start.tolist(),target.tolist(),q_start,scene,duration_s=duration,orientation='slerp_shortest')
+                (out/(label+'-planning.json')).write_text(json.dumps(planned,indent=2,allow_nan=False)+'\n')
+                if planned['code']: raise ContractError(planned['code'],name+': '+planned['message'])
+                executor=SixAxisExecutor(args.control_library,config,plant,scene,planner.profile,SegmentClock(plant.global_clock))
+                origin_tick=plant.global_clock.tick
+                result=executor.run(planned)
+                for row in executor.rows:
+                    row.update(stage=label,cycle=cycle+1,global_tick=origin_tick+row['tick'],global_time_s=(origin_tick+row['tick'])*config['dt_s'])
+                write_trace(out/(label+'-control.csv'),executor.rows)
+                (out/(label+'-events.json')).write_text(json.dumps(executor.events,indent=2,allow_nan=False)+'\n')
+                entry=dict(stage=label,cycle=cycle+1,code=result['code'],start_global_tick=origin_tick,end_global_tick=plant.global_clock.tick,
+                    control_samples=len(executor.rows),events=executor.events,ik_nodes=len(planned['data']['ik_nodes']),
+                    continuous_collision_proof=planned['data']['continuous_collision_proof'],
+                    minimum_certified_clearance_m=planned['data']['certified_minimum_distance_lower_bound_m'])
+                report['stages'].append(entry)
+                if result['code']: raise ContractError(result['code'],result['message'])
+                report['events'].append(dict(event=name+'_reached',global_tick=plant.global_clock.tick,
+                                            time_s=plant.global_clock.tick*config['dt_s']))
+                if name=='pick':
+                    entry['capture_error_m']=plant.grasp();scene.attached=True
+                    report['events'].append(dict(event='grasp_attached',global_tick=plant.global_clock.tick,
+                        mass_kg=task['payload_mass_kg'],capture_error_m=entry['capture_error_m']))
+                if name=='place':
+                    pose=plant.release();scene.attached=False;scene.fixed_pose=pose
+                    entry['placement_error_m']=float(np.linalg.norm(np.array(pose[0])-object_place))
+                    if entry['placement_error_m']>task['placement_tolerance_m']: raise AssertionError('Placement error')
+                    report['events'].append(dict(event='payload_released',global_tick=plant.global_clock.tick,
+                        actual_position_m=list(pose[0]),placement_error_m=entry['placement_error_m']))
+                plant.render(key=str(cycle+1).zfill(2)+'-'+str(index+1).zfill(2)+'-'+name)
+                print(name,entry['code'],'tick',plant.global_clock.tick,flush=True)
+            cycle_q=np.array(plant.read()['q_rad'])
+            cycle_home_error=float(np.max(abs(cycle_q-task['task_origin_q_rad'])))
+            cycle_object=p.getBasePositionAndOrientation(plant.payload,physicsClientId=plant.client)[0]
+            cycle_object_error=float(np.linalg.norm(np.array(cycle_object)-object_place))
+            if cycle_home_error>task['return_tolerance_rad'] or cycle_object_error>task['placement_tolerance_m']:
+                raise AssertionError('Cycle return or placed-object retention failed')
+            report['cycles'].append(dict(cycle=cycle+1,start_tick=cycle_start,end_tick=plant.global_clock.tick,
+                initial_q_rad=initial_q,final_q_rad=cycle_q.tolist(),return_error_rad=cycle_home_error,
+                placement_retention_error_m=cycle_object_error,physics_client=plant.client,robot=plant.robot,payload=plant.payload))
+            previous_cycle_q=cycle_q
         final=plant.read()
         report['return_max_error_rad']=float(np.max(abs(np.array(final['q_rad'])-task['task_origin_q_rad'])))
         if report['return_max_error_rad']>task['return_tolerance_rad']: raise AssertionError('Return error')
@@ -291,7 +318,8 @@ def main():
         if report['actual_payload_retention_error_m']>task['placement_tolerance_m']: raise AssertionError('Payload moved after release')
         ticks=[r['global_tick'] for r in plant.writes]
         if ticks!=list(range(plant.global_clock.tick)): raise AssertionError('Global clock sequence mismatch')
-        report.update(passed=True,global_ticks=plant.global_clock.tick,duration_s=plant.global_clock.tick*config['dt_s'],
+        if len(report['cycles'])!=args.cycles: raise AssertionError('Incomplete continuous cycles')
+        report.update(passed=True,cycles_completed=len(report['cycles']),physical_plant_instances=1,global_ticks=plant.global_clock.tick,duration_s=plant.global_clock.tick*config['dt_s'],
             timing_error_count=0,control_error_count=0,command_jump_count=0,video_frames=plant.frames,
             zero_target_count=len(plant.zero_targets),
             maximum_attachment_error_m=max(r['attachment_error_m'] or 0 for r in plant.feedback),

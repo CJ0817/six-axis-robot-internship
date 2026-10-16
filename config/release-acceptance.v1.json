@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "tag": "v1.0.0-internship",
+  "usage": "simulation_only",
+  "independent_repetitions": 3,
+  "continuous_cycles": 3,
+  "numeric_repeat_tolerance": 1e-9,
+  "required_workflows": [
+    "Environment verification",
+    "Trajectory certification",
+    "Single joint PID",
+    "Six axis integration",
+    "Fixed transfer and independent C core"
+  ],
+  "release_scope": "validated UR5/PyBullet software functionality; explicit legacy performance/hardware exclusions",
+  "exclusions": [
+    {
+      "metric": "KIN-04 / Jacobian part of KIN-05",
+      "reason": "No frozen C Jacobian ABI; numerical selection-layer Jacobian is not that deliverable"
+    },
+    {
+      "metric": "KIN-06 / PLAN-04",
+      "reason": "Legacy formal timing protocols are not replaced by these functional tests; retain raw timing evidence"
+    },
+    {
+      "metric": "CTRL-01 / formal portion of CTRL-02",
+      "reason": "Existing matched PID/FF physical trials and six-axis tracking pass; distinct legacy 20-trajectory/full numerical acceptance is not asserted"
+    },
+    {
+      "metric": "CTRL-03 / CTRL-04 / DATA-01",
+      "reason": "No hardware fault-latching controller, hard wall-clock scheduling or complete generic business-adapter certification"
+    },
+    {
+      "metric": "FK-PERF strict single-call ceiling",
+      "reason": "Shared-runner native/FFI timing remains reported, including outliers; no hard real-time guarantee"
+    },
+    {
+      "metric": "hardware / platform",
+      "reason": "Ideal grasp and virtual nests; frozen C ABI Linux x86_64 only; C ABI DLS unsupported"
+    }
+  ]
+}

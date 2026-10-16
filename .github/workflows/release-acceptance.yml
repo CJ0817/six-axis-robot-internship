@@ -1,0 +1,112 @@
+name: Final freeze acceptance
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/release-acceptance.yml'
+      - 'scripts/verify_release_cycles.py'
+      - 'scripts/finalize_release.py'
+      - 'scripts/verify_fixed_transfer.py'
+      - 'config/release-acceptance.v1.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  clean_acceptance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      MPLBACKEND: Agg
+      PYTHONHASHSEED: '0'
+      CLEAN_SOURCE: ${{ runner.temp }}/freeze-clean-${{ github.run_id }}-${{ github.run_attempt }}
+      FREEZE_EVIDENCE: ${{ runner.temp }}/freeze-evidence
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.9'
+      - name: Extract exact commit into a new directory and verify every source file
+        run: |
+          test ! -e "$CLEAN_SOURCE"
+          mkdir "$CLEAN_SOURCE"
+          git archive "$GITHUB_SHA" | tar -x -C "$CLEAN_SOURCE"
+          python - <<'PY'
+          import hashlib,json,pathlib,subprocess,os
+          clean=pathlib.Path(os.environ['CLEAN_SOURCE'])
+          assert not (clean/'build').exists() and not (clean/'build-core').exists()
+          paths=[p for p in subprocess.check_output(['git','ls-files','-z']).decode().split('\0') if p]
+          for name in paths:
+              assert (clean/name).read_bytes()==pathlib.Path(name).read_bytes(),name
+          out=pathlib.Path(os.environ['FREEZE_EVIDENCE']);out.mkdir(parents=True,exist_ok=False)
+          (out/'clean-source.json').write_text(json.dumps(dict(source_commit=os.environ['GITHUB_SHA'],tracked_files=len(paths),archive_verified=True,build_absent_before_compile=True,output_fresh=True,source_path=str(clean)),indent=2)+'\n')
+          PY
+      - name: Create a fresh pinned virtual environment
+        run: |
+          python -m venv "$RUNNER_TEMP/freeze-venv"
+          "$RUNNER_TEMP/freeze-venv/bin/python" -m pip install pip==24.3.1
+          "$RUNNER_TEMP/freeze-venv/bin/python" -m pip install --only-binary=:all: -r "$CLEAN_SOURCE/requirements/release.lock"
+          "$RUNNER_TEMP/freeze-venv/bin/python" -m pip check
+          echo "$RUNNER_TEMP/freeze-venv/bin" >> "$GITHUB_PATH"
+      - name: Rebuild independent C core and installed interface from scratch
+        run: |
+          set -o pipefail
+          cmake -S "$CLEAN_SOURCE/core" -B "$CLEAN_SOURCE/build-core" -DCMAKE_BUILD_TYPE=Release 2>&1 | tee "$FREEZE_EVIDENCE/core-configure.log"
+          cmake --build "$CLEAN_SOURCE/build-core" --parallel 2 --verbose 2>&1 | tee "$FREEZE_EVIDENCE/core-build.log"
+          ctest --test-dir "$CLEAN_SOURCE/build-core" --output-on-failure 2>&1 | tee "$FREEZE_EVIDENCE/core-ctest.log"
+          cmake --install "$CLEAN_SOURCE/build-core" --prefix "$FREEZE_EVIDENCE/sdk"
+          cc -std=c11 -Wall -Wextra -Werror -pedantic -I"$FREEZE_EVIDENCE/sdk/include" "$CLEAN_SOURCE/examples/core_api_demo.c" -L"$FREEZE_EVIDENCE/sdk/lib" -Wl,-rpath,"$FREEZE_EVIDENCE/sdk/lib" -lrobot_contract -lrobot_planning -lrobot_control -lm -o "$RUNNER_TEMP/freeze-api-example"
+          (cd /tmp && "$RUNNER_TEMP/freeze-api-example") | tee "$FREEZE_EVIDENCE/c-api.json"
+          python -m pip freeze > "$FREEZE_EVIDENCE/installed-packages.txt"
+      - name: Regression of cycle, exception context and C feedforward contracts
+        env:
+          ROBOT_CONTROL_LIBRARY: ${{ env.CLEAN_SOURCE }}/build-core/librobot_control.so
+        run: |
+          cd "$CLEAN_SOURCE"
+          python -m unittest discover -s tests -p test_six_axis.py -v
+          python -m unittest discover -s tests -p test_control_diagnostics.py -v
+          python -m unittest discover -s tests -p test_feedforward.py -v
+      - name: Three independent transfers and three no-reset continuous cycles
+        run: python "$CLEAN_SOURCE/scripts/verify_release_cycles.py" --source-commit "$GITHUB_SHA" --output "$FREEZE_EVIDENCE/dynamics"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: freeze-clean-acceptance
+          path: ${{ env.FREEZE_EVIDENCE }}
+  freeze:
+    needs: clean_acceptance
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: freeze-clean-acceptance
+          path: build/release-acceptance-evidence
+      - name: Require all current-commit workflows, package evidence and freeze tested source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/finalize_release.py --commit "$GITHUB_SHA" --evidence build/release-acceptance-evidence --output build/final-delivery
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: final-delivery
+          path: |
+            build/final-delivery/*.zip
+            build/final-delivery/*.tar.gz
+            build/final-delivery/*.json
+            build/final-delivery/*.md
+            build/final-delivery/*.mp4
+            build/final-delivery/SHA256SUMS

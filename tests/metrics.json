@@ -180,7 +180,7 @@
       "unit": "ms; s",
       "stage": "第3周",
       "availability": "pending",
-      "pending_reason": "规划器未实现",
+      "pending_reason": "规划器已实现；此历史条目要求的专门耗时重复协议未单独验收",
       "basis": "engineering-contract.md §9"
     },
     {
@@ -216,7 +216,7 @@
       "unit": "rad; %; s",
       "stage": "第4周",
       "availability": "pending",
-      "pending_reason": "单关节增量PID及三类基线已接入；前馈开关及扰动恢复和正式性能验收仍未完成",
+      "pending_reason": "PID／前馈／扰动及饱和／振荡物理仿真已验；本历史条目的统一正式数值性能协议不作已通过声明",
       "basis": "任务书第4阶段；待定项不自动合格"
     },
     {
