@@ -1,0 +1,202 @@
+{
+  "passed": true,
+  "usage": "simulation_only",
+  "gripper": "ideal fixed constraint; virtual static pickup/place nests",
+  "stages": [
+    {
+      "stage": "pick",
+      "code": 0,
+      "start_global_tick": 0,
+      "end_global_tick": 225,
+      "control_samples": 226,
+      "events": [],
+      "ik_nodes": 200,
+      "continuous_collision_proof": true,
+      "minimum_certified_clearance_m": 0.009157384844605328,
+      "capture_error_m": 2.9302136365263565e-05
+    },
+    {
+      "stage": "avoidance_via",
+      "code": 0,
+      "start_global_tick": 225,
+      "end_global_tick": 1050,
+      "control_samples": 826,
+      "events": [],
+      "ik_nodes": 800,
+      "continuous_collision_proof": true,
+      "minimum_certified_clearance_m": 0.008508863316057862
+    },
+    {
+      "stage": "place",
+      "code": 0,
+      "start_global_tick": 1050,
+      "end_global_tick": 1875,
+      "control_samples": 826,
+      "events": [],
+      "ik_nodes": 800,
+      "continuous_collision_proof": true,
+      "minimum_certified_clearance_m": 0.010560341987269404,
+      "placement_error_m": 1.5197624236076021e-05
+    },
+    {
+      "stage": "return",
+      "code": 0,
+      "start_global_tick": 1875,
+      "end_global_tick": 2700,
+      "control_samples": 826,
+      "events": [],
+      "ik_nodes": 800,
+      "continuous_collision_proof": true,
+      "minimum_certified_clearance_m": 0.008781177652413381
+    }
+  ],
+  "events": [
+    {
+      "event": "origin",
+      "global_tick": 0,
+      "time_s": 0
+    },
+    {
+      "event": "pick_reached",
+      "global_tick": 225,
+      "time_s": 4.5
+    },
+    {
+      "event": "grasp_attached",
+      "global_tick": 225,
+      "mass_kg": 0.03,
+      "capture_error_m": 2.9302136365263565e-05
+    },
+    {
+      "event": "avoidance_via_reached",
+      "global_tick": 1050,
+      "time_s": 21.0
+    },
+    {
+      "event": "place_reached",
+      "global_tick": 1875,
+      "time_s": 37.5
+    },
+    {
+      "event": "payload_released",
+      "global_tick": 1875,
+      "actual_position_m": [
+        0.6860034539246186,
+        0.4017213300044759,
+        0.623098711005945
+      ],
+      "placement_error_m": 1.5197624236076021e-05
+    },
+    {
+      "event": "return_reached",
+      "global_tick": 2700,
+      "time_s": 54.0
+    }
+  ],
+  "parameters": {
+    "version": "1.0.0",
+    "usage": "simulation_only",
+    "execution_config": "six-axis-execution.v1.json",
+    "task_origin_q_rad": [
+      0.3,
+      -1.2,
+      1.1,
+      -1.1,
+      1.0,
+      0.2
+    ],
+    "pick_world_delta_m": [
+      0.01,
+      0,
+      -0.01
+    ],
+    "via_world_delta_from_pick_m": [
+      0.04,
+      0,
+      0.065
+    ],
+    "place_world_delta_from_pick_m": [
+      0.08,
+      0,
+      0
+    ],
+    "segment_durations_s": [
+      4,
+      16,
+      16,
+      16
+    ],
+    "settle_s": 0.5,
+    "payload_mass_kg": 0.03,
+    "payload_half_extents_m": [
+      0.008,
+      0.008,
+      0.008
+    ],
+    "T_tool_payload_translation_m": [
+      0,
+      0,
+      0.1
+    ],
+    "barrier_half_extents_m": [
+      0.006,
+      0.025,
+      0.01
+    ],
+    "grasp_tolerance_m": 0.003,
+    "placement_tolerance_m": 0.003,
+    "attachment_tolerance_m": 0.003,
+    "return_tolerance_rad": 0.001,
+    "video_fps": 10,
+    "video_width": 640,
+    "video_height": 480
+  },
+  "period_s": 0.02,
+  "initial_payload_world_m": [
+    0.6059989814185275,
+    0.4017190350069991,
+    0.6231130531626262
+  ],
+  "target_payload_world_m": [
+    0.6859989814185274,
+    0.4017190350069991,
+    0.6231130531626262
+  ],
+  "origin_q_rad": [
+    0.3,
+    -1.2,
+    1.1,
+    -1.1,
+    1.0,
+    0.2
+  ],
+  "direct_route_counterexample": {
+    "code": 3003,
+    "message": "Collision/clearance failed at t=5.67",
+    "data": null,
+    "complete_record": "raw-evidence.zip/report.json"
+  },
+  "return_max_error_rad": 5.833384603803893e-05,
+  "actual_payload_final_world_m": [
+    0.6860034539246186,
+    0.4017213300044759,
+    0.623098711005945
+  ],
+  "actual_payload_retention_error_m": 1.5197624236076021e-05,
+  "global_ticks": 2700,
+  "duration_s": 54.0,
+  "timing_error_count": 0,
+  "control_error_count": 0,
+  "command_jump_count": 0,
+  "video_frames": 540,
+  "zero_target_count": 4,
+  "maximum_attachment_error_m": 2.9302136365263565e-05,
+  "minimum_actual_payload_clearance_m": 0.011261782229204383,
+  "source_sha256": {
+    "scripts/verify_fixed_transfer.py": "33f6f486a5527941a3a5ddf1fb93ee4698c63a072f42171134fc9725a0f7c040",
+    "config/fixed-transfer.v1.json": "10ca57237569687145a10e1f78c2fca39e7530b87dfe2916951900820ef87401",
+    "src/control/six_axis.py": "b7485b69837267f9666208d1b146f82459761b753d8aa770da6f04bdeaf7915c",
+    "config/cartesian-planning.v1.json": "35c6835f055cc89119f58b604b7139f77884d27898f82464b635ada3707a7ab5",
+    "config/six-axis-execution.v1.json": "8e2e984ab8dc1cb226af74ecbe587c249fc417890891e6f7ab3f098bc5633126"
+  }
+}

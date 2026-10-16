@@ -1,0 +1,48 @@
+{
+  "scene_id": "ur5-fixed-transfer-v1",
+  "revision": "2026-10-11",
+  "T_world_base": [
+    [
+      -1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ]
+  ],
+  "clearance_m": 0.003,
+  "query_distance_m": 0.25,
+  "obstacles": [
+    {
+      "id": "payload-route-barrier",
+      "kind": "box",
+      "position_m": [
+        0.6459989814185274,
+        0.4017190350069991,
+        0.6231130531626262
+      ],
+      "half_extents_m": [
+        0.006,
+        0.025,
+        0.01
+      ]
+    }
+  ]
+}
