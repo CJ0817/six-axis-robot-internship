@@ -240,11 +240,11 @@ def main():
             start=planner.selector._fk(planner.model,q_start)
             if name=='avoidance_via':
                 direct=planner.plan(start.tolist(),(np.linalg.inv(world)@place_world).tolist(),q_start,scene,
-                                    duration_s=duration,orientation='fixed')
+                                    duration_s=duration,orientation='slerp_shortest')
                 report['direct_route_counterexample']=direct
                 if direct['code']!=3003 or direct['data'] is not None:
                     raise AssertionError('Straight carried-payload route must collide and return 3003')
-            planned=planner.plan(start.tolist(),target.tolist(),q_start,scene,duration_s=duration,orientation='fixed')
+            planned=planner.plan(start.tolist(),target.tolist(),q_start,scene,duration_s=duration,orientation='slerp_shortest')
             (out/(name+'-planning.json')).write_text(json.dumps(planned,indent=2,allow_nan=False)+'\n')
             if planned['code']: raise ContractError(planned['code'],name+': '+planned['message'])
             executor=SixAxisExecutor(args.control_library,config,plant,scene,planner.profile,SegmentClock(plant.global_clock))
