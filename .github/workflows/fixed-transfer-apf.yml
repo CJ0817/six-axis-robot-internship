@@ -1,0 +1,40 @@
+name: Fixed transfer APF comparison
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      PYTHONHASHSEED: '0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.9'
+      - name: Build independent C core
+        run: |
+          cmake -S core -B build-core -DCMAKE_BUILD_TYPE=Release
+          cmake --build build-core --parallel 2
+          ctest --test-dir build-core --output-on-failure
+      - name: Install pinned simulation dependencies
+        run: python -m pip install numpy==1.26.4 pybullet==3.2.7 Pillow==11.0.0 imageio-ffmpeg==0.6.0
+      - name: Matched complete business-task trials
+        run: |
+          set -o pipefail
+          python scripts/verify_transfer_apf.py --output "$RUNNER_TEMP/transfer-apf" 2>&1 | tee "$RUNNER_TEMP/transfer-apf-run.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fixed-transfer-apf-evidence
+          path: |
+            ${{ runner.temp }}/transfer-apf/
+            ${{ runner.temp }}/transfer-apf-run.log

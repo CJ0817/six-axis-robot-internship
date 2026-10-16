@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "usage": "simulation_only",
+  "repetitions": 3,
+  "planning_velocity_rad_s": 0.04,
+  "planning_acceleration_rad_s2": 0.4,
+  "maximum_stage_duration_s": 60,
+  "maximum_stage_nodes": 3001,
+  "order": [
+    "traditional",
+    "improved"
+  ],
+  "task_config": "config/fixed-transfer.v1.json",
+  "algorithm_config": "config/guided-apf.v1.json",
+  "scope": "Same prescribed pick/via/place/home task; isolate APF smoothing and timing, not automatic discovery of the business via point"
+}
