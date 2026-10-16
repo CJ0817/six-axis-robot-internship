@@ -87,6 +87,7 @@ class TransferPlant(SixAxisPlant):
         super().__init__(config,profile)
         self.task=task;self.out=out;self.global_clock=TickClock(self.dt_s)
         self.origin_tick=0;self.stage='origin';self.feedback=[];self.writes=[];self.constraint=None
+        self.zero_targets=[]
         self.attached=False;self.last_command=np.zeros(6);self.frames=0;self.video=None
         for link in range(-1,p.getNumJoints(self.robot,physicsClientId=self.client)):
             p.changeVisualShape(self.robot,link,rgbaColor=[.62,.70,.78,1],physicsClientId=self.client)
@@ -150,6 +151,10 @@ class TransferPlant(SixAxisPlant):
     def stop(self):
         super().stop()
         self.last_command=np.zeros(6)
+        if hasattr(self,'zero_targets'):
+            self.zero_targets.append(dict(stage=self.stage,global_tick=self.global_clock.tick,
+                global_time_s=self.global_clock.tick*self.dt_s,command_rad_s=[0.]*6,
+                kind='zero_target_without_physics_advance'))
 
     def grasp(self):
         actual=p.getBasePositionAndOrientation(self.payload,physicsClientId=self.client)
@@ -288,6 +293,7 @@ def main():
         if ticks!=list(range(plant.global_clock.tick)): raise AssertionError('Global clock sequence mismatch')
         report.update(passed=True,global_ticks=plant.global_clock.tick,duration_s=plant.global_clock.tick*config['dt_s'],
             timing_error_count=0,control_error_count=0,command_jump_count=0,video_frames=plant.frames,
+            zero_target_count=len(plant.zero_targets),
             maximum_attachment_error_m=max(r['attachment_error_m'] or 0 for r in plant.feedback),
             minimum_actual_payload_clearance_m=min(r['physical_payload_clearance_m'] for r in plant.feedback))
     except Exception as exc:
@@ -296,6 +302,7 @@ def main():
     finally:
         if plant:
             write_trace(out/'object-feedback.csv',plant.feedback);write_trace(out/'global-commands.csv',plant.writes)
+            write_trace(out/'zero-targets.csv',plant.zero_targets)
             try: plant.close()
             except Exception as exc: report.update(passed=False,video_error=str(exc))
         if scene: scene.close()

@@ -34,6 +34,8 @@ results/fixed-transfer/*-planning.json
 results/fixed-transfer/*-events.json
 results/fixed-transfer/object-feedback.csv
 results/fixed-transfer/global-commands.csv
+results/fixed-transfer/zero-targets.csv
+results/fixed-transfer/report.json
 
 # Local credentials
 .env

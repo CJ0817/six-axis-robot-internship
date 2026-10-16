@@ -38,4 +38,4 @@ python examples/fixed_transfer_demo.py --output results/fixed-transfer
 
 这个入口调用 `scripts/verify_fixed_transfer.py`，库路径可用 `--library`、`--planning-library`、`--control-library` 显式指定。集成顺序可直接参考该脚本的 `main`：加载共享周期→场景和载荷→从反馈构造起点→`CartesianPlanner.plan`→`SixAxisExecutor.run`→抓放状态变化后重新认证下一段。`PayloadScene` 隔离碰撞模型与物理客户端，`SegmentClock` 只映射唯一时钟。
 
-结果目录保存：每段完整规划／IK／认证 JSON、每拍控制 CSV、原始物体反馈和全局指令 CSV、异常 JSON、状态事件与验收指标 `report.json`、纯 C 构建／安装／测试及动态依赖日志、`demo.mp4` 与五个阶段 PNG。视频由实际物理状态采样，10 fps、正常仿真速度，右下角为物体与障碍近景。视频不是轨迹示意动画。所有失败也上传已有证据，不能用最终截图代替完整记录。
+结果目录保存：每段完整规划／IK／认证 JSON、每拍控制 CSV、原始物体反馈和全局区间指令 CSV、异常 JSON、状态事件与验收指标 `report.json`、纯 C 构建／安装／测试及动态依赖日志、`demo.mp4` 与五个阶段 PNG。阶段末的速度目标归零不会推进物理时间，单独记录在 `zero-targets.csv`，不混入全局运动区间计数。视频由实际物理状态采样，10 fps、正常仿真速度，右下角为物体与障碍近景。视频不是轨迹示意动画。所有失败也上传已有证据，不能用最终截图代替完整记录。
