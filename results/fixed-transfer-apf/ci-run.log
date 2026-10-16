@@ -1,0 +1,344 @@
+﻿2026-10-16T07:44:06.1336626Z Current runner version: '2.337.0'
+2026-10-16T07:44:06.1370757Z ##[group]Runner Image Provisioner
+2026-10-16T07:44:06.1372098Z Hosted Compute Agent
+2026-10-16T07:44:06.1373087Z Version: 20261012.601
+2026-10-16T07:44:06.1373980Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-16T07:44:06.1375090Z Build Date: 2026-10-12T17:48:21Z
+2026-10-16T07:44:06.1376182Z Worker ID: {3349ed32-c3a2-4426-8d1d-eee97b2dce6a}
+2026-10-16T07:44:06.1377211Z Region: northcentralus
+2026-10-16T07:44:06.1378002Z Cloud: Azure
+2026-10-16T07:44:06.1378739Z ##[endgroup]
+2026-10-16T07:44:06.1380681Z ##[group]Operating System
+2026-10-16T07:44:06.1381528Z Ubuntu
+2026-10-16T07:44:06.1382209Z 24.04.5
+2026-10-16T07:44:06.1383161Z LTS
+2026-10-16T07:44:06.1383885Z ##[endgroup]
+2026-10-16T07:44:06.1384736Z ##[group]Runner Image
+2026-10-16T07:44:06.1385591Z Image: ubuntu-24.04
+2026-10-16T07:44:06.1386350Z Version: 20261012.334.1
+2026-10-16T07:44:06.1388152Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-16T07:44:06.1390727Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+2026-10-16T07:44:06.1392096Z ##[endgroup]
+2026-10-16T07:44:06.1393684Z ##[group]GITHUB_TOKEN Permissions
+2026-10-16T07:44:06.1396776Z Contents: read
+2026-10-16T07:44:06.1397610Z Metadata: read
+2026-10-16T07:44:06.1398454Z ##[endgroup]
+2026-10-16T07:44:06.1401101Z Secret source: Actions
+2026-10-16T07:44:06.1402476Z Cache mode: write
+2026-10-16T07:44:06.1403852Z Prepare workflow directory
+2026-10-16T07:44:06.1810151Z Prepare all required actions
+2026-10-16T07:44:06.1861145Z Getting action download info
+2026-10-16T07:44:06.4263052Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-16T07:44:06.5396539Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-16T07:44:06.6463474Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-16T07:44:06.8881207Z Complete job name: compare
+2026-10-16T07:44:06.9577158Z ##[group]Run actions/checkout@v4
+2026-10-16T07:44:06.9577958Z with:
+2026-10-16T07:44:06.9578589Z   repository: CJ0817/six-axis-robot-internship
+2026-10-16T07:44:06.9582934Z   token: ***
+2026-10-16T07:44:06.9583491Z   ssh-strict: true
+2026-10-16T07:44:06.9583984Z   ssh-user: git
+2026-10-16T07:44:06.9584473Z   persist-credentials: true
+2026-10-16T07:44:06.9585044Z   clean: true
+2026-10-16T07:44:06.9585574Z   sparse-checkout-cone-mode: true
+2026-10-16T07:44:06.9586158Z   fetch-depth: 1
+2026-10-16T07:44:06.9586662Z   fetch-tags: false
+2026-10-16T07:44:06.9587166Z   show-progress: true
+2026-10-16T07:44:06.9587734Z   lfs: false
+2026-10-16T07:44:06.9588205Z   submodules: false
+2026-10-16T07:44:06.9588714Z   set-safe-directory: true
+2026-10-16T07:44:06.9589283Z   allow-unsafe-pr-checkout: false
+2026-10-16T07:44:06.9590001Z env:
+2026-10-16T07:44:06.9590487Z   OPENBLAS_NUM_THREADS: 1
+2026-10-16T07:44:06.9591059Z   OMP_NUM_THREADS: 1
+2026-10-16T07:44:06.9591537Z   MKL_NUM_THREADS: 1
+2026-10-16T07:44:06.9592165Z   PYTHONHASHSEED: 0
+2026-10-16T07:44:06.9592639Z ##[endgroup]
+2026-10-16T07:44:07.0589529Z Syncing repository: CJ0817/six-axis-robot-internship
+2026-10-16T07:44:07.0591525Z ##[group]Getting Git version info
+2026-10-16T07:44:07.0592452Z Working directory is '/home/runner/work/six-axis-robot-internship/six-axis-robot-internship'
+2026-10-16T07:44:07.0594189Z [command]/usr/bin/git version
+2026-10-16T07:44:07.0671498Z git version 2.55.0
+2026-10-16T07:44:07.0690042Z ##[endgroup]
+2026-10-16T07:44:07.0704533Z Temporarily overriding HOME='/home/runner/work/_temp/6b256b4e-423b-493f-88cb-b42af6c70461' before making global git config changes
+2026-10-16T07:44:07.0706501Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-16T07:44:07.0711835Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/six-axis-robot-internship/six-axis-robot-internship
+2026-10-16T07:44:07.0773235Z Deleting the contents of '/home/runner/work/six-axis-robot-internship/six-axis-robot-internship'
+2026-10-16T07:44:07.0777755Z ##[group]Initializing the repository
+2026-10-16T07:44:07.0783830Z [command]/usr/bin/git init /home/runner/work/six-axis-robot-internship/six-axis-robot-internship
+2026-10-16T07:44:07.0892040Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-16T07:44:07.0893947Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-16T07:44:07.0895282Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-16T07:44:07.0896444Z hint: call:
+2026-10-16T07:44:07.0897200Z hint:
+2026-10-16T07:44:07.0898166Z hint: 	git config --global init.defaultBranch <name>
+2026-10-16T07:44:07.0899111Z hint:
+2026-10-16T07:44:07.0899946Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-16T07:44:07.0901231Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-16T07:44:07.0902433Z hint:
+2026-10-16T07:44:07.0903511Z hint: 	git branch -m <name>
+2026-10-16T07:44:07.0904239Z hint:
+2026-10-16T07:44:07.0905226Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-16T07:44:07.0907028Z Initialized empty Git repository in /home/runner/work/six-axis-robot-internship/six-axis-robot-internship/.git/
+2026-10-16T07:44:07.0909867Z [command]/usr/bin/git remote add origin https://github.com/CJ0817/six-axis-robot-internship
+2026-10-16T07:44:07.0960403Z ##[endgroup]
+2026-10-16T07:44:07.0961655Z ##[group]Disabling automatic garbage collection
+2026-10-16T07:44:07.0964711Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-16T07:44:07.1001743Z ##[endgroup]
+2026-10-16T07:44:07.1003506Z ##[group]Setting up auth
+2026-10-16T07:44:07.1017559Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-16T07:44:07.1049380Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-16T07:44:07.1435030Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-16T07:44:07.1486470Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-16T07:44:07.1706624Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-16T07:44:07.1744819Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-16T07:44:07.1951977Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-16T07:44:07.2008575Z ##[endgroup]
+2026-10-16T07:44:07.2009585Z ##[group]Fetching the repository
+2026-10-16T07:44:07.2021895Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +51f97d7946d4785bc3b40e1f38c1940dcbf7029f:refs/remotes/origin/main
+2026-10-16T07:44:07.9069530Z From https://github.com/CJ0817/six-axis-robot-internship
+2026-10-16T07:44:07.9071735Z  * [new ref]         51f97d7946d4785bc3b40e1f38c1940dcbf7029f -> origin/main
+2026-10-16T07:44:07.9076185Z ##[endgroup]
+2026-10-16T07:44:07.9078209Z ##[group]Determining the checkout info
+2026-10-16T07:44:07.9080374Z ##[endgroup]
+2026-10-16T07:44:07.9085215Z [command]/usr/bin/git sparse-checkout disable
+2026-10-16T07:44:07.9149949Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-16T07:44:07.9183424Z ##[group]Checking out the ref
+2026-10-16T07:44:07.9187660Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-16T07:44:08.0080419Z Switched to a new branch 'main'
+2026-10-16T07:44:08.0083676Z branch 'main' set up to track 'origin/main'.
+2026-10-16T07:44:08.0096357Z ##[endgroup]
+2026-10-16T07:44:08.0137565Z [command]/usr/bin/git log -1 --format=%H
+2026-10-16T07:44:08.0161932Z 51f97d7946d4785bc3b40e1f38c1940dcbf7029f
+2026-10-16T07:44:08.0540164Z ##[group]Run actions/setup-python@v5
+2026-10-16T07:44:08.0541630Z with:
+2026-10-16T07:44:08.0542731Z   python-version: 3.11.9
+2026-10-16T07:44:08.0544121Z   check-latest: false
+2026-10-16T07:44:08.0553853Z   token: ***
+2026-10-16T07:44:08.0554989Z   update-environment: true
+2026-10-16T07:44:08.0556200Z   allow-prereleases: false
+2026-10-16T07:44:08.0557511Z   freethreaded: false
+2026-10-16T07:44:08.0558629Z env:
+2026-10-16T07:44:08.0559672Z   OPENBLAS_NUM_THREADS: 1
+2026-10-16T07:44:08.0560812Z   OMP_NUM_THREADS: 1
+2026-10-16T07:44:08.0561887Z   MKL_NUM_THREADS: 1
+2026-10-16T07:44:08.0563047Z   PYTHONHASHSEED: 0
+2026-10-16T07:44:08.0564094Z ##[endgroup]
+2026-10-16T07:44:08.1900702Z ##[group]Installed versions
+2026-10-16T07:44:08.1923693Z Version 3.11.9 was not found in the local cache
+2026-10-16T07:44:08.2036130Z (node:2291) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-16T07:44:08.2040450Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-16T07:44:08.9613928Z Version 3.11.9 is available for downloading
+2026-10-16T07:44:08.9616346Z Download from "https://github.com/actions/python-versions/releases/download/3.11.9-9947079978/python-3.11.9-linux-24.04-x64.tar.gz"
+2026-10-16T07:44:09.4818036Z Extract downloaded archive
+2026-10-16T07:44:09.4932128Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/3c9f52f7-e6bd-4207-a60e-a29b4b504103 -f /home/runner/work/_temp/5f1d7584-1270-4d8e-ad59-c46875c662da
+2026-10-16T07:44:11.7453672Z Execute installation script
+2026-10-16T07:44:11.7540933Z Check if Python hostedtoolcache folder exist...
+2026-10-16T07:44:11.7541554Z Create Python 3.11.9 folder
+2026-10-16T07:44:11.7551961Z Copy Python binaries to hostedtoolcache folder
+2026-10-16T07:44:12.0430134Z Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+2026-10-16T07:44:12.0469776Z Upgrading pip...
+2026-10-16T07:44:16.1173582Z Looking in links: /tmp/tmpu97jvglf
+2026-10-16T07:44:16.1180350Z Requirement already satisfied: setuptools in /opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/site-packages (65.5.0)
+2026-10-16T07:44:16.1187967Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/site-packages (24.0)
+2026-10-16T07:44:17.2329242Z Collecting pip
+2026-10-16T07:44:17.3240274Z Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+2026-10-16T07:44:17.3334162Z Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+2026-10-16T07:44:17.3801877Z ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 41.2 MB/s eta 0:00:00
+2026-10-16T07:44:17.3802445Z 
+2026-10-16T07:44:17.4221582Z Installing collected packages: pip
+2026-10-16T07:44:17.4222209Z Attempting uninstall: pip
+2026-10-16T07:44:17.4239760Z Found existing installation: pip 24.0
+2026-10-16T07:44:17.4510172Z Uninstalling pip-24.0:
+2026-10-16T07:44:17.4561724Z Successfully uninstalled pip-24.0
+2026-10-16T07:44:18.1738100Z Successfully installed pip-26.2.1
+2026-10-16T07:44:18.2531107Z Create complete file
+2026-10-16T07:44:18.2565238Z Successfully set up CPython (3.11.9)
+2026-10-16T07:44:18.2566095Z ##[endgroup]
+2026-10-16T07:44:18.2715008Z ##[group]Run cmake -S core -B build-core -DCMAKE_BUILD_TYPE=Release
+2026-10-16T07:44:18.2715729Z [36;1mcmake -S core -B build-core -DCMAKE_BUILD_TYPE=Release[0m
+2026-10-16T07:44:18.2716261Z [36;1mcmake --build build-core --parallel 2[0m
+2026-10-16T07:44:18.2716761Z [36;1mctest --test-dir build-core --output-on-failure[0m
+2026-10-16T07:44:18.2911178Z shell: /usr/bin/bash -e {0}
+2026-10-16T07:44:18.2911612Z env:
+2026-10-16T07:44:18.2911924Z   OPENBLAS_NUM_THREADS: 1
+2026-10-16T07:44:18.2912342Z   OMP_NUM_THREADS: 1
+2026-10-16T07:44:18.2912729Z   MKL_NUM_THREADS: 1
+2026-10-16T07:44:18.2913569Z   PYTHONHASHSEED: 0
+2026-10-16T07:44:18.2914221Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:44:18.2914744Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.9/x64/lib/pkgconfig
+2026-10-16T07:44:18.2915287Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:44:18.2916032Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:44:18.2916639Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:44:18.2917102Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.9/x64/lib
+2026-10-16T07:44:18.2917551Z ##[endgroup]
+2026-10-16T07:44:20.5710385Z -- The C compiler identification is GNU 13.3.0
+2026-10-16T07:44:21.1029993Z -- Detecting C compiler ABI info
+2026-10-16T07:44:22.3586326Z -- Detecting C compiler ABI info - done
+2026-10-16T07:44:22.3739006Z -- Check for working C compiler: /usr/bin/cc - skipped
+2026-10-16T07:44:22.4085785Z -- Detecting C compile features
+2026-10-16T07:44:22.4137821Z -- Detecting C compile features - done
+2026-10-16T07:44:22.7985713Z -- Configuring done (3.2s)
+2026-10-16T07:44:22.9708142Z -- Generating done (0.2s)
+2026-10-16T07:44:22.9782254Z -- Build files have been written to: /home/runner/work/six-axis-robot-internship/six-axis-robot-internship/build-core
+2026-10-16T07:44:23.0011640Z [  8%] Building C object CMakeFiles/robot_contract.dir/home/runner/work/six-axis-robot-internship/six-axis-robot-internship/src/common/abi_probe.c.o
+2026-10-16T07:44:23.0013281Z [ 16%] Building C object CMakeFiles/robot_planning.dir/home/runner/work/six-axis-robot-internship/six-axis-robot-internship/src/planning/joint.c.o
+2026-10-16T07:44:23.1006488Z [ 25%] Building C object CMakeFiles/robot_contract.dir/home/runner/work/six-axis-robot-internship/six-axis-robot-internship/src/common/abi_v1.c.o
+2026-10-16T07:44:23.1305169Z [ 33%] Building C object CMakeFiles/robot_contract.dir/home/runner/work/six-axis-robot-internship/six-axis-robot-internship/src/kinematics/forward.c.o
+2026-10-16T07:44:23.1505745Z [ 41%] Building C object CMakeFiles/robot_planning.dir/home/runner/work/six-axis-robot-internship/six-axis-robot-internship/src/planning/cartesian.c.o
+2026-10-16T07:44:23.2148434Z [ 50%] Linking C shared library librobot_planning.so
+2026-10-16T07:44:23.2788538Z [ 50%] Built target robot_planning
+2026-10-16T07:44:23.2865777Z [ 58%] Building C object CMakeFiles/robot_control.dir/home/runner/work/six-axis-robot-internship/six-axis-robot-internship/src/control/pid.c.o
+2026-10-16T07:44:23.2900197Z [ 66%] Building C object CMakeFiles/robot_contract.dir/home/runner/work/six-axis-robot-internship/six-axis-robot-internship/src/kinematics/inverse.c.o
+2026-10-16T07:44:23.4114696Z [ 75%] Linking C shared library librobot_control.so
+2026-10-16T07:44:23.4490558Z [ 75%] Built target robot_control
+2026-10-16T07:44:23.5313070Z [ 83%] Linking C shared library librobot_contract.so
+2026-10-16T07:44:23.5789800Z [ 83%] Built target robot_contract
+2026-10-16T07:44:23.5860938Z [ 91%] Building C object CMakeFiles/core_api_demo.dir/home/runner/work/six-axis-robot-internship/six-axis-robot-internship/examples/core_api_demo.c.o
+2026-10-16T07:44:23.7607425Z [100%] Linking C executable core_api_demo
+2026-10-16T07:44:23.7888804Z [100%] Built target core_api_demo
+2026-10-16T07:44:25.0147724Z Internal ctest changing into directory: /home/runner/work/six-axis-robot-internship/six-axis-robot-internship/build-core
+2026-10-16T07:44:25.0887315Z Test project /home/runner/work/six-axis-robot-internship/six-axis-robot-internship/build-core
+2026-10-16T07:44:25.1982331Z     Start 1: pure_c_interface_example
+2026-10-16T07:44:25.2063938Z 1/1 Test #1: pure_c_interface_example .........   Passed    0.00 sec
+2026-10-16T07:44:25.2137992Z 
+2026-10-16T07:44:25.2138418Z 100% tests passed, 0 tests failed out of 1
+2026-10-16T07:44:25.2138740Z 
+2026-10-16T07:44:25.2138941Z Total Test time (real) =   0.13 sec
+2026-10-16T07:44:25.2586489Z ##[group]Run python -m pip install numpy==1.26.4 pybullet==3.2.7 Pillow==11.0.0 imageio-ffmpeg==0.6.0
+2026-10-16T07:44:25.2587222Z [36;1mpython -m pip install numpy==1.26.4 pybullet==3.2.7 Pillow==11.0.0 imageio-ffmpeg==0.6.0[0m
+2026-10-16T07:44:25.2631710Z shell: /usr/bin/bash -e {0}
+2026-10-16T07:44:25.2632176Z env:
+2026-10-16T07:44:25.2632480Z   OPENBLAS_NUM_THREADS: 1
+2026-10-16T07:44:25.2632994Z   OMP_NUM_THREADS: 1
+2026-10-16T07:44:25.2633382Z   MKL_NUM_THREADS: 1
+2026-10-16T07:44:25.2633683Z   PYTHONHASHSEED: 0
+2026-10-16T07:44:25.2634051Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:44:25.2634584Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.9/x64/lib/pkgconfig
+2026-10-16T07:44:25.2635066Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:44:25.2635577Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:44:25.2636024Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:44:25.2636589Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.9/x64/lib
+2026-10-16T07:44:25.2636985Z ##[endgroup]
+2026-10-16T07:44:25.9485109Z Collecting numpy==1.26.4
+2026-10-16T07:44:26.0042131Z   Downloading numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+2026-10-16T07:44:26.0498180Z Collecting pybullet==3.2.7
+2026-10-16T07:44:26.0548602Z   Downloading pybullet-3.2.7-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-10-16T07:44:26.1792314Z Collecting Pillow==11.0.0
+2026-10-16T07:44:26.1831629Z   Downloading pillow-11.0.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-10-16T07:44:26.1979568Z Collecting imageio-ffmpeg==0.6.0
+2026-10-16T07:44:26.2014119Z   Downloading imageio_ffmpeg-0.6.0-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+2026-10-16T07:44:26.2087809Z Downloading numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.3 MB)
+2026-10-16T07:44:26.3724972Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.3/18.3 MB 114.2 MB/s  0:00:00
+2026-10-16T07:44:26.3784334Z Downloading pybullet-3.2.7-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (103.2 MB)
+2026-10-16T07:44:27.2952213Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.2/103.2 MB 112.6 MB/s  0:00:00
+2026-10-16T07:44:27.3004003Z Downloading pillow-11.0.0-cp311-cp311-manylinux_2_28_x86_64.whl (4.4 MB)
+2026-10-16T07:44:27.3304203Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 149.3 MB/s  0:00:00
+2026-10-16T07:44:27.3342144Z Downloading imageio_ffmpeg-0.6.0-py3-none-manylinux2014_x86_64.whl (29.5 MB)
+2026-10-16T07:44:27.5622222Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 29.5/29.5 MB 129.6 MB/s  0:00:00
+2026-10-16T07:44:27.7904015Z Installing collected packages: pybullet, Pillow, numpy, imageio-ffmpeg
+2026-10-16T07:44:32.3602069Z 
+2026-10-16T07:44:32.3615955Z Successfully installed Pillow-11.0.0 imageio-ffmpeg-0.6.0 numpy-1.26.4 pybullet-3.2.7
+2026-10-16T07:44:32.4488389Z ##[group]Run set -o pipefail
+2026-10-16T07:44:32.4488860Z [36;1mset -o pipefail[0m
+2026-10-16T07:44:32.4489582Z [36;1mpython scripts/verify_transfer_apf.py --output "$RUNNER_TEMP/transfer-apf" 2>&1 | tee "$RUNNER_TEMP/transfer-apf-run.log"[0m
+2026-10-16T07:44:32.4533482Z shell: /usr/bin/bash -e {0}
+2026-10-16T07:44:32.4533923Z env:
+2026-10-16T07:44:32.4534276Z   OPENBLAS_NUM_THREADS: 1
+2026-10-16T07:44:32.4534676Z   OMP_NUM_THREADS: 1
+2026-10-16T07:44:32.4534993Z   MKL_NUM_THREADS: 1
+2026-10-16T07:44:32.4535345Z   PYTHONHASHSEED: 0
+2026-10-16T07:44:32.4535768Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:44:32.4536306Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.9/x64/lib/pkgconfig
+2026-10-16T07:44:32.4536893Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:44:32.4537374Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:44:32.4537876Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:44:32.4538470Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.9/x64/lib
+2026-10-16T07:44:32.4538903Z ##[endgroup]
+2026-10-16T07:44:32.5897322Z pybullet build time: Jan 29 2025 23:17:20
+2026-10-16T07:44:48.0313516Z traditional 1 pick passed tick 191
+2026-10-16T07:45:14.3351700Z traditional 1 avoidance_via passed tick 2070
+2026-10-16T07:45:23.5545945Z traditional 1 place passed tick 2823
+2026-10-16T07:45:44.8187407Z traditional 1 return passed tick 4389
+2026-10-16T07:45:46.2255261Z improved 1 pick passed tick 81
+2026-10-16T07:46:05.3286083Z improved 1 avoidance_via passed tick 1095
+2026-10-16T07:46:12.2594909Z improved 1 place passed tick 1491
+2026-10-16T07:46:27.7762540Z improved 1 return passed tick 2336
+2026-10-16T07:46:29.1042415Z improved 2 pick passed tick 81
+2026-10-16T07:46:48.3600231Z improved 2 avoidance_via passed tick 1095
+2026-10-16T07:46:55.2713546Z improved 2 place passed tick 1491
+2026-10-16T07:47:10.8271656Z improved 2 return passed tick 2336
+2026-10-16T07:47:13.0120716Z traditional 2 pick passed tick 191
+2026-10-16T07:47:39.7021172Z traditional 2 avoidance_via passed tick 2070
+2026-10-16T07:47:48.9015715Z traditional 2 place passed tick 2823
+2026-10-16T07:48:10.3115917Z traditional 2 return passed tick 4389
+2026-10-16T07:48:12.5455555Z traditional 3 pick passed tick 191
+2026-10-16T07:48:39.6550835Z traditional 3 avoidance_via passed tick 2070
+2026-10-16T07:48:48.7895671Z traditional 3 place passed tick 2823
+2026-10-16T07:49:10.1866434Z traditional 3 return passed tick 4389
+2026-10-16T07:49:11.5564232Z improved 3 pick passed tick 81
+2026-10-16T07:49:30.5452751Z improved 3 avoidance_via passed tick 1095
+2026-10-16T07:49:37.4047111Z improved 3 place passed tick 1491
+2026-10-16T07:49:52.7364933Z improved 3 return passed tick 2336
+2026-10-16T07:49:52.8728992Z APF_BUSINESS_SUMMARY {"passed": true, "summary": {"traditional": {"attempts": 3, "successes": 3, "failures": 0, "success_rate": 1.0, "failure_codes": [], "attempt_time_s": 316.97700782500004, "observed_attempt_goodput_per_h": 34.071871881516955, "all_attempt_planning_wall_s": {"n": 3, "mean": 17.879002608333348, "median": 17.82289361000005, "p95": 18.014106290600004, "maximum": 18.035352144, "minimum": 17.77876207099999}, "successful_only": {"simulation_motion_s": {"n": 3, "mean": 87.78000000000002, "median": 87.78, "p95": 87.78, "maximum": 87.78, "minimum": 87.78}, "serial_attempt_s": {"n": 3, "mean": 105.65900260833335, "median": 105.60289361000005, "p95": 105.79410629060001, "maximum": 105.815352144, "minimum": 105.55876207099999}, "planned_joint_path_rad": {"n": 3, "mean": 1.088471049178549, "median": 1.088471049178549, "p95": 1.088471049178549, "maximum": 1.088471049178549, "minimum": 1.088471049178549}, "planned_tcp_path_m": {"n": 3, "mean": 0.26993596911183093, "median": 0.26993596911183093, "p95": 0.26993596911183093, "maximum": 0.26993596911183093, "minimum": 0.26993596911183093}, "intermediate_rest_knots": {"n": 3, "mean": 55.0, "median": 55.0, "p95": 55.0, "maximum": 55, "minimum": 55}, "placement_error_m": {"n": 3, "mean": 1.6502418024192093e-05, "median": 1.6502418024192093e-05, "p95": 1.6502418024192093e-05, "maximum": 1.6502418024192093e-05, "minimum": 1.6502418024192093e-05}, "retention_error_m": {"n": 3, "mean": 1.6502418024192093e-05, "median": 1.6502418024192093e-05, "p95": 1.6502418024192093e-05, "maximum": 1.6502418024192093e-05, "minimum": 1.6502418024192093e-05}, "return_error_rad": {"n": 3, "mean": 2.664670199004071e-05, "median": 2.664670199004071e-05, "p95": 2.664670199004071e-05, "maximum": 2.664670199004071e-05, "minimum": 2.664670199004071e-05}, "tracking_rmse_rad": {"n": 3, "mean": 3.624246143298969e-05, "median": 3.624246143298969e-05, "p95": 3.624246143298969e-05, "maximum": 3.624246143298969e-05, "minimum": 3.624246143298969e-05}, "minimum_actual_clearance_m": {"n": 3, "mean": 0.009372999429228278, "median": 0.009372999429228278, "p95": 0.009372999429228278, "maximum": 0.009372999429228278, "minimum": 0.009372999429228278}, "maximum_attachment_error_m": {"n": 3, "mean": 2.9691043181362837e-05, "median": 2.9691043181362837e-05, "p95": 2.9691043181362837e-05, "maximum": 2.9691043181362837e-05, "minimum": 2.9691043181362837e-05}}}, "improved": {"attempts": 3, "successes": 3, "failures": 0, "success_rate": 1.0, "failure_codes": [], "attempt_time_s": 208.90201681300002, "observed_attempt_goodput_per_h": 51.69887856883493, "all_attempt_planning_wall_s": {"n": 3, "mean": 22.914005604333337, "median": 22.99667789400003, "p95": 23.02034255970002, "maximum": 23.022971967000018, "minimum": 22.72236695199996}, "successful_only": {"simulation_motion_s": {"n": 3, "mean": 46.72, "median": 46.72, "p95": 46.72, "maximum": 46.72, "minimum": 46.72}, "serial_attempt_s": {"n": 3, "mean": 69.63400560433334, "median": 69.71667789400003, "p95": 69.74034255970001, "maximum": 69.74297196700002, "minimum": 69.44236695199996}, "planned_joint_path_rad": {"n": 3, "mean": 1.0759283983444916, "median": 1.0759283983444916, "p95": 1.0759283983444916, "maximum": 1.0759283983444916, "minimum": 1.0759283983444916}, "planned_tcp_path_m": {"n": 3, "mean": 0.25781015891411113, "median": 0.25781015891411113, "p95": 0.25781015891411113, "maximum": 0.25781015891411113, "minimum": 0.25781015891411113}, "intermediate_rest_knots": {"n": 3, "mean": 0.0, "median": 0.0, "p95": 0.0, "maximum": 0, "minimum": 0}, "placement_error_m": {"n": 3, "mean": 2.1851665622978425e-05, "median": 2.1851665622978425e-05, "p95": 2.1851665622978425e-05, "maximum": 2.1851665622978425e-05, "minimum": 2.1851665622978425e-05}, "retention_error_m": {"n": 3, "mean": 2.1851665622978425e-05, "median": 2.1851665622978425e-05, "p95": 2.1851665622978425e-05, "maximum": 2.1851665622978425e-05, "minimum": 2.1851665622978425e-05}, "return_error_rad": {"n": 3, "mean": 5.65495134088323e-05, "median": 5.65495134088323e-05, "p95": 5.65495134088323e-05, "maximum": 5.65495134088323e-05, "minimum": 5.65495134088323e-05}, "tracking_rmse_rad": {"n": 3, "mean": 3.279848270254241e-05, "median": 3.279848270254241e-05, "p95": 3.279848270254241e-05, "maximum": 3.279848270254241e-05, "minimum": 3.279848270254241e-05}, "minimum_actual_clearance_m": {"n": 3, "mean": 0.010978745831275637, "median": 0.010978745831275637, "p95": 0.010978745831275637, "maximum": 0.010978745831275637, "minimum": 0.010978745831275637}, "maximum_attachment_error_m": {"n": 3, "mean": 4.443165594790839e-05, "median": 4.443165594790839e-05, "p95": 4.443165594790839e-05, "maximum": 4.443165594790839e-05, "minimum": 4.443165594790839e-05}}}}, "successful_pairs": [{"repetition": 1, "motion_saved_s": 41.06, "motion_reduction_percent": 46.7760309865573, "serial_saved_s": 36.09867424999997, "serial_reduction_percent": 34.11477967854295}, {"repetition": 2, "motion_saved_s": 41.06, "motion_reduction_percent": 46.7760309865573, "serial_saved_s": 35.81579010399997, "serial_reduction_percent": 33.929717819075854}, {"repetition": 3, "motion_saved_s": 41.06, "motion_reduction_percent": 46.7760309865573, "serial_saved_s": 36.160526658000094, "serial_reduction_percent": 34.24198468608618}], "failure": null}
+2026-10-16T07:49:52.9084523Z ##[group]Run actions/upload-artifact@v4
+2026-10-16T07:49:52.9084906Z with:
+2026-10-16T07:49:52.9085240Z   name: fixed-transfer-apf-evidence
+2026-10-16T07:49:52.9085750Z   path: /home/runner/work/_temp/transfer-apf/
+/home/runner/work/_temp/transfer-apf-run.log
+
+2026-10-16T07:49:52.9086273Z   if-no-files-found: warn
+2026-10-16T07:49:52.9086610Z   compression-level: 6
+2026-10-16T07:49:52.9086902Z   overwrite: false
+2026-10-16T07:49:52.9087263Z   include-hidden-files: false
+2026-10-16T07:49:52.9087621Z env:
+2026-10-16T07:49:52.9087912Z   OPENBLAS_NUM_THREADS: 1
+2026-10-16T07:49:52.9088234Z   OMP_NUM_THREADS: 1
+2026-10-16T07:49:52.9088519Z   MKL_NUM_THREADS: 1
+2026-10-16T07:49:52.9088870Z   PYTHONHASHSEED: 0
+2026-10-16T07:49:52.9089232Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:49:52.9089721Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.9/x64/lib/pkgconfig
+2026-10-16T07:49:52.9090217Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:49:52.9090818Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:49:52.9091271Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.9/x64
+2026-10-16T07:49:52.9091729Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.9/x64/lib
+2026-10-16T07:49:52.9092174Z ##[endgroup]
+2026-10-16T07:49:53.0690211Z (node:2752) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-16T07:49:53.0691945Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-16T07:49:53.0954315Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-16T07:49:53.0957116Z The least common ancestor is /home/runner/work/_temp. This will be the root directory of the artifact
+2026-10-16T07:49:53.0958104Z With the provided path, there will be 143 files uploaded
+2026-10-16T07:49:53.0963362Z Artifact name is valid!
+2026-10-16T07:49:53.0964097Z Root directory input is valid!
+2026-10-16T07:49:53.3645509Z Beginning upload of artifact content to blob storage
+2026-10-16T07:49:54.2184542Z (node:2752) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-16T07:49:54.6237223Z Uploaded bytes 8388608
+2026-10-16T07:49:55.1702248Z Uploaded bytes 16777216
+2026-10-16T07:49:56.1131890Z Uploaded bytes 25165824
+2026-10-16T07:49:56.9024079Z Uploaded bytes 33554432
+2026-10-16T07:49:57.1124171Z Uploaded bytes 36647933
+2026-10-16T07:49:57.1473793Z Finished uploading artifact content to blob storage!
+2026-10-16T07:49:57.1476173Z SHA256 digest of uploaded artifact zip is 07a65ea69d890c2bf16a0703dd37548f2573ccae4f7d3bb1096d3b38ad906533
+2026-10-16T07:49:57.1478078Z Finalizing artifact upload
+2026-10-16T07:49:57.3650296Z Artifact fixed-transfer-apf-evidence.zip successfully finalized. Artifact ID 12033076115
+2026-10-16T07:49:57.3651718Z Artifact fixed-transfer-apf-evidence has been successfully uploaded! Final size is 36647933 bytes. Artifact ID is 12033076115
+2026-10-16T07:49:57.3658598Z Artifact download URL: https://github.com/CJ0817/six-axis-robot-internship/actions/runs/38869088208/artifacts/12033076115
+2026-10-16T07:49:57.3838846Z Post job cleanup.
+2026-10-16T07:49:57.5040510Z (node:2765) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-16T07:49:57.5041328Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-16T07:49:57.5180890Z Post job cleanup.
+2026-10-16T07:49:57.6212960Z [command]/usr/bin/git version
+2026-10-16T07:49:57.6279497Z git version 2.55.0
+2026-10-16T07:49:57.6327680Z Temporarily overriding HOME='/home/runner/work/_temp/7b99803b-7fde-44fb-abef-8909678421a6' before making global git config changes
+2026-10-16T07:49:57.6329222Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-16T07:49:57.6334719Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/six-axis-robot-internship/six-axis-robot-internship
+2026-10-16T07:49:57.6404390Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-16T07:49:57.6446072Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-16T07:49:57.6747196Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-16T07:49:57.6791286Z http.https://github.com/.extraheader
+2026-10-16T07:49:57.6809488Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-16T07:49:57.6884125Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-16T07:49:57.7168919Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-16T07:49:57.7222918Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-16T07:49:57.7641624Z Cleaning up orphan processes
+2026-10-16T07:49:57.7899859Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

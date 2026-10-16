@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "experiment": "fixed-transfer matched APF closed-loop comparison",
+  "source_commit": "51f97d7946d4785bc3b40e1f38c1940dcbf7029f",
+  "run_id": 38869088208,
+  "job_id": 116868667512,
+  "run_url": "https://github.com/CJ0817/six-axis-robot-internship/actions/runs/38869088208",
+  "date": "2026-10-16",
+  "configuration": "config/fixed-transfer-apf.v1.json",
+  "artifact": {
+    "id": 12033076115,
+    "name": "fixed-transfer-apf-evidence",
+    "bytes": 36647933,
+    "digest": "sha256:07a65ea69d890c2bf16a0703dd37548f2573ccae4f7d3bb1096d3b38ad906533"
+  },
+  "statistics": {
+    "passed": true,
+    "summary": {
+      "traditional": {
+        "attempts": 3,
+        "successes": 3,
+        "failures": 0,
+        "success_rate": 1,
+        "failure_codes": [],
+        "attempt_time_s": 316.97700782500004,
+        "observed_attempt_goodput_per_h": 34.071871881516955,
+        "all_attempt_planning_wall_s": {
+          "n": 3,
+          "mean": 17.879002608333348,
+          "median": 17.82289361000005,
+          "p95": 18.014106290600004,
+          "maximum": 18.035352144,
+          "minimum": 17.77876207099999
+        },
+        "successful_only": {
+          "simulation_motion_s": {
+            "n": 3,
+            "mean": 87.78000000000002,
+            "median": 87.78,
+            "p95": 87.78,
+            "maximum": 87.78,
+            "minimum": 87.78
+          },
+          "serial_attempt_s": {
+            "n": 3,
+            "mean": 105.65900260833335,
+            "median": 105.60289361000005,
+            "p95": 105.79410629060001,
+            "maximum": 105.815352144,
+            "minimum": 105.55876207099999
+          },
+          "planned_joint_path_rad": {
+            "n": 3,
+            "mean": 1.088471049178549,
+            "median": 1.088471049178549,
+            "p95": 1.088471049178549,
+            "maximum": 1.088471049178549,
+            "minimum": 1.088471049178549
+          },
+          "planned_tcp_path_m": {
+            "n": 3,
+            "mean": 0.26993596911183093,
+            "median": 0.26993596911183093,
+            "p95": 0.26993596911183093,
+            "maximum": 0.26993596911183093,
+            "minimum": 0.26993596911183093
+          },
+          "intermediate_rest_knots": {
+            "n": 3,
+            "mean": 55,
+            "median": 55,
+            "p95": 55,
+            "maximum": 55,
+            "minimum": 55
+          },
+          "placement_error_m": {
+            "n": 3,
+            "mean": 0.000016502418024192093,
+            "median": 0.000016502418024192093,
+            "p95": 0.000016502418024192093,
+            "maximum": 0.000016502418024192093,
+            "minimum": 0.000016502418024192093
+          },
+          "retention_error_m": {
+            "n": 3,
+            "mean": 0.000016502418024192093,
+            "median": 0.000016502418024192093,
+            "p95": 0.000016502418024192093,
+            "maximum": 0.000016502418024192093,
+            "minimum": 0.000016502418024192093
+          },
+          "return_error_rad": {
+            "n": 3,
+            "mean": 0.00002664670199004071,
+            "median": 0.00002664670199004071,
+            "p95": 0.00002664670199004071,
+            "maximum": 0.00002664670199004071,
+            "minimum": 0.00002664670199004071
+          },
+          "tracking_rmse_rad": {
+            "n": 3,
+            "mean": 0.00003624246143298969,
+            "median": 0.00003624246143298969,
+            "p95": 0.00003624246143298969,
+            "maximum": 0.00003624246143298969,
+            "minimum": 0.00003624246143298969
+          },
+          "minimum_actual_clearance_m": {
+            "n": 3,
+            "mean": 0.009372999429228278,
+            "median": 0.009372999429228278,
+            "p95": 0.009372999429228278,
+            "maximum": 0.009372999429228278,
+            "minimum": 0.009372999429228278
+          },
+          "maximum_attachment_error_m": {
+            "n": 3,
+            "mean": 0.000029691043181362837,
+            "median": 0.000029691043181362837,
+            "p95": 0.000029691043181362837,
+            "maximum": 0.000029691043181362837,
+            "minimum": 0.000029691043181362837
+          }
+        }
+      },
+      "improved": {
+        "attempts": 3,
+        "successes": 3,
+        "failures": 0,
+        "success_rate": 1,
+        "failure_codes": [],
+        "attempt_time_s": 208.90201681300002,
+        "observed_attempt_goodput_per_h": 51.69887856883493,
+        "all_attempt_planning_wall_s": {
+          "n": 3,
+          "mean": 22.914005604333337,
+          "median": 22.99667789400003,
+          "p95": 23.02034255970002,
+          "maximum": 23.022971967000018,
+          "minimum": 22.72236695199996
+        },
+        "successful_only": {
+          "simulation_motion_s": {
+            "n": 3,
+            "mean": 46.72,
+            "median": 46.72,
+            "p95": 46.72,
+            "maximum": 46.72,
+            "minimum": 46.72
+          },
+          "serial_attempt_s": {
+            "n": 3,
+            "mean": 69.63400560433334,
+            "median": 69.71667789400003,
+            "p95": 69.74034255970001,
+            "maximum": 69.74297196700002,
+            "minimum": 69.44236695199996
+          },
+          "planned_joint_path_rad": {
+            "n": 3,
+            "mean": 1.0759283983444916,
+            "median": 1.0759283983444916,
+            "p95": 1.0759283983444916,
+            "maximum": 1.0759283983444916,
+            "minimum": 1.0759283983444916
+          },
+          "planned_tcp_path_m": {
+            "n": 3,
+            "mean": 0.25781015891411113,
+            "median": 0.25781015891411113,
+            "p95": 0.25781015891411113,
+            "maximum": 0.25781015891411113,
+            "minimum": 0.25781015891411113
+          },
+          "intermediate_rest_knots": {
+            "n": 3,
+            "mean": 0,
+            "median": 0,
+            "p95": 0,
+            "maximum": 0,
+            "minimum": 0
+          },
+          "placement_error_m": {
+            "n": 3,
+            "mean": 0.000021851665622978425,
+            "median": 0.000021851665622978425,
+            "p95": 0.000021851665622978425,
+            "maximum": 0.000021851665622978425,
+            "minimum": 0.000021851665622978425
+          },
+          "retention_error_m": {
+            "n": 3,
+            "mean": 0.000021851665622978425,
+            "median": 0.000021851665622978425,
+            "p95": 0.000021851665622978425,
+            "maximum": 0.000021851665622978425,
+            "minimum": 0.000021851665622978425
+          },
+          "return_error_rad": {
+            "n": 3,
+            "mean": 0.0000565495134088323,
+            "median": 0.0000565495134088323,
+            "p95": 0.0000565495134088323,
+            "maximum": 0.0000565495134088323,
+            "minimum": 0.0000565495134088323
+          },
+          "tracking_rmse_rad": {
+            "n": 3,
+            "mean": 0.00003279848270254241,
+            "median": 0.00003279848270254241,
+            "p95": 0.00003279848270254241,
+            "maximum": 0.00003279848270254241,
+            "minimum": 0.00003279848270254241
+          },
+          "minimum_actual_clearance_m": {
+            "n": 3,
+            "mean": 0.010978745831275637,
+            "median": 0.010978745831275637,
+            "p95": 0.010978745831275637,
+            "maximum": 0.010978745831275637,
+            "minimum": 0.010978745831275637
+          },
+          "maximum_attachment_error_m": {
+            "n": 3,
+            "mean": 0.00004443165594790839,
+            "median": 0.00004443165594790839,
+            "p95": 0.00004443165594790839,
+            "maximum": 0.00004443165594790839,
+            "minimum": 0.00004443165594790839
+          }
+        }
+      }
+    },
+    "successful_pairs": [
+      {
+        "repetition": 1,
+        "motion_saved_s": 41.06,
+        "motion_reduction_percent": 46.7760309865573,
+        "serial_saved_s": 36.09867424999997,
+        "serial_reduction_percent": 34.11477967854295
+      },
+      {
+        "repetition": 2,
+        "motion_saved_s": 41.06,
+        "motion_reduction_percent": 46.7760309865573,
+        "serial_saved_s": 35.81579010399997,
+        "serial_reduction_percent": 33.929717819075854
+      },
+      {
+        "repetition": 3,
+        "motion_saved_s": 41.06,
+        "motion_reduction_percent": 46.7760309865573,
+        "serial_saved_s": 36.160526658000094,
+        "serial_reduction_percent": 34.24198468608618
+      }
+    ],
+    "failure": null
+  },
+  "derived_business_metrics": {
+    "motion_saved_s": 41.06000000000002,
+    "motion_reduction_percent": 46.776030986557316,
+    "planning_extra_s": 5.035002995999989,
+    "planning_increase_percent": 28.16154293558406,
+    "serial_saved_s": 36.024997004000014,
+    "serial_reduction_percent": 34.09553006812002,
+    "goodput_increase_percent": 51.73477626534553,
+    "tcp_path_reduction_percent": 4.492106123395601
+  },
+  "measurement_notes": {
+    "timeout_count": 0,
+    "sample_size": "three deterministic pairs, 6 complete physical simulation attempts",
+    "planning_clock": "perf_counter, complete pipeline function entry to return including all recertification",
+    "excluded": "shared offline IK recipe; scene setup; FK path measurement; serialization; rendering",
+    "serial_cost": "simulated motion plus phase holds plus online pipeline wall seconds",
+    "goodput": "3600*success_count/sum(serial_cost) over all attempts; no hardware throughput claim",
+    "accuracy_metrics": "successful trials only; all failures remain in success-rate denominator and attempt cost"
+  }
+}

@@ -27,6 +27,8 @@ jobs:
           ctest --test-dir build-core --output-on-failure
       - name: Install pinned simulation dependencies
         run: python -m pip install numpy==1.26.4 pybullet==3.2.7 Pillow==11.0.0 imageio-ffmpeg==0.6.0
+      - name: Failed-attempt accounting regression
+        run: python -m unittest discover -s tests -p 'test_transfer_apf_metrics.py' -v
       - name: Matched complete business-task trials
         run: |
           set -o pipefail
